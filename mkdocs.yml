@@ -1,0 +1,58 @@
+site_name: JavaJub · Java interview guides
+site_description: "Реальные вопросы Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, live coding и System Design."
+site_url: https://javajub.github.io/java-interview/
+repo_url: https://github.com/JavaJub/java-interview
+repo_name: JavaJub/java-interview
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: blue
+      accent: light blue
+
+plugins:
+  - search:
+      lang:
+        - ru
+        - en
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Старт: index.md
+  - Компании: companies.md
+  - Темы: TOPICS.md
+  - Маршруты:
+      - Java Junior: roadmaps/java-junior.md
+      - Java Middle: roadmaps/java-middle.md
+      - AQA Java: roadmaps/java-aqa.md
+  - Гайды по компаниям:
+      - Сбер: guides/sber.md
+      - SberSeasons: guides/sber-internship.md
+      - Альфа-Банк: guides/alfa-bank.md
+      - Т1 Иннотех: guides/t1-innotech.md
+      - VK: guides/vk.md
+      - Яндекс Путешествия: guides/yandex-travel.md
+      - МТС Банк AQA: guides/mts-bank-aqa.md
+      - ITK Academy: guides/itk-academy.md
+      - Лига Цифровой Экономики: guides/liga.md
+  - Задачи:
+      - X5 Tech code review: tasks/x5-blackfriday-code-review.md
+  - Как помочь: CONTRIBUTING.md

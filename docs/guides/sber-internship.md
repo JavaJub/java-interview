@@ -4,7 +4,7 @@
 
 **Темы:** Java Core · ООП · Коллекции · SQL · Алгоритмы · Spring · Git
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
 
 ---
 
@@ -2158,6 +2158,6 @@ R (Результат): Проект сдали на отлично, попал 
 
 - Повторить: Java Core, коллекции, SQL, алгоритмы Easy, Spring basics, рассказ о pet-проекте.
 - Спросить в канале: свежие вопросы по SberSeasons, анкета, live-coding и pet-проекты.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
 
-[← Ко всем гайдам](../README.md)
+[← Ко всем гайдам](../index.md)

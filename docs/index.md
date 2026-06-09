@@ -2,11 +2,11 @@
 
 Реальные вопросы для Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность, live-coding, code review и System Design. Проект помогает быстро понять, что именно повторять перед интервью в Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС и другие команды.
 
-[![Telegram](https://img.shields.io/badge/Telegram-JavaJub-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+6GwSVWu9VIxlN2Yy)
+[![Telegram](https://img.shields.io/badge/Telegram-JavaJub-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+vDYjUmPrBYZmMTAy)
 [![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-222?logo=github)](https://javajub.github.io/java-interview/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
-> Новые разборы собеседований и свежие вопросы сначала выходят в Telegram-канале [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy). GitHub — бесплатная база, которую удобно читать, искать и дополнять.
+> Новые разборы собеседований и свежие вопросы сначала выходят в Telegram-канале [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy). GitHub — бесплатная база, которую удобно читать, искать и дополнять.
 
 ## С чего начать
 
@@ -72,10 +72,10 @@
 
 ## Канал
 
-Гайды берутся из Telegram-канала **JavaJub**. Там разборы выходят первыми, плюс свежие вопросы с собесов, задачи и обсуждения: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+Гайды берутся из Telegram-канала **JavaJub**. Там разборы выходят первыми, плюс свежие вопросы с собесов, задачи и обсуждения: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
 
 Если материал пригодился — поставьте звезду, так его найдут другие.
 
 ## Лицензия
 
-Контент распространяется по [CC BY 4.0](LICENSE): можно делиться и использовать с указанием авторства (JavaJub, https://t.me/+6GwSVWu9VIxlN2Yy).
+Контент распространяется по [CC BY 4.0](LICENSE): можно делиться и использовать с указанием авторства (JavaJub, https://t.me/+vDYjUmPrBYZmMTAy).

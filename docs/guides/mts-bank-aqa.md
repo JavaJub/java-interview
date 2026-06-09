@@ -4,7 +4,7 @@
 
 **Темы:** Java · Rest Assured · JUnit 5 · PostgreSQL · Kafka · WireMock · Allure
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
 
 ---
 
@@ -650,6 +650,6 @@ Actions
 
 - Повторить: тест-дизайн, HTTP/REST, Rest Assured, JUnit 5, SQL, WireMock, Kafka/RabbitMQ.
 - Спросить в канале: свежие AQA-вопросы, API-задачи, примеры pet-проектов и Allure-отчётов.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
 
-[← Ко всем гайдам](../README.md)
+[← Ко всем гайдам](../index.md)

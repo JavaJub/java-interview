@@ -4,7 +4,7 @@ Code-review под Senior на собесе в X5 Tech / Farzoom: разбор 4
 
 **Стек:** Java 21 · Spring Boot 3 · PostgreSQL · concurrency · BigDecimal · code review
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
 
 ---
 
@@ -457,6 +457,6 @@ public class BlackFridayPricingService {
 
 - Повторить: `parallelStream`, общий `ForkJoinPool`, `ThreadLocalRandom`, interruption, BigDecimal и code review-подход.
 - Спросить в канале: свежие code review-задачи, разборы production-багов и примеры Senior-вопросов.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
 
-[← Ко всем гайдам](../README.md)
+[← Ко всем гайдам](../index.md)
