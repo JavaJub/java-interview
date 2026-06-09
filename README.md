@@ -9,6 +9,7 @@
 | Компания | Грейд | Стек |
 |---|---|---|
 | [Сбер](guides/sber.md) | Java Middle | JavaCore · JVM · Collections · Multithreading · Spring · SQL · System Design |
+| [Сбер — стажировка SberSeasons](guides/sber-internship.md) | Стажировка SberSeasons (Java Trainee) | Java Core · ООП · Коллекции · SQL · Алгоритмы · Spring · Git |
 | [Альфа-Банк (Alfa Digital)](guides/alfa-bank.md) | Java Middle | Java 11+ · Spring Boot · Kafka · PostgreSQL · Docker · Kubernetes · JUnit · Microservices |
 | [Т1 Иннотех](guides/t1-innotech.md) | Java Junior/Middle | Java · Spring Boot · Hibernate · PostgreSQL · Kafka · Docker · Microservices |
 | [VK (группа балансеров, One-cloud)](guides/vk.md) | Java Middle | Java 21 · Spring Boot 3 · Kafka · PostgreSQL · Kubernetes · gRPC · HAProxy · Docker |
@@ -16,6 +17,14 @@
 | [МТС Банк](guides/mts-bank-aqa.md) | AQA Java (Junior) | Java · Rest Assured · JUnit 5 · PostgreSQL · Kafka · WireMock · Allure |
 | [ITK Academy](guides/itk-academy.md) | Java Junior | Java · Spring · Spring Boot · Docker · SQL · Git · OAuth |
 | [Лига Цифровой Экономики](guides/liga.md) | Java Middle | Java 11+ · Spring · Hibernate · PostgreSQL · JUnit · Docker · Jenkins |
+
+## Разборы задач (code review)
+
+Реальные задачи с собеседований с пошаговым разбором кода.
+
+| Задача | Формат |
+|---|---|
+| [X5 Tech · Senior — 8 багов в сервисе расчёта скидок](tasks/x5-blackfriday-code-review.md) | разбор кода под Senior |
 
 ## Что внутри каждого гайда
 
