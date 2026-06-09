@@ -1,0 +1,32 @@
+name: Исправление или уточнение
+description: Сообщите об устаревшем факте, ошибке или неточной формулировке.
+title: "[Correction]: "
+labels:
+  - correction
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Где ошибка
+      description: Укажите файл, раздел или ссылку.
+      placeholder: guides/alfa-bank.md, раздел Spring и Spring Boot
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Что не так
+      placeholder: Формулировка устарела / таблица сломана / ответ неточный.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Как исправить
+      placeholder: Предлагаю заменить на...
+  - type: input
+    id: source
+    attributes:
+      label: Источник или контекст
+      description: Ссылка, вакансия, документация или личный опыт интервью.
+      placeholder: актуальная вакансия / собеседование в мае 2026

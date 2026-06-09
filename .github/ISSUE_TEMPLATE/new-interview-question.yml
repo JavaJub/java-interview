@@ -1,0 +1,62 @@
+name: Новый вопрос с собеседования
+description: Поделитесь реальным вопросом, задачей или форматом интервью.
+title: "[Question]: "
+labels:
+  - interview-question
+  - contribution
+body:
+  - type: input
+    id: company
+    attributes:
+      label: Компания
+      description: Например, Сбер, Альфа-Банк, VK, Яндекс, Т1.
+      placeholder: Сбер
+    validations:
+      required: true
+  - type: input
+    id: grade
+    attributes:
+      label: Грейд / роль
+      placeholder: Java Middle, Java Junior, AQA Java Junior
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Когда было интервью
+      description: Можно примерно: март 2026, весна 2026.
+      placeholder: март 2026
+  - type: input
+    id: stack
+    attributes:
+      label: Стек
+      placeholder: Java 21, Spring Boot, Kafka, PostgreSQL
+  - type: textarea
+    id: questions
+    attributes:
+      label: Какие вопросы спрашивали
+      description: Список вопросов по Java, Spring, SQL, Kafka, тестам, архитектуре.
+      placeholder: |
+        - Как устроен HashMap?
+        - Почему @Transactional не работает при self-invocation?
+        - Что будет, если Kafka consumer упадёт после обработки сообщения?
+    validations:
+      required: true
+  - type: textarea
+    id: live_coding
+    attributes:
+      label: Live-coding / SQL / code review
+      description: Если давали задачу, опишите условие и формат.
+      placeholder: Нужно было найти баги в Spring-сервисе и написать SQL с GROUP BY.
+  - type: textarea
+    id: hard_parts
+    attributes:
+      label: Что было неожиданным или сложным
+      placeholder: Больше всего спрашивали не синтаксис, а production-последствия.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Безопасность
+      options:
+        - label: Я не публикую NDA, персональные данные и закрытые материалы компании.
+          required: true
