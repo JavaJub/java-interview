@@ -35,10 +35,20 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
 
+extra_css:
+  - assets/css/quiz.css
+
+extra_javascript:
+  - assets/js/quiz.js
+
 nav:
   - Старт: index.md
   - Компании: companies.md
   - Темы: TOPICS.md
+  - Тесты:
+      - Каталог: quizzes/index.md
+      - По темам: quizzes/topics.md
+      - По компаниям: quizzes/companies.md
   - Маршруты:
       - Java Junior: roadmaps/java-junior.md
       - Java Middle: roadmaps/java-middle.md

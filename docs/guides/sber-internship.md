@@ -2159,5 +2159,6 @@ R (Результат): Проект сдали на отлично, попал 
 - Повторить: Java Core, коллекции, SQL, алгоритмы Easy, Spring basics, рассказ о pet-проекте.
 - Спросить в канале: свежие вопросы по SberSeasons, анкета, live-coding и pet-проекты.
 - Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

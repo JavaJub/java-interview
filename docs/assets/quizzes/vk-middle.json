@@ -1,0 +1,3654 @@
+{
+  "id": "vk-middle",
+  "title": "VK Java Middle",
+  "kind": "company",
+  "description": "Java 21, алгоритмы, high-load и сети.",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "questionCount": 67,
+  "questions": [
+    {
+      "id": "auto-acid-353",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 278,
+          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 258,
+          "title": "VK · 7. Базы данных и SQL"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 263,
+          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
+        }
+      ],
+      "prompt": "Что важно сказать на собеседовании про ACID?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Merge: создаёт коммит-слияние, история ветвится (видно откуда пришли изменения). Rebase: перемещает коммиты на вершину целевой ветки, линейная история. Rebase в публичных ветках — не стоит (переписывает историю)..."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+        },
+        {
+          "id": "c",
+          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+        },
+        {
+          "id": "d",
+          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL).",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-arraylist-vs-linkedlist-326",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "jvm",
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 171,
+          "title": "Альфа-Банк · 4. Коллекции"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 187,
+          "title": "VK · 4. Коллекции"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 167,
+          "title": "Яндекс Путешествия · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 150,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: ArrayList vs LinkedList?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ArrayList: O(1) доступ по индексу, O(n) вставка в середину, дружелюбно к CPU-кэшу (непрерывная память). LinkedList: O(1) вставка в начало/конец (если есть ссылка), O(n) доступ по индексу..."
+        },
+        {
+          "id": "b",
+          "text": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей..."
+        },
+        {
+          "id": "c",
+          "text": "HashMap — да, ОДИН null-ключ (лежит в table[0]), null-значений сколько угодно. TreeMap — null-ключ нельзя (бросит NPE при сравнении). Hashtable — null нельзя ни в ключе, ни в значении (NPE)."
+        },
+        {
+          "id": "d",
+          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "ArrayList: O(1) доступ по индексу, O(n) вставка в середину, дружелюбно к CPU-кэшу (непрерывная память). LinkedList: O(1) вставка в начало/конец (если есть ссылка), O(n) доступ по индексу...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-circuit-breaker-366",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "spring",
+        "kafka",
+        "devops",
+        "testing-aqa",
+        "java-core"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 321,
+          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 323,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Что важно сказать на собеседовании про Circuit Breaker?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Read Uncommitted (можно читать незакоммиченные — dirty read). Read Committed (только закоммиченные, но возможен non-repeatable read). Repeatable Read (повторное чтение даст тот же результат, но возможен phantom read)..."
+        },
+        {
+          "id": "b",
+          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+        },
+        {
+          "id": "c",
+          "text": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict..."
+        },
+        {
+          "id": "d",
+          "text": "start() — создаёт новый поток ОС и в нём вызывает run(). run() напрямую — это обычный метод, выполнится В ТЕКУЩЕМ потоке. Это любимая ловушка на собесах. Запомни: «start запускает новый, run просто исполняет в этом же»."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-completablefuture-338",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency",
+        "spring",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 211,
+          "title": "Альфа-Банк · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 221,
+          "title": "VK · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Что важно сказать на собеседовании про CompletableFuture?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Checked — компилятор требует обработать (catch) или объявить в throws. Используются для ожидаемых внешних ошибок (IO, БД). Unchecked (RuntimeException и наследники) — обрабатывать не обязательно..."
+        },
+        {
+          "id": "b",
+          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
+        },
+        {
+          "id": "c",
+          "text": "Маленькие таблицы. Низкая selectivity (boolean). Функции (LOWER(email) — нужен expression index). LIKE '%abc' (wildcard в начале). Часто обновляемые колонки (индекс замедляет INSERT/UPDATE/DELETE)."
+        },
+        {
+          "id": "d",
+          "text": "Если a.equals(b), то hashCode одинаков. Обратное необязательно. При константном hashCode — все в одном bucket: Java 7 — список O(n), Java 8+ при 8 коллизиях — red-black tree O(log n). Деградация..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-concurrenthashmap-java-8-446",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 212,
+          "title": "VK · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «ConcurrentHashMap Java 8» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Значение сменилось с A на B и обратно на A. CAS это не видит. Решение: AtomicStampedReference с версией."
+        },
+        {
+          "id": "b",
+          "text": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен."
+        },
+        {
+          "id": "c",
+          "text": "base62 с 62^7 ≈ 3.5 трлн. Redis-кэш популярных. Расчёт: чтения/записи 100:1. Шардирование по хэшу ключа."
+        },
+        {
+          "id": "d",
+          "text": "В HashMap — да (один null-ключ хранится в bucket 0). В ConcurrentHashMap — нельзя ни ключ, ни значение."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-configmap-vs-secret-465",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "devops"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 372,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: ConfigMap vs Secret?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
+        },
+        {
+          "id": "b",
+          "text": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM."
+        },
+        {
+          "id": "c",
+          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+        },
+        {
+          "id": "d",
+          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-connection-draining-462",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 348,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Connection draining» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "При выводе backend из ротации — дождаться завершения активных соединений, а не обрывать. Graceful shutdown."
+        },
+        {
+          "id": "b",
+          "text": "Метод захватывает this (для static — Class-объект). Блок — любой указанный объект. Блок обычно эффективнее."
+        },
+        {
+          "id": "c",
+          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+        },
+        {
+          "id": "d",
+          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "При выводе backend из ротации — дождаться завершения активных соединений, а не обрывать. Graceful shutdown.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-consumer-group-364",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "kafka",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 315,
+          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 314,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Что важно сказать на собеседовании про Consumer Group?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
+        },
+        {
+          "id": "b",
+          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
+        },
+        {
+          "id": "c",
+          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+        },
+        {
+          "id": "d",
+          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-deadlock-337",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "jvm",
+        "concurrency",
+        "hibernate",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 208,
+          "title": "Альфа-Банк · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 218,
+          "title": "VK · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Deadlock» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
+        },
+        {
+          "id": "b",
+          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
+        },
+        {
+          "id": "c",
+          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+        },
+        {
+          "id": "d",
+          "text": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-explain-analyze-359",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "collections",
+        "jvm"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 296,
+          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 273,
+          "title": "VK · 7. Базы данных и SQL"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 278,
+          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «EXPLAIN ANALYZE» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
+        },
+        {
+          "id": "b",
+          "text": "HashMap не потокобезопасен, допускает null-ключ/значение. ConcurrentHashMap потокобезопасен, не допускает null, в Java 7 использовал сегментную блокировку, в Java 8+ — CAS + synchronized на головах бакетов."
+        },
+        {
+          "id": "c",
+          "text": "Распределённые транзакции через цепочку локальных + компенсирующие действия. Choreography (события, децентрализованно) vs Orchestration (центральный оркестратор). Пример: оплата → списание → бронирование..."
+        },
+        {
+          "id": "d",
+          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-generics-type-erasure-pecs-436",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "kafka"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 112,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Generics: type erasure, PECS?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object."
+        },
+        {
+          "id": "b",
+          "text": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей."
+        },
+        {
+          "id": "c",
+          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
+        },
+        {
+          "id": "d",
+          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-happens-before-332",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency",
+        "hibernate",
+        "sql",
+        "java-core"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 193,
+          "title": "Альфа-Банк · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 209,
+          "title": "VK · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 189,
+          "title": "Яндекс Путешествия · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «happens-before» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "UNION — объединяет результаты ДВУХ SELECT, убирает дубликаты. UNION ALL — то же, но БЕЗ удаления дубликатов. UNION ALL быстрее (не нужно сортировать для дедупликации). Если знаешь, что дублей не будет — всегда UNION ALL."
+        },
+        {
+          "id": "b",
+          "text": "Ключевое отношение JMM. Если A happens-before B, то записи в A видны в B. Примеры: unlock → lock того же монитора. volatile write → read. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join()..."
+        },
+        {
+          "id": "c",
+          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+        },
+        {
+          "id": "d",
+          "text": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Ключевое отношение JMM. Если A happens-before B, то записи в A видны в B. Примеры: unlock → lock того же монитора. volatile write → read. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join()...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-haproxy-vs-nginx-vs-envoy-458",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 336,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: HAProxy vs Nginx vs Envoy?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spring создаёт прокси (JDK dynamic proxy для интерфейсов или CGLIB для классов). Прокси открывает транзакцию перед методом, коммитит после или откатывает при исключении."
+        },
+        {
+          "id": "b",
+          "text": "Inversion of Control — инверсия управления. Вместо того чтобы класс сам создавал свои зависимости (new), он получает их извне — фреймворк сам решает, кого с кем связать."
+        },
+        {
+          "id": "c",
+          "text": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач."
+        },
+        {
+          "id": "d",
+          "text": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashmap-vs-concurrenthashmap-325",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 168,
+          "title": "Альфа-Банк · 4. Коллекции"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 184,
+          "title": "VK · 4. Коллекции"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 164,
+          "title": "Яндекс Путешествия · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 165,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: HashMap vs ConcurrentHashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Нормализация — процесс приведения схемы БД к виду без избыточности данных. 1НФ — все атрибуты атомарны (нет списков в одной ячейке). 2НФ — 1НФ + каждый не-ключевой атрибут зависит от полного ключа..."
+        },
+        {
+          "id": "b",
+          "text": "this доступен извне — любой может случайно или намеренно synchronized(obj) на том же объекте. privateLock (private final Object lock = new Object()) — полный контроль, никто извне не может захватить."
+        },
+        {
+          "id": "c",
+          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
+        },
+        {
+          "id": "d",
+          "text": "HashMap: не потокобезопасен, допускает null-ключ. ConcurrentHashMap: Java 7 — Segment-блокировки, Java 8+ — CAS + synchronized на головах бакетов. null запрещён. computeIfAbsent — атомарная операция."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "HashMap: не потокобезопасен, допускает null-ключ. ConcurrentHashMap: Java 7 — Segment-блокировки, Java 8+ — CAS + synchronized на головах бакетов. null запрещён. computeIfAbsent — атомарная операция.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashmap-устройство-443",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "sql",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 178,
+          "title": "VK · 4. Коллекции"
+        }
+      ],
+      "prompt": "HashMap — устройство?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
+        },
+        {
+          "id": "b",
+          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+        },
+        {
+          "id": "c",
+          "text": "JpaRepository extends PagingAndSortingRepository extends CrudRepository. Добавляет flush(), saveAllAndFlush(), работу с List вместо Iterable, deleteAllInBatch."
+        },
+        {
+          "id": "d",
+          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-health-checks-459",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 339,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Health checks» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Virtual Router Redundancy Protocol. active-standby пара балансеров. При падении primary — мгновенное переключение, IP не меняется. Используется в VK Cloud."
+        },
+        {
+          "id": "b",
+          "text": "Black Box: не знаем внутреннюю реализацию, тестируем по спецификации. White Box: знаем код, тестируем ветвления, покрытие. Grey Box: знаем архитектуру..."
+        },
+        {
+          "id": "c",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "d",
+          "text": "Active: балансер периодически проверяет backend (HTTP GET /health, TCP connect). Passive: считает ошибки от реальных запросов. Комбинация — best practice."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Active: балансер периодически проверяет backend (HTTP GET /health, TCP connect). Passive: считает ошибки от реальных запросов. Комбинация — best practice.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-ioc-и-di-339",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "testing-aqa",
+        "java-core"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 218,
+          "title": "Альфа-Банк · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 233,
+          "title": "VK · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 213,
+          "title": "Яндекс Путешествия · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «IoC и DI» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        },
+        {
+          "id": "b",
+          "text": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0..."
+        },
+        {
+          "id": "c",
+          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
+        },
+        {
+          "id": "d",
+          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jdk-jre-jvm-433",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "concurrency"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 97,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 82,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "JDK, JRE, JVM?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        },
+        {
+          "id": "b",
+          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+        },
+        {
+          "id": "c",
+          "text": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле."
+        },
+        {
+          "id": "d",
+          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-kafka-зачем-363",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "kafka"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 312,
+          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 311,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Kafka — зачем?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Pod — 1+ контейнер, общий network. Deployment — управляет ReplicaSet: реплики, rolling update, rollback. Service — стабильный IP/DNS: ClusterIP (внутренний), NodePort, LoadBalancer. Ingress — L7 маршрутизация."
+        },
+        {
+          "id": "b",
+          "text": "Распределённый лог-ориентированный брокер. Данные хранятся на диске (retention), не удаляются после прочтения. Topic → Partition → Offset. Partition — единица параллелизма. Зачем: асинхронное взаимодействие..."
+        },
+        {
+          "id": "c",
+          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
+        },
+        {
+          "id": "d",
+          "text": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Распределённый лог-ориентированный брокер. Данные хранятся на диске (retention), не удаляются после прочтения. Topic → Partition → Offset. Partition — единица параллелизма. Зачем: асинхронное взаимодействие...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-kubernetes-pod-deployment-service-371",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency",
+        "spring",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 338,
+          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 363,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 478,
+          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Kubernetes: Pod, Deployment, Service?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Распределённый лог-ориентированный брокер. Данные хранятся на диске (retention), не удаляются после прочтения. Topic → Partition → Offset. Partition — единица параллелизма. Зачем: асинхронное взаимодействие..."
+        },
+        {
+          "id": "b",
+          "text": "Pod — 1+ контейнер, общий network. Deployment — управляет ReplicaSet: реплики, rolling update, rollback. Service — стабильный IP/DNS: ClusterIP (внутренний), NodePort, LoadBalancer. Ingress — L7 маршрутизация."
+        },
+        {
+          "id": "c",
+          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
+        },
+        {
+          "id": "d",
+          "text": "Через потоки I/O: InputStream / OutputStream — для байтов. Reader / Writer — для символов (с учётом кодировки). Buffered-обёртки (BufferedReader, BufferedInputStream) — для эффективности, читают сразу пачку..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Pod — 1+ контейнер, общий network. Deployment — управляет ReplicaSet: реплики, rolling update, rollback. Service — стабильный IP/DNS: ClusterIP (внутренний), NodePort, LoadBalancer. Ingress — L7 маршрутизация.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-l3-vs-l4-vs-l7-балансировка-457",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 333,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: L3 vs L4 vs L7 балансировка?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Архитектурный стиль построения веб-сервисов. Идея: ресурсы (нечто, что имеет URL), действия над ними (через HTTP-методы), без сохранения состояния на сервере. Не протокол, а набор принципов."
+        },
+        {
+          "id": "b",
+          "text": "L3 (сетевой): IP-маршрутизация, ECMP. L4 (транспортный): TCP/UDP, NAT, по IP:port без разбора содержимого. L7 (прикладной): HTTP-заголовки, URL, cookies. L4 быстрее (меньше overhead), L7 гибче."
+        },
+        {
+          "id": "c",
+          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+        },
+        {
+          "id": "d",
+          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "L3 (сетевой): IP-маршрутизация, ECMP. L4 (транспортный): TCP/UDP, NAT, по IP:port без разбора содержимого. L7 (прикладной): HTTP-заголовки, URL, cookies. L4 быстрее (меньше overhead), L7 гибче.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-liveness-vs-readiness-probe-464",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "devops",
+        "algorithms",
+        "system-design"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 369,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 481,
+          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Liveness vs Readiness probe?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+        },
+        {
+          "id": "b",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "c",
+          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
+        },
+        {
+          "id": "d",
+          "text": "AssertJ — fluent API (assertThat(x).isEqualTo(y).hasSize(3)), более читаемый, богаче. Hamcrest — matchers (assertThat(x, equalTo(y))). В вакансии Лиги оба."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-load-factor-и-resize-324",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 165,
+          "title": "Альфа-Банк · 4. Коллекции"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 181,
+          "title": "VK · 4. Коллекции"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 161,
+          "title": "Яндекс Путешествия · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «load factor и resize» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Короткий способ описать иммутабельный DTO. Автоматически генерируются: конструктор, геттеры (имя поля без get-), equals, hashCode, toString. record User(String name, int age) {} — всё. Меньше boilerplate, чем Lombok."
+        },
+        {
+          "id": "b",
+          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
+        },
+        {
+          "id": "c",
+          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+        },
+        {
+          "id": "d",
+          "text": "Порог 0.75 по умолчанию. При size >= capacity * loadFactor — resize: массив вдвое + перехеширование ВСЕХ элементов (дорого!). Совет: если знаешь количество элементов — задай initialCapacity = expectedSize / 0.75 + 1."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Порог 0.75 по умолчанию. При size >= capacity * loadFactor — resize: массив вдвое + перехеширование ВСЕХ элементов (дорого!). Совет: если знаешь количество элементов — задай initialCapacity = expectedSize / 0.75 + 1.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-multi-stage-build-370",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 335,
+          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 360,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 475,
+          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Multi-stage build» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой."
+        },
+        {
+          "id": "b",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        },
+        {
+          "id": "c",
+          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+        },
+        {
+          "id": "d",
+          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-priorityqueue-444",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "jvm",
+        "testing-aqa"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 193,
+          "title": "VK · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «PriorityQueue» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+        },
+        {
+          "id": "b",
+          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
+        },
+        {
+          "id": "c",
+          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+        },
+        {
+          "id": "d",
+          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-propagation-343",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 233,
+          "title": "Альфа-Банк · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 242,
+          "title": "VK · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Propagation» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "REQUIRED (default) — присоединяется/создаёт. REQUIRES_NEW — всегда новая, приостанавливает текущую (аудит/логирование). NESTED — savepoint внутри текущей. SUPPORTS — присоединяется если есть, нет — без..."
+        },
+        {
+          "id": "b",
+          "text": "MongoDB — документная (хранит JSON-подобные документы в коллекциях). Redis — key-value, в памяти, очень быстрая. Часто используется как кэш. Cassandra — column-family, для очень больших объёмов с записью."
+        },
+        {
+          "id": "c",
+          "text": "Аннотация, которая открывает транзакцию вокруг метода. На успешный возврат — COMMIT, на RuntimeException — ROLLBACK. Реализуется через AOP-прокси: вызов идёт через прокси, который и управляет транзакцией."
+        },
+        {
+          "id": "d",
+          "text": "Это «магическое» условие — фильтр, смысл которого непонятен из кода. «Берём только нечётные цены» — это бизнес-правило или баг? Если правило — должно быть документировано или вынесено в named-predicate..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "REQUIRED (default) — присоединяется/создаёт. REQUIRES_NEW — всегда новая, приостанавливает текущую (аудит/логирование). NESTED — savepoint внутри текущей. SUPPORTS — присоединяется если есть, нет — без...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-records-java-16-441",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "devops"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 127,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Records (Java 16+)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
+        },
+        {
+          "id": "b",
+          "text": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы."
+        },
+        {
+          "id": "c",
+          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+        },
+        {
+          "id": "d",
+          "text": "Автоматическое преобразование примитива в обёртку и обратно: Integer i = 5; — это int 5 заворачивается в Integer (boxing). int j = i; — обратно (unboxing). Подвох в том, что если обёртка null..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-saga-паттерн-456",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "kafka"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 326,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Saga-паттерн» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Распределённые транзакции через цепочку локальных + компенсации. Choreography vs Orchestration."
+        },
+        {
+          "id": "b",
+          "text": "E2E-тесты должны покрывать большинство сценариев, потому что они ближе всего к пользователю."
+        },
+        {
+          "id": "c",
+          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+        },
+        {
+          "id": "d",
+          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Распределённые транзакции через цепочку локальных + компенсации. Choreography vs Orchestration.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-scope-prototype-в-singleton-450",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "spring"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 248,
+          "title": "VK · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Scope: prototype в singleton?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Пауза приложения для сборки мусора. У ZGC и Shenandoah паузы < 10 мс даже на огромных heap'ах."
+        },
+        {
+          "id": "b",
+          "text": "От java.lang.Object. Это корень иерархии — даже массивы и enum'ы наследуются от него косвенно."
+        },
+        {
+          "id": "c",
+          "text": "AutoCloseable (или Closeable). Ресурсы закрываются автоматически в обратном порядке объявления."
+        },
+        {
+          "id": "d",
+          "text": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-sealed-classes-java-17-442",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "devops"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 130,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Sealed Classes (Java 17+)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        },
+        {
+          "id": "b",
+          "text": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой."
+        },
+        {
+          "id": "c",
+          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+        },
+        {
+          "id": "d",
+          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-service-типы-в-k8s-463",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 366,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Service типы в K8s» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller."
+        },
+        {
+          "id": "b",
+          "text": "ClusterIP (внутренний), NodePort (внешний на каждой ноде), LoadBalancer (облачный LB — именно это делает группа балансеров в VK)."
+        },
+        {
+          "id": "c",
+          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
+        },
+        {
+          "id": "d",
+          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "ClusterIP (внутренний), NodePort (внешний на каждой ноде), LoadBalancer (облачный LB — именно это делает группа балансеров в VK).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-spring-boot-3-java-21-451",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "spring",
+        "devops"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 251,
+          "title": "VK · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Spring Boot 3 + Java 21» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+        },
+        {
+          "id": "b",
+          "text": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая."
+        },
+        {
+          "id": "c",
+          "text": "Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty/Undertow) + стартеры. Минимизирует boilerplate."
+        },
+        {
+          "id": "d",
+          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-springbootapplication-344",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "hibernate"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 236,
+          "title": "Альфа-Банк · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 245,
+          "title": "VK · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 228,
+          "title": "Яндекс Путешествия · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «@SpringBootApplication» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+        },
+        {
+          "id": "b",
+          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+        },
+        {
+          "id": "c",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        },
+        {
+          "id": "d",
+          "text": "@Configuration + @EnableAutoConfiguration + @ComponentScan. Автоконфигурация через @Conditional: если DataSource в classpath — настроит JPA. Список в META- INF/spring/...AutoConfiguration.imports (Spring Boot 3+..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "@Configuration + @EnableAutoConfiguration + @ComponentScan. Автоконфигурация через @Conditional: если DataSource в classpath — настроит JPA. Список в META- INF/spring/...AutoConfiguration.imports (Spring Boot 3+...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-sticky-sessions-461",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 345,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Sticky sessions» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)..."
+        },
+        {
+          "id": "b",
+          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+        },
+        {
+          "id": "c",
+          "text": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT)."
+        },
+        {
+          "id": "d",
+          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-stream-api-439",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring",
+        "algorithms"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 121,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Stream API» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
+        },
+        {
+          "id": "b",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, встроенный Tomcat, Jackson. Один импорт — и веб-приложение работает."
+        },
+        {
+          "id": "c",
+          "text": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД..."
+        },
+        {
+          "id": "d",
+          "text": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-string-pool-и-immutability-435",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "security"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 109,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 94,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «String Pool и immutability» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        },
+        {
+          "id": "b",
+          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+        },
+        {
+          "id": "c",
+          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+        },
+        {
+          "id": "d",
+          "text": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-synchronized-330",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 187,
+          "title": "Альфа-Банк · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 203,
+          "title": "VK · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 183,
+          "title": "Яндекс Путешествия · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «synchronized» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+        },
+        {
+          "id": "b",
+          "text": "Только внутри synchronized-блока на том же объекте. wait() отпускает монитор, поток засыпает. notify() / notifyAll() — будит. После notify поток должен снова получить монитор, чтобы продолжить..."
+        },
+        {
+          "id": "c",
+          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
+        },
+        {
+          "id": "d",
+          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-threadpoolexecutor-447",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "jvm",
+        "concurrency",
+        "hibernate",
+        "algorithms"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 215,
+          "title": "VK · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «ThreadPoolExecutor» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Pessimistic: SELECT ... FOR UPDATE блокирует строку. Optimistic: версия (@Version) — при commit проверяется, изменилась ли она."
+        },
+        {
+          "id": "b",
+          "text": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM."
+        },
+        {
+          "id": "c",
+          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
+        },
+        {
+          "id": "d",
+          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-transactional-449",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 239,
+          "title": "VK · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «@Transactional» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+        },
+        {
+          "id": "b",
+          "text": "@Autowired — внедрение зависимости. Если бинов несколько — Spring не знает какой выбрать нужен @Qualifier(\"имяБина\") или @Primary на одном из бинов."
+        },
+        {
+          "id": "c",
+          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
+        },
+        {
+          "id": "d",
+          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-treemap-vs-linkedhashmap-328",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 177,
+          "title": "Альфа-Банк · 4. Коллекции"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 190,
+          "title": "VK · 4. Коллекции"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 170,
+          "title": "Яндекс Путешествия · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: TreeMap vs LinkedHashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ключевое отношение JMM. Если A happens-before B, то записи в A видны в B. Примеры: unlock → lock того же монитора. volatile write → read. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join()..."
+        },
+        {
+          "id": "b",
+          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+        },
+        {
+          "id": "c",
+          "text": "UNION — объединяет результаты ДВУХ SELECT, убирает дубликаты. UNION ALL — то же, но БЕЗ удаления дубликатов. UNION ALL быстрее (не нужно сортировать для дедупликации). Если знаешь, что дублей не будет — всегда UNION ALL."
+        },
+        {
+          "id": "d",
+          "text": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-virtual-threads-java-21-440",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "concurrency",
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 124,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Virtual Threads (Java 21)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Young Generation — новые объекты. Состоит из Eden (где создаются), Survivor 0, Survivor 1 (для тех, что пережили несколько Minor GC). Old Generation — долгоживущие объекты, которые пережили много циклов GC."
+        },
+        {
+          "id": "b",
+          "text": "HashMap не потокобезопасен, допускает null-ключ/значение. ConcurrentHashMap потокобезопасен, не допускает null, в Java 7 использовал сегментную блокировку, в Java 8+ — CAS + synchronized на головах бакетов."
+        },
+        {
+          "id": "c",
+          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
+        },
+        {
+          "id": "d",
+          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors...",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-virtual-threads-и-synchronized-448",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "hibernate"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 224,
+          "title": "VK · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Virtual Threads и synchronized» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Virtual Thread на synchronized → pinning (привязка к platform thread). Решение: ReentrantLock вместо synchronized. Это частый вопрос для Java 21."
+        },
+        {
+          "id": "b",
+          "text": "При fetch = LAZY на связи, при итерации по списку делается +1 запрос за каждую связанную сущность. Решения: JOIN FETCH, @EntityGraph, BatchSize."
+        },
+        {
+          "id": "c",
+          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
+        },
+        {
+          "id": "d",
+          "text": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Virtual Thread на synchronized → pinning (привязка к platform thread). Решение: ReentrantLock вместо synchronized. Это частый вопрос для Java 21.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-volatile-331",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 190,
+          "title": "Альфа-Банк · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 206,
+          "title": "VK · 5. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 186,
+          "title": "Яндекс Путешествия · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «volatile» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
+        },
+        {
+          "id": "b",
+          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching."
+        },
+        {
+          "id": "c",
+          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+        },
+        {
+          "id": "d",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-vrrp-460",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 342,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «VRRP» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "b",
+          "text": "Если ситуация уникальна для домена — своё (наследник RuntimeException обычно). Если стандартное (например, IllegalArgumentException) подходит — лучше его."
+        },
+        {
+          "id": "c",
+          "text": "Virtual Router Redundancy Protocol. active-standby пара балансеров. При падении primary — мгновенное переключение, IP не меняется. Используется в VK Cloud."
+        },
+        {
+          "id": "d",
+          "text": "Active: балансер периодически проверяет backend (HTTP GET /health, TCP connect). Passive: считает ошибки от реальных запросов. Комбинация — best practice."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Virtual Router Redundancy Protocol. active-standby пара балансеров. При падении primary — мгновенное переключение, IP не меняется. Используется в VK Cloud.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-weakreference-softreference-phantomreference-437",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "jvm"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 115,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 100,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «WeakReference / SoftReference / PhantomReference» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Контейнер, который может содержать или не содержать значение. Появился в Java 8 как альтернатива null. Помогает явно показывать в сигнатуре методов, что результат может отсутствовать..."
+        },
+        {
+          "id": "b",
+          "text": "ArrayList — на основе массива. Доступ по индексу O(1), вставка в конец амортизированно O(1), в середину O(n). Самая популярная. LinkedList — двусвязный список. Доступ по индексу O(n)..."
+        },
+        {
+          "id": "c",
+          "text": "Weak — GC собирает при первой же сборке. Soft — GC собирает при нехватке памяти (для кэшей). Phantom — для постфинализационной очистки ресурсов. WeakHashMap — ключи через WeakReference."
+        },
+        {
+          "id": "d",
+          "text": "Project Object Model — файл конфигурации Maven-проекта. Содержит: координаты артефакта (groupId, artifactId, version), зависимости, плагины, свойства, профили. Это сердце Maven-проекта."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Weak — GC собирает при первой же сборке. Soft — GC собирает при нехватке памяти (для кэшей). Phantom — для постфинализационной очистки ресурсов. WeakHashMap — ключи через WeakReference.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-гарантии-доставки-365",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql",
+        "kafka"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 318,
+          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 317,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Гарантии доставки» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "(1) Описываешь changeset'ы — изменения схемы. Формат: XML, YAML, JSON или SQL. (2) При старте Liquibase подключается к БД, смотрит в таблицу DATABASECHANGELOG — какие уже применены. (3) Применяет новые changeset'ы..."
+        },
+        {
+          "id": "b",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        },
+        {
+          "id": "c",
+          "text": "Лямбда захватывает копию значения переменной, не ссылку на неё. Если переменная изменится после захвата — копия устареет → неочевидное поведение. Компилятор требует final или effectively final для защиты от ошибок..."
+        },
+        {
+          "id": "d",
+          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-жизненный-цикл-бина-060",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "spring"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 272,
+          "title": "Сбер · 7. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 224,
+          "title": "Альфа-Банк · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 236,
+          "title": "VK · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 216,
+          "title": "Яндекс Путешествия · 6. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 239,
+          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Жизненный цикл бина» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+        },
+        {
+          "id": "b",
+          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+        },
+        {
+          "id": "c",
+          "text": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method..."
+        },
+        {
+          "id": "d",
+          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method...",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-идемпотентный-consumer-455",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "sql",
+        "kafka"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 320,
+          "title": "VK · 8. Kafka и микросервисы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Идемпотентный consumer» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
+        },
+        {
+          "id": "b",
+          "text": "processed_events(event_id UUID PK). INSERT ON CONFLICT DO NOTHING. В транзакции с бизнес-логикой. Или upsert по бизнес-ключу."
+        },
+        {
+          "id": "c",
+          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
+        },
+        {
+          "id": "d",
+          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "processed_events(event_id UUID PK). INSERT ON CONFLICT DO NOTHING. В транзакции с бизнес-логикой. Или upsert по бизнес-ключу.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-индексы-postgresql-452",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 264,
+          "title": "VK · 7. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Индексы PostgreSQL» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "B-tree (default), Hash, GIN (JSONB, full-text), GiST (геометрия), BRIN (большие таблицы). Покрывающий (INCLUDE)."
+        },
+        {
+          "id": "b",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "c",
+          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+        },
+        {
+          "id": "d",
+          "text": "Leftmost prefix rule. INDEX (a, b, c) используется для WHERE a=, WHERE a= AND b=, но НЕ для WHERE b= или WHERE c=."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "B-tree (default), Hash, GIN (JSONB, full-text), GiST (геометрия), BRIN (большие таблицы). Покрывающий (INCLUDE).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-контракт-equals-hashcode-312",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 80,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 103,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 88,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 101,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 105,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Контракт equals/hashCode» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
+        },
+        {
+          "id": "b",
+          "text": "Да. Java GC работает по reachability, а не по reference counting. Два объекта, ссылающиеся друг на друга, но не достижимые снаружи — будут собраны. Это отличие от Python, где есть reference counting + cycle collector."
+        },
+        {
+          "id": "c",
+          "text": "Промежуточные операции не выполняются сразу. Они «копят» план. Терминальная операция запускает выполнение. Поэтому stream.filter(...).map(...) без terminal — не сделает ничего. Это позволяет оптимизировать выполнение."
+        },
+        {
+          "id": "d",
+          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-области-памяти-jvm-031",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "concurrency",
+        "algorithms",
+        "hibernate"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 177,
+          "title": "Сбер · 5. JVM, память, GC"
+        },
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 74,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 100,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 85,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 90,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Области памяти JVM» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+        },
+        {
+          "id": "b",
+          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+        },
+        {
+          "id": "c",
+          "text": "Heap — хранение объектов, управляется GC. Stack — фрейм для каждого вызова метода (локальные переменные, ссылки, примитивы). Metaspace (до Java 8 — PermGen) — метаданные классов, пул интернированных строк..."
+        },
+        {
+          "id": "d",
+          "text": "equals(Object) — проверка равенства. hashCode() — целочисленный хэш. toString() — строковое представление. getClass() — Class-объект. clone() — копия объекта (нужно implements Cloneable). wait(), notify()..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Heap — хранение объектов, управляется GC. Stack — фрейм для каждого вызова метода (локальные переменные, ссылки, примитивы). Metaspace (до Java 8 — PermGen) — метаданные классов, пул интернированных строк...",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-образ-vs-контейнер-369",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 332,
+          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 357,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 472,
+          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Образ vs контейнер?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "merge создаёт коммит-слияние, история ветвится. rebase «переносит» коммиты твоей ветки поверх другой, делая историю линейной. Rebase в публичных ветках обычно делать не стоит."
+        },
+        {
+          "id": "b",
+          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+        },
+        {
+          "id": "c",
+          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+        },
+        {
+          "id": "d",
+          "text": "Образ — неизменяемый шаблон из слоёв (каждая инструкция Dockerfile — слой). Контейнер — запущенный экземпляр с writable-слоем. docker images → образы, docker ps → контейнеры."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Образ — неизменяемый шаблон из слоёв (каждая инструкция Dockerfile — слой). Контейнер — запущенный экземпляр с writable-слоем. docker images → образы, docker ps → контейнеры.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-оконные-функции-357",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "kafka",
+        "algorithms"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 290,
+          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 276,
+          "title": "VK · 7. Базы данных и SQL"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 275,
+          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Оконные функции» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Используем два индекса, движущиеся по массиву по правилам. Часто для отсортированного массива: пара с заданной суммой, разворот строки, проверка палиндрома. Сложность обычно O(n)."
+        },
+        {
+          "id": "b",
+          "text": "Только final или effectively final (не меняются после присваивания). Поля класса можно использовать без ограничений. Локальные переменные — только если они эффективно финальные..."
+        },
+        {
+          "id": "c",
+          "text": "ROW_NUMBER(), RANK(), DENSE_RANK() — нумерация/ранжирование. LAG/LEAD — предыдущая/следующая строка. SUM/AVG/COUNT OVER (PARTITION BY ... ORDER BY ...) — агрегация без GROUP BY..."
+        },
+        {
+          "id": "d",
+          "text": "Интерфейс с РОВНО ОДНИМ абстрактным методом (default и static не считаются). Можно реализовать лямбдой. @FunctionalInterface — необязательная аннотация для compile-time проверки."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "ROW_NUMBER(), RANK(), DENSE_RANK() — нумерация/ранжирование. LAG/LEAD — предыдущая/следующая строка. SUM/AVG/COUNT OVER (PARTITION BY ... ORDER BY ...) — агрегация без GROUP BY...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-порядок-колонок-в-составном-индексе-454",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 270,
+          "title": "VK · 7. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Порядок колонок в составном индексе» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "b",
+          "text": "Leftmost prefix rule. INDEX (a, b, c) используется для WHERE a=, WHERE a= AND b=, но НЕ для WHERE b= или WHERE c=."
+        },
+        {
+          "id": "c",
+          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+        },
+        {
+          "id": "d",
+          "text": "B-tree (default), Hash, GIN (JSONB, full-text), GiST (геометрия), BRIN (большие таблицы). Покрывающий (INCLUDE)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Leftmost prefix rule. INDEX (a, b, c) используется для WHERE a=, WHERE a= AND b=, но НЕ для WHERE b= или WHERE c=.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-b-tree-а-не-hash-453",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 267,
+          "title": "VK · 7. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Почему B-tree, а не Hash?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Каждая транзакция видит snapshot базы. Вместо изменений — новые версии строк с xmin/xmax. Старые версии чистит VACUUM."
+        },
+        {
+          "id": "b",
+          "text": "Hash: O(1) только =. B-tree: O(log n) но поддерживает <, >, BETWEEN, ORDER BY, LIKE 'abc%'. Поэтому B-tree — default."
+        },
+        {
+          "id": "c",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+        },
+        {
+          "id": "d",
+          "text": "Leftmost prefix rule. INDEX (a, b, c) используется для WHERE a=, WHERE a= AND b=, но НЕ для WHERE b= или WHERE c=."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Hash: O(1) только =. B-tree: O(log n) но поддерживает <, >, BETWEEN, ORDER BY, LIKE 'abc%'. Поэтому B-tree — default.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-tree-индекс-в-бд-а-не-hash-445",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 196,
+          "title": "VK · 4. Коллекции"
+        }
+      ],
+      "prompt": "Почему Tree индекс в БД, а не Hash?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Хотя Hash = O(1), Tree (B-tree) поддерживает диапазонные запросы, сортировку, BETWEEN, LIKE 'abc%'. Hash — только точное совпадение."
+        },
+        {
+          "id": "b",
+          "text": "INNER — пересечение. LEFT — все из левой + совпадения из правой. RIGHT — наоборот. FULL OUTER — всё. CROSS — декартово произведение."
+        },
+        {
+          "id": "c",
+          "text": "Включить логи SQL (spring.jpa.show-sql=true), смотреть количество запросов на эндпоинт, использовать p6spy или Hibernate Statistics."
+        },
+        {
+          "id": "d",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Хотя Hash = O(1), Tree (B-tree) поддерживает диапазонные запросы, сортировку, BETWEEN, LIKE 'abc%'. Hash — только точное совпадение.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-распределенный-rate-limiter-468",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "spring",
+        "sql",
+        "algorithms",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 505,
+          "title": "VK · 12. System Design"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 456,
+          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Распределённый rate limiter» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+        },
+        {
+          "id": "b",
+          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
+        },
+        {
+          "id": "c",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "d",
+          "text": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-сервис-коротких-ссылок-467",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "system-design",
+        "collections"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 502,
+          "title": "VK · 12. System Design"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 453,
+          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Сервис коротких ссылок» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "base62 с 62^7 ≈ 3.5 трлн. Redis-кэш популярных. Расчёт: чтения/записи 100:1. Шардирование по хэшу ключа."
+        },
+        {
+          "id": "b",
+          "text": "Через прокси, генерируемый в рантайме. Имя метода (findByEmailAndStatus) парсится и превращается в JPQL."
+        },
+        {
+          "id": "c",
+          "text": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен."
+        },
+        {
+          "id": "d",
+          "text": "Геоиндекс (Geohash/H3), matching-сервис, партиционирование по городам, eventual consistency геопозиций."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "base62 с 62^7 ≈ 3.5 трлн. Redis-кэш популярных. Расчёт: чтения/записи 100:1. Шардирование по хэшу ключа.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-сервис-метрик-prometheus-like-469",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 508,
+          "title": "VK · 12. System Design"
+        }
+      ],
+      "prompt": "Сервис метрик (Prometheus-like)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "b",
+          "text": "При выводе backend из ротации — дождаться завершения активных соединений, а не обрывать. Graceful shutdown."
+        },
+        {
+          "id": "c",
+          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+        },
+        {
+          "id": "d",
+          "text": "Time-series DB. Ingestion: push (StatsD) vs pull (Prometheus). Downsampling для старых данных. Retention policy."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Time-series DB. Ingestion: push (StatsD) vs pull (Prometheus). Downsampling для старых данных. Retention policy.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-спроектируй-балансировщик-нагрузки-466",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "algorithms",
+        "system-design"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 499,
+          "title": "VK · 12. System Design"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Спроектируй балансировщик нагрузки» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
+        },
+        {
+          "id": "b",
+          "text": "В стандарте SQL Repeatable Read допускает phantom reads. В PG благодаря MVCC (snapshot isolation): транзакция видит snapshot данных на момент начала. Новые строки, вставленные другими транзакциями..."
+        },
+        {
+          "id": "c",
+          "text": "Компоненты: health checker, routing table, connection pool. Алгоритмы: round-robin, weighted, least-connections, consistent hashing. Отказоустойчивость: active-standby (VRRP), hot reload конфигурации."
+        },
+        {
+          "id": "d",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Компоненты: health checker, routing table, connection pool. Алгоритмы: round-robin, weighted, least-connections, consistent hashing. Отказоустойчивость: active-standby (VRRP), hot reload конфигурации.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-уровни-изоляции-354",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 281,
+          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 261,
+          "title": "VK · 7. Базы данных и SQL"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 266,
+          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 331,
+          "title": "Лига Цифровой Экономики · 8. SQL и PostgreSQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Уровни изоляции» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "(1) JPQL с JOIN FETCH: select o from Order o join fetch o.user. (2) @EntityGraph — атрибут на репозиторий-методе, говорит «подгрузить эти поля сразу». (3) Hibernate batch_size — группирует SELECT'ы по пачкам..."
+        },
+        {
+          "id": "b",
+          "text": "READ_UNCOMMITTED — dirty read. READ_COMMITTED (default PG) — только закоммиченные. REPEATABLE_READ — повторное чтение = тот же результат. SERIALIZABLE — полная изоляция. Выше уровень → больше консистентности..."
+        },
+        {
+          "id": "c",
+          "text": "Throwable — корень. Делится на Error (OOM, StackOverflow — не ловить) и Exception. Exception → checked (IOException, SQLException — обязаны быть в throws) и RuntimeException → unchecked (NullPointerException..."
+        },
+        {
+          "id": "d",
+          "text": "INNER JOIN — только совпадения из обеих таблиц. LEFT JOIN — все строки из левой + совпадения из правой (несовпадения = NULL). RIGHT JOIN — наоборот. FULL OUTER JOIN — все строки из обеих, несовпадения = NULL..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "READ_UNCOMMITTED — dirty read. READ_COMMITTED (default PG) — только закоммиченные. REPEATABLE_READ — повторное чтение = тот же результат. SERIALIZABLE — полная изоляция. Выше уровень → больше консистентности...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-функциональные-интерфейсы-438",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "spring",
+        "kafka"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 118,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Функциональные интерфейсы» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
+        },
+        {
+          "id": "b",
+          "text": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable."
+        },
+        {
+          "id": "c",
+          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
+        },
+        {
+          "id": "d",
+          "text": "Не работает self-invocation (как у @Transactional). Нужен @EnableAsync. Default executor может быть неподходящим — часто настраивают свой."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-сломается-если-hashcode-константа-434",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 106,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 91,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что сломается, если hashCode() — константа?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
+        },
+        {
+          "id": "b",
+          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
+        },
+        {
+          "id": "c",
+          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+        },
+        {
+          "id": "d",
+          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "curated-concurrency-volatile-i-plus-plus",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "t1-innotech",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 190,
+          "title": "Альфа-Банк · Многопоточность"
+        }
+      ],
+      "prompt": "Почему volatile не делает операцию i++ потокобезопасной?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "volatile даёт видимость и порядок вокруг volatile-доступа, но i++ остаётся последовательностью read-increment-write."
+        },
+        {
+          "id": "b",
+          "text": "volatile работает только для boolean, а для int JVM игнорирует этот модификатор."
+        },
+        {
+          "id": "c",
+          "text": "volatile гарантирует атомарность, но только если переменная объявлена внутри synchronized-блока."
+        },
+        {
+          "id": "d",
+          "text": "i++ потокобезопасен всегда, если значение переменной помещается в один машинный word."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "i++ состоит из нескольких операций. Для атомарного счётчика используют AtomicInteger или LongAdder.",
+      "reviewLinks": [
+        {
+          "label": "Повторить JMM",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "curated-java-core-equals-hashcode-contract",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "liga",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 78,
+          "title": "Сбер · Java Core"
+        }
+      ],
+      "prompt": "Что сломается в HashMap/HashSet, если equals переопределён, а hashCode оставлен от Object?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Объекты могут считаться равными через equals, но попадать в разные bucket и не находиться при поиске."
+        },
+        {
+          "id": "b",
+          "text": "Код не скомпилируется, потому что Java требует переопределять оба метода одновременно."
+        },
+        {
+          "id": "c",
+          "text": "HashMap автоматически перейдёт в TreeMap и сохранит корректность поиска без деградации."
+        },
+        {
+          "id": "d",
+          "text": "Проблема возникнет только при сериализации, а коллекции продолжат работать корректно."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Контракт требует: если a.equals(b), то hashCode должен совпадать. Иначе hash-коллекции ищут объект не в том bucket.",
+      "reviewLinks": [
+        {
+          "label": "Повторить Java Core",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "curated-kafka-delivery",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "kafka"
+      ],
+      "companies": [
+        "alfa-bank",
+        "t1-innotech",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 318,
+          "title": "Альфа-Банк · Kafka"
+        }
+      ],
+      "prompt": "Consumer обработал сообщение, но упал до commit offset. Что вероятнее всего произойдёт при at-least-once?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сообщение может быть обработано повторно, поэтому бизнес-операция должна быть идемпотентной."
+        },
+        {
+          "id": "b",
+          "text": "Kafka удалит сообщение из partition, потому что обработка уже началась."
+        },
+        {
+          "id": "c",
+          "text": "Consumer group потеряет partition до ручного reset offset."
+        },
+        {
+          "id": "d",
+          "text": "Exactly-once автоматически отменит изменения во внешней базе данных."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "At-least-once допускает повторную доставку. Поэтому важны идемпотентность, транзакционная запись результата и аккуратный commit offset.",
+      "reviewLinks": [
+        {
+          "label": "Повторить Kafka",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "curated-sql-index-multi",
+      "type": "multi",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 284,
+          "title": "Альфа-Банк · SQL"
+        }
+      ],
+      "prompt": "Выберите все верные утверждения про индексы PostgreSQL.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Индекс ускоряет часть чтений, но обычно замедляет вставки и обновления."
+        },
+        {
+          "id": "b",
+          "text": "Составной индекс полезен только с учётом порядка колонок и условий запроса."
+        },
+        {
+          "id": "c",
+          "text": "Индекс всегда используется оптимизатором, если колонка есть в WHERE."
+        },
+        {
+          "id": "d",
+          "text": "EXPLAIN ANALYZE помогает увидеть фактический план и время выполнения запроса."
+        },
+        {
+          "id": "e",
+          "text": "Hash-индекс в PostgreSQL универсально лучше B-tree для сортировки и range-запросов."
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Индексы имеют цену записи и хранения. Планировщик выбирает индекс не всегда, а EXPLAIN ANALYZE выполняет запрос и показывает фактический план.",
+      "reviewLinks": [
+        {
+          "label": "Повторить SQL",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    }
+  ]
+}

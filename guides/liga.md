@@ -752,5 +752,6 @@ department'
 - Повторить: Java 11, Spring, Hibernate, SQL, тесты, Docker/Jenkins и live-coding.
 - Спросить в канале: свежие вопросы по Лиге, SQL-практику и банковские backend-кейсы.
 - Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Проверить знания: [тесты JavaJub](https://javajub.github.io/java-interview/quizzes/).
 
 [← Ко всем гайдам](../README.md)

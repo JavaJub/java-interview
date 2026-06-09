@@ -1,0 +1,2659 @@
+{
+  "id": "security",
+  "title": "Security",
+  "kind": "topic",
+  "description": "Самопроверка по теме: Security.",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "questionCount": 53,
+  "questions": [
+    {
+      "id": "auto-401-vs-403-в-чем-разница-521",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "hibernate",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 187,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "401 vs 403 — в чём разница?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+        },
+        {
+          "id": "b",
+          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+        },
+        {
+          "id": "c",
+          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
+        },
+        {
+          "id": "d",
+          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-csrf-что-это-и-как-проверить-562",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 408,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "CSRF — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
+        },
+        {
+          "id": "b",
+          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+        },
+        {
+          "id": "c",
+          "text": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке..."
+        },
+        {
+          "id": "d",
+          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-generics-зачем-нужны-515",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 165,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Generics — зачем нужны?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "put: вычислили hashCode ключа → определили бакет → в бакете ищем по equals существующий ключ. Если нашли — обновляем значение. Если нет — добавляем новый Node..."
+        },
+        {
+          "id": "b",
+          "text": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме..."
+        },
+        {
+          "id": "c",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        },
+        {
+          "id": "d",
+          "text": "Обычно 2 аппрува от backend-разработчиков + финальный просмотр начальника отдела перед влитием. Это compliance-требование (важная сумма банковских регуляторов)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-idor-что-это-559",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm",
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 399,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "IDOR — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+        },
+        {
+          "id": "b",
+          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+        },
+        {
+          "id": "c",
+          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
+        },
+        {
+          "id": "d",
+          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jwt-структура-и-как-работает-522",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "devops",
+        "testing-aqa",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 190,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "JWT — структура и как работает?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
+        },
+        {
+          "id": "b",
+          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+        },
+        {
+          "id": "c",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        },
+        {
+          "id": "d",
+          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-multi-stage-build-370",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 335,
+          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 360,
+          "title": "VK · 10. Docker, Kubernetes, CI/CD"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 475,
+          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Multi-stage build» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой."
+        },
+        {
+          "id": "b",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        },
+        {
+          "id": "c",
+          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+        },
+        {
+          "id": "d",
+          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой.",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-pci-dss-что-должен-знать-aqa-563",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 411,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "PCI DSS — что должен знать AQA?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
+        },
+        {
+          "id": "b",
+          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+        },
+        {
+          "id": "c",
+          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-rest-vs-soap-523",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 193,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: REST vs SOAP?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spring находит бин подходящего типа в контексте и подставляет. Если в контексте несколько бинов одного типа — нужна @Qualifier или @Primary, иначе ошибка. С Spring 4.3+ @Autowired на единственном конструкторе можно не писать."
+        },
+        {
+          "id": "b",
+          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
+        },
+        {
+          "id": "c",
+          "text": "List.of(1,2,3) — Java 9+, immutable, null запрещён. List.copyOf(list) — Java 10+, глубокая неизменяемая копия. Collections.unmodifiableList(list) — обёртка (изменения в оригинале видны!). Предпочитай List.of или List.copyOf."
+        },
+        {
+          "id": "d",
+          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-singleton-бин-потокобезопасен-ли-406",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "spring",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 165,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "Singleton-бин: потокобезопасен ли?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный..."
+        },
+        {
+          "id": "b",
+          "text": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal..."
+        },
+        {
+          "id": "c",
+          "text": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)..."
+        },
+        {
+          "id": "d",
+          "text": "@RestController = @Controller + @ResponseBody. То есть результаты методов сразу сериализуются в JSON / XML (через Jackson) и отдаются в body ответа. @Controller сам по себе ожидает имя view (для рендера HTML)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-sql-инъекция-что-это-и-как-проверить-557",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 393,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "SQL-инъекция — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        },
+        {
+          "id": "b",
+          "text": "Автономный сервис с одной зоной ответственности, собственной БД, независимым деплоем. Общается через REST/gRPC (синхронно) или брокер (асинхронно). Плюсы: независимый деплой, масштабирование, технологическая гибкость..."
+        },
+        {
+          "id": "c",
+          "text": "Liquibase — описание изменений в XML / YAML, поддерживает rollback, кросс-БД (одно описание — для разных БД). Flyway — версионированные SQL-скрипты (V1__init.sql, V2__add_table.sql), проще, но без rollback и кросс-БД..."
+        },
+        {
+          "id": "d",
+          "text": "Технически — да, через ALTER. Но фактически — нельзя, потому что: (1) на нём FK из других таблиц. (2) Индексы строятся по PK. (3) В кластерных индексах данные физически отсортированы по PK. Операция дорогая и опасная..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-sticky-sessions-461",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 345,
+          "title": "VK · 9. Сети и балансировка"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Sticky sessions» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)..."
+        },
+        {
+          "id": "b",
+          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+        },
+        {
+          "id": "c",
+          "text": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT)."
+        },
+        {
+          "id": "d",
+          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT).",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-string-pool-и-immutability-435",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "security"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 109,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 94,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «String Pool и immutability» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        },
+        {
+          "id": "b",
+          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+        },
+        {
+          "id": "c",
+          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+        },
+        {
+          "id": "d",
+          "text": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-string-vs-stringbuilder-vs-stringbuffer-383",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 86,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: String vs StringBuilder vs StringBuffer?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Класс — нельзя наследовать (String, Integer). Метод — нельзя переопределить. Поле — нельзя переприсвоить ссылку, но можно менять внутреннее состояние (final List — можно add/remove). effectively final — нужна для лямбд."
+        },
+        {
+          "id": "b",
+          "text": "String: immutable, при конкатенации создаёт новый объект. StringBuilder: mutable, НЕ потокобезопасный (быстрый). StringBuffer: mutable, потокобезопасный (synchronized — медленнее). В цикле конкатенация String → O(n²)..."
+        },
+        {
+          "id": "c",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        },
+        {
+          "id": "d",
+          "text": "Git помечает конфликтные участки в файле символами <<<<<<<, =======, >>>>>>>. Вручную решаешь, что оставить, удаляешь маркеры, делаешь git add и git commit. Современные IDE (IntelliJ) дают удобный визуальный merge-tool."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "String: immutable, при конкатенации создаёт новый объект. StringBuilder: mutable, НЕ потокобезопасный (быстрый). StringBuffer: mutable, потокобезопасный (synchronized — медленнее). В цикле конкатенация String → O(n²)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-threadlocal-где-пригодится-и-где-опасен-658",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "sql",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/liga.md",
+          "line": 217,
+          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "ThreadLocal — где пригодится и где опасен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "sleep — приостанавливает поток на указанное время (не освобождает мониторы). yield — намекает планировщику «дай поработать другим», но это лишь подсказка."
+        },
+        {
+          "id": "b",
+          "text": "Для контекста (например, SecurityContext, транзакционный контекст). Опасен с пулами потоков — значение протекает между задачами, нужен remove() в finally."
+        },
+        {
+          "id": "c",
+          "text": "Попытка обратиться к lazy-полю после закрытия сессии. Решения: JOIN FETCH в запросе, @EntityGraph, DTO-проекции, OpenSessionInView (анти-паттерн в проде)."
+        },
+        {
+          "id": "d",
+          "text": "PRIMARY KEY — один на таблицу, NOT NULL. UNIQUE — может быть несколько UNIQUE-индексов, разрешает NULL (NULL не равно NULL, поэтому много NULL допустимо)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Для контекста (например, SecurityContext, транзакционный контекст). Опасен с пулами потоков — значение протекает между задачами, нужен remove() в finally.",
+      "reviewLinks": [
+        {
+          "label": "Лига Цифровой Экономики",
+          "href": "../guides/liga/"
+        }
+      ]
+    },
+    {
+      "id": "auto-threadlocal-где-пригождается-и-где-опасен-053",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "sber"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 247,
+          "title": "Сбер · 6. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "ThreadLocal — где пригождается и где опасен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
+        },
+        {
+          "id": "b",
+          "text": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google»."
+        },
+        {
+          "id": "c",
+          "text": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally."
+        },
+        {
+          "id": "d",
+          "text": "Dirty — чтение незакоммиченных данных. Non-repeatable — два чтения одной строки дают разный результат. Phantom — два SELECT с WHERE возвращают разное число строк."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-uuid-vs-long-как-pk-для-соцсети-на-2-млн-пользователей-431",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "kafka",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 275,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: UUID vs Long как PK для соцсети на 2 млн пользователей?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+        },
+        {
+          "id": "b",
+          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+        },
+        {
+          "id": "c",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        },
+        {
+          "id": "d",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-uuid-vs-long-как-pk-что-выбрать-420",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 213,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "UUID vs Long как PK: что выбрать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        },
+        {
+          "id": "b",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        },
+        {
+          "id": "c",
+          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+        },
+        {
+          "id": "d",
+          "text": "(1) Описываешь changeset'ы — изменения схемы. Формат: XML, YAML, JSON или SQL. (2) При старте Liquibase подключается к БД, смотрит в таблицу DATABASECHANGELOG — какие уже применены. (3) Применяет новые changeset'ы..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-vs-equals-для-строк-почему-string-immutable-510",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "sql",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 144,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "== vs equals для строк. Почему String immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "== сравнивает ссылки (один объект в памяти?). equals — содержимое. String immutable: безопасность (ключи HashMap, передача в файлы/БД), потокобезопасность, кэширование hashCode, String Pool."
+        },
+        {
+          "id": "b",
+          "text": "HashMap — да, ОДИН null-ключ (лежит в table[0]), null-значений сколько угодно. TreeMap — null-ключ нельзя (бросит NPE при сравнении). Hashtable — null нельзя ни в ключе, ни в значении (NPE)."
+        },
+        {
+          "id": "c",
+          "text": "Введён в Java 8. Конвейерная обработка коллекций в декларативном стиле. Поток (Stream) — это последовательность элементов с операциями. Не путать с потоком (Thread) — это про многопоточность."
+        },
+        {
+          "id": "d",
+          "text": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "== сравнивает ссылки (один объект в памяти?). equals — содержимое. String immutable: безопасность (ключи HashMap, передача в файлы/БД), потокобезопасность, кэширование hashCode, String Pool.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-xss-что-это-и-как-проверить-558",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 396,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "XSS — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре..."
+        },
+        {
+          "id": "b",
+          "text": "Lazy. Eager почти всегда плохо — Hibernate тянет лишнее, и часто это даёт N+1 в неожиданном месте. Правило: ставь Lazy везде, а конкретный JOIN FETCH делай в запросах, где данные действительно нужны."
+        },
+        {
+          "id": "c",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+        },
+        {
+          "id": "d",
+          "text": "Нормализация — процесс приведения схемы БД к виду без избыточности данных. 1НФ — все атрибуты атомарны (нет списков в одной ячейке). 2НФ — 1НФ + каждый не-ключевой атрибут зависит от полного ключа..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-отличие-string-stringbuilder-stringbuffer-103",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 183,
+          "title": "SberSeasons · 3. Java Core и ООП · String и его особенности"
+        }
+      ],
+      "prompt": "В чём отличие String, StringBuilder, StringBuffer?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)..."
+        },
+        {
+          "id": "b",
+          "text": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal..."
+        },
+        {
+          "id": "c",
+          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
+        },
+        {
+          "id": "d",
+          "text": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-разница-401-и-403-241",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 816,
+          "title": "SberSeasons · 10. HTTP и REST · Статус-коды"
+        }
+      ],
+      "prompt": "В чём разница 401 и 403?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        },
+        {
+          "id": "b",
+          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
+        },
+        {
+          "id": "c",
+          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
+        },
+        {
+          "id": "d",
+          "text": "Оба — обёртка над другим объектом, реализуют тот же интерфейс. Но цели разные: Proxy — НЕ МЕНЯЕТ поведение оригинального объекта. Добавляет «инфраструктуру»: контроль доступа, ленивая инициализация, кэширование..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-разница-rest-и-soap-245",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 844,
+          "title": "SberSeasons · 10. HTTP и REST · REST vs SOAP"
+        }
+      ],
+      "prompt": "В чём разница REST и SOAP?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
+        },
+        {
+          "id": "b",
+          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
+        },
+        {
+          "id": "c",
+          "text": "Оба — обёртка над другим объектом, реализуют тот же интерфейс. Но цели разные: Proxy — НЕ МЕНЯЕТ поведение оригинального объекта. Добавляет «инфраструктуру»: контроль доступа, ленивая инициализация, кэширование..."
+        },
+        {
+          "id": "d",
+          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-где-передавать-данные-body-path-query-headers-525",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql",
+        "testing-aqa",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 199,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Где передавать данные: body / path / query / headers?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Проверяет структуру ответа (типы полей, обязательные поля, формат). body(matchesJsonSchemaInClasspath(\"schemas/user.json\")). Защищает от непредвиденных изменений API-контракта. Генерация схемы: jsonschema..."
+        },
+        {
+          "id": "b",
+          "text": "NULL — это «значение неизвестно». Два неизвестных значения — нельзя сказать, равны они или нет. Поэтому NULL = NULL это не TRUE, а UNKNOWN, в условиях ведёт себя как FALSE. Для проверки используется IS NULL."
+        },
+        {
+          "id": "c",
+          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+        },
+        {
+          "id": "d",
+          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-из-чего-состоит-http-запрос-236",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 797,
+          "title": "SberSeasons · 10. HTTP и REST · Структура HTTP-запроса"
+        }
+      ],
+      "prompt": "Из чего состоит HTTP-запрос?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Стартовая строка: метод + URL + версия (GET /users HTTP/1.1). Headers (Content-Type, Accept, Authorization). Пустая строка. Body (для POST/PUT/PATCH). Ответ — статус + версия + headers + body."
+        },
+        {
+          "id": "b",
+          "text": "JDK dynamic proxy — если бин реализует интерфейс (через Proxy.newProxyInstance). CGLIB — наследование от класса (final-классы нельзя проксировать). Spring Boot 3 по умолчанию использует CGLIB."
+        },
+        {
+          "id": "c",
+          "text": "На каждом шаге делаешь локально оптимальный выбор, надеясь, что в итоге получится глобально оптимальное решение. Работает не всегда! Пример где работает: размен сдачи стандартными монетами..."
+        },
+        {
+          "id": "d",
+          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Стартовая строка: метод + URL + версия (GET /users HTTP/1.1). Headers (Content-Type, Accept, Authorization). Пустая строка. Body (для POST/PUT/PATCH). Ответ — статус + версия + headers + body.",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-иммутабельность-как-способ-потокобезопасности-396",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 129,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Иммутабельность как способ потокобезопасности» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record..."
+        },
+        {
+          "id": "b",
+          "text": "thenApply — преобразование результата. thenCompose — flatMap для CompletableFuture (нужен, когда лямбда возвращает CompletableFuture). thenCombine — объединение двух."
+        },
+        {
+          "id": "c",
+          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+        },
+        {
+          "id": "d",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-java-util-random-становится-thread-safe-706",
+      "type": "code_review",
+      "level": "senior",
+      "topics": [
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "x5-tech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "tasks/x5-blackfriday-code-review.md",
+          "line": 90,
+          "title": "X5 Tech · 2. Баг #1 — contention на shared Random · Что не так — внутреннее устройство Random"
+        }
+      ],
+      "prompt": "Как java.util.Random становится thread-safe?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "sleep — приостанавливает поток на указанное время (не освобождает мониторы). yield — намекает планировщику «дай поработать другим», но это лишь подсказка."
+        },
+        {
+          "id": "b",
+          "text": "Если ситуация уникальна для домена — своё (наследник RuntimeException обычно). Если стандартное (например, IllegalArgumentException) подходит — лучше его."
+        },
+        {
+          "id": "c",
+          "text": "Для контекста (например, SecurityContext, транзакционный контекст). Опасен с пулами потоков — значение протекает между задачами, нужен remove() в finally."
+        },
+        {
+          "id": "d",
+          "text": "java.util.Random формально thread-safe — это написано в Javadoc. Но реализация потокобезопасности — через атомарный CAS на одном поле AtomicLong seed..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "java.util.Random формально thread-safe — это написано в Javadoc. Но реализация потокобезопасности — через атомарный CAS на одном поле AtomicLong seed...",
+      "reviewLinks": [
+        {
+          "label": "X5 Tech",
+          "href": "../tasks/x5-blackfriday-code-review/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-откатить-последний-коммит-626",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 300,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Git"
+        }
+      ],
+      "prompt": "Как откатить последний коммит?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "git reset --soft HEAD~1 (оставит изменения), git reset --hard HEAD~1 (выкинет всё), git revert HEAD (создаст новый коммит, который отменит предыдущий — безопасно для общих веток)."
+        },
+        {
+          "id": "b",
+          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+        },
+        {
+          "id": "c",
+          "text": "Java 7: массив Segment (ReentrantLock), каждый сегмент — свой HashMap. Java 8: убрали Segment, CAS + synchronized на головах бакетов (лучше параллелизм). Treeify при 8 коллизиях."
+        },
+        {
+          "id": "d",
+          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "git reset --soft HEAD~1 (оставит изменения), git reset --hard HEAD~1 (выкинет всё), git revert HEAD (создаст новый коммит, который отменит предыдущий — безопасно для общих веток).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-реализовать-потокобезопасный-singleton-659",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "hibernate",
+        "security"
+      ],
+      "companies": [
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/liga.md",
+          "line": 223,
+          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как реализовать потокобезопасный singleton?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null."
+        },
+        {
+          "id": "b",
+          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
+        },
+        {
+          "id": "c",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "d",
+          "text": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile.",
+      "reviewLinks": [
+        {
+          "label": "Лига Цифровой Экономики",
+          "href": "../guides/liga/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-сделать-иммутабельный-список-148",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "collections",
+        "spring",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 388,
+          "title": "SberSeasons · 4. Коллекции · Потокобезопасные коллекции"
+        }
+      ],
+      "prompt": "Как сделать иммутабельный список?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+        },
+        {
+          "id": "b",
+          "text": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер..."
+        },
+        {
+          "id": "c",
+          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
+        },
+        {
+          "id": "d",
+          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия.",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-сделать-потокобезопасный-singleton-056",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "concurrency",
+        "hibernate",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "sber"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 256,
+          "title": "Сбер · 6. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Как сделать потокобезопасный singleton?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
+        },
+        {
+          "id": "b",
+          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+        },
+        {
+          "id": "c",
+          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
+        },
+        {
+          "id": "d",
+          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-сортировать-list-по-убыванию-по-полю-146",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "sql",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 380,
+          "title": "SberSeasons · 4. Коллекции · Comparable и Comparator"
+        }
+      ],
+      "prompt": "Как сортировать List по убыванию по полю?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+        },
+        {
+          "id": "b",
+          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+        },
+        {
+          "id": "c",
+          "text": "JpaRepository extends PagingAndSortingRepository extends CrudRepository. Добавляет flush(), saveAllAndFlush(), работу с List вместо Iterable, deleteAllInBatch."
+        },
+        {
+          "id": "d",
+          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing.",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-группы-статус-кодов-есть-240",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 813,
+          "title": "SberSeasons · 10. HTTP и REST · Статус-коды"
+        }
+      ],
+      "prompt": "Какие группы статус-кодов есть?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict..."
+        },
+        {
+          "id": "b",
+          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+        },
+        {
+          "id": "c",
+          "text": "Без сессии на сервере любой запрос можно отправить на любой сервер кластера. Это позволяет легко горизонтально масштабироваться: добавил инстанс — балансер начал слать на него. Состояние держит клиент (например, в JWT)."
+        },
+        {
+          "id": "d",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-потокобезопасные-коллекции-есть-в-java-util-concurrent-147",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "collections",
+        "concurrency",
+        "hibernate",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 385,
+          "title": "SberSeasons · 4. Коллекции · Потокобезопасные коллекции"
+        }
+      ],
+      "prompt": "Какие потокобезопасные коллекции есть в java.util.concurrent?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "В Java 7 — деградация HashMap до связного списка O(n). В Java 8+ при 8 коллизиях в бакете он превращается в red-black tree, O(log n). В обоих случаях производительность резко падает."
+        },
+        {
+          "id": "b",
+          "text": "Самобалансирующиеся BST. После каждой вставки/удаления выполняется ребалансировка через повороты — гарантия O(log n). AVL — строже балансируется (быстрее поиск, медленнее вставка)..."
+        },
+        {
+          "id": "c",
+          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
+        },
+        {
+          "id": "d",
+          "text": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-маскирование-pii-в-логах-560",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "hibernate",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 402,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Маскирование PII в логах» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+        },
+        {
+          "id": "b",
+          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+        },
+        {
+          "id": "c",
+          "text": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер..."
+        },
+        {
+          "id": "d",
+          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-назови-основные-роли-в-oauth-638",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 353,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Назови основные роли в OAuth» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile."
+        },
+        {
+          "id": "b",
+          "text": "Resource Owner (пользователь), Client (приложение), Authorization Server (выдаёт токены), Resource Server (хранит ресурсы)."
+        },
+        {
+          "id": "c",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "d",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Resource Owner (пользователь), Client (приложение), Authorization Server (выдаёт токены), Resource Server (хранит ресурсы).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-позитивное-vs-негативное-тестирование-495",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 95,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Позитивное vs негативное тестирование?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+        },
+        {
+          "id": "b",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        },
+        {
+          "id": "c",
+          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+        },
+        {
+          "id": "d",
+          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-rest-stateless-244",
+      "type": "scenario",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 839,
+          "title": "SberSeasons · 10. HTTP и REST · REST"
+        }
+      ],
+      "prompt": "Почему REST stateless?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+        },
+        {
+          "id": "b",
+          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+        },
+        {
+          "id": "c",
+          "text": "Без сессии на сервере любой запрос можно отправить на любой сервер кластера. Это позволяет легко горизонтально масштабироваться: добавил инстанс — балансер начал слать на него. Состояние держит клиент (например, в JWT)."
+        },
+        {
+          "id": "d",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Без сессии на сервере любой запрос можно отправить на любой сервер кластера. Это позволяет легко горизонтально масштабироваться: добавил инстанс — балансер начал слать на него. Состояние держит клиент (например, в JWT).",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-string-immutable-101",
+      "type": "scenario",
+      "level": "trainee",
+      "topics": [
+        "java-core",
+        "security",
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "sberseasons",
+        "alfa-bank",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 177,
+          "title": "SberSeasons · 3. Java Core и ООП · String и его особенности"
+        },
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 77,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 93,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Почему String immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Heap — хранение объектов, управляется GC. Stack — фрейм для каждого вызова метода (локальные переменные, ссылки, примитивы). Metaspace (до Java 8 — PermGen) — метаданные классов, пул интернированных строк..."
+        },
+        {
+          "id": "b",
+          "text": "equals(Object) — проверка равенства. hashCode() — целочисленный хэш. toString() — строковое представление. getClass() — Class-объект. clone() — копия объекта (нужно implements Cloneable). wait(), notify()..."
+        },
+        {
+          "id": "c",
+          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+        },
+        {
+          "id": "d",
+          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-string-в-java-immutable-577",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 89,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Почему String в Java immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Геоиндекс (Geohash/H3), matching-сервис, партиционирование по городам, eventual consistency геопозиций."
+        },
+        {
+          "id": "b",
+          "text": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool."
+        },
+        {
+          "id": "c",
+          "text": "ROW_NUMBER(), RANK(), LAG/LEAD, SUM OVER — агрегации поверх результата без сворачивания строк в группы."
+        },
+        {
+          "id": "d",
+          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-распределенный-rate-limiter-468",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "spring",
+        "sql",
+        "algorithms",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "vk",
+        "yandex-travel"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/vk.md",
+          "line": 505,
+          "title": "VK · 12. System Design"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 456,
+          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Распределённый rate limiter» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+        },
+        {
+          "id": "b",
+          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
+        },
+        {
+          "id": "c",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "d",
+          "text": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность.",
+      "reviewLinks": [
+        {
+          "label": "VK",
+          "href": "../guides/vk/"
+        }
+      ]
+    },
+    {
+      "id": "auto-расскажи-про-реализации-map-137",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "collections",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 328,
+          "title": "SberSeasons · 4. Коллекции · Map и его реализации"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Расскажи про реализации Map» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Если изменить поле, участвующее в hashCode — объект окажется в «неправильном» bucket. contains() вернёт false. Объект потерян — ни найти, ни удалить. Утечка памяти. Решение: immutable-ключи (String, Integer, record)."
+        },
+        {
+          "id": "b",
+          "text": "Порог 0.75 по умолчанию. При size >= capacity * loadFactor — resize: массив вдвое + перехеширование ВСЕХ элементов (дорого!). Совет: если знаешь количество элементов — задай initialCapacity = expectedSize / 0.75 + 1."
+        },
+        {
+          "id": "c",
+          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
+        },
+        {
+          "id": "d",
+          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-тестирование-авторизации-561",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 405,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Тестирование авторизации» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        },
+        {
+          "id": "b",
+          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+        },
+        {
+          "id": "c",
+          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+        },
+        {
+          "id": "d",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-цепочка-запросов-в-postman-524",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 196,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Цепочка запросов в Postman» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+        },
+        {
+          "id": "b",
+          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+        },
+        {
+          "id": "c",
+          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
+        },
+        {
+          "id": "d",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-oauth-отличается-от-openid-connect-640",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 359,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Чем OAuth отличается от OpenID Connect?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа."
+        },
+        {
+          "id": "b",
+          "text": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе."
+        },
+        {
+          "id": "c",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        },
+        {
+          "id": "d",
+          "text": "java.util.Random формально thread-safe — это написано в Javadoc. Но реализация потокобезопасности — через атомарный CAS на одном поле AtomicLong seed..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делает-spring-security-617",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 267,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
+        }
+      ],
+      "prompt": "Что делает Spring Security?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "checkout → build → test → docker build → push registry → deploy staging → (approval) → prod. В Яндексе: Arcadia CI + Nanny для деплоя."
+        },
+        {
+          "id": "b",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        },
+        {
+          "id": "c",
+          "text": "JPQL работает с сущностями и полями Java. Native SQL — прямой SQL, нужен для специфичных фич БД. Native помечается nativeQuery = true."
+        },
+        {
+          "id": "d",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-access-token-и-refresh-token-639",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 356,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое access token и refresh token?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе."
+        },
+        {
+          "id": "b",
+          "text": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа."
+        },
+        {
+          "id": "c",
+          "text": "В реальности чаще at-least-once + идемпотентность на стороне consumer'а. Kafka с transactional producer + read_committed даёт effectively-once."
+        },
+        {
+          "id": "d",
+          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-jwt-641",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 362,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое JWT?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        },
+        {
+          "id": "b",
+          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+        },
+        {
+          "id": "c",
+          "text": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре..."
+        },
+        {
+          "id": "d",
+          "text": "JSON Web Token — компактный формат для передачи информации в виде подписанного JSON. Состоит из трёх частей через точку: header.payload.signature. Можно проверять валидность без обращения к серверу."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "JSON Web Token — компактный формат для передачи информации в виде подписанного JSON. Состоит из трёх частей через точку: header.payload.signature. Можно проверять валидность без обращения к серверу.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-keycloak-642",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 365,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое Keycloak?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
+        },
+        {
+          "id": "b",
+          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+        },
+        {
+          "id": "c",
+          "text": "grep \"$(date +%Y-%m-%d)\" app.log | grep -c \"ERROR\". find: find . -name \"*.log\" -mtime -1 (файлы за сутки). Уникальные IP: grep -oE '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log | sort -u. tail -f app..."
+        },
+        {
+          "id": "d",
+          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-oauth-2-0-637",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 350,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое OAuth 2.0?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally."
+        },
+        {
+          "id": "b",
+          "text": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google»."
+        },
+        {
+          "id": "c",
+          "text": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме..."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google».",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-cloud-и-для-чего-он-618",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "kafka",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 270,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
+        }
+      ],
+      "prompt": "Что такое Spring Cloud и для чего он?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SRP (одна причина для изменения), OCP (расширение без модификации), LSP (подтипы взаимозаменяемы), ISP (мелкие интерфейсы), DIP (зависимость от абстракций)."
+        },
+        {
+          "id": "b",
+          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+        },
+        {
+          "id": "c",
+          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+        },
+        {
+          "id": "d",
+          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем».",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-и-зачем-он-нужен-205",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 644,
+          "title": "SberSeasons · 8. Spring и Spring Boot · Зачем нужен Spring"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 220,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое Spring и зачем он нужен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error..."
+        },
+        {
+          "id": "b",
+          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
+        },
+        {
+          "id": "c",
+          "text": "PUT — полная замена ресурса. Передаём весь объект целиком. Если не указать поле — оно станет null. PATCH — частичное обновление. Передаём только изменяемые поля, остальное остаётся."
+        },
+        {
+          "id": "d",
+          "text": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-string-pool-почему-string-immutable-004",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "security"
+      ],
+      "companies": [
+        "sber"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 88,
+          "title": "Сбер · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Что такое String Pool? Почему String immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Binary search безопасно писать как (left + right) / 2 для любых int-границ."
+        },
+        {
+          "id": "b",
+          "text": "Constructor injection хуже field injection, потому что усложняет unit-тесты."
+        },
+        {
+          "id": "c",
+          "text": "OAuth 2.0 отвечает за аутентификацию пользователя и заменяет OpenID Connect."
+        },
+        {
+          "id": "d",
+          "text": "Безопасность, потокобезопасность, кэширование hashCode, работа String Pool."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Безопасность, потокобезопасность, кэширование hashCode, работа String Pool.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-идемпотентность-238",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "sberseasons"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 805,
+          "title": "SberSeasons · 10. HTTP и REST · HTTP-методы"
+        }
+      ],
+      "prompt": "Что такое идемпотентность?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spurious wakeup: JVM/ОС может разбудить поток без notify. while (!condition) { wait(); }. Важно: вызывать ТОЛЬКО внутри synchronized на том же объекте, иначе — IllegalMonitorStateException. notify() будит один поток..."
+        },
+        {
+          "id": "b",
+          "text": "Минимальный уровень — Read Committed. PostgreSQL использует MVCC: каждая транзакция видит snapshot, грязные данные физически невозможно прочитать (нет dirty read). Read Uncommitted в PG ведёт себя как Read Committed..."
+        },
+        {
+          "id": "c",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        },
+        {
+          "id": "d",
+          "text": "@Primary — пометить «приоритетный» бин. @Qualifier(\"name\") — точечно выбрать конкретный. @Profile(\"prod\") — активировать в определённом окружении. @ConditionalOnProperty / @ConditionalOnMissingBean — условное создание."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    }
+  ]
+}

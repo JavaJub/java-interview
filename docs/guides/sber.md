@@ -666,5 +666,6 @@ ORDER BY total_out DESC;
 - Повторить: HashMap, equals/hashCode, JMM, Spring transactions, SQL индексы, code review.
 - Спросить в канале: свежие вопросы по Сберу, формат конкретной команды, примеры code review.
 - Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

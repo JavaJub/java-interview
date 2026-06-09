@@ -677,5 +677,6 @@ Live-coding                  LRU-кэш + REST-контроллер + code revie
 - Повторить: алгоритмы, Java/Spring backend, SQL, System Design, проверку решений без IDE.
 - Спросить в канале: свежие вопросы Яндекса, задачи из секций и опыт прохождения Advanced Code.
 - Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

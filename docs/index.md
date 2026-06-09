@@ -18,6 +18,7 @@
 | Банковский backend | [Сбер](guides/sber.md) · [Альфа-Банк](guides/alfa-bank.md) · [Т1 Иннотех](guides/t1-innotech.md) · [Лига](guides/liga.md) |
 | BigTech / алгоритмы | [VK](guides/vk.md) · [Яндекс Путешествия](guides/yandex-travel.md) |
 | Повторение по темам | [индекс тем](TOPICS.md) |
+| Самопроверка знаний | [интерактивные тесты](quizzes/index.md) |
 
 ## Гайды по компаниям
 
@@ -40,6 +41,10 @@
 | Задача | Формат |
 |---|---|
 | [X5 Tech · Senior — 8 багов в сервисе расчёта скидок](tasks/x5-blackfriday-code-review.md) | code review, concurrency, production thinking |
+
+## Тесты
+
+На сайте есть [интерактивные тесты](quizzes/index.md): Express на 15 вопросов, Standard на 30 вопросов, Interview simulation на 60 вопросов и повтор слабых тем. Тесты собираются из канонического банка вопросов по гайдам и после прохождения дают список тем для повторения.
 
 ## Подготовка по времени
 

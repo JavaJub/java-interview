@@ -1,0 +1,2748 @@
+{
+  "id": "t1-innotech-middle",
+  "title": "Т1 Иннотех Java Junior/Middle",
+  "kind": "company",
+  "description": "Enterprise backend, SQL, Kafka и code review.",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "questionCount": 56,
+  "questions": [
+    {
+      "id": "auto-aop-кейс-замерить-время-всех-методов-сервиса-412",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "spring",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 183,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "AOP: кейс «замерить время всех методов сервиса»?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Короткий способ описать иммутабельный DTO. Автоматически генерируются: конструктор, геттеры (имя поля без get-), equals, hashCode, toString. record User(String name, int age) {} — всё. Меньше boilerplate, чем Lombok."
+        },
+        {
+          "id": "b",
+          "text": "Если в учебном проекте делали daily-стендапы и спринты — это уже опыт. Можно сказать: «В курсовой работали по двухнедельным спринтам, делали ретро в конце». Если не делали — честно: «Знаю теорию (роли Scrum Master..."
+        },
+        {
+          "id": "c",
+          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
+        },
+        {
+          "id": "d",
+          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-circuit-breaker-три-состояния-432",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "kafka",
+        "devops",
+        "testing-aqa",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 278,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Circuit Breaker: три состояния?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+        },
+        {
+          "id": "b",
+          "text": "Иммутабельность зависимостей — основа thread-safe сервиса. После создания объекта его зависимости НЕ должны меняться. final гарантирует это на уровне компилятора. Конструктор делает зависимости явными — открыл класс..."
+        },
+        {
+          "id": "c",
+          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
+        },
+        {
+          "id": "d",
+          "text": "Git Flow — модель с долгоживущими ветками master, develop, feature/*, release/*, hotfix/*. Подходит для релизного цикла с явными версиями. Trunk-based — все работают близко к master (через короткие feature-branch'ы)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-concurrentmodificationexception-причина-и-решение-400",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring",
+        "algorithms"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 143,
+          "title": "Т1 Иннотех · 5. Коллекции"
+        }
+      ],
+      "prompt": "ConcurrentModificationException: причина и решение?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+        },
+        {
+          "id": "b",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        },
+        {
+          "id": "c",
+          "text": "Да, и стоит это раскрыть. В банке много legacy — никуда не деться. Хорошие фразы: «Понимаю, что legacy — это часть работы», «Это полезный опыт — понять, как развивается большая система», «Скорее всего..."
+        },
+        {
+          "id": "d",
+          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-copyonwritearraylist-плюсы-и-минусы-401",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency",
+        "hibernate",
+        "algorithms"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 146,
+          "title": "Т1 Иннотех · 5. Коллекции"
+        }
+      ],
+      "prompt": "CopyOnWriteArrayList: плюсы и минусы?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Плюсы: lock-free чтение (читатели не блокируются), fail-safe итератор (работает со snapshot). Минусы: при каждой записи — копирование всего массива → дорого. Подходит: много чтений, редкие записи (listeners, подписчики..."
+        },
+        {
+          "id": "b",
+          "text": "StructuredTaskScope (preview в Java 21): управление временем жизни задач. Все подзадачи привязаны к scope — при закрытии scope все незавершённые отменяются. ShutdownOnFailure: при первой ошибке все остальные отменяются..."
+        },
+        {
+          "id": "c",
+          "text": "Oracle: SEQUENCE — отдельный объект БД, генератор уникальных чисел. Используется для auto-increment ID: INSERT VALUES (my_seq.nextval, ...). Postgres: аналог — SERIAL или IDENTITY. SERIAL — алиас для INTEGER + sequence..."
+        },
+        {
+          "id": "d",
+          "text": "Видимость (запрет кэширования), happens-before (volatile write → read), запрет reordering. i++ = read+increment+write — три операции. Между ними другой поток может прочитать старое значение. Решения: AtomicInteger (CAS)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Плюсы: lock-free чтение (читатели не блокируются), fail-safe итератор (работает со snapshot). Минусы: при каждой записи — копирование всего массива → дорого. Подходит: много чтений, редкие записи (listeners, подписчики...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-entity-как-ключ-hashmap-что-может-пойти-не-так-416",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "jvm",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 197,
+          "title": "Т1 Иннотех · 8. Hibernate и JPA"
+        }
+      ],
+      "prompt": "Entity как ключ HashMap — что может пойти не так?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal..."
+        },
+        {
+          "id": "b",
+          "text": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный..."
+        },
+        {
+          "id": "c",
+          "text": "HashSet — на основе HashMap (значение в виде специальной заглушки). Не сохраняет порядок. LinkedHashSet — HashSet + порядок вставки. TreeSet — на основе TreeMap (красно-чёрное дерево), элементы отсортированы..."
+        },
+        {
+          "id": "d",
+          "text": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-generational-zgc-что-нового-403",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 154,
+          "title": "Т1 Иннотех · 6. JVM, память и GC"
+        }
+      ],
+      "prompt": "Generational ZGC — что нового?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ZGC с Java 21 стал generational (раздельная сборка Young/Old). Паузы <1ms даже на терабайтных heap. Предыдущий ZGC был non-generational (собирал весь heap). Generational ZGC — стандарт для high-load в 2026..."
+        },
+        {
+          "id": "b",
+          "text": "Все объекты попадут в один бакет HashMap. Поиск превратится в перебор связного списка (или дерева с Java 8) — деградация с O(1) до O(n) или O(log n). Карта работает, но медленно. Это любимый подвох на собесе."
+        },
+        {
+          "id": "c",
+          "text": "Value Object — объект, который определяется ТОЛЬКО своими значениями (не identity). Например, Money(amount, currency) — два VO с одинаковыми полями равны. Иммутабельны, имеют equals/hashCode по содержимому..."
+        },
+        {
+          "id": "d",
+          "text": "final — модификатор. final class / method / field. finally — блок в try-catch-finally, выполняется ВСЕГДА (даже при исключении или return). Используется для освобождения ресурсов. finalize() — метод Object..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "ZGC с Java 21 стал generational (раздельная сборка Young/Old). Паузы <1ms даже на терабайтных heap. Предыдущий ZGC был non-generational (собирал весь heap). Generational ZGC — стандарт для high-load в 2026...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-happens-before-какие-пары-существуют-392",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 117,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "happens-before: какие пары существуют?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
+        },
+        {
+          "id": "b",
+          "text": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы."
+        },
+        {
+          "id": "c",
+          "text": "JDBC — низкий уровень, прямой SQL, ResultSet, ручной маппинг колонок в поля. Hibernate — поверх JDBC. Генерирует SQL автоматически, маппит результаты в объекты. Удобно для типового CRUD..."
+        },
+        {
+          "id": "d",
+          "text": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashmap-vs-hashtable-vs-linkedhashmap-vs-weakhashmap-398",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 137,
+          "title": "Т1 Иннотех · 5. Коллекции"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: HashMap vs Hashtable vs LinkedHashMap vs WeakHashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Гарантирует видимость изменений между потоками (запрет кэширования в регистрах/локальном кэше CPU) и запрет reordering. НЕ гарантирует атомарность составных операций (i++)."
+        },
+        {
+          "id": "b",
+          "text": "HashMap: не потокобезопасен, null-ключ. Hashtable: потокобезопасен (synchronized на всё), устаревший, нет null. LinkedHashMap: порядок вставки (или access order для LRU)..."
+        },
+        {
+          "id": "c",
+          "text": "Обратите внимание на Seq Scan (плохо на больших таблицах), Index Scan, Bitmap Heap Scan, Nested Loop vs Hash Join, Rows Removed by Filter, разницу estimated vs actual rows."
+        },
+        {
+          "id": "d",
+          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "HashMap: не потокобезопасен, null-ключ. Hashtable: потокобезопасен (synchronized на всё), устаревший, нет null. LinkedHashMap: порядок вставки (или access order для LRU)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashmap-расчет-бакета-на-примере-397",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "devops",
+        "algorithms",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 134,
+          "title": "Т1 Иннотех · 5. Коллекции"
+        }
+      ],
+      "prompt": "HashMap: расчёт бакета на примере?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+        },
+        {
+          "id": "c",
+          "text": "static Map без eviction: статический Map, добавляешь объекты в цикле → heap exhaustion. Бесконечное создание Thread: каждый поток = ~1MB стека → native OOM. Metaspace: динамическая генерация классов (CGLIB, ASM)..."
+        },
+        {
+          "id": "d",
+          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-java-17-21-что-нового-для-повседневной-разработки-388",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 101,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Java 17/21: что нового для повседневной разработки?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Records: immutable data-класс с equals/hashCode/toString. Sealed Classes: ограничение иерархии (exhaustive switch). Pattern Matching: instanceof без cast, switch по типам..."
+        },
+        {
+          "id": "b",
+          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+        },
+        {
+          "id": "c",
+          "text": "Все объекты попадут в один bucket HashMap. В Java 8+ при 8 коллизиях список превращается в red-black tree, но O(log n) вместо O(1) — всё равно деградация производительности."
+        },
+        {
+          "id": "d",
+          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Records: immutable data-класс с equals/hashCode/toString. Sealed Classes: ограничение иерархии (exhaustive switch). Pattern Matching: instanceof без cast, switch по типам...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jdbctemplate-когда-уместен-вместо-hibernate-417",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "hibernate",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 200,
+          "title": "Т1 Иннотех · 8. Hibernate и JPA"
+        }
+      ],
+      "prompt": "JdbcTemplate — когда уместен вместо Hibernate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ArrayList: O(1) доступ по индексу, O(n) вставка в середину, дружелюбно к CPU-кэшу (непрерывная память). LinkedList: O(1) вставка в начало/конец (если есть ссылка), O(n) доступ по индексу..."
+        },
+        {
+          "id": "b",
+          "text": "JPA (Java Persistence API) — спецификация (интерфейсы и аннотации в пакете javax.persistence / jakarta.persistence). Hibernate — конкретная реализация. Альтернативы: EclipseLink, OpenJPA..."
+        },
+        {
+          "id": "c",
+          "text": "JDBC — низкий уровень, прямой SQL, ResultSet, ручной маппинг колонок в поля. Hibernate — поверх JDBC. Генерирует SQL автоматически, маппит результаты в объекты. Удобно для типового CRUD..."
+        },
+        {
+          "id": "d",
+          "text": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jpa-vs-hibernate-414",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 191,
+          "title": "Т1 Иннотех · 8. Hibernate и JPA"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: JPA vs Hibernate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
+        },
+        {
+          "id": "b",
+          "text": "JPA — спецификация (набор интерфейсов и аннотаций). Hibernate — реализация (конкретная библиотека). EntityManager — JPA-интерфейс, Session — Hibernate-интерфейс..."
+        },
+        {
+          "id": "c",
+          "text": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД..."
+        },
+        {
+          "id": "d",
+          "text": "Transient (новый объект, Hibernate не знает), Persistent/Managed (связан с сессией), Detached (был persistent, но сессия закрыта), Removed (помечен на удаление)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "JPA — спецификация (набор интерфейсов и аннотаций). Hibernate — реализация (конкретная библиотека). EntityManager — JPA-интерфейс, Session — Hibernate-интерфейс...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-kafka-streams-vs-обычный-consumer-426",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "sql",
+        "kafka"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 258,
+          "title": "Т1 Иннотех · 10. Kafka"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Kafka Streams vs обычный Consumer?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
+        },
+        {
+          "id": "b",
+          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
+        },
+        {
+          "id": "c",
+          "text": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2..."
+        },
+        {
+          "id": "d",
+          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-kafka-vs-rabbitmq-ключевые-различия-423",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "kafka"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 249,
+          "title": "Т1 Иннотех · 10. Kafka"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Kafka vs RabbitMQ: ключевые различия?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+        },
+        {
+          "id": "b",
+          "text": "Kafka: pull (consumer сам забирает), хранит сообщения (retention), log compaction, высокая пропускная способность, горизонтальное масштабирование. RabbitMQ: push (брокер отправляет), удаляет после ACK..."
+        },
+        {
+          "id": "c",
+          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+        },
+        {
+          "id": "d",
+          "text": "Все объекты попадут в один bucket HashMap. Java 7: связный список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — перестройка в red-black tree O(log n). Это лучше O(n), но деградация по сравнению с O(1)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Kafka: pull (consumer сам забирает), хранит сообщения (retention), log compaction, высокая пропускная способность, горизонтальное масштабирование. RabbitMQ: push (брокер отправляет), удаляет после ACK...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-parallel-streams-в-чем-опасность-387",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 98,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Parallel streams: в чём опасность?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
+        },
+        {
+          "id": "b",
+          "text": "start() — создаёт новый поток ОС и в нём вызывает run(). run() напрямую — это обычный метод, выполнится В ТЕКУЩЕМ потоке. Это любимая ловушка на собесах. Запомни: «start запускает новый, run просто исполняет в этом же»."
+        },
+        {
+          "id": "c",
+          "text": "Все parallel streams делят общий ForkJoinPool.commonPool(). Если один параллельный стрим заблокировался на I/O — остальные ждут. Решение: кастомный ForkJoinPool: new ForkJoinPool(4).submit(() -> stream.parallel()...)..."
+        },
+        {
+          "id": "d",
+          "text": "singleton (default — один на контекст), prototype (новый при каждом запросе), request (один на HTTP-запрос), session, application, websocket. Важно: инжект prototype в singleton через Provider<T> или ObjectFactory<T>..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Все parallel streams делят общий ForkJoinPool.commonPool(). Если один параллельный стрим заблокировался на I/O — остальные ждут. Решение: кастомный ForkJoinPool: new ForkJoinPool(4).submit(() -> stream.parallel()...)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-pg-stat-activity-и-pg-stat-statements-что-показывают-422",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 219,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "pg_stat_activity и pg_stat_statements — что показывают?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+        },
+        {
+          "id": "b",
+          "text": "pg_stat_activity: текущие запросы, их состояние (active/idle/waiting), PID, query_start. Для поиска long-running queries и блокировок. pg_stat_statements: статистика по запросам (calls, total_time, mean_time, rows)..."
+        },
+        {
+          "id": "c",
+          "text": "FIFO (First In, First Out). Используется в: (1) Обход графа в ширину (BFS). (2) Планировщик задач. (3) Producer-consumer (BlockingQueue). В Java — LinkedList, ArrayDeque, или ConcurrentLinkedQueue для многопоточности."
+        },
+        {
+          "id": "d",
+          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "pg_stat_activity: текущие запросы, их состояние (active/idle/waiting), PID, query_start. Для поиска long-running queries и блокировок. pg_stat_statements: статистика по запросам (calls, total_time, mean_time, rows)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-race-condition-как-воспроизвести-и-как-бороться-393",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "concurrency",
+        "spring"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 120,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Race condition: как воспроизвести и как бороться?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spring создаёт прокси-обёртку. JDK dynamic proxy (если интерфейс) или CGLIB (наследование). Прокси: открывает транзакцию (PlatformTransactionManager), вызывает метод, commit при успехе..."
+        },
+        {
+          "id": "b",
+          "text": "CountDownLatch: одноразовый счётчик, потоки ждут обнуления. CyclicBarrier: переиспользуемый, все потоки ждут друг друга. Semaphore: ограничение числа одновременных потоков (пул ресурсов)."
+        },
+        {
+          "id": "c",
+          "text": "Check-then-act без атомарности: if (map.containsKey(k)) map.get(k). Между проверкой и получением другой поток может удалить. Решение: computeIfAbsent (атомарно). Воспроизвести: Thread..."
+        },
+        {
+          "id": "d",
+          "text": "Cache locality. ArrayList хранит элементы в непрерывном куске памяти — процессор подгружает целые блоки в L1/L2 кэш. У LinkedList узлы разбросаны по куче — каждый next() это cache miss..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Check-then-act без атомарности: if (map.containsKey(k)) map.get(k). Между проверкой и получением другой поток может удалить. Решение: computeIfAbsent (атомарно). Воспроизвести: Thread...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-repeatable-read-в-pg-решает-фантомное-чтение-почему-419",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 210,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "Repeatable Read в PG решает фантомное чтение — почему?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Нормализация — процесс приведения схемы БД к виду без избыточности данных. 1НФ — все атрибуты атомарны (нет списков в одной ячейке). 2НФ — 1НФ + каждый не-ключевой атрибут зависит от полного ключа..."
+        },
+        {
+          "id": "b",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Важно: WHERE выполняется ДО GROUP BY (нельзя фильтровать по агрегату в WHERE). HAVING — после GROUP BY (для агрегатов)."
+        },
+        {
+          "id": "c",
+          "text": "Spring создаёт прокси (JDK/CGLIB). Прокси открывает транзакцию, вызывает метод, commit/rollback. self-call минует прокси → @Transactional/@Cacheable/@Async не работают. Решение: вынести в другой бин."
+        },
+        {
+          "id": "d",
+          "text": "В стандарте SQL Repeatable Read допускает phantom reads. В PG благодаря MVCC (snapshot isolation): транзакция видит snapshot данных на момент начала. Новые строки, вставленные другими транзакциями..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "В стандарте SQL Repeatable Read допускает phantom reads. В PG благодаря MVCC (snapshot isolation): транзакция видит snapshot данных на момент начала. Новые строки, вставленные другими транзакциями...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-singleton-бин-потокобезопасен-ли-406",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "spring",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 165,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "Singleton-бин: потокобезопасен ли?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный..."
+        },
+        {
+          "id": "b",
+          "text": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal..."
+        },
+        {
+          "id": "c",
+          "text": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)..."
+        },
+        {
+          "id": "d",
+          "text": "@RestController = @Controller + @ResponseBody. То есть результаты методов сразу сериализуются в JSON / XML (через Jackson) и отдаются в body ответа. @Controller сам по себе ожидает имя view (для рендера HTML)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-spring-kafka-основные-компоненты-425",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "kafka",
+        "devops"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 255,
+          "title": "Т1 Иннотех · 10. Kafka"
+        }
+      ],
+      "prompt": "Spring Kafka: основные компоненты?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+        },
+        {
+          "id": "b",
+          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
+        },
+        {
+          "id": "c",
+          "text": "(1) Spring находит определение (BeanDefinition). (2) Вызывает конструктор. (3) Инжектит зависимости (setter / field). (4) @PostConstruct — пользовательская инициализация. (5) BeanPostProcessor..."
+        },
+        {
+          "id": "d",
+          "text": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-stream-api-что-произойдет-при-двух-терминальных-операциях-386",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 95,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Stream API: что произойдёт при двух терминальных операциях?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Принудительно завершает JVM с кодом возврата. Не выполняются finally-блоки, не закрываются ресурсы. Использовать ТОЛЬКО в экстренных случаях. В обычной разработке — не нужен."
+        },
+        {
+          "id": "b",
+          "text": "Records: immutable data-класс с equals/hashCode/toString. Sealed Classes: ограничение иерархии (exhaustive switch). Pattern Matching: instanceof без cast, switch по типам..."
+        },
+        {
+          "id": "c",
+          "text": "IllegalStateException: stream has already been operated upon or closed. Стрим одноразовый — после терминальной операции закрывается. Если нужно два результата — Collectors..."
+        },
+        {
+          "id": "d",
+          "text": "Абстрактный класс может иметь состояние (поля), конструктор, реализованные методы. От него можно унаследоваться ТОЛЬКО одного. Интерфейс — контракт, описывающий «что умеет»..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "IllegalStateException: stream has already been operated upon or closed. Стрим одноразовый — после терминальной операции закрывается. Если нужно два результата — Collectors...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-string-vs-stringbuilder-vs-stringbuffer-383",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 86,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: String vs StringBuilder vs StringBuffer?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Класс — нельзя наследовать (String, Integer). Метод — нельзя переопределить. Поле — нельзя переприсвоить ссылку, но можно менять внутреннее состояние (final List — можно add/remove). effectively final — нужна для лямбд."
+        },
+        {
+          "id": "b",
+          "text": "String: immutable, при конкатенации создаёт новый объект. StringBuilder: mutable, НЕ потокобезопасный (быстрый). StringBuffer: mutable, потокобезопасный (synchronized — медленнее). В цикле конкатенация String → O(n²)..."
+        },
+        {
+          "id": "c",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        },
+        {
+          "id": "d",
+          "text": "Git помечает конфликтные участки в файле символами <<<<<<<, =======, >>>>>>>. Вручную решаешь, что оставить, удаляешь маркеры, делаешь git add и git commit. Современные IDE (IntelliJ) дают удобный визуальный merge-tool."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "String: immutable, при конкатенации создаёт новый объект. StringBuilder: mutable, НЕ потокобезопасный (быстрый). StringBuffer: mutable, потокобезопасный (synchronized — медленнее). В цикле конкатенация String → O(n²)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-structured-concurrency-что-это-395",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "spring"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 126,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Structured Concurrency — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "StructuredTaskScope (preview в Java 21): управление временем жизни задач. Все подзадачи привязаны к scope — при закрытии scope все незавершённые отменяются. ShutdownOnFailure: при первой ошибке все остальные отменяются..."
+        },
+        {
+          "id": "b",
+          "text": "GET — получение данных, тело не предполагается. POST — создание, отправка данных в body. PUT — полное обновление / создание. PATCH — частичное обновление. DELETE — удаление. HEAD — как GET, но без body (только headers)..."
+        },
+        {
+          "id": "c",
+          "text": "Плюсы: lock-free чтение (читатели не блокируются), fail-safe итератор (работает со snapshot). Минусы: при каждой записи — копирование всего массива → дорого. Подходит: много чтений, редкие записи (listeners, подписчики..."
+        },
+        {
+          "id": "d",
+          "text": "UNION — объединяет результаты ДВУХ SELECT, убирает дубликаты. UNION ALL — то же, но БЕЗ удаления дубликатов. UNION ALL быстрее (не нужно сортировать для дедупликации). Если знаешь, что дублей не будет — всегда UNION ALL."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "StructuredTaskScope (preview в Java 21): управление временем жизни задач. Все подзадачи привязаны к scope — при закрытии scope все незавершённые отменяются. ShutdownOnFailure: при первой ошибке все остальные отменяются...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-synchronized-на-двух-методах-одного-объекта-будут-ли-работать-параллельно-390",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 111,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "synchronized на двух методах одного объекта — будут ли работать параллельно?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы."
+        },
+        {
+          "id": "b",
+          "text": "JDBC — низкий уровень, прямой SQL, ResultSet, ручной маппинг колонок в поля. Hibernate — поверх JDBC. Генерирует SQL автоматически, маппит результаты в объекты. Удобно для типового CRUD..."
+        },
+        {
+          "id": "c",
+          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
+        },
+        {
+          "id": "d",
+          "text": "Удобная обёртка над JPA / Hibernate. Создаёшь интерфейс, наследуешь JpaRepository — Spring сам сгенерирует реализацию. Query methods: метод findByEmail — Spring сам соберёт SQL по имени..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы.",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-transactional-долгий-rest-вызов-внутри-чем-опасно-410",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 177,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "@Transactional + долгий REST-вызов внутри — чем опасно?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+        },
+        {
+          "id": "b",
+          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
+        },
+        {
+          "id": "c",
+          "text": "Два+ потока ждут друг друга. Условия Коффмана. Избежать: упорядочить захват мониторов, tryLock с таймаутом. Обнаружение: jstack, VisualVM, Thread.getState()."
+        },
+        {
+          "id": "d",
+          "text": "IoC — принцип: контейнер сам управляет жизненным циклом объектов. DI — реализация: зависимости в объект внедряются извне (через конструктор / сеттер / поле)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-transactional-на-private-методе-что-произойдет-407",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 168,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "@Transactional на private методе — что произойдёт?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+        },
+        {
+          "id": "b",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+        },
+        {
+          "id": "c",
+          "text": "Stub: настроить фиксированный ответ — stubFor(get(\"/api/rates\").willReturn(okJson(...))). Verify: проверить, что наш сервис сделал ожидаемый запрос — verify(getRequestedFor(urlEqualTo(\"/api/rates\"))..."
+        },
+        {
+          "id": "d",
+          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-uuid-vs-long-как-pk-для-соцсети-на-2-млн-пользователей-431",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "kafka",
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 275,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: UUID vs Long как PK для соцсети на 2 млн пользователей?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+        },
+        {
+          "id": "b",
+          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+        },
+        {
+          "id": "c",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        },
+        {
+          "id": "d",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-uuid-vs-long-как-pk-что-выбрать-420",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 213,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "UUID vs Long как PK: что выбрать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        },
+        {
+          "id": "b",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        },
+        {
+          "id": "c",
+          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+        },
+        {
+          "id": "d",
+          "text": "(1) Описываешь changeset'ы — изменения схемы. Формат: XML, YAML, JSON или SQL. (2) При старте Liquibase подключается к БД, смотрит в таблицу DATABASECHANGELOG — какие уже применены. (3) Применяет новые changeset'ы..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-virtual-threads-java-21-pinning-problem-394",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "concurrency",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 123,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Virtual Threads (Java 21): pinning problem?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Virtual Thread на synchronized блоке → pinning (привязка к platform thread, теряется лёгкость). Причина: synchronized работает через монитор объекта, JVM не может «припарковать» виртуальный поток..."
+        },
+        {
+          "id": "b",
+          "text": "Спецификация не запрещает, но рекомендует не использовать. Многие фреймворки и прокси игнорируют body в GET. Если параметров много — лучше POST с явной семантикой («поиск с телом») или query string."
+        },
+        {
+          "id": "c",
+          "text": "В Metaspace. До Java 8 это была область PermGen (часть heap), с Java 8 — отдельная область в нативной памяти (off-heap). Это важно: при анализе утечек статические поля не видны в обычном дампе heap."
+        },
+        {
+          "id": "d",
+          "text": "Для возвращаемых значений методов. НЕ для полей (не Serializable), НЕ для параметров, НЕ для коллекций (пустая лучше). Антипаттерны: Optional.get() без isPresent(), Optional в полях, Optional<List>."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Virtual Thread на synchronized блоке → pinning (привязка к platform thread, теряется лёгкость). Причина: synchronized работает через монитор объекта, JVM не может «припарковать» виртуальный поток...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-volatile-что-гарантирует-и-почему-недостаточно-для-i-389",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "devops"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 108,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "volatile: что гарантирует и почему недостаточно для i++?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
+        },
+        {
+          "id": "b",
+          "text": "Видимость (запрет кэширования), happens-before (volatile write → read), запрет reordering. i++ = read+increment+write — три операции. Между ними другой поток может прочитать старое значение. Решения: AtomicInteger (CAS)..."
+        },
+        {
+          "id": "c",
+          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+        },
+        {
+          "id": "d",
+          "text": "(1) Mutual exclusion — ресурс не разделяемый. (2) Hold and wait — поток держит один ресурс, ждёт другой. (3) No preemption — отнять ресурс нельзя. (4) Circular wait — цикл ожидания. Чтобы deadlock был — нужны все четыре..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Видимость (запрет кэширования), happens-before (volatile write → read), запрет reordering. i++ = read+increment+write — три операции. Между ними другой поток может прочитать старое значение. Решения: AtomicInteger (CAS)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-zookeeper-vs-kraft-что-изменилось-424",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "kafka"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 252,
+          "title": "Т1 Иннотех · 10. Kafka"
+        }
+      ],
+      "prompt": "ZooKeeper vs KRaft — что изменилось?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+        },
+        {
+          "id": "b",
+          "text": "Ровно один абстрактный метод (SAM). @FunctionalInterface — опциональная аннотация, но защищает от случайного добавления второго метода. Основные: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>..."
+        },
+        {
+          "id": "c",
+          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+        },
+        {
+          "id": "d",
+          "text": "Старые версии Kafka: ZooKeeper хранил метаданные (контроллер, брокеры, топики). KRaft (Kafka Raft, с Kafka 3.3+): метаданные хранятся в самом Kafka через Raft-консенсус. Проще деплой (нет отдельного ZooKeeper-кластера)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Старые версии Kafka: ZooKeeper хранил метаданные (контроллер, брокеры, топики). KRaft (Kafka Raft, с Kafka 3.3+): метаданные хранятся в самом Kafka через Raft-консенсус. Проще деплой (нет отдельного ZooKeeper-кластера)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-postgresql-нет-read-uncommitted-почему-418",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 207,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "В PostgreSQL нет Read Uncommitted — почему?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
+        },
+        {
+          "id": "b",
+          "text": "Минимальный уровень — Read Committed. PostgreSQL использует MVCC: каждая транзакция видит snapshot, грязные данные физически невозможно прочитать (нет dirty read). Read Uncommitted в PG ведёт себя как Read Committed..."
+        },
+        {
+          "id": "c",
+          "text": "Spurious wakeup: JVM/ОС может разбудить поток без notify. while (!condition) { wait(); }. Важно: вызывать ТОЛЬКО внутри synchronized на том же объекте, иначе — IllegalMonitorStateException. notify() будит один поток..."
+        },
+        {
+          "id": "d",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Минимальный уровень — Read Committed. PostgreSQL использует MVCC: каждая транзакция видит snapshot, грязные данные физически невозможно прочитать (нет dirty read). Read Uncommitted в PG ведёт себя как Read Committed...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-какой-момент-происходит-коммит-transactional-411",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 180,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "В какой момент происходит коммит @Transactional?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate..."
+        },
+        {
+          "id": "b",
+          "text": "В Java 7 — деградация HashMap до связного списка O(n). В Java 8+ при 8 коллизиях в бакете он превращается в red-black tree, O(log n). В обоих случаях производительность резко падает."
+        },
+        {
+          "id": "c",
+          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
+        },
+        {
+          "id": "d",
+          "text": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-виды-ссылок-strong-soft-weak-phantom-405",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "jvm"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 160,
+          "title": "Т1 Иннотех · 6. JVM, память и GC"
+        }
+      ],
+      "prompt": "Виды ссылок: Strong, Soft, Weak, Phantom?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Iterable → Collection. От Collection наследуются List, Set, Queue. Map стоит ОТДЕЛЬНО — она НЕ Collection. Это пары ключ-значение, не отдельные элементы. Поэтому у Map свои методы (put, get), и она не реализует Collection."
+        },
+        {
+          "id": "b",
+          "text": "Strong: обычная, GC не трогает. Soft: GC собирает при нехватке памяти (кэши). Weak: GC собирает при первой сборке (WeakHashMap). Phantom: get() всегда null, уведомление через ReferenceQueue (постфинализационная очистка)..."
+        },
+        {
+          "id": "c",
+          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
+        },
+        {
+          "id": "d",
+          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Strong: обычная, GC не трогает. Soft: GC собирает при нехватке памяти (кэши). Weak: GC собирает при первой сборке (WeakHashMap). Phantom: get() всегда null, уведомление через ReferenceQueue (постфинализационная очистка)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-два-transactional-метода-в-одном-классе-a-вызывает-b-сколько-транзакций-408",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 171,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "Два @Transactional метода в одном классе: A() вызывает B(). Сколько транзакций?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "В реальности чаще at-least-once + идемпотентность на стороне consumer'а. Kafka с transactional producer + read_committed даёт effectively-once."
+        },
+        {
+          "id": "b",
+          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+        },
+        {
+          "id": "c",
+          "text": "WHERE фильтрует строки ДО группировки и работает с индексами. HAVING — ПОСЛЕ группировки, для условий на агрегаты (HAVING SUM(amount) > 1000)."
+        },
+        {
+          "id": "d",
+          "text": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-два-одинарных-индекса-vs-один-составной-что-лучше-399",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 140,
+          "title": "Т1 Иннотех · 5. Коллекции"
+        }
+      ],
+      "prompt": "Два одинарных индекса vs один составной — что лучше?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Зависит от запроса. WHERE a=1 AND b=2: составной (a,b) — один Index Scan. Два одинарных: Bitmap Index Scan + Bitmap AND — медленнее. WHERE a=1 OR b=2: два одинарных — Bitmap OR. Составной (a..."
+        },
+        {
+          "id": "b",
+          "text": "PRIMARY KEY: уникальность + NOT NULL + один на таблицу + кластерный индекс. UNIQUE: уникальность (допускает один NULL) + может быть несколько. Foreign Key ссылается на PRIMARY KEY (или UNIQUE)."
+        },
+        {
+          "id": "c",
+          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+        },
+        {
+          "id": "d",
+          "text": "assertEquals(expected, actual) — равенство. assertTrue / assertFalse — для boolean. assertNotNull / assertNull. assertThrows(Exception.class, () -> ...) — проверка, что код бросает исключение..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Зависит от запроса. WHERE a=1 AND b=2: составной (a,b) — один Index Scan. Два одинарных: Bitmap Index Scan + Bitmap AND — медленнее. WHERE a=1 OR b=2: два одинарных — Bitmap OR. Составной (a...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-иммутабельность-как-способ-потокобезопасности-396",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "security"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 129,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Иммутабельность как способ потокобезопасности» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record..."
+        },
+        {
+          "id": "b",
+          "text": "thenApply — преобразование результата. thenCompose — flatMap для CompletableFuture (нужен, когда лямбда возвращает CompletableFuture). thenCombine — объединение двух."
+        },
+        {
+          "id": "c",
+          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+        },
+        {
+          "id": "d",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-воспроизвести-oom-404",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "jvm",
+        "concurrency"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 157,
+          "title": "Т1 Иннотех · 6. JVM, память и GC"
+        }
+      ],
+      "prompt": "Как воспроизвести OOM?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+        },
+        {
+          "id": "b",
+          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+        },
+        {
+          "id": "c",
+          "text": "static Map без eviction: статический Map, добавляешь объекты в цикле → heap exhaustion. Бесконечное создание Thread: каждый поток = ~1MB стека → native OOM. Metaspace: динамическая генерация классов (CGLIB, ASM)..."
+        },
+        {
+          "id": "d",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "static Map без eviction: статический Map, добавляешь объекты в цикле → heap exhaustion. Бесконечное создание Thread: каждый поток = ~1MB стека → native OOM. Metaspace: динамическая генерация классов (CGLIB, ASM)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-написать-иммутабельный-класс-382",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 83,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Как написать иммутабельный класс?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Бросается итератором, если коллекция изменилась во время итерации не через сам итератор. Реализуется через счётчик modCount внутри коллекции и expectedModCount внутри итератора. Если они разъезжаются — исключение..."
+        },
+        {
+          "id": "b",
+          "text": "Инкапсуляция: банкомат — не знаешь как хранит деньги, есть методы «снять», «положить». Наследование: электросамокат наследует «транспорт». Полиморфизм: кнопка «play» — разное поведение для видео, музыки, подкаста..."
+        },
+        {
+          "id": "c",
+          "text": "С пулами потоков: поток переиспользуется, ThreadLocal остаётся от предыдущей задачи (утечка данных/памяти). Обязательно: try { ... } finally { threadLocal.remove(); }. В Reactor/WebFlux — не работает, нужен Context."
+        },
+        {
+          "id": "d",
+          "text": "final class (нельзя наследовать). private final поля. Нет сеттеров. Конструктор с defensive copy для mutable-аргументов. Геттеры возвращают defensive copy для mutable-полей (List → Collections.unmodifiableList())..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "final class (нельзя наследовать). private final поля. Нет сеттеров. Конструктор с defensive copy для mutable-аргументов. Геттеры возвращают defensive copy для mutable-полей (List → Collections.unmodifiableList())...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-обеспечить-сохранность-данных-в-kafka-427",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "kafka"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 261,
+          "title": "Т1 Иннотех · 10. Kafka"
+        }
+      ],
+      "prompt": "Как обеспечить сохранность данных в Kafka?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
+        },
+        {
+          "id": "b",
+          "text": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы."
+        },
+        {
+          "id": "c",
+          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
+        },
+        {
+          "id": "d",
+          "text": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-каскадные-операции-что-делает-cascadetype-all-415",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "hibernate",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 194,
+          "title": "Т1 Иннотех · 8. Hibernate и JPA"
+        }
+      ],
+      "prompt": "Каскадные операции: что делает CascadeType.ALL?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+        },
+        {
+          "id": "b",
+          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
+        },
+        {
+          "id": "c",
+          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+        },
+        {
+          "id": "d",
+          "text": "Records: immutable data-класс с equals/hashCode/toString. Sealed Classes: ограничение иерархии (exhaustive switch). Pattern Matching: instanceof без cast, switch по типам..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-кейс-два-дата-центра-один-упал-как-балансировщик-узнает-430",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "kafka",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 272,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Кейс: два дата-центра, один упал. Как балансировщик узнает?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят..."
+        },
+        {
+          "id": "b",
+          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
+        },
+        {
+          "id": "c",
+          "text": "Автоконфигурация — Spring Boot сам подключает компоненты в зависимости от того, что есть на classpath. Стартеры — готовые наборы зависимостей (spring-boot-starter-web подтягивает Spring MVC, Tomcat, Jackson)..."
+        },
+        {
+          "id": "d",
+          "text": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-кейс-навесили-индексов-на-все-поля-запись-стала-медленнее-421",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 216,
+          "title": "Т1 Иннотех · 9. PostgreSQL"
+        }
+      ],
+      "prompt": "Кейс: «навесили индексов на все поля — запись стала медленнее»?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Каждый INSERT/UPDATE/DELETE обновляет ВСЕ индексы. 10 индексов = 10x overhead на запись. VACUUM тоже замедляется. REINDEX может понадобиться. Решение: индексы только по паттернам запросов (WHERE, JOIN, ORDER BY)..."
+        },
+        {
+          "id": "b",
+          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+        },
+        {
+          "id": "c",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        },
+        {
+          "id": "d",
+          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Каждый INSERT/UPDATE/DELETE обновляет ВСЕ индексы. 10 индексов = 10x overhead на запись. VACUUM тоже замедляется. REINDEX может понадобиться. Решение: индексы только по паттернам запросов (WHERE, JOIN, ORDER BY)...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-кейс-сервис-a-1000-tps-сервис-b-200-tps-как-защитить-b-428",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "kafka",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 266,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Кейс: сервис A — 1000 TPS, сервис B — 200 TPS. Как защитить B?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election..."
+        },
+        {
+          "id": "b",
+          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
+        },
+        {
+          "id": "c",
+          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
+        },
+        {
+          "id": "d",
+          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-кейс-сеть-моргнула-на-2-секунды-что-делать-429",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "jvm",
+        "kafka",
+        "devops",
+        "testing-aqa",
+        "system-design"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 269,
+          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
+        }
+      ],
+      "prompt": "Кейс: сеть «моргнула» на 2 секунды. Что делать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
+        },
+        {
+          "id": "b",
+          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
+        },
+        {
+          "id": "c",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        },
+        {
+          "id": "d",
+          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-когда-нужен-requires-new-409",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 174,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "Когда нужен REQUIRES_NEW?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Когда нужна НЕЗАВИСИМАЯ транзакция, которая сохранится даже при rollback основной. Примеры: запись аудит-лога (должна остаться при ошибке), отправка уведомления, счётчик попыток..."
+        },
+        {
+          "id": "b",
+          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
+        },
+        {
+          "id": "c",
+          "text": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE."
+        },
+        {
+          "id": "d",
+          "text": "Возникает, когда обращаешься к LAZY-полю после закрытия сессии Hibernate. Сценарий: достал Entity в @Transactional-методе, вернул наружу. Транзакция закрылась — сессия закрылась..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Когда нужна НЕЗАВИСИМАЯ транзакция, которая сохранится даже при rollback основной. Примеры: запись аудит-лога (должна остаться при ошибке), отправка уведомления, счётчик попыток...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-конфликт-зависимостей-как-искать-413",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql",
+        "devops",
+        "algorithms"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 186,
+          "title": "Т1 Иннотех · 7. Spring и транзакции"
+        }
+      ],
+      "prompt": "Конфликт зависимостей: как искать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
+        },
+        {
+          "id": "b",
+          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
+        },
+        {
+          "id": "c",
+          "text": "Master принимает запись. Slave (replica) — копия, на которую идут чтения. Изменения с Master реплицируются на Slave. Помогает: (1) масштабировать чтение. (2) Резервная копия (если Master упал — promotion Slave в Master)..."
+        },
+        {
+          "id": "d",
+          "text": "Порождающие (Creational) — про создание объектов: Singleton, Builder, Factory Method, Abstract Factory, Prototype. Структурные (Structural) — про композицию объектов: Adapter, Decorator, Proxy, Facade, Composite, Bridge..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-лямбда-выражения-почему-переменные-должны-быть-effectively-final-385",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "sql"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 92,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Лямбда-выражения: почему переменные должны быть effectively final?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        },
+        {
+          "id": "b",
+          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+        },
+        {
+          "id": "c",
+          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
+        },
+        {
+          "id": "d",
+          "text": "Лямбда захватывает копию значения переменной, не ссылку на неё. Если переменная изменится после захвата — копия устареет → неочевидное поведение. Компилятор требует final или effectively final для защиты от ошибок..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Лямбда захватывает копию значения переменной, не ссылку на неё. Если переменная изменится после захвата — копия устареет → неочевидное поведение. Компилятор требует final или effectively final для защиты от ошибок...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-ключ-hashmap-должен-быть-иммутабельным-381",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 80,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Почему ключ HashMap должен быть иммутабельным?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        },
+        {
+          "id": "b",
+          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+        },
+        {
+          "id": "c",
+          "text": "Если в учебном проекте делали daily-стендапы и спринты — это уже опыт. Можно сказать: «В курсовой работали по двухнедельным спринтам, делали ретро в конце». Если не делали — честно: «Знаю теорию (роли Scrum Master..."
+        },
+        {
+          "id": "d",
+          "text": "Если изменить поле, участвующее в hashCode — объект окажется в «неправильном» bucket. contains() вернёт false. Объект потерян — ни найти, ни удалить. Утечка памяти. Решение: immutable-ключи (String, Integer, record)."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Если изменить поле, участвующее в hashCode — объект окажется в «неправильном» bucket. contains() вернёт false. Объект потерян — ни найти, ни удалить. Утечка памяти. Решение: immutable-ключи (String, Integer, record).",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-расскажите-про-контракт-equals-hashcode-что-случится-с-hashmap-при-константном-h-380",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 77,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Расскажите про контракт equals/hashCode. Что случится с HashMap при константном hashCode?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Если a.equals(b), то hashCode одинаков. Обратное необязательно. При константном hashCode — все в одном bucket: Java 7 — список O(n), Java 8+ при 8 коллизиях — red-black tree O(log n). Деградация..."
+        },
+        {
+          "id": "b",
+          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
+        },
+        {
+          "id": "c",
+          "text": "HashMap использует hashCode для бакета и equals для разрешения коллизий. Если по умолчанию (Object) — каждый объект уникален, два «равных по смыслу» User'а с одинаковым id будут в разных бакетах..."
+        },
+        {
+          "id": "d",
+          "text": "По достижимости от GC Roots. GC Roots — статические поля, локальные переменные стека, активные потоки, JNI-ссылки. Если до объекта нельзя добраться по ссылкам от GC Roots — он мусор и будет собран."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Если a.equals(b), то hashCode одинаков. Обратное необязательно. При константном hashCode — все в одном bucket: Java 7 — список O(n), Java 8+ при 8 коллизиях — red-black tree O(log n). Деградация...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-структура-памяти-jvm-где-что-хранится-402",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 151,
+          "title": "Т1 Иннотех · 6. JVM, память и GC"
+        }
+      ],
+      "prompt": "Структура памяти JVM: где что хранится?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet..."
+        },
+        {
+          "id": "b",
+          "text": "Heap: объекты (Young=Eden+Survivor, Old). Stack: фреймы методов (на каждый поток свой, LIFO), примитивы, ссылки. Metaspace: метаданные классов, статические поля. Code Cache: JIT-скомпилированный код..."
+        },
+        {
+          "id": "c",
+          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+        },
+        {
+          "id": "d",
+          "text": "Дженерики стираются компилятором (type erasure) — в рантайме нет информации о типовом параметре. PECS: Producer Extends, Consumer Super. List<? extends Number> — читать, List<? super Integer> — писать."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Heap: объекты (Young=Eden+Survivor, Old). Stack: фреймы методов (на каждый поток свой, LIFO), примитивы, ссылки. Metaspace: метаданные классов, статические поля. Code Cache: JIT-скомпилированный код...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-synchronized-this-отличается-от-synchronized-privatelock-391",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 114,
+          "title": "Т1 Иннотех · 4. Многопоточность"
+        }
+      ],
+      "prompt": "Чем synchronized(this) отличается от synchronized(privateLock)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "HashMap: не потокобезопасен, допускает null-ключ. ConcurrentHashMap: Java 7 — Segment-блокировки, Java 8+ — CAS + synchronized на головах бакетов. null запрещён. computeIfAbsent — атомарная операция."
+        },
+        {
+          "id": "b",
+          "text": "this доступен извне — любой может случайно или намеренно synchronized(obj) на том же объекте. privateLock (private final Object lock = new Object()) — полный контроль, никто извне не может захватить."
+        },
+        {
+          "id": "c",
+          "text": "Spring создаёт прокси (JDK/CGLIB). Прокси открывает транзакцию, вызывает метод, commit/rollback. self-call минует прокси → @Transactional/@Cacheable/@Async не работают. Решение: вынести в другой бин."
+        },
+        {
+          "id": "d",
+          "text": "JOOQ: типизированный SQL, compile-time проверка запросов, нет dirty checking. Hibernate: ORM, lazy loading, кэширование. В Путешествиях используют оба — JOOQ для сложных запросов, Hibernate для CRUD."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "this доступен извне — любой может случайно или намеренно synchronized(obj) на том же объекте. privateLock (private final Object lock = new Object()) — полный контроль, никто извне не может захватить.",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-опасны-типы-обертки-integer-boolean-384",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "jvm",
+        "hibernate"
+      ],
+      "companies": [
+        "t1-innotech"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/t1-innotech.md",
+          "line": 89,
+          "title": "Т1 Иннотех · 3. Java Core"
+        }
+      ],
+      "prompt": "Чем опасны типы-обёртки (Integer, Boolean)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
+        },
+        {
+          "id": "b",
+          "text": "merge сохраняет историю как есть — создаёт merge-коммит, объединяющий ветки. Виден факт слияния. rebase «перематывает» твои коммиты поверх свежей основной ветки — история линейная, без merge-коммитов..."
+        },
+        {
+          "id": "c",
+          "text": "IntegerCache кэширует значения от -128 до 127. valueOf(100) возвращает один и тот же объект из кэша → == сравнивает ссылки → true. valueOf(200) создаёт новый объект каждый раз → разные ссылки → false..."
+        },
+        {
+          "id": "d",
+          "text": "First-level: автоматический, привязан к Session. Гарантирует identity (один PK = один объект). Second-level: опциональный, общий (EhCache, Caffeine, Infinispan). Query cache: кэширует JPQL-результаты..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true...",
+      "reviewLinks": [
+        {
+          "label": "Т1 Иннотех",
+          "href": "../guides/t1-innotech/"
+        }
+      ]
+    },
+    {
+      "id": "curated-concurrency-volatile-i-plus-plus",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "t1-innotech",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 190,
+          "title": "Альфа-Банк · Многопоточность"
+        }
+      ],
+      "prompt": "Почему volatile не делает операцию i++ потокобезопасной?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "volatile даёт видимость и порядок вокруг volatile-доступа, но i++ остаётся последовательностью read-increment-write."
+        },
+        {
+          "id": "b",
+          "text": "volatile работает только для boolean, а для int JVM игнорирует этот модификатор."
+        },
+        {
+          "id": "c",
+          "text": "volatile гарантирует атомарность, но только если переменная объявлена внутри synchronized-блока."
+        },
+        {
+          "id": "d",
+          "text": "i++ потокобезопасен всегда, если значение переменной помещается в один машинный word."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "i++ состоит из нескольких операций. Для атомарного счётчика используют AtomicInteger или LongAdder.",
+      "reviewLinks": [
+        {
+          "label": "Повторить JMM",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "curated-kafka-delivery",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "kafka"
+      ],
+      "companies": [
+        "alfa-bank",
+        "t1-innotech",
+        "vk"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 318,
+          "title": "Альфа-Банк · Kafka"
+        }
+      ],
+      "prompt": "Consumer обработал сообщение, но упал до commit offset. Что вероятнее всего произойдёт при at-least-once?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сообщение может быть обработано повторно, поэтому бизнес-операция должна быть идемпотентной."
+        },
+        {
+          "id": "b",
+          "text": "Kafka удалит сообщение из partition, потому что обработка уже началась."
+        },
+        {
+          "id": "c",
+          "text": "Consumer group потеряет partition до ручного reset offset."
+        },
+        {
+          "id": "d",
+          "text": "Exactly-once автоматически отменит изменения во внешней базе данных."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "At-least-once допускает повторную доставку. Поэтому важны идемпотентность, транзакционная запись результата и аккуратный commit offset.",
+      "reviewLinks": [
+        {
+          "label": "Повторить Kafka",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "curated-spring-transactional-self-invocation",
+      "type": "scenario",
+      "level": "middle",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "sber",
+        "alfa-bank",
+        "t1-innotech",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/liga.md",
+          "line": 254,
+          "title": "Лига · Spring"
+        }
+      ],
+      "prompt": "Сервис вызывает свой метод с @Transactional через this.save(). Что произойдёт с транзакцией?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Вызов обойдёт Spring proxy, поэтому transactional advice не применится к внутреннему вызову."
+        },
+        {
+          "id": "b",
+          "text": "Spring создаст новый proxy на каждый self-call и откроет независимую транзакцию."
+        },
+        {
+          "id": "c",
+          "text": "Транзакция откроется только если метод private; для public методов self-call не работает."
+        },
+        {
+          "id": "d",
+          "text": "Поведение зависит только от базы данных, Spring proxy на это не влияет."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "@Transactional обычно работает через proxy. Внутренний вызов this.method() не проходит через proxy.",
+      "reviewLinks": [
+        {
+          "label": "Повторить @Transactional",
+          "href": "../guides/liga/"
+        }
+      ]
+    }
+  ]
+}

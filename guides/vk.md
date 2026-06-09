@@ -572,5 +572,6 @@ INSERT + бизнес-логика в одной транзакции. PK confli
 - Повторить: алгоритмы, Java 21, HashMap, concurrency, Kafka, сети и System Design.
 - Спросить в канале: свежие вопросы VK, задачи на алгоритмы, формат финала с командой.
 - Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Проверить знания: [тесты JavaJub](https://javajub.github.io/java-interview/quizzes/).
 
 [← Ко всем гайдам](../README.md)

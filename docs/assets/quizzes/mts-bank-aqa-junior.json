@@ -1,0 +1,4207 @@
+{
+  "id": "mts-bank-aqa-junior",
+  "title": "МТС Банк AQA Java Junior",
+  "kind": "company",
+  "description": "API-тесты, Rest Assured, SQL и очереди.",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "questionCount": 86,
+  "questions": [
+    {
+      "id": "auto-401-vs-403-в-чем-разница-521",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "hibernate",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 187,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "401 vs 403 — в чём разница?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+        },
+        {
+          "id": "b",
+          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+        },
+        {
+          "id": "c",
+          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
+        },
+        {
+          "id": "d",
+          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-ack-nack-dlq-что-это-556",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "kafka",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 386,
+          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
+        }
+      ],
+      "prompt": "ACK / NACK / DLQ — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Все объекты попадут в один bucket HashMap. В Java 8+ при 8 коллизиях список превращается в red-black tree, но O(log n) вместо O(1) — всё равно деградация производительности."
+        },
+        {
+          "id": "b",
+          "text": "Collection хранит элементы — единичные значения. Map хранит ПАРЫ ключ-значение, у неё другой API: put(key, value), get(key), entrySet(). Хотя по сути обе — структуры данных."
+        },
+        {
+          "id": "c",
+          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+        },
+        {
+          "id": "d",
+          "text": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-allure-зачем-и-основные-аннотации-567",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 425,
+          "title": "МТС Банк AQA · 12. Docker, Linux и ELK"
+        }
+      ],
+      "prompt": "Allure: зачем и основные аннотации?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+        },
+        {
+          "id": "b",
+          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
+        },
+        {
+          "id": "c",
+          "text": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)..."
+        },
+        {
+          "id": "d",
+          "text": "(1) Защита от регресса — поменял код, прогнал тесты, увидел что сломалось. (2) Документация — тест показывает, как код должен использоваться. (3) Дизайн — код, который сложно тестировать, обычно плохо спроектирован..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-argumentcaptor-зачем-нужен-540",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 305,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "ArgumentCaptor — зачем нужен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Обращение к lazy-полю после закрытия сессии. Решения (от лучшего к худшему): DTO-проекция (SELECT NEW), JOIN FETCH (@Query), @EntityGraph(attributePaths), @BatchSize(size=100)..."
+        },
+        {
+          "id": "b",
+          "text": "Используем два индекса, движущиеся по массиву по правилам. Часто для отсортированного массива: пара с заданной суммой, разворот строки, проверка палиндрома. Сложность обычно O(n)."
+        },
+        {
+          "id": "c",
+          "text": "Stateless — сервер не хранит сессию клиента, каждый запрос самодостаточен. Cacheable — ответы могут кэшироваться. Uniform interface — единый интерфейс через HTTP-методы и URL..."
+        },
+        {
+          "id": "d",
+          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-black-box-white-box-grey-box-493",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "system-design"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 89,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Black Box / White Box / Grey Box» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Black Box: не знаем внутреннюю реализацию, тестируем по спецификации. White Box: знаем код, тестируем ветвления, покрытие. Grey Box: знаем архитектуру..."
+        },
+        {
+          "id": "b",
+          "text": "Active: балансер периодически проверяет backend (HTTP GET /health, TCP connect). Passive: считает ошибки от реальных запросов. Комбинация — best practice."
+        },
+        {
+          "id": "c",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "d",
+          "text": "Virtual Router Redundancy Protocol. active-standby пара балансеров. При падении primary — мгновенное переключение, IP не меняется. Используется в VK Cloud."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Black Box: не знаем внутреннюю реализацию, тестируем по спецификации. White Box: знаем код, тестируем ветвления, покрытие. Grey Box: знаем архитектуру...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-case-when-для-условных-значений-552",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "concurrency",
+        "sql",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 345,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "CASE WHEN — для условных значений?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        },
+        {
+          "id": "b",
+          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+        },
+        {
+          "id": "c",
+          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+        },
+        {
+          "id": "d",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-checked-vs-unchecked-исключения-314",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections",
+        "sql"
+      ],
+      "companies": [
+        "alfa-bank",
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 86,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 156,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: checked vs unchecked исключения?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        },
+        {
+          "id": "b",
+          "text": "(1) Каждый индекс нужно обновлять при INSERT/UPDATE/DELETE — замедление записи. (2) Индексы занимают место — на больших таблицах могут весить больше самой таблицы. (3) Они требуют обслуживания (VACUUM, REINDEX)..."
+        },
+        {
+          "id": "c",
+          "text": "Контракт equals: рефлексивность (a.equals(a) = true), симметричность (a.equals(b) ⇔ b.equals(a)), транзитивность (a=b и b=c → a=c), консистентность (повторный вызов даёт тот же результат), equals(null) = false..."
+        },
+        {
+          "id": "d",
+          "text": "Checked: от Exception (не RuntimeException) — компилятор требует throws/catch. Примеры: IOException, SQLException. Unchecked: от RuntimeException и Error. Примеры: NullPointerException, IllegalArgumentException..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Checked: от Exception (не RuntimeException) — компилятор требует throws/catch. Примеры: IOException, SQLException. Unchecked: от RuntimeException и Error. Примеры: NullPointerException, IllegalArgumentException...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-content-type-json-vs-form-urlencoded-vs-multipart-530",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "hibernate",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 216,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Content-Type: json vs form-urlencoded vs multipart?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT)."
+        },
+        {
+          "id": "b",
+          "text": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)..."
+        },
+        {
+          "id": "c",
+          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+        },
+        {
+          "id": "d",
+          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-cors-что-это-и-когда-возникает-526",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 202,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "CORS — что это и когда возникает?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)..."
+        },
+        {
+          "id": "b",
+          "text": "1 findAll() + N доп. запросов на lazy-коллекции. 1000 заказов → 1001 SQL. Обнаружение: hibernate.generate_statistics=true, datasource-proxy. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), @Fetch(FetchMode..."
+        },
+        {
+          "id": "c",
+          "text": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method..."
+        },
+        {
+          "id": "d",
+          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-csrf-что-это-и-как-проверить-562",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 408,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "CSRF — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
+        },
+        {
+          "id": "b",
+          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+        },
+        {
+          "id": "c",
+          "text": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке..."
+        },
+        {
+          "id": "d",
+          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-decision-table-когда-применять-505",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 127,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Decision Table — когда применять?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Red-Green-Refactor. Сначала пишешь падающий тест (Red), потом минимальный код чтобы он прошёл (Green), потом рефакторишь без изменения поведения."
+        },
+        {
+          "id": "b",
+          "text": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml."
+        },
+        {
+          "id": "c",
+          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
+        },
+        {
+          "id": "d",
+          "text": "Когда поведение зависит от комбинации условий. Пример: кредит одобряется если (доход > 50к) И (кредитная история хорошая) И (возраст 21–65)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Когда поведение зависит от комбинации условий. Пример: кредит одобряется если (доход > 50к) И (кредитная история хорошая) И (возраст 21–65)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-dml-ddl-dcl-tcl-544",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 321,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «DML / DDL / DCL / TCL» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Таблица processed_events(event_id UUID PK). INSERT перед обработкой — конфликт → skip. Или upsert по бизнес-ключу (ON CONFLICT DO UPDATE). В транзакции с бизнес-логикой."
+        },
+        {
+          "id": "b",
+          "text": "Spring создаёт прокси (JDK dynamic proxy для интерфейсов или CGLIB для классов). Прокси открывает транзакцию перед методом, коммитит после или откатывает при исключении."
+        },
+        {
+          "id": "c",
+          "text": "DML: SELECT, INSERT, UPDATE, DELETE (данные). DDL: CREATE, ALTER, DROP, TRUNCATE (структура). DCL: GRANT, REVOKE (права). TCL: COMMIT, ROLLBACK, SAVEPOINT (транзакции)."
+        },
+        {
+          "id": "d",
+          "text": "REQUIRED (default) — присоединяется или создаёт. REQUIRES_NEW — всегда новая, приостанавливает текущую. NESTED — savepoint. SUPPORTS, MANDATORY, NOT_SUPPORTED, NEVER."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "DML: SELECT, INSERT, UPDATE, DELETE (данные). DDL: CREATE, ALTER, DROP, TRUNCATE (структура). DCL: GRANT, REVOKE (права). TCL: COMMIT, ROLLBACK, SAVEPOINT (транзакции).",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-docker-образ-vs-контейнер-cmd-vs-entrypoint-564",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 416,
+          "title": "МТС Банк AQA · 12. Docker, Linux и ELK"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Docker: образ vs контейнер. CMD vs ENTRYPOINT?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
+        },
+        {
+          "id": "b",
+          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+        },
+        {
+          "id": "c",
+          "text": "Образ: шаблон (класс). Контейнер: запущенный экземпляр (объект). CMD: аргументы по умолчанию (легко переопределить). ENTRYPOINT: основная команда (сложнее)..."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Образ: шаблон (класс). Контейнер: запущенный экземпляр (объект). CMD: аргументы по умолчанию (легко переопределить). ENTRYPOINT: основная команда (сложнее)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-elk-как-искать-логи-теста-566",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "concurrency",
+        "spring",
+        "sql",
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 422,
+          "title": "МТС Банк AQA · 12. Docker, Linux и ELK"
+        }
+      ],
+      "prompt": "ELK: как искать логи теста?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
+        },
+        {
+          "id": "b",
+          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+        },
+        {
+          "id": "c",
+          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+        },
+        {
+          "id": "d",
+          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-end-to-end-тест-что-это-496",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "kafka",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 98,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "End-to-End тест — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Mock — полная имитация, по умолчанию все методы возвращают null / 0 / false. Поведение задаёшь через when().thenReturn(). Spy — обёртка над реальным объектом. Методы, которые ты не подменил, работают как обычно. Полезно..."
+        },
+        {
+          "id": "b",
+          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
+        },
+        {
+          "id": "c",
+          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+        },
+        {
+          "id": "d",
+          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-eventual-consistency-почему-assertequals-сразу-может-упасть-555",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "concurrency",
+        "sql",
+        "kafka",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 383,
+          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
+        }
+      ],
+      "prompt": "Eventual consistency — почему assertEquals сразу может упасть?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "== сравнивает ссылки. equals — содержимое. Из-за String Pool два литерала \"abc\" == \"abc\" дадут true, но new String(\"abc\") == \"abc\" — false (new создаёт новый объект вне пула). На собесе всегда отвечать «equals для содержимого»."
+        },
+        {
+          "id": "b",
+          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
+        },
+        {
+          "id": "c",
+          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+        },
+        {
+          "id": "d",
+          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-final-finally-finalize-три-разных-слова-511",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 147,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "final, finally, finalize — три разных слова?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
+        },
+        {
+          "id": "b",
+          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
+        },
+        {
+          "id": "c",
+          "text": "map: T → R, один элемент → один. flatMap: T → Stream<R> с уплощением. Пример: List<List<String>> → flatMap(Collection::stream) → плоский Stream<String>. Для Optional: flatMap избегает Optional<Optional<T>>."
+        },
+        {
+          "id": "d",
+          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-generics-зачем-нужны-515",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 165,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Generics — зачем нужны?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "put: вычислили hashCode ключа → определили бакет → в бакете ищем по equals существующий ключ. Если нашли — обновляем значение. Если нет — добавляем новый Node..."
+        },
+        {
+          "id": "b",
+          "text": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме..."
+        },
+        {
+          "id": "c",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        },
+        {
+          "id": "d",
+          "text": "Обычно 2 аппрува от backend-разработчиков + финальный просмотр начальника отдела перед влитием. Это compliance-требование (важная сумма банковских регуляторов)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hard-assertions-vs-soft-assertions-538",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 299,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Hard assertions vs Soft assertions?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
+        },
+        {
+          "id": "b",
+          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
+        },
+        {
+          "id": "c",
+          "text": "assertEquals(expected, actual) — равенство. assertTrue / assertFalse — для boolean. assertNotNull / assertNull. assertThrows(Exception.class, () -> ...) — проверка, что код бросает исключение..."
+        },
+        {
+          "id": "d",
+          "text": "Hard (по умолчанию): при первом assertFalse тест падает, остальные проверки не выполняются. Soft (assertAll в JUnit 5, SoftAssertions в AssertJ): все проверки выполняются, ошибки собираются..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Hard (по умолчанию): при первом assertFalse тест падает, остальные проверки не выполняются. Soft (assertAll в JUnit 5, SoftAssertions в AssertJ): все проверки выполняются, ошибки собираются...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-http-методы-и-идемпотентность-520",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 184,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «HTTP-методы и идемпотентность» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Захват аргумента: verify(repo).save(captor.capture()); assertThat(captor.getValue().getName()).isEqualTo(\"Alice\"). Когда нужно проверить не факт вызова, а конкретные значения."
+        },
+        {
+          "id": "b",
+          "text": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList."
+        },
+        {
+          "id": "c",
+          "text": "Подзапрос: в WHERE для фильтрации (WHERE id IN (SELECT ...)). JOIN: для объединения данных из нескольких таблиц. CTE (WITH ... AS): для читаемости сложных запросов, рекурсия..."
+        },
+        {
+          "id": "d",
+          "text": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-idor-что-это-559",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm",
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 399,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "IDOR — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+        },
+        {
+          "id": "b",
+          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+        },
+        {
+          "id": "c",
+          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
+        },
+        {
+          "id": "d",
+          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-integer-cache-почему-valueof-100-valueof-100-true-а-valueof-200-false-516",
+      "type": "code_output",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "hibernate"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 168,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Integer cache: почему valueOf(100)==valueOf(100) true, а valueOf(200) false?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+        },
+        {
+          "id": "b",
+          "text": "merge сохраняет историю как есть — создаёт merge-коммит, объединяющий ветки. Виден факт слияния. rebase «перематывает» твои коммиты поверх свежей основной ветки — история линейная, без merge-коммитов..."
+        },
+        {
+          "id": "c",
+          "text": "IntegerCache кэширует значения от -128 до 127. valueOf(100) возвращает один и тот же объект из кэша → == сравнивает ссылки → true. valueOf(200) создаёт новый объект каждый раз → разные ссылки → false..."
+        },
+        {
+          "id": "d",
+          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "IntegerCache кэширует значения от -128 до 127. valueOf(100) возвращает один и тот же объект из кэша → == сравнивает ссылки → true. valueOf(200) создаёт новый объект каждый раз → разные ссылки → false...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-json-schema-validation-зачем-533",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 231,
+          "title": "МТС Банк AQA · 7. Rest Assured и WireMock · Rest Assured: базовые вопросы"
+        }
+      ],
+      "prompt": "JSON Schema validation — зачем?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+        },
+        {
+          "id": "b",
+          "text": "Проверяет структуру ответа (типы полей, обязательные поля, формат). body(matchesJsonSchemaInClasspath(\"schemas/user.json\")). Защищает от непредвиденных изменений API-контракта. Генерация схемы: jsonschema..."
+        },
+        {
+          "id": "c",
+          "text": "JDBC — низкий уровень, прямой SQL и работа с ResultSet. JPA / Hibernate — ORM, маппинг объектов на таблицы. jOOQ — typesafe SQL builder, generated code. Spring Data — удобная обёртка над JPA, query methods..."
+        },
+        {
+          "id": "d",
+          "text": "REQUIRED (default) — использует существующую транзакцию или создаёт новую. REQUIRES_NEW — приостанавливает текущую и создаёт новую. Полезно для аудита: должно записаться даже если основная транзакция упала..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Проверяет структуру ответа (типы полей, обязательные поля, формат). body(matchesJsonSchemaInClasspath(\"schemas/user.json\")). Защищает от непредвиденных изменений API-контракта. Генерация схемы: jsonschema...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jsonpath-как-извлекать-данные-532",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 228,
+          "title": "МТС Банк AQA · 7. Rest Assured и WireMock · Rest Assured: базовые вопросы"
+        }
+      ],
+      "prompt": "JSONPath — как извлекать данные?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+        },
+        {
+          "id": "b",
+          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+        },
+        {
+          "id": "c",
+          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+        },
+        {
+          "id": "d",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\")).",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-junit-5-основные-аннотации-536",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 293,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 368,
+          "title": "Лига Цифровой Экономики · 9. Тесты: JUnit, Mockito, TDD"
+        }
+      ],
+      "prompt": "JUnit 5: основные аннотации?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)..."
+        },
+        {
+          "id": "b",
+          "text": "Готовы 2–3 факта: масштаб (один из крупнейших IT-работодателей России), Platform V (своя облачная платформа), SberAI (GigaChat, Kandinsky), 78% оффер после стажировки. Можешь упомянуть конкретный продукт Сбера..."
+        },
+        {
+          "id": "c",
+          "text": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)..."
+        },
+        {
+          "id": "d",
+          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-jwt-структура-и-как-работает-522",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "devops",
+        "testing-aqa",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 190,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "JWT — структура и как работает?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
+        },
+        {
+          "id": "b",
+          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+        },
+        {
+          "id": "c",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        },
+        {
+          "id": "d",
+          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-linux-найти-все-error-за-сегодня-и-посчитать-565",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 419,
+          "title": "МТС Банк AQA · 12. Docker, Linux и ELK"
+        }
+      ],
+      "prompt": "Linux: найти все ERROR за сегодня и посчитать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+        },
+        {
+          "id": "b",
+          "text": "Поведенческий паттерн: вынесение алгоритма в отдельный класс. У клиента — поле типа интерфейса, можно подменять реализацию. Например, разные алгоритмы сортировки, разные способы расчёта комиссии..."
+        },
+        {
+          "id": "c",
+          "text": "List — интерфейс, ArrayList — реализация. Правило: писать переменные через интерфейс — List<String> list = new ArrayList<>(); — чтобы потом можно было сменить реализацию без правок остального кода."
+        },
+        {
+          "id": "d",
+          "text": "grep \"$(date +%Y-%m-%d)\" app.log | grep -c \"ERROR\". find: find . -name \"*.log\" -mtime -1 (файлы за сутки). Уникальные IP: grep -oE '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log | sort -u. tail -f app..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "grep \"$(date +%Y-%m-%d)\" app.log | grep -c \"ERROR\". find: find . -name \"*.log\" -mtime -1 (файлы за сутки). Уникальные IP: grep -oE '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log | sort -u. tail -f app...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-merge-vs-rebase-в-git-570",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 436,
+          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Merge vs Rebase в Git?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+        },
+        {
+          "id": "c",
+          "text": "Merge: создаёт коммит-слияние, история ветвится (видно откуда пришли изменения). Rebase: перемещает коммиты на вершину целевой ветки, линейная история. Rebase в публичных ветках — не стоит (переписывает историю)..."
+        },
+        {
+          "id": "d",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Merge: создаёт коммит-слияние, история ветвится (видно откуда пришли изменения). Rebase: перемещает коммиты на вершину целевой ветки, линейная история. Rebase в публичных ветках — не стоит (переписывает историю)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-mockito-mock-vs-spy-в-чем-разница-539",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 302,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Mockito: Mock vs Spy — в чём разница?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+        },
+        {
+          "id": "b",
+          "text": "Mock: полностью пустой объект, все методы возвращают default (null, 0, false). Spy: обёртка над реальным объектом, методы вызываются по-настоящему, если не замоканы. Для Spy: doReturn().when(spy).method() (не when(spy..."
+        },
+        {
+          "id": "c",
+          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+        },
+        {
+          "id": "d",
+          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Mock: полностью пустой объект, все методы возвращают default (null, 0, false). Spy: обёртка над реальным объектом, методы вызываются по-настоящему, если не замоканы. Для Spy: doReturn().when(spy).method() (не when(spy...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-null-в-sql-почему-null-null-это-unknown-545",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 324,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "NULL в SQL — почему NULL = NULL это UNKNOWN?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        },
+        {
+          "id": "b",
+          "text": "NULL — отсутствие значения, не ноль. NULL = NULL → UNKNOWN (не true и не false). Для проверки: IS NULL / IS NOT NULL. COALESCE(a, b) — первый не-NULL. Ловушка: WHERE status != 'active' НЕ вернёт строки с NULL-статусом."
+        },
+        {
+          "id": "c",
+          "text": "Ключевое слово для вывода типа локальной переменной. var list = new ArrayList<String>(); — компилятор сам определит, что это ArrayList<String>. Использовать только для локальных переменных, не для полей и параметров..."
+        },
+        {
+          "id": "d",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "NULL — отсутствие значения, не ноль. NULL = NULL → UNKNOWN (не true и не false). Для проверки: IS NULL / IS NOT NULL. COALESCE(a, b) — первый не-NULL. Ловушка: WHERE status != 'active' НЕ вернёт строки с NULL-статусом.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-openapi-swagger-для-чего-528",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 208,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "OpenAPI / Swagger — для чего?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Comparable<T> — внутри класса (метод compareTo). Описывает «естественный» порядок. Один на класс. Comparator<T> — отдельно. Можно сделать несколько разных Comparator'ов для одного класса..."
+        },
+        {
+          "id": "b",
+          "text": "Экосистема: СберМаркет, Самокат, Okko, СберЗдоровье, СберДевайсы, Сбер Бизнес. Platform V — собственная low-code платформа. SberAI с GigaChat и Kandinsky. Программа стажировок Sberseasons..."
+        },
+        {
+          "id": "c",
+          "text": "Спецификация REST API в формате YAML/JSON. Описывает endpoints, методы, параметры, тела запросов/ответов, коды ответов. Swagger UI — интерактивная документация (можно отправлять запросы)..."
+        },
+        {
+          "id": "d",
+          "text": "Удобная обёртка над JPA / Hibernate. Создаёшь интерфейс, наследуешь JpaRepository — Spring сам сгенерирует реализацию. Query methods: метод findByEmail — Spring сам соберёт SQL по имени..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Спецификация REST API в формате YAML/JSON. Описывает endpoints, методы, параметры, тела запросов/ответов, коды ответов. Swagger UI — интерактивная документация (можно отправлять запросы)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-optional-основные-методы-и-антипаттерны-518",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "hibernate",
+        "kafka"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 174,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Optional — основные методы и антипаттерны?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
+        },
+        {
+          "id": "b",
+          "text": "Для класса — нельзя унаследовать (final class String). Для метода — нельзя переопределить в наследнике. Для переменной — можно присвоить один раз. Для поля — становится константой (часто вместе со static)."
+        },
+        {
+          "id": "c",
+          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+        },
+        {
+          "id": "d",
+          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-overload-vs-override-в-чем-разница-514",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 159,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Overload vs Override — в чём разница?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JVM (Java Virtual Machine) — виртуальная машина, которая исполняет байткод. Содержит GC и JIT-компилятор. JRE (Java Runtime Environment) — JVM + стандартные библиотеки (java.lang, java.util и т.д.)..."
+        },
+        {
+          "id": "b",
+          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
+        },
+        {
+          "id": "c",
+          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+        },
+        {
+          "id": "d",
+          "text": "Overload (перегрузка): несколько методов с одним именем, но разными параметрами. Компилятор выбирает (статическое связывание). Override (переопределение): подкласс меняет реализацию метода родителя..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Overload (перегрузка): несколько методов с одним именем, но разными параметрами. Компилятор выбирает (статическое связывание). Override (переопределение): подкласс меняет реализацию метода родителя...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-pagination-offset-limit-vs-cursor-based-529",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "spring",
+        "sql",
+        "kafka",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 211,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Pagination: offset/limit vs cursor-based?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Начальная capacity = 10. При переполнении создаётся новый массив размером 1.5× от старого, элементы копируются. Метод trimToSize() ужимает массив до текущего количества элементов..."
+        },
+        {
+          "id": "b",
+          "text": "PUT — полная замена ресурса. Передаём весь объект целиком. Если не указать поле — оно станет null. PATCH — частичное обновление. Передаём только изменяемые поля, остальное остаётся."
+        },
+        {
+          "id": "c",
+          "text": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE."
+        },
+        {
+          "id": "d",
+          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-pairwise-testing-зачем-506",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 130,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Pairwise testing — зачем?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
+        },
+        {
+          "id": "b",
+          "text": "Когда параметров много (5 полей по 4 значения = 1024 комбинации). Pairwise: покрыть все ПАРЫ параметров (не все комбинации). Инструменты: PICT (Microsoft), AllPairs. Сокращает количество тестов с 1024 до ~20, покрывая 80% багов."
+        },
+        {
+          "id": "c",
+          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+        },
+        {
+          "id": "d",
+          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Когда параметров много (5 полей по 4 значения = 1024 комбинации). Pairwise: покрыть все ПАРЫ параметров (не все комбинации). Инструменты: PICT (Microsoft), AllPairs. Сокращает количество тестов с 1024 до ~20, покрывая 80% багов.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-pci-dss-что-должен-знать-aqa-563",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 411,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "PCI DSS — что должен знать AQA?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
+        },
+        {
+          "id": "b",
+          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+        },
+        {
+          "id": "c",
+          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-postgresql-vs-oracle-ключевые-отличия-546",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "hibernate",
+        "sql",
+        "kafka"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 327,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: PostgreSQL vs Oracle — ключевые отличия?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "PG: SERIAL/IDENTITY (автоинкремент), LIMIT/OFFSET, нет Read Uncommitted. Oracle: SEQUENCE, ROWNUM / FETCH FIRST N ROWS, NVL вместо COALESCE, DUAL для SELECT без таблицы, CONNECT BY для иерархий..."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
+        },
+        {
+          "id": "c",
+          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
+        },
+        {
+          "id": "d",
+          "text": "Checked — компилятор требует обработать (catch) или объявить в throws. Используются для ожидаемых внешних ошибок (IO, БД). Unchecked (RuntimeException и наследники) — обрабатывать не обязательно..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "PG: SERIAL/IDENTITY (автоинкремент), LIMIT/OFFSET, нет Read Uncommitted. Oracle: SEQUENCE, ROWNUM / FETCH FIRST N ROWS, NVL вместо COALESCE, DUAL для SELECT без таблицы, CONNECT BY для иерархий...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-primary-key-vs-unique-отличия-551",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 342,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: PRIMARY KEY vs UNIQUE — отличия?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Зависит от запроса. WHERE a=1 AND b=2: составной (a,b) — один Index Scan. Два одинарных: Bitmap Index Scan + Bitmap AND — медленнее. WHERE a=1 OR b=2: два одинарных — Bitmap OR. Составной (a..."
+        },
+        {
+          "id": "b",
+          "text": "PRIMARY KEY: уникальность + NOT NULL + один на таблицу + кластерный индекс. UNIQUE: уникальность (допускает один NULL) + может быть несколько. Foreign Key ссылается на PRIMARY KEY (или UNIQUE)."
+        },
+        {
+          "id": "c",
+          "text": "Factory Method — один метод, создающий объект. Часто используется для создания разных подклассов одного типа. Например, createConnection() возвращает PostgresConnection или OracleConnection..."
+        },
+        {
+          "id": "d",
+          "text": "Можно, но не нужно. Serializable — самый строгий уровень, и он сильно просаживает производительность: транзакции часто конфликтуют и откатываются. Для большинства операций хватает Read Committed."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "PRIMARY KEY: уникальность + NOT NULL + один на таблицу + кластерный индекс. UNIQUE: уникальность (допускает один NULL) + может быть несколько. Foreign Key ссылается на PRIMARY KEY (или UNIQUE).",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-put-vs-patch-когда-что-527",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 205,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "PUT vs PATCH — когда что?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "PUT: замена ресурса целиком. Отправляешь ВСЕ поля, даже неизменённые. Идемпотентен. PATCH: частичное обновление. Отправляешь ТОЛЬКО изменённые поля. Обычно НЕ идемпотентен..."
+        },
+        {
+          "id": "b",
+          "text": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев..."
+        },
+        {
+          "id": "c",
+          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+        },
+        {
+          "id": "d",
+          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "PUT: замена ресурса целиком. Отправляешь ВСЕ поля, даже неизменённые. Идемпотентен. PATCH: частичное обновление. Отправляешь ТОЛЬКО изменённые поля. Обычно НЕ идемпотентен...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-qa-vs-qc-490",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 80,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: QA vs QC?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+        },
+        {
+          "id": "b",
+          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+        },
+        {
+          "id": "c",
+          "text": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA."
+        },
+        {
+          "id": "d",
+          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-records-в-java-что-это-517",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "devops"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 171,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Records в Java — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+        },
+        {
+          "id": "b",
+          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+        },
+        {
+          "id": "c",
+          "text": "Да, и стоит это раскрыть. В банке много legacy — никуда не деться. Хорошие фразы: «Понимаю, что legacy — это часть работы», «Это полезный опыт — понять, как развивается большая система», «Скорее всего..."
+        },
+        {
+          "id": "d",
+          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-rest-vs-soap-523",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 193,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: REST vs SOAP?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Spring находит бин подходящего типа в контексте и подставляет. Если в контексте несколько бинов одного типа — нужна @Qualifier или @Primary, иначе ошибка. С Spring 4.3+ @Autowired на единственном конструкторе можно не писать."
+        },
+        {
+          "id": "b",
+          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
+        },
+        {
+          "id": "c",
+          "text": "List.of(1,2,3) — Java 9+, immutable, null запрещён. List.copyOf(list) — Java 10+, глубокая неизменяемая копия. Collections.unmodifiableList(list) — обёртка (изменения в оригинале видны!). Предпочитай List.of или List.copyOf."
+        },
+        {
+          "id": "d",
+          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-scrum-церемонии-planning-daily-review-retro-499",
+      "type": "code_review",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 107,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Scrum церемонии: Planning, Daily, Review, Retro?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+        },
+        {
+          "id": "b",
+          "text": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)..."
+        },
+        {
+          "id": "c",
+          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+        },
+        {
+          "id": "d",
+          "text": "Planning: что берём в спринт, декомпозиция. Daily: 15 мин, три вопроса (что сделал, что буду, что блокирует). Review: демо результатов стейкхолдерам. Retrospective: что было хорошо, что улучшить, action items..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Planning: что берём в спринт, декомпозиция. Daily: 15 мин, три вопроса (что сделал, что буду, что блокирует). Review: демо результатов стейкхолдерам. Retrospective: что было хорошо, что улучшить, action items...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-severity-vs-priority-504",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 124,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Severity vs Priority?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Оба — обёртка над другим объектом, реализуют тот же интерфейс. Но цели разные: Proxy — НЕ МЕНЯЕТ поведение оригинального объекта. Добавляет «инфраструктуру»: контроль доступа, ленивая инициализация, кэширование..."
+        },
+        {
+          "id": "b",
+          "text": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0..."
+        },
+        {
+          "id": "c",
+          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
+        },
+        {
+          "id": "d",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-smoke-sanity-regression-confirmation-отличия-492",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 86,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Smoke / Sanity / Regression / Confirmation — отличия?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "compile (default) — доступно везде, идёт в финальный jar. test — только для тестов. provided — для компиляции, но не в финальный jar (например, servlet-api — его даёт Tomcat). runtime — в рантайме..."
+        },
+        {
+          "id": "b",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        },
+        {
+          "id": "c",
+          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+        },
+        {
+          "id": "d",
+          "text": "Smoke: «дымовой тест» — базовая работоспособность после деплоя (5–10 кейсов). Sanity: проверка конкретного фикса/фичи (узко). Regression: проверка, что старое не сломалось (широко, автоматизируем)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Smoke: «дымовой тест» — базовая работоспособность после деплоя (5–10 кейсов). Sanity: проверка конкретного фикса/фичи (узко). Regression: проверка, что старое не сломалось (широко, автоматизируем)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-springboottest-vs-webmvctest-vs-datajpatest-542",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "hibernate",
+        "sql",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 311,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: @SpringBootTest vs @WebMvcTest vs @DataJpaTest?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dirty — чтение незакоммиченных данных. Non-repeatable — два чтения одной строки дают разный результат. Phantom — два SELECT с WHERE возвращают разное число строк."
+        },
+        {
+          "id": "b",
+          "text": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД..."
+        },
+        {
+          "id": "c",
+          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
+        },
+        {
+          "id": "d",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, встроенный Tomcat, Jackson. Один импорт — и веб-приложение работает."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-sql-инъекция-что-это-и-как-проверить-557",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 393,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "SQL-инъекция — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        },
+        {
+          "id": "b",
+          "text": "Автономный сервис с одной зоной ответственности, собственной БД, независимым деплоем. Общается через REST/gRPC (синхронно) или брокер (асинхронно). Плюсы: независимый деплой, масштабирование, технологическая гибкость..."
+        },
+        {
+          "id": "c",
+          "text": "Liquibase — описание изменений в XML / YAML, поддерживает rollback, кросс-БД (одно описание — для разных БД). Flyway — версионированные SQL-скрипты (V1__init.sql, V2__add_table.sql), проще, но без rollback и кросс-БД..."
+        },
+        {
+          "id": "d",
+          "text": "Технически — да, через ALTER. Но фактически — нельзя, потому что: (1) на нём FK из других таблиц. (2) Индексы строятся по PK. (3) В кластерных индексах данные физически отсортированы по PK. Операция дорогая и опасная..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-state-transition-как-использовать-503",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 121,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "State Transition — как использовать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Для систем с состояниями: заявка на кредит (Новая → На рассмотрении → Одобрена/Отклонена → Выдана). Рисуем диаграмму состояний и переходов. Тестируем: все валидные переходы + невалидные (из «Выдана» нельзя в «Новая»)..."
+        },
+        {
+          "id": "b",
+          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+        },
+        {
+          "id": "c",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        },
+        {
+          "id": "d",
+          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Для систем с состояниями: заявка на кредит (Новая → На рассмотрении → Одобрена/Отклонена → Выдана). Рисуем диаграмму состояний и переходов. Тестируем: все валидные переходы + невалидные (из «Выдана» нельзя в «Новая»)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-stream-api-что-такое-промежуточные-vs-терминальные-513",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 153,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Stream API: что такое, промежуточные vs терминальные?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач."
+        },
+        {
+          "id": "b",
+          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+        },
+        {
+          "id": "c",
+          "text": "Двусторонняя очередь. Можно добавлять и удалять с обоих концов. В Java — Deque interface, реализация ArrayDeque. Универсальная — может работать как стек и как очередь."
+        },
+        {
+          "id": "d",
+          "text": "Stream — конвейер обработки данных. Промежуточные (ленивые): filter, map, flatMap, sorted. Терминальные (запускают): collect, forEach, count, reduce. Стрим одноразовый."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Stream — конвейер обработки данных. Промежуточные (ленивые): filter, map, flatMap, sorted. Терминальные (запускают): collect, forEach, count, reduce. Стрим одноразовый.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-stub-vs-verify-в-wiremock-535",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 239,
+          "title": "МТС Банк AQA · 7. Rest Assured и WireMock · WireMock: базовые вопросы"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Stub vs Verify в WireMock?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Stub: настроить фиксированный ответ — stubFor(get(\"/api/rates\").willReturn(okJson(...))). Verify: проверить, что наш сервис сделал ожидаемый запрос — verify(getRequestedFor(urlEqualTo(\"/api/rates\"))..."
+        },
+        {
+          "id": "b",
+          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
+        },
+        {
+          "id": "c",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+        },
+        {
+          "id": "d",
+          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Stub: настроить фиксированный ответ — stubFor(get(\"/api/rates\").willReturn(okJson(...))). Verify: проверить, что наш сервис сделал ожидаемый запрос — verify(getRequestedFor(urlEqualTo(\"/api/rates\"))...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-surefire-vs-failsafe-разница-569",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 433,
+          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Surefire vs Failsafe — разница?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
+        },
+        {
+          "id": "c",
+          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
+        },
+        {
+          "id": "d",
+          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-testcontainers-что-это-541",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "kafka",
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 308,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Testcontainers — что это?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2..."
+        },
+        {
+          "id": "b",
+          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
+        },
+        {
+          "id": "c",
+          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
+        },
+        {
+          "id": "d",
+          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-union-vs-union-all-549",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 336,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: UNION vs UNION ALL?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
+        },
+        {
+          "id": "b",
+          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+        },
+        {
+          "id": "c",
+          "text": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев..."
+        },
+        {
+          "id": "d",
+          "text": "Только для отсортированного массива. Берём середину, сравниваем с искомым. Если меньше — ищем в левой половине, больше — в правой. Каждая итерация — ÷2. Сложность O(log n)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-view-vs-materialized-view-550",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 339,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: VIEW vs MATERIALIZED VIEW?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Поддерживаем «окно» — диапазон [left, right] в массиве. Двигаем right (расширяем), при нарушении условия — двигаем left (сужаем). Используется для подстрок без повторов, максимума в окне фиксированного размера. Сложность O(n)."
+        },
+        {
+          "id": "b",
+          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
+        },
+        {
+          "id": "c",
+          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+        },
+        {
+          "id": "d",
+          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-vs-equals-для-строк-почему-string-immutable-510",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "sql",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 144,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "== vs equals для строк. Почему String immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "== сравнивает ссылки (один объект в памяти?). equals — содержимое. String immutable: безопасность (ключи HashMap, передача в файлы/БД), потокобезопасность, кэширование hashCode, String Pool."
+        },
+        {
+          "id": "b",
+          "text": "HashMap — да, ОДИН null-ключ (лежит в table[0]), null-значений сколько угодно. TreeMap — null-ключ нельзя (бросит NPE при сравнении). Hashtable — null нельзя ни в ключе, ни в значении (NPE)."
+        },
+        {
+          "id": "c",
+          "text": "Введён в Java 8. Конвейерная обработка коллекций в декларативном стиле. Поток (Stream) — это последовательность элементов с операциями. Не путать с потоком (Thread) — это про многопоточность."
+        },
+        {
+          "id": "d",
+          "text": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "== сравнивает ссылки (один объект в памяти?). equals — содержимое. String immutable: безопасность (ключи HashMap, передача в файлы/БД), потокобезопасность, кэширование hashCode, String Pool.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-wiremock-зачем-нужен-534",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 236,
+          "title": "МТС Банк AQA · 7. Rest Assured и WireMock · WireMock: базовые вопросы"
+        }
+      ],
+      "prompt": "WireMock — зачем нужен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+        },
+        {
+          "id": "b",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        },
+        {
+          "id": "c",
+          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+        },
+        {
+          "id": "d",
+          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-xss-что-это-и-как-проверить-558",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 396,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "XSS — что это и как проверить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре..."
+        },
+        {
+          "id": "b",
+          "text": "Lazy. Eager почти всегда плохо — Hibernate тянет лишнее, и часто это даёт N+1 в неожиданном месте. Правило: ставь Lazy везде, а конкретный JOIN FETCH делай в запросах, где данные действительно нужны."
+        },
+        {
+          "id": "c",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+        },
+        {
+          "id": "d",
+          "text": "Нормализация — процесс приведения схемы БД к виду без избыточности данных. 1НФ — все атрибуты атомарны (нет списков в одной ячейке). 2НФ — 1НФ + каждый не-ключевой атрибут зависит от полного ключа..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-абстрактный-класс-vs-интерфейс-321",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "alfa-bank",
+        "yandex-travel",
+        "mts-bank-aqa",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 107,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 112,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 162,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 135,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Абстрактный класс vs интерфейс?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "equals(Object) — проверка равенства. hashCode() — целочисленный хэш. toString() — строковое представление. getClass() — Class-объект. clone() — копия объекта (нужно implements Cloneable). wait(), notify()..."
+        },
+        {
+          "id": "b",
+          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+        },
+        {
+          "id": "c",
+          "text": "Heap — хранение объектов, управляется GC. Stack — фрейм для каждого вызова метода (локальные переменные, ссылки, примитивы). Metaspace (до Java 8 — PermGen) — метаданные классов, пул интернированных строк..."
+        },
+        {
+          "id": "d",
+          "text": "Абстрактный класс: состояние (поля), конструкторы, один наследник. Интерфейс: контракт, множественная реализация, Java 8 — default/static методы. Когда что: общее поведение + состояние → абстрактный класс..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Абстрактный класс: состояние (поля), конструкторы, один наследник. Интерфейс: контракт, множественная реализация, Java 8 — default/static методы. Когда что: общее поведение + состояние → абстрактный класс...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-верификация-vs-валидация-489",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 77,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Верификация vs Валидация?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Верификация: «Строим ли мы продукт правильно?» — соответствие требованиям (ревью, инспекции, статический анализ). Валидация: «Строим ли мы правильный продукт?» — соответствие ожиданиям пользователя (тестирование на реаль..."
+        },
+        {
+          "id": "b",
+          "text": "Хранимая процедура, которая автоматически вызывается БД при определённом событии (BEFORE / AFTER INSERT / UPDATE / DELETE). Часто используется для аудита, валидации, поддержки целостности. В банке любят триггеры для аудита."
+        },
+        {
+          "id": "c",
+          "text": "Их немного, и все маловероятны. (1) Тесты на edge cases — фильтр оставили из отладочного кода. (2) Какой-то странный бизнес-юзкейс типа «скидку даём только на товары с нечётной ценой» — но это нонсенс с точки зрения марк..."
+        },
+        {
+          "id": "d",
+          "text": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Верификация: «Строим ли мы продукт правильно?» — соответствие требованиям (ревью, инспекции, статический анализ). Валидация: «Строим ли мы правильный продукт?» — соответствие ожиданиям пользователя (тестирование на реаль...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-где-брать-тестовые-данные-в-банке-507",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 133,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Где брать тестовые данные в банке?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)..."
+        },
+        {
+          "id": "b",
+          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
+        },
+        {
+          "id": "c",
+          "text": "(1) Защита от регресса — поменял код, прогнал тесты, увидел что сломалось. (2) Документация — тест показывает, как код должен использоваться. (3) Дизайн — код, который сложно тестировать, обычно плохо спроектирован..."
+        },
+        {
+          "id": "d",
+          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-где-передавать-данные-body-path-query-headers-525",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql",
+        "testing-aqa",
+        "algorithms",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 199,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Где передавать данные: body / path / query / headers?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Проверяет структуру ответа (типы полей, обязательные поля, формат). body(matchesJsonSchemaInClasspath(\"schemas/user.json\")). Защищает от непредвиденных изменений API-контракта. Генерация схемы: jsonschema..."
+        },
+        {
+          "id": "b",
+          "text": "NULL — это «значение неизвестно». Два неизвестных значения — нельзя сказать, равны они или нет. Поэтому NULL = NULL это не TRUE, а UNKNOWN, в условиях ведёт себя как FALSE. Для проверки используется IS NULL."
+        },
+        {
+          "id": "c",
+          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+        },
+        {
+          "id": "d",
+          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-граничные-значения-почему-важны-501",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 115,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Граничные значения — почему важны?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Unit (юнит) — проверяет один класс или метод изолированно, зависимости замокированы. Быстро, много, легко отлаживать. Integration — проверяет взаимодействие нескольких компонентов..."
+        },
+        {
+          "id": "b",
+          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+        },
+        {
+          "id": "c",
+          "text": "Баги чаще всего на границах: 0, 1, max, max+1. Пример: пароль 8–20 символов → тестируем: 7 (отказ), 8 (ок), 20 (ок), 21 (отказ). Для Junior: уметь определять границы для любого поля."
+        },
+        {
+          "id": "d",
+          "text": "clean — удаляет директорию target/. install — проходит весь жизненный цикл (compile → test → package) и кладёт артефакт в локальный репозиторий ~/.m2. Самая часто используемая команда."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Баги чаще всего на границах: 0, 1, max, max+1. Пример: пароль 8–20 символов → тестируем: 7 (отказ), 8 (ок), 20 (ок), 21 (отказ). Для Junior: уметь определять границы для любого поля.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-жизненный-цикл-maven-568",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 430,
+          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Жизненный цикл Maven» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+        },
+        {
+          "id": "b",
+          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+        },
+        {
+          "id": "c",
+          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
+        },
+        {
+          "id": "d",
+          "text": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-жизненный-цикл-бага-497",
+      "type": "code_review",
+      "level": "junior",
+      "topics": [
+        "concurrency",
+        "hibernate",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 101,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Жизненный цикл бага» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)..."
+        },
+        {
+          "id": "b",
+          "text": "Сканирует указанный пакет (по умолчанию — пакет класса, на котором стоит) и все подпакеты на предмет аннотаций @Component, @Service, @Repository, @Controller. Найденные классы регистрируются как бины в контексте."
+        },
+        {
+          "id": "c",
+          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+        },
+        {
+          "id": "d",
+          "text": "Готовы 2–3 факта: масштаб (один из крупнейших IT-работодателей России), Platform V (своя облачная платформа), SberAI (GigaChat, Kandinsky), 78% оффер после стажировки. Можешь упомянуть конкретный продукт Сбера..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-зачем-брокеры-в-банке-553",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "kafka",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 377,
+          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
+        }
+      ],
+      "prompt": "Зачем брокеры в банке?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера."
+        },
+        {
+          "id": "b",
+          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+        },
+        {
+          "id": "c",
+          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+        },
+        {
+          "id": "d",
+          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-автотесты-встраиваются-в-ci-cd-pipeline-571",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 439,
+          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
+        }
+      ],
+      "prompt": "Как автотесты встраиваются в CI/CD pipeline?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+        },
+        {
+          "id": "b",
+          "text": "Mock: полностью пустой объект, все методы возвращают default (null, 0, false). Spy: обёртка над реальным объектом, методы вызываются по-настоящему, если не замоканы. Для Spy: doReturn().when(spy).method() (не when(spy..."
+        },
+        {
+          "id": "c",
+          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+        },
+        {
+          "id": "d",
+          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-тестировать-kafka-в-автотесте-554",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "kafka",
+        "devops",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 380,
+          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
+        }
+      ],
+      "prompt": "Как тестировать Kafka в автотесте?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+        },
+        {
+          "id": "b",
+          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+        },
+        {
+          "id": "c",
+          "text": "Да! Условие в ON применяется ДО объединения — несоответствующие строки правой таблицы становятся NULL. Условие в WHERE применяется ПОСЛЕ — строки с NULL отфильтровываются, и LEFT JOIN превращается в INNER JOIN..."
+        },
+        {
+          "id": "d",
+          "text": "BFS (Breadth-First Search) — обход в ширину. Идёт по уровням. Используется в: поиск кратчайшего пути в невзвешенном графе, обход дерева по уровням. Внутри — очередь. DFS (Depth- First Search) — обход в глубину..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(.....",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-классы-эквивалентности-как-применять-500",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 112,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Классы эквивалентности — как применять?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
+        },
+        {
+          "id": "b",
+          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+        },
+        {
+          "id": "c",
+          "text": "Разбиваем входные данные на группы, в которых поведение системы одинаковое. Пример: поле «возраст» 18–60 → три класса: <18 (отказ), 18–60 (принимаем), >60 (отказ)..."
+        },
+        {
+          "id": "d",
+          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Разбиваем входные данные на группы, в которых поведение системы одинаковое. Пример: поле «возраст» 18–60 → три класса: <18 (отказ), 18–60 (принимаем), >60 (отказ)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-коллекции-arraylist-vs-linkedlist-vs-hashmap-512",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 150,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Коллекции: ArrayList vs LinkedList vs HashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
+        },
+        {
+          "id": "b",
+          "text": "Спецификация не запрещает, но рекомендует не использовать. Многие фреймворки и прокси игнорируют body в GET. Если параметров много — лучше POST с явной семантикой («поиск с телом») или query string."
+        },
+        {
+          "id": "c",
+          "text": "В Metaspace. До Java 8 это была область PermGen (часть heap), с Java 8 — отдельная область в нативной памяти (off-heap). Это важно: при анализе утечек статические поля не видны в обычном дампе heap."
+        },
+        {
+          "id": "d",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-маскирование-pii-в-логах-560",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "hibernate",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 402,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Маскирование PII в логах» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+        },
+        {
+          "id": "b",
+          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+        },
+        {
+          "id": "c",
+          "text": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер..."
+        },
+        {
+          "id": "d",
+          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-модификаторы-доступа-порядок-519",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 177,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Модификаторы доступа — порядок?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Абстрактный класс может иметь состояние (поля), конструктор, реализованные методы. От него можно унаследоваться ТОЛЬКО одного. Интерфейс — контракт, описывающий «что умеет»..."
+        },
+        {
+          "id": "b",
+          "text": "private — только внутри своего класса. package-private (без модификатора, default) — внутри своего пакета. protected — пакет + наследники из других пакетов. public — отовсюду."
+        },
+        {
+          "id": "c",
+          "text": "private → (default/package-private) → protected → public. private: только в классе. default: в пакете. protected: в пакете + наследники (даже в другом пакете). public: везде..."
+        },
+        {
+          "id": "d",
+          "text": "Обращение к lazy-полю после закрытия сессии. Решения (от лучшего к худшему): DTO-проекция (SELECT NEW), JOIN FETCH (@Query), @EntityGraph(attributePaths), @BatchSize(size=100)..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "private → (default/package-private) → protected → public. private: только в классе. default: в пакете. protected: в пакете + наследники (даже в другом пакете). public: везде...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-параметризация-тестов-в-junit-5-537",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 296,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Параметризация тестов в JUnit 5» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+        },
+        {
+          "id": "b",
+          "text": "Mock — полная имитация, по умолчанию все методы возвращают null / 0 / false. Поведение задаёшь через when().thenReturn(). Spy — обёртка над реальным объектом. Методы, которые ты не подменил, работают как обычно. Полезно..."
+        },
+        {
+          "id": "c",
+          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
+        },
+        {
+          "id": "d",
+          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-подзапрос-vs-join-vs-cte-когда-что-548",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 333,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Подзапрос vs JOIN vs CTE — когда что?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)..."
+        },
+        {
+          "id": "b",
+          "text": "WHERE — до группировки, работает с индексами. HAVING — после GROUP BY, для агрегатов. Пример: HAVING COUNT(*) > 5. Ошибка: ставить в HAVING то, что можно в WHERE — медленнее."
+        },
+        {
+          "id": "c",
+          "text": "Подзапрос: в WHERE для фильтрации (WHERE id IN (SELECT ...)). JOIN: для объединения данных из нескольких таблиц. CTE (WITH ... AS): для читаемости сложных запросов, рекурсия..."
+        },
+        {
+          "id": "d",
+          "text": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Подзапрос: в WHERE для фильтрации (WHERE id IN (SELECT ...)). JOIN: для объединения данных из нескольких таблиц. CTE (WITH ... AS): для читаемости сложных запросов, рекурсия...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-позитивное-vs-негативное-тестирование-495",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 95,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Позитивное vs негативное тестирование?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+        },
+        {
+          "id": "b",
+          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+        },
+        {
+          "id": "c",
+          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+        },
+        {
+          "id": "d",
+          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-порядок-выполнения-sql-запроса-547",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 330,
+          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Порядок выполнения SQL-запроса» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "compile (default) — доступно везде, идёт в финальный jar. test — только для тестов. provided — для компиляции, но не в финальный jar (например, servlet-api — его даёт Tomcat). runtime — в рантайме..."
+        },
+        {
+          "id": "b",
+          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Важно: WHERE выполняется ДО GROUP BY (нельзя фильтровать по агрегату в WHERE). HAVING — после GROUP BY (для агрегатов)."
+        },
+        {
+          "id": "c",
+          "text": "В стандарте SQL Repeatable Read допускает phantom reads. В PG благодаря MVCC (snapshot isolation): транзакция видит snapshot данных на момент начала. Новые строки, вставленные другими транзакциями..."
+        },
+        {
+          "id": "d",
+          "text": "Spring создаёт прокси (JDK/CGLIB). Прокси открывает транзакцию, вызывает метод, commit/rollback. self-call минует прокси → @Transactional/@Cacheable/@Async не работают. Решение: вынести в другой бин."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Важно: WHERE выполняется ДО GROUP BY (нельзя фильтровать по агрегату в WHERE). HAVING — после GROUP BY (для агрегатов).",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-принципы-тестирования-494",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 92,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Принципы тестирования» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+        },
+        {
+          "id": "b",
+          "text": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0..."
+        },
+        {
+          "id": "c",
+          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
+        },
+        {
+          "id": "d",
+          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-структура-тест-кейса-508",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "system-design"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 136,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Структура тест-кейса» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+        },
+        {
+          "id": "b",
+          "text": "ID, заголовок (что тестируем), предусловие (авторизован, баланс > 0), шаги (1. POST /payment..., 2. GET /status...), ожидаемый результат (статус 200, баланс уменьшился), постусловие (откатить данные)..."
+        },
+        {
+          "id": "c",
+          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+        },
+        {
+          "id": "d",
+          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "ID, заголовок (что тестируем), предусловие (авторизован, баланс > 0), шаги (1. POST /payment..., 2. GET /status...), ожидаемый результат (статус 200, баланс уменьшился), постусловие (откатить данные)...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-структура-теста-rest-assured-531",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 225,
+          "title": "МТС Банк AQA · 7. Rest Assured и WireMock · Rest Assured: базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Структура теста Rest Assured» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Транзакция НЕ откроется. Внутри одного бина вызов this.method() идёт напрямую на объект, в обход прокси. Это любимая ловушка на собесах — самая частая ошибка..."
+        },
+        {
+          "id": "b",
+          "text": "Spring Boot имеет много готовых «конфигурационных рецептов». Они применяются автоматически, если выполнены условия: например, есть нужные классы на classpath..."
+        },
+        {
+          "id": "c",
+          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-тест-кейс-vs-чек-лист-502",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 118,
+          "title": "МТС Банк AQA · 4. Тест-дизайн"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: Тест-кейс vs чек-лист?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Когда параметров много (5 полей по 4 значения = 1024 комбинации). Pairwise: покрыть все ПАРЫ параметров (не все комбинации). Инструменты: PICT (Microsoft), AllPairs. Сокращает количество тестов с 1024 до ~20, покрывая 80% багов."
+        },
+        {
+          "id": "b",
+          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
+        },
+        {
+          "id": "c",
+          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+        },
+        {
+          "id": "d",
+          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test.",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-тестирование-авторизации-561",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 405,
+          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Тестирование авторизации» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+        },
+        {
+          "id": "b",
+          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+        },
+        {
+          "id": "c",
+          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+        },
+        {
+          "id": "d",
+          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-уровни-тестирования-491",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 83,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Уровни тестирования» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
+        },
+        {
+          "id": "b",
+          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
+        },
+        {
+          "id": "c",
+          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
+        },
+        {
+          "id": "d",
+          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT).",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-цепочка-запросов-в-postman-524",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "spring",
+        "testing-aqa",
+        "security"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 196,
+          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Цепочка запросов в Postman» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+        },
+        {
+          "id": "b",
+          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+        },
+        {
+          "id": "c",
+          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
+        },
+        {
+          "id": "d",
+          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-четыре-принципа-ооп-своими-словами-509",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 141,
+          "title": "МТС Банк AQA · 5. Java Core (Junior)"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Четыре принципа ООП своими словами» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "StackOverflowError — переполнение стека. Возникает при бесконечной рекурсии или очень глубоких вызовах. Стек у потока ограничен (по умолчанию около 512 КБ – 1 МБ). OutOfMemoryError — нехватка памяти в куче (heap)..."
+        },
+        {
+          "id": "b",
+          "text": "Файл со списком путей и шаблонов, которые Git должен игнорировать. Туда обычно кладут: target/ (Maven), node_modules/, .idea/ (IntelliJ), *.log, файлы с секретами (хотя секреты лучше вообще не класть в репозиторий)."
+        },
+        {
+          "id": "c",
+          "text": "Бросается итератором, если коллекция изменилась во время итерации не через сам итератор. Реализуется через счётчик modCount внутри коллекции и expectedModCount внутри итератора. Если они разъезжаются — исключение..."
+        },
+        {
+          "id": "d",
+          "text": "Инкапсуляция: банкомат — не знаешь как хранит деньги, есть методы «снять», «положить». Наследование: электросамокат наследует «транспорт». Полиморфизм: кнопка «play» — разное поведение для видео, музыки, подкаста..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Инкапсуляция: банкомат — не знаешь как хранит деньги, есть методы «снять», «положить». Наследование: электросамокат наследует «транспорт». Полиморфизм: кнопка «play» — разное поведение для видео, музыки, подкаста...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делать-если-разработчик-говорит-не-баг-а-фича-498",
+      "type": "code_review",
+      "level": "junior",
+      "topics": [
+        "jvm",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 104,
+          "title": "МТС Банк AQA · 3. Теория тестирования"
+        }
+      ],
+      "prompt": "Что делать, если разработчик говорит «не баг, а фича»?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
+        },
+        {
+          "id": "b",
+          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
+        },
+        {
+          "id": "c",
+          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
+        },
+        {
+          "id": "d",
+          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-фикстура-в-тестах-543",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 314,
+          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
+        }
+      ],
+      "prompt": "Что такое фикстура в тестах?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+        },
+        {
+          "id": "b",
+          "text": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime..."
+        },
+        {
+          "id": "c",
+          "text": "Разбиваем входные данные на группы, в которых поведение системы одинаковое. Пример: поле «возраст» 18–60 → три класса: <18 (отказ), 18–60 (принимаем), >60 (отказ)..."
+        },
+        {
+          "id": "d",
+          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов...",
+      "reviewLinks": [
+        {
+          "label": "МТС Банк AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    },
+    {
+      "id": "curated-aqa-rest-assured",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": [
+        "mts-bank-aqa"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/mts-bank-aqa.md",
+          "line": 222,
+          "title": "МТС Банк AQA · Rest Assured"
+        }
+      ],
+      "prompt": "API-тесты на Rest Assured дублируют baseUrl, headers и auth в каждом тесте. Что лучше сделать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Вынести общую RequestSpecification и переиспользовать её в тестах."
+        },
+        {
+          "id": "b",
+          "text": "Оставить дублирование: так каждый тест становится полностью независимым."
+        },
+        {
+          "id": "c",
+          "text": "Заменить Rest Assured на Selenium, потому что headers относятся к UI."
+        },
+        {
+          "id": "d",
+          "text": "Перенести все проверки в Postman и убрать автотесты из CI."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "RequestSpecification убирает дубли, делает тесты читаемее и снижает риск несовпадения конфигурации.",
+      "reviewLinks": [
+        {
+          "label": "Повторить AQA",
+          "href": "../guides/mts-bank-aqa/"
+        }
+      ]
+    }
+  ]
+}

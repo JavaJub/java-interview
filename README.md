@@ -18,6 +18,7 @@
 | Банковский backend | [Сбер](guides/sber.md) · [Альфа-Банк](guides/alfa-bank.md) · [Т1 Иннотех](guides/t1-innotech.md) · [Лига](guides/liga.md) |
 | BigTech / алгоритмы | [VK](guides/vk.md) · [Яндекс Путешествия](guides/yandex-travel.md) |
 | Повторение по темам | [индекс тем](TOPICS.md) |
+| Самопроверка знаний | [тесты на GitHub Pages](https://javajub.github.io/java-interview/quizzes/) |
 
 ## Гайды по компаниям
 

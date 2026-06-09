@@ -1,0 +1,318 @@
+{
+  "title": "JavaJub self-check quizzes",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "modes": [
+    {
+      "id": "express",
+      "title": "Express",
+      "questionCount": 15,
+      "description": "Быстрая проверка перед повторением."
+    },
+    {
+      "id": "standard",
+      "title": "Standard",
+      "questionCount": 30,
+      "description": "Сбалансированный тест по теме или компании."
+    },
+    {
+      "id": "interview",
+      "title": "Interview simulation",
+      "questionCount": 60,
+      "description": "Длинный прогон перед собеседованием."
+    },
+    {
+      "id": "weak",
+      "title": "Weak areas retry",
+      "questionCount": 20,
+      "description": "Повтор вопросов из слабых тем последнего теста."
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "all-java-interview",
+      "kind": "topic",
+      "title": "Все вопросы Java interview",
+      "description": "Полная самопроверка по всей базе JavaJub.",
+      "file": "all-java-interview.json",
+      "questionCount": 728,
+      "topics": [],
+      "companies": []
+    },
+    {
+      "id": "java-core",
+      "kind": "topic",
+      "title": "Java Core",
+      "description": "Самопроверка по теме: Java Core.",
+      "file": "java-core.json",
+      "questionCount": 268,
+      "topics": [
+        "java-core"
+      ],
+      "companies": []
+    },
+    {
+      "id": "collections",
+      "kind": "topic",
+      "title": "Collections",
+      "description": "Самопроверка по теме: Collections.",
+      "file": "collections.json",
+      "questionCount": 182,
+      "topics": [
+        "collections"
+      ],
+      "companies": []
+    },
+    {
+      "id": "jvm",
+      "kind": "topic",
+      "title": "JVM",
+      "description": "Самопроверка по теме: JVM.",
+      "file": "jvm.json",
+      "questionCount": 74,
+      "topics": [
+        "jvm"
+      ],
+      "companies": []
+    },
+    {
+      "id": "concurrency",
+      "kind": "topic",
+      "title": "Concurrency / JMM",
+      "description": "Самопроверка по теме: Concurrency / JMM.",
+      "file": "concurrency.json",
+      "questionCount": 142,
+      "topics": [
+        "concurrency"
+      ],
+      "companies": []
+    },
+    {
+      "id": "spring",
+      "kind": "topic",
+      "title": "Spring Boot",
+      "description": "Самопроверка по теме: Spring Boot.",
+      "file": "spring.json",
+      "questionCount": 224,
+      "topics": [
+        "spring"
+      ],
+      "companies": []
+    },
+    {
+      "id": "hibernate",
+      "kind": "topic",
+      "title": "Hibernate / JPA",
+      "description": "Самопроверка по теме: Hibernate / JPA.",
+      "file": "hibernate.json",
+      "questionCount": 109,
+      "topics": [
+        "hibernate"
+      ],
+      "companies": []
+    },
+    {
+      "id": "sql",
+      "kind": "topic",
+      "title": "SQL / PostgreSQL",
+      "description": "Самопроверка по теме: SQL / PostgreSQL.",
+      "file": "sql.json",
+      "questionCount": 199,
+      "topics": [
+        "sql"
+      ],
+      "companies": []
+    },
+    {
+      "id": "kafka",
+      "kind": "topic",
+      "title": "Kafka / Microservices",
+      "description": "Самопроверка по теме: Kafka / Microservices.",
+      "file": "kafka.json",
+      "questionCount": 61,
+      "topics": [
+        "kafka"
+      ],
+      "companies": []
+    },
+    {
+      "id": "devops",
+      "kind": "topic",
+      "title": "Docker / Kubernetes / CI/CD",
+      "description": "Самопроверка по теме: Docker / Kubernetes / CI/CD.",
+      "file": "devops.json",
+      "questionCount": 107,
+      "topics": [
+        "devops"
+      ],
+      "companies": []
+    },
+    {
+      "id": "testing-aqa",
+      "kind": "topic",
+      "title": "Testing / AQA",
+      "description": "Самопроверка по теме: Testing / AQA.",
+      "file": "testing-aqa.json",
+      "questionCount": 112,
+      "topics": [
+        "testing-aqa"
+      ],
+      "companies": []
+    },
+    {
+      "id": "algorithms",
+      "kind": "topic",
+      "title": "Algorithms / Live coding",
+      "description": "Самопроверка по теме: Algorithms / Live coding.",
+      "file": "algorithms.json",
+      "questionCount": 122,
+      "topics": [
+        "algorithms"
+      ],
+      "companies": []
+    },
+    {
+      "id": "system-design",
+      "kind": "topic",
+      "title": "System Design",
+      "description": "Самопроверка по теме: System Design.",
+      "file": "system-design.json",
+      "questionCount": 55,
+      "topics": [
+        "system-design"
+      ],
+      "companies": []
+    },
+    {
+      "id": "security",
+      "kind": "topic",
+      "title": "Security",
+      "description": "Самопроверка по теме: Security.",
+      "file": "security.json",
+      "questionCount": 53,
+      "topics": [
+        "security"
+      ],
+      "companies": []
+    },
+    {
+      "id": "sber-middle",
+      "kind": "company",
+      "title": "Сбер Java Middle readiness",
+      "description": "Готовность к Java Middle интервью в Сбер.",
+      "file": "sber-middle.json",
+      "questionCount": 91,
+      "topics": [],
+      "companies": [
+        "sber"
+      ]
+    },
+    {
+      "id": "sberseasons-trainee",
+      "kind": "company",
+      "title": "SberSeasons Java Trainee",
+      "description": "База для стажировки SberSeasons.",
+      "file": "sberseasons-trainee.json",
+      "questionCount": 224,
+      "topics": [],
+      "companies": [
+        "sberseasons"
+      ]
+    },
+    {
+      "id": "alfa-bank-middle",
+      "kind": "company",
+      "title": "Альфа-Банк Java Middle",
+      "description": "Spring Boot, Kafka, PostgreSQL, live-coding.",
+      "file": "alfa-bank-middle.json",
+      "questionCount": 79,
+      "topics": [],
+      "companies": [
+        "alfa-bank"
+      ]
+    },
+    {
+      "id": "t1-innotech-middle",
+      "kind": "company",
+      "title": "Т1 Иннотех Java Junior/Middle",
+      "description": "Enterprise backend, SQL, Kafka и code review.",
+      "file": "t1-innotech-middle.json",
+      "questionCount": 56,
+      "topics": [],
+      "companies": [
+        "t1-innotech"
+      ]
+    },
+    {
+      "id": "vk-middle",
+      "kind": "company",
+      "title": "VK Java Middle",
+      "description": "Java 21, алгоритмы, high-load и сети.",
+      "file": "vk-middle.json",
+      "questionCount": 67,
+      "topics": [],
+      "companies": [
+        "vk"
+      ]
+    },
+    {
+      "id": "yandex-travel-middle",
+      "kind": "company",
+      "title": "Яндекс Путешествия Java Middle",
+      "description": "Алгоритмы, backend и System Design.",
+      "file": "yandex-travel-middle.json",
+      "questionCount": 58,
+      "topics": [],
+      "companies": [
+        "yandex-travel"
+      ]
+    },
+    {
+      "id": "mts-bank-aqa-junior",
+      "kind": "company",
+      "title": "МТС Банк AQA Java Junior",
+      "description": "API-тесты, Rest Assured, SQL и очереди.",
+      "file": "mts-bank-aqa-junior.json",
+      "questionCount": 86,
+      "topics": [],
+      "companies": [
+        "mts-bank-aqa"
+      ]
+    },
+    {
+      "id": "itk-academy-junior",
+      "kind": "company",
+      "title": "ITK Academy Java Junior",
+      "description": "Junior база, Spring basics и pet-проект.",
+      "file": "itk-academy-junior.json",
+      "questionCount": 86,
+      "topics": [],
+      "companies": [
+        "itk-academy"
+      ]
+    },
+    {
+      "id": "liga-middle",
+      "kind": "company",
+      "title": "Лига Java Middle",
+      "description": "Java 11, Spring, Hibernate, SQL и тесты.",
+      "file": "liga-middle.json",
+      "questionCount": 111,
+      "topics": [],
+      "companies": [
+        "liga"
+      ]
+    },
+    {
+      "id": "x5-code-review-senior",
+      "kind": "company",
+      "title": "X5 Tech Senior code review",
+      "description": "Concurrency, Random, parallelStream и production-мышление.",
+      "file": "x5-code-review-senior.json",
+      "questionCount": 16,
+      "topics": [],
+      "companies": [
+        "x5-tech"
+      ]
+    }
+  ]
+}

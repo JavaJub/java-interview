@@ -462,5 +462,6 @@ Kafka                       KRaft vs ZooKeeper + Spring Kafka компонент
 - Повторить: code review Spring-сервиса, SQL-серии, Kafka, транзакции, Hibernate, микросервисы.
 - Спросить в канале: свежие вопросы по Т1/Иннотех, примеры code review и SQL-задачи.
 - Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Проверить знания: [тесты JavaJub](https://javajub.github.io/java-interview/quizzes/).
 
 [← Ко всем гайдам](../README.md)

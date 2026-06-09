@@ -728,5 +728,6 @@ ITK прямо требует наличие pet-проекта. Без него
 - Повторить: Java Core, Spring basics, SQL, Docker, Git, OAuth и рассказ о pet-проекте.
 - Спросить в канале: свежие Junior-вопросы, формат ITK и примеры self-presentation.
 - Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

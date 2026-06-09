@@ -1,6 +1,6 @@
 # Индекс тем
 
-Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding.
+Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Для самопроверки используйте [тесты на GitHub Pages](https://javajub.github.io/java-interview/quizzes/).
 
 [← На главную](README.md) · [Канал JavaJub](https://t.me/+6GwSVWu9VIxlN2Yy)
 

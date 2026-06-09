@@ -1,0 +1,4368 @@
+{
+  "id": "itk-academy-junior",
+  "title": "ITK Academy Java Junior",
+  "kind": "company",
+  "description": "Junior база, Spring basics и pet-проект.",
+  "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
+  "questionCount": 86,
+  "questions": [
+    {
+      "id": "auto-arraylist-vs-linkedlist-что-когда-использовать-590",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 143,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "ArrayList vs LinkedList — что когда использовать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "WHERE — до группировки, работает с индексами. HAVING — после GROUP BY, для агрегатов. Пример: HAVING COUNT(*) > 5. Ошибка: ставить в HAVING то, что можно в WHERE — медленнее."
+        },
+        {
+          "id": "b",
+          "text": "Смотри на Seq Scan (на большой таблице — плохо), Index Scan, Bitmap Heap Scan, типы Join (Nested Loop vs Hash Join), Rows Removed by Filter, разницу estimated vs actual rows."
+        },
+        {
+          "id": "c",
+          "text": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)..."
+        },
+        {
+          "id": "d",
+          "text": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashmap-vs-treemap-vs-linkedhashmap-594",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 161,
+          "title": "ITK Academy · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 168,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как лучше всего объяснить различие: HashMap vs TreeMap vs LinkedHashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JpaRepository extends PagingAndSortingRepository extends CrudRepository. Добавляет flush(), saveAllAndFlush(), работу с List вместо Iterable, deleteAllInBatch."
+        },
+        {
+          "id": "b",
+          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+        },
+        {
+          "id": "c",
+          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+        },
+        {
+          "id": "d",
+          "text": "Конструкция, которая гарантирует вызов close() у ресурсов, реализующих AutoCloseable. Заменяет try-finally. При исключении в try ресурсы всё равно закроются..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-hashset-на-основе-чего-реализован-595",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 164,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "HashSet — на основе чего реализован?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Severity всегда выставляет разработчик, а Priority всегда выставляет тестировщик."
+        },
+        {
+          "id": "b",
+          "text": "На HashMap, где значение — заглушка (PRESENT). Все операции делегируются HashMap."
+        },
+        {
+          "id": "c",
+          "text": "Это работает только как compile-time ограничение и не влияет на runtime-поведение."
+        },
+        {
+          "id": "d",
+          "text": "Клиент шлёт повтор — сервер распознаёт по ключу и не выполняет операцию дважды."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "На HashMap, где значение — заглушка (PRESENT). Все операции делегируются HashMap.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-java-компилируемый-или-интерпретируемый-язык-574",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 80,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Java — компилируемый или интерпретируемый язык?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "И то, и другое. Сначала компилируется в байт-код (.class), потом JVM его интерпретирует и компилирует «горячие» места JIT-компилятором в нативный код."
+        },
+        {
+          "id": "b",
+          "text": "orElse(value) — eager: значение вычисляется ВСЕГДА, даже если Optional не пустой. orElseGet(Supplier) — lazy: вызывается только если Optional пустой..."
+        },
+        {
+          "id": "c",
+          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+        },
+        {
+          "id": "d",
+          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "И то, и другое. Сначала компилируется в байт-код (.class), потом JVM его интерпретирует и компилирует «горячие» места JIT-компилятором в нативный код.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-разница-между-cmd-и-entrypoint-623",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 289,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Docker"
+        }
+      ],
+      "prompt": "В чём разница между CMD и ENTRYPOINT?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+        },
+        {
+          "id": "b",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        },
+        {
+          "id": "c",
+          "text": "ENTRYPOINT задаёт основную исполняемую команду. CMD — аргументы по умолчанию. CMD легко переопределить при docker run, ENTRYPOINT — сложнее (через --entrypoint)."
+        },
+        {
+          "id": "d",
+          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "ENTRYPOINT задаёт основную исполняемую команду. CMD — аргументы по умолчанию. CMD легко переопределить при docker run, ENTRYPOINT — сложнее (через --entrypoint).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-разница-между-jdk-jre-и-jvm-573",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 77,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "В чём разница между JDK, JRE и JVM?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ThreadLocalRandom использует отдельный seed для каждого потока — хранится в полях класса Thread (это специальная JVM-оптимизация, не обычный ThreadLocal)..."
+        },
+        {
+          "id": "b",
+          "text": "Два+ потока ждут друг друга. Условия Коффмана. Избежать: упорядочить захват мониторов, tryLock с таймаутом. Обнаружение: jstack, VisualVM, Thread.getState()."
+        },
+        {
+          "id": "c",
+          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
+        },
+        {
+          "id": "d",
+          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки (javac, jdb, jar)."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки (javac, jdb, jar).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-в-чем-разница-между-list-of-1-2-3-и-new-arraylist-598",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 173,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "В чём разница между List.of(1,2,3) и new ArrayList<>()?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null."
+        },
+        {
+          "id": "b",
+          "text": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile."
+        },
+        {
+          "id": "c",
+          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+        },
+        {
+          "id": "d",
+          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-зачем-нужен-volatile-047",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "collections"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 229,
+          "title": "Сбер · 6. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 205,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        }
+      ],
+      "prompt": "Зачем нужен volatile?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Технически можно, но опасно: если изменить объект после добавления — его hashCode может измениться, и найти элемент станет невозможно."
+        },
+        {
+          "id": "b",
+          "text": "У LinkedList O(1) на саму вставку, но O(n) на поиск позиции. В реальности ArrayList почти всегда быстрее из-за локальности в кэше CPU."
+        },
+        {
+          "id": "c",
+          "text": "Вызывать только внутри synchronized на том же объекте. wait() освобождает монитор и засыпает. notify будит один поток, notifyAll — все."
+        },
+        {
+          "id": "d",
+          "text": "Гарантирует видимость изменений переменной между потоками (без кэширования в регистрах). НЕ гарантирует атомарность операций типа i++."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Гарантирует видимость изменений переменной между потоками (без кэширования в регистрах). НЕ гарантирует атомарность операций типа i++.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-зачем-нужны-docker-образы-в-ci-cd-629",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "testing-aqa"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 314,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
+        }
+      ],
+      "prompt": "Зачем нужны Docker-образы в CI/CD?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
+        },
+        {
+          "id": "b",
+          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
+        },
+        {
+          "id": "c",
+          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+        },
+        {
+          "id": "d",
+          "text": "Нет — тестируются через публичные. Если private стало сложно — это сигнал, что надо выделить отдельный класс."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-зачем-нужны-индексы-632",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "jvm",
+        "sql"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 328,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Зачем нужны индексы?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "PRIMARY KEY — один на таблицу, NOT NULL. UNIQUE — может быть несколько UNIQUE-индексов, разрешает NULL (NULL не равно NULL, поэтому много NULL допустимо)."
+        },
+        {
+          "id": "b",
+          "text": "При итерации по списку на каждую связанную сущность делается отдельный SELECT. Решения: JOIN FETCH, @EntityGraph, @BatchSize, @Fetch(FetchMode.SUBSELECT)."
+        },
+        {
+          "id": "c",
+          "text": "Сохранённый SELECT-запрос, к которому можно обращаться как к таблице. Виртуальная таблица — данных в ней нет, при обращении выполняется исходный запрос."
+        },
+        {
+          "id": "d",
+          "text": "Чтобы ускорить поиск. Без индекса — full scan O(n). С B-tree индексом — O(log n). Платим за это: дополнительная память + замедление INSERT/UPDATE/DELETE."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Чтобы ускорить поиск. Без индекса — full scan O(n). С B-tree индексом — O(log n). Платим за это: дополнительная память + замедление INSERT/UPDATE/DELETE.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-иерархия-исключений-в-java-599",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 182,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Исключения"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Иерархия исключений в Java» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Метод захватывает this (для static — Class-объект). Блок — любой указанный объект. Блок обычно эффективнее."
+        },
+        {
+          "id": "b",
+          "text": "При выводе backend из ротации — дождаться завершения активных соединений, а не обрывать. Graceful shutdown."
+        },
+        {
+          "id": "c",
+          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+        },
+        {
+          "id": "d",
+          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-к-каким-конструкциям-применим-модификатор-final-585",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 122,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "К каким конструкциям применим модификатор final?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо)."
+        },
+        {
+          "id": "b",
+          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+        },
+        {
+          "id": "c",
+          "text": "JVM — виртуальная машина. JRE = JVM + библиотеки. JDK = JRE + инструменты разработки (javac, jdb)."
+        },
+        {
+          "id": "d",
+          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-spring-boot-узнает-что-и-как-настраивать-612",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 244,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как Spring Boot узнаёт, что и как настраивать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Через @EnableAutoConfiguration (входит в @SpringBootApplication) + @Conditional. Конфигурации перечислены в META-INF/spring/...AutoConfiguration.imports (или старом spring.factories)."
+        },
+        {
+          "id": "b",
+          "text": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error..."
+        },
+        {
+          "id": "c",
+          "text": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate..."
+        },
+        {
+          "id": "d",
+          "text": "Композиция трёх аннотаций: @SpringBootConfiguration (= @Configuration), @EnableAutoConfiguration (запуск автоконфигурации), @ComponentScan (сканирование пакетов начиная с этого класса)."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Через @EnableAutoConfiguration (входит в @SpringBootApplication) + @Conditional. Конфигурации перечислены в META-INF/spring/...AutoConfiguration.imports (или старом spring.factories).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-spring-создает-реализацию-репозитория-если-ты-только-написал-интерфейс-616",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 259,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как Spring создаёт реализацию репозитория, если ты только написал интерфейс?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+        },
+        {
+          "id": "b",
+          "text": "Через прокси, который генерируется в рантайме. Имя метода (findByEmail) парсится и превращается в SQL/JPQL."
+        },
+        {
+          "id": "c",
+          "text": "Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty/Undertow) + стартеры. Минимизирует boilerplate."
+        },
+        {
+          "id": "d",
+          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Через прокси, который генерируется в рантайме. Имя метода (findByEmail) парсится и превращается в SQL/JPQL.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-из-list-сделать-неизменяемый-597",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 170,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как из List сделать неизменяемый?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Не работает self-invocation (как у @Transactional). Нужен @EnableAsync. Default executor может быть неподходящим — часто настраивают свой."
+        },
+        {
+          "id": "b",
+          "text": "Среднее: get / put / containsKey — O(1). Худший случай при плохих хэшах: O(log n) при treeified бакете, O(n) если treeify ещё не сработал."
+        },
+        {
+          "id": "c",
+          "text": "Массив бакетов. По хэшу ключа определяется индекс. Две стратегии разрешения коллизий: (1) Chaining (цепочки) — в бакете связный список..."
+        },
+        {
+          "id": "d",
+          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-обработать-исключение-в-rest-контроллере-615",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 253,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как обработать исключение в REST-контроллере?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо)."
+        },
+        {
+          "id": "b",
+          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+        },
+        {
+          "id": "c",
+          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
+        },
+        {
+          "id": "d",
+          "text": "JVM — виртуальная машина. JRE = JVM + библиотеки. JDK = JRE + инструменты разработки (javac, jdb)."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-откатить-последний-коммит-626",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 300,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Git"
+        }
+      ],
+      "prompt": "Как откатить последний коммит?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "git reset --soft HEAD~1 (оставит изменения), git reset --hard HEAD~1 (выкинет всё), git revert HEAD (создаст новый коммит, который отменит предыдущий — безопасно для общих веток)."
+        },
+        {
+          "id": "b",
+          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+        },
+        {
+          "id": "c",
+          "text": "Java 7: массив Segment (ReentrantLock), каждый сегмент — свой HashMap. Java 8: убрали Segment, CAS + synchronized на головах бакетов (лучше параллелизм). Treeify при 8 коллизиях."
+        },
+        {
+          "id": "d",
+          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "git reset --soft HEAD~1 (оставит изменения), git reset --hard HEAD~1 (выкинет всё), git revert HEAD (создаст новый коммит, который отменит предыдущий — безопасно для общих веток).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-сделать-rest-эндпоинт-614",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "spring"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 250,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 275,
+          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Как сделать REST-эндпоинт?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Checked наследуются от Exception (но не RuntimeException) — компилятор требует обработки или throws. Unchecked — от RuntimeException и Error — обрабатывать необязательно."
+        },
+        {
+          "id": "b",
+          "text": "Spring создаёт прокси (JDK dynamic proxy для интерфейсов или CGLIB для классов). Прокси открывает транзакцию перед методом, коммитит после или откатывает при исключении."
+        },
+        {
+          "id": "c",
+          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+        },
+        {
+          "id": "d",
+          "text": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-устроен-arraylist-внутри-589",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 140,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как устроен ArrayList внутри?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+        },
+        {
+          "id": "b",
+          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует данные через Arrays.copyOf."
+        },
+        {
+          "id": "c",
+          "text": "Каждая транзакция видит snapshot базы. Вместо изменений — новые версии строк с xmin/xmax. Старые версии чистит VACUUM."
+        },
+        {
+          "id": "d",
+          "text": "У каждого объекта есть монитор. synchronized захватывает его при входе, освобождает при выходе (включая исключения)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует данные через Arrays.copyOf.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-как-устроен-hashmap-323",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "sql",
+        "devops",
+        "system-design",
+        "algorithms"
+      ],
+      "companies": [
+        "alfa-bank",
+        "yandex-travel",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 162,
+          "title": "Альфа-Банк · 4. Коллекции"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 158,
+          "title": "Яндекс Путешествия · 4. Коллекции"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 146,
+          "title": "ITK Academy · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 153,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как устроен HashMap?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+        },
+        {
+          "id": "b",
+          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
+        },
+        {
+          "id": "c",
+          "text": "pg_stat_activity: текущие запросы, их состояние (active/idle/waiting), PID, query_start. Для поиска long-running queries и блокировок. pg_stat_statements: статистика по запросам (calls, total_time, mean_time, rows)..."
+        },
+        {
+          "id": "d",
+          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-scopes-у-бинов-609",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 235,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Какие scopes у бинов?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Нет. Static-методы не участвуют в полиморфизме. Если в подклассе будет метод с такой же сигнатурой — это сокрытие (hiding), а не переопределение."
+        },
+        {
+          "id": "b",
+          "text": "singleton (по умолчанию — один на контекст), prototype (новый при каждом запросе), request, session, application, websocket — для веб-приложений."
+        },
+        {
+          "id": "c",
+          "text": "Нет. Spring отлично инжектит и в не-final поля. Но смысл конструктора частично теряется — поле потом можно перезаписать. Конвенция: всегда final."
+        },
+        {
+          "id": "d",
+          "text": "При fetch = LAZY на связи, при итерации по списку делается +1 запрос за каждую связанную сущность. Решения: JOIN FETCH, @EntityGraph, BatchSize."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "singleton (по умолчанию — один на контекст), prototype (новый при каждом запросе), request, session, application, websocket — для веб-приложений.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-виды-join-ты-знаешь-180",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 533,
+          "title": "SberSeasons · 7. БД и SQL · JOIN-ы"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 334,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Какие виды JOIN ты знаешь?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "INNER JOIN — только совпадения из обеих таблиц. LEFT JOIN — все строки из левой + совпадения из правой (несовпадения = NULL). RIGHT JOIN — наоборот. FULL OUTER JOIN — все строки из обеих, несовпадения = NULL..."
+        },
+        {
+          "id": "b",
+          "text": "(1) JPQL с JOIN FETCH: select o from Order o join fetch o.user. (2) @EntityGraph — атрибут на репозиторий-методе, говорит «подгрузить эти поля сразу». (3) Hibernate batch_size — группирует SELECT'ы по пачкам..."
+        },
+        {
+          "id": "c",
+          "text": "HashSet — на основе HashMap (значение в виде специальной заглушки). Не сохраняет порядок. LinkedHashSet — HashSet + порядок вставки. TreeSet — на основе TreeMap (красно-чёрное дерево), элементы отсортированы..."
+        },
+        {
+          "id": "d",
+          "text": "Throwable — корень. Делится на Error (OOM, StackOverflow — не ловить) и Exception. Exception → checked (IOException, SQLException — обязаны быть в throws) и RuntimeException → unchecked (NullPointerException..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "INNER JOIN — только совпадения из обеих таблиц. LEFT JOIN — все строки из левой + совпадения из правой (несовпадения = NULL). RIGHT JOIN — наоборот. FULL OUTER JOIN — все строки из обеих, несовпадения = NULL...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-есть-примитивные-типы-и-их-размеры-575",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 83,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Какие есть примитивные типы и их размеры?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
+        },
+        {
+          "id": "b",
+          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+        },
+        {
+          "id": "c",
+          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+        },
+        {
+          "id": "d",
+          "text": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо)."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-команды-docker-ты-знаешь-621",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 283,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Docker"
+        }
+      ],
+      "prompt": "Какие команды Docker ты знаешь?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+        },
+        {
+          "id": "b",
+          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
+        },
+        {
+          "id": "c",
+          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+        },
+        {
+          "id": "d",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какие-основные-интерфейсы-в-collection-framework-588",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 137,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Какие основные интерфейсы в Collection Framework?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Промежуточные (filter, map, sorted) возвращают Stream и ленивые. Терминальные (collect, forEach, count, reduce) запускают pipeline."
+        },
+        {
+          "id": "b",
+          "text": "Включить логи SQL (spring.jpa.show-sql=true), смотреть количество запросов на эндпоинт, использовать p6spy или Hibernate Statistics."
+        },
+        {
+          "id": "c",
+          "text": "Collection (List, Set, Queue), Map (отдельно). List — упорядоченный с дубликатами. Set — без дубликатов. Map — пары ключ-значение."
+        },
+        {
+          "id": "d",
+          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Collection (List, Set, Queue), Map (отдельно). List — упорядоченный с дубликатами. Set — без дубликатов. Map — пары ключ-значение.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какое-исключение-лучше-выбросить-свое-или-использовать-стандартное-602",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 191,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Исключения"
+        }
+      ],
+      "prompt": "Какое исключение лучше — выбросить своё или использовать стандартное?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Попытка обратиться к lazy-полю после закрытия сессии. Решения: JOIN FETCH в запросе, @EntityGraph, DTO-проекции, OpenSessionInView (анти-паттерн в проде)."
+        },
+        {
+          "id": "b",
+          "text": "Если ситуация уникальна для домена — своё (наследник RuntimeException обычно). Если стандартное (например, IllegalArgumentException) подходит — лучше его."
+        },
+        {
+          "id": "c",
+          "text": "PRIMARY KEY — один на таблицу, NOT NULL. UNIQUE — может быть несколько UNIQUE-индексов, разрешает NULL (NULL не равно NULL, поэтому много NULL допустимо)."
+        },
+        {
+          "id": "d",
+          "text": "sleep — приостанавливает поток на указанное время (не освобождает мониторы). yield — намекает планировщику «дай поработать другим», но это лишь подсказка."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Если ситуация уникальна для домена — своё (наследник RuntimeException обычно). Если стандартное (например, IllegalArgumentException) подходит — лучше его.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-какой-способ-di-предпочтительнее-606",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "spring",
+        "testing-aqa"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 226,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Какой способ DI предпочтительнее?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
+        },
+        {
+          "id": "b",
+          "text": "Декларативный или scripted pipeline, описан в Jenkinsfile в корне репозитория. Этапы (stages): checkout, build, test, deploy."
+        },
+        {
+          "id": "c",
+          "text": "Поле @Version (int/long/timestamp). При update Hibernate сравнивает версию — если не совпала, бросает OptimisticLockException."
+        },
+        {
+          "id": "d",
+          "text": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-когда-индекс-не-стоит-создавать-633",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 331,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 340,
+          "title": "Лига Цифровой Экономики · 8. SQL и PostgreSQL"
+        }
+      ],
+      "prompt": "Когда индекс не стоит создавать?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Возникает, когда обращаешься к LAZY-полю после закрытия сессии Hibernate. Сценарий: достал Entity в @Transactional-методе, вернул наружу. Транзакция закрылась — сессия закрылась..."
+        },
+        {
+          "id": "b",
+          "text": "Когда нужна НЕЗАВИСИМАЯ транзакция, которая сохранится даже при rollback основной. Примеры: запись аудит-лога (должна остаться при ошибке), отправка уведомления, счётчик попыток..."
+        },
+        {
+          "id": "c",
+          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
+        },
+        {
+          "id": "d",
+          "text": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-контракт-equals-hashcode-312",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "alfa-bank",
+        "vk",
+        "yandex-travel",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/alfa-bank.md",
+          "line": 80,
+          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/vk.md",
+          "line": 103,
+          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/yandex-travel.md",
+          "line": 88,
+          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 101,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 105,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Контракт equals/hashCode» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
+        },
+        {
+          "id": "b",
+          "text": "Да. Java GC работает по reachability, а не по reference counting. Два объекта, ссылающиеся друг на друга, но не достижимые снаружи — будут собраны. Это отличие от Python, где есть reference counting + cycle collector."
+        },
+        {
+          "id": "c",
+          "text": "Промежуточные операции не выполняются сразу. Они «копят» план. Терминальная операция запускает выполнение. Поэтому stream.filter(...).map(...) без terminal — не сделает ничего. Это позволяет оптимизировать выполнение."
+        },
+        {
+          "id": "d",
+          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet...",
+      "reviewLinks": [
+        {
+          "label": "Альфа-Банк",
+          "href": "../guides/alfa-bank/"
+        }
+      ]
+    },
+    {
+      "id": "auto-можно-ли-в-catch-ловить-throwable-стоит-ли-583",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "jvm"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 113,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Можно ли в catch ловить Throwable? Стоит ли?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
+        },
+        {
+          "id": "b",
+          "text": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения."
+        },
+        {
+          "id": "c",
+          "text": "Serial, Parallel, CMS (deprecated с Java 9, удалён в Java 14), G1 (default с Java 9), ZGC, Shenandoah. Для low-latency выбирают ZGC/Shenandoah."
+        },
+        {
+          "id": "d",
+          "text": "Нет. Spring отлично инжектит и в не-final поля. Но смысл конструктора частично теряется — поле потом можно перезаписать. Конвенция: всегда final."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-можно-ли-в-hashmap-положить-null-ключ-или-null-значение-592",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 155,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Можно ли в HashMap положить null-ключ или null-значение?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+        },
+        {
+          "id": "b",
+          "text": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен."
+        },
+        {
+          "id": "c",
+          "text": "base62 с 62^7 ≈ 3.5 трлн. Redis-кэш популярных. Расчёт: чтения/записи 100:1. Шардирование по хэшу ключа."
+        },
+        {
+          "id": "d",
+          "text": "В HashMap — да (один null-ключ хранится в bucket 0). В ConcurrentHashMap — нельзя ни ключ, ни значение."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "В HashMap — да (один null-ключ хранится в bucket 0). В ConcurrentHashMap — нельзя ни ключ, ни значение.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-можно-ли-в-одном-catch-ловить-несколько-типов-исключений-600",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency",
+        "sql"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 185,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Исключения"
+        }
+      ],
+      "prompt": "Можно ли в одном catch ловить несколько типов исключений?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+        },
+        {
+          "id": "b",
+          "text": "Интерфейс с одним абстрактным методом. Примеры: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>."
+        },
+        {
+          "id": "c",
+          "text": "В HashMap — да (один null-ключ хранится в bucket 0). В ConcurrentHashMap — нельзя ни ключ, ни значение."
+        },
+        {
+          "id": "d",
+          "text": "ROW_NUMBER(), RANK(), LAG/LEAD, SUM OVER — агрегации поверх результата без сворачивания строк в группы."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-можно-ли-переопределить-static-метод-584",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "spring"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 119,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 129,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Можно ли переопределить static-метод?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Нет. Spring отлично инжектит и в не-final поля. Но смысл конструктора частично теряется — поле потом можно перезаписать. Конвенция: всегда final."
+        },
+        {
+          "id": "b",
+          "text": "singleton (по умолчанию — один на контекст), prototype (новый при каждом запросе), request, session, application, websocket — для веб-приложений."
+        },
+        {
+          "id": "c",
+          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
+        },
+        {
+          "id": "d",
+          "text": "Нет. Static-методы не участвуют в полиморфизме. Если в подклассе будет метод с такой же сигнатурой — это сокрытие (hiding), а не переопределение."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Нет. Static-методы не участвуют в полиморфизме. Если в подклассе будет метод с такой же сигнатурой — это сокрытие (hiding), а не переопределение.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-назови-несколько-unchecked-исключений-582",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency",
+        "hibernate",
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 110,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Назови несколько unchecked исключений» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException, ClassCastException, NumberFormatException."
+        },
+        {
+          "id": "b",
+          "text": "Инкапсуляция, наследование, полиморфизм, абстракция. На Junior достаточно объяснить «своими словами» с примерами из жизни."
+        },
+        {
+          "id": "c",
+          "text": "Deadlock: два потока ждут друг друга. Livelock: потоки активны, но не прогрессируют. Starvation: поток не получает ресурс."
+        },
+        {
+          "id": "d",
+          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException, ClassCastException, NumberFormatException.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-назови-основные-роли-в-oauth-638",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 353,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Назови основные роли в OAuth» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile."
+        },
+        {
+          "id": "b",
+          "text": "Resource Owner (пользователь), Client (приложение), Authorization Server (выдаёт токены), Resource Server (хранит ресурсы)."
+        },
+        {
+          "id": "c",
+          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+        },
+        {
+          "id": "d",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Resource Owner (пользователь), Client (приложение), Authorization Server (выдаёт токены), Resource Server (хранит ресурсы).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-почему-string-в-java-immutable-577",
+      "type": "scenario",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 89,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Почему String в Java immutable?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Геоиндекс (Geohash/H3), matching-сервис, партиционирование по городам, eventual consistency геопозиций."
+        },
+        {
+          "id": "b",
+          "text": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool."
+        },
+        {
+          "id": "c",
+          "text": "ROW_NUMBER(), RANK(), LAG/LEAD, SUM OVER — агрегации поверх результата без сворачивания строк в группы."
+        },
+        {
+          "id": "d",
+          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-простой-запрос-найти-пользователей-с-количеством-заказов-больше-5-636",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 343,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Простой запрос: найти пользователей с количеством заказов больше 5?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Self-invocation всегда проходит через proxy и открывает новую транзакцию."
+        },
+        {
+          "id": "b",
+          "text": "Saga заменяет транзакции БД и гарантирует мгновенный rollback всех сервисов."
+        },
+        {
+          "id": "c",
+          "text": "SELECT user_id, COUNT(*) FROM orders GROUP BY user_id HAVING COUNT(*) > 5;"
+        },
+        {
+          "id": "d",
+          "text": "Такой подход корректен, если объект используется только внутри одного метода."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "SELECT user_id, COUNT(*) FROM orders GROUP BY user_id HAVING COUNT(*) > 5;",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-разница-между-checked-и-unchecked-исключениями-008",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 100,
+          "title": "Сбер · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 107,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 111,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Разница между checked и unchecked исключениями» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+        },
+        {
+          "id": "b",
+          "text": "Checked наследуются от Exception (но не RuntimeException) — компилятор требует обработки или throws. Unchecked — от RuntimeException и Error — обрабатывать необязательно."
+        },
+        {
+          "id": "c",
+          "text": "Отношение в JMM, гарантирующее видимость. Примеры: synchronized release → acquire, volatile write → read, Thread.start() → действия потока, final-поля после конструктора."
+        },
+        {
+          "id": "d",
+          "text": "S — Single Responsibility (один класс — одна ответственность). O — Open/Closed (открыт для расширения, закрыт для модификации — добавляй наследников, не правь оригинал)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Checked наследуются от Exception (но не RuntimeException) — компилятор требует обработки или throws. Unchecked — от RuntimeException и Error — обрабатывать необязательно.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-разница-между-where-и-having-634",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 337,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Разница между WHERE и HAVING?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1 findAll() + N доп. запросов на lazy-коллекции. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), DTO-проекция. EAGER — неправильный ответ."
+        },
+        {
+          "id": "b",
+          "text": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)..."
+        },
+        {
+          "id": "c",
+          "text": "WHERE фильтрует строки ДО группировки и работает с индексами. HAVING — ПОСЛЕ группировки, для условий на агрегаты (HAVING SUM(amount) > 1000)."
+        },
+        {
+          "id": "d",
+          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "WHERE фильтрует строки ДО группировки и работает с индексами. HAVING — ПОСЛЕ группировки, для условий на агрегаты (HAVING SUM(amount) > 1000).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-разница-между-и-equals-для-строк-579",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 95,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 99,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Разница между == и equals() для строк?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "b",
+          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
+        },
+        {
+          "id": "c",
+          "text": "Для контекста (например, SecurityContext, транзакционный контекст). Опасен с пулами потоков — значение протекает между задачами, нужен remove() в finally."
+        },
+        {
+          "id": "d",
+          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки (javac, jdb, jar)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-расскажи-про-модификаторы-доступа-587",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 128,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Расскажи про модификаторы доступа» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+        },
+        {
+          "id": "b",
+          "text": "Стирание дженериков во время компиляции. Последствия: нельзя new T(), нельзя instanceof T, нельзя создать массив T[]."
+        },
+        {
+          "id": "c",
+          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+        },
+        {
+          "id": "d",
+          "text": "private — только в классе. (default/package-private) — в пакете. protected — в пакете + наследникам. public — везде."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "private — только в классе. (default/package-private) — в пакете. protected — в пакете + наследникам. public — везде.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-расскажите-про-принципы-ооп-572",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 74,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Расскажите про принципы ООП» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException, ClassCastException, NumberFormatException."
+        },
+        {
+          "id": "b",
+          "text": "Инкапсуляция, наследование, полиморфизм, абстракция. На Junior достаточно объяснить «своими словами» с примерами из жизни."
+        },
+        {
+          "id": "c",
+          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+        },
+        {
+          "id": "d",
+          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Инкапсуляция, наследование, полиморфизм, абстракция. На Junior достаточно объяснить «своими словами» с примерами из жизни.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-сложность-операций-hashmap-591",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 152,
+          "title": "ITK Academy · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 159,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Сложность операций HashMap» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Heap dump (jmap, -XX:+HeapDumpOnOutOfMemoryError) → анализ в Eclipse MAT или VisualVM."
+        },
+        {
+          "id": "b",
+          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+        },
+        {
+          "id": "c",
+          "text": "Да, один null-ключ, кладётся в bucket 0. В ConcurrentHashMap нельзя ни ключ, ни значение."
+        },
+        {
+          "id": "d",
+          "text": "put, get, remove — O(1) в среднем. В худшем случае O(log n) благодаря дереву (Java 8+)."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "put, get, remove — O(1) в среднем. В худшем случае O(log n) благодаря дереву (Java 8+).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-состояния-потока-604",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "concurrency",
+        "hibernate"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 208,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Состояния потока» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Два рабочих варианта. Первый — создать свой ForkJoinPool под конкретную задачу и передать параллельный стрим внутрь его submit..."
+        },
+        {
+          "id": "b",
+          "text": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller."
+        },
+        {
+          "id": "c",
+          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+        },
+        {
+          "id": "d",
+          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-способы-создать-поток-в-java-041",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "concurrency",
+        "spring",
+        "devops",
+        "collections"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 211,
+          "title": "Сбер · 6. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 199,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Способы создать поток в Java» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
+        },
+        {
+          "id": "b",
+          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+        },
+        {
+          "id": "c",
+          "text": "wait() отпускает монитор объекта. sleep() — НЕ отпускает, поток продолжает держать все свои блокировки, просто не выполняется."
+        },
+        {
+          "id": "d",
+          "text": "Поле @Version (int/long/timestamp). При update Hibernate сравнивает версию — если не совпала, бросает OptimisticLockException."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-уровни-изоляции-транзакций-065",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring",
+        "sql"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 287,
+          "title": "Сбер · 7. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 322,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Как правильно объяснить тему «Уровни изоляции транзакций» на собеседовании?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Read Committed. В Postgres вообще нет Read Uncommitted — это его особенность. Repeatable Read в Postgres ДОПОЛНИТЕЛЬНО защищает от phantom read через MVCC."
+        },
+        {
+          "id": "b",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "c",
+          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+        },
+        {
+          "id": "d",
+          "text": "AssertJ — fluent API (assertThat(x).isEqualTo(y).hasSize(3)), более читаемый, богаче. Hamcrest — matchers (assertThat(x, equalTo(y))). В вакансии Лиги оба."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-component-отличается-от-service-repository-controller-607",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring",
+        "hibernate",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 229,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 245,
+          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Чем @Component отличается от @Service, @Repository, @Controller?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+        },
+        {
+          "id": "b",
+          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
+        },
+        {
+          "id": "c",
+          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+        },
+        {
+          "id": "d",
+          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-merge-отличается-от-rebase-624",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 294,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Git"
+        }
+      ],
+      "prompt": "Чем merge отличается от rebase?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Образ — неизменяемый шаблон из слоёв (каждая инструкция Dockerfile — слой). Контейнер — запущенный экземпляр с writable-слоем. docker images → образы, docker ps → контейнеры."
+        },
+        {
+          "id": "b",
+          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+        },
+        {
+          "id": "c",
+          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+        },
+        {
+          "id": "d",
+          "text": "merge создаёт коммит-слияние, история ветвится. rebase «переносит» коммиты твоей ветки поверх другой, делая историю линейной. Rebase в публичных ветках обычно делать не стоит."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "merge создаёт коммит-слияние, история ветвится. rebase «переносит» коммиты твоей ветки поверх другой, делая историю линейной. Rebase в публичных ветках обычно делать не стоит.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-oauth-отличается-от-openid-connect-640",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 359,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Чем OAuth отличается от OpenID Connect?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа."
+        },
+        {
+          "id": "b",
+          "text": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе."
+        },
+        {
+          "id": "c",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        },
+        {
+          "id": "d",
+          "text": "java.util.Random формально thread-safe — это написано в Javadoc. Но реализация потокобезопасности — через атомарный CAS на одном поле AtomicLong seed..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-образ-image-отличается-от-контейнера-container-619",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 277,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Docker"
+        }
+      ],
+      "prompt": "Чем образ (image) отличается от контейнера (container)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+        },
+        {
+          "id": "b",
+          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+        },
+        {
+          "id": "c",
+          "text": "Образ — шаблон, неизменяемый снимок (как класс). Контейнер — запущенный экземпляр образа (как объект). Из одного образа можно запустить много контейнеров."
+        },
+        {
+          "id": "d",
+          "text": "Образ: шаблон (класс). Контейнер: запущенный экземпляр (объект). CMD: аргументы по умолчанию (легко переопределить). ENTRYPOINT: основная команда (сложнее)..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Образ — шаблон, неизменяемый снимок (как класс). Контейнер — запущенный экземпляр образа (как объект). Из одного образа можно запустить много контейнеров.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-отличается-delete-от-truncate-635",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "sql"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 340,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Чем отличается DELETE от TRUNCATE?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "DELETE — построчное удаление с триггерами и логированием, может быть откачено в транзакции. TRUNCATE — быстрая очистка таблицы целиком, обнуляет автоинкремент."
+        },
+        {
+          "id": "b",
+          "text": "JpaRepository extends PagingAndSortingRepository extends CrudRepository. Добавляет flush(), saveAllAndFlush(), работу с List вместо Iterable, deleteAllInBatch."
+        },
+        {
+          "id": "c",
+          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+        },
+        {
+          "id": "d",
+          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "DELETE — построчное удаление с триггерами и логированием, может быть откачено в транзакции. TRUNCATE — быстрая очистка таблицы целиком, обнуляет автоинкремент.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-чем-процесс-отличается-от-потока-040",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "jvm",
+        "concurrency",
+        "collections"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 208,
+          "title": "Сбер · 6. Многопоточность и JMM"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 196,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 184,
+          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
+        }
+      ],
+      "prompt": "Чем процесс отличается от потока?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует через Arrays.copyOf."
+        },
+        {
+          "id": "b",
+          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+        },
+        {
+          "id": "c",
+          "text": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая."
+        },
+        {
+          "id": "d",
+          "text": "Из-за spurious wakeup — поток может проснуться сам по себе. После пробуждения условие может быть уже невалидным."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая.",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-будет-если-использовать-как-ключ-изменяемый-объект-и-потом-его-изменить-593",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 158,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Что будет, если использовать как ключ изменяемый объект и потом его изменить?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Промежуточные (filter, map) не выполняются до вызова терминальной (collect, forEach)."
+        },
+        {
+          "id": "b",
+          "text": "Heap dump (jmap, -XX:+HeapDumpOnOutOfMemoryError) → анализ в Eclipse MAT или VisualVM."
+        },
+        {
+          "id": "c",
+          "text": "Объект «потеряется». hashCode станет другим, и при поиске мы попадём не в тот bucket."
+        },
+        {
+          "id": "d",
+          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Объект «потеряется». hashCode станет другим, и при поиске мы попадём не в тот bucket.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-вернет-someobj-equals-null-580",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 98,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 102,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что вернёт someObj.equals(null)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "WHERE и HAVING взаимозаменяемы, если запрос использует GROUP BY."
+        },
+        {
+          "id": "b",
+          "text": "Композиция = владение (жизненные циклы связаны), агрегация = ссылка."
+        },
+        {
+          "id": "c",
+          "text": "false по контракту. equals не должен бросать NPE на null-аргумент."
+        },
+        {
+          "id": "d",
+          "text": "volatile делает любую составную операцию атомарной, включая i++."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "false по контракту. equals не должен бросать NPE на null-аргумент.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-выполнится-в-finally-если-в-try-return-601",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 188,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Исключения"
+        }
+      ],
+      "prompt": "Что выполнится в finally, если в try return?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Только внутри synchronized на том же объекте. wait() освобождает монитор и засыпает. notify будит один, notifyAll — все."
+        },
+        {
+          "id": "b",
+          "text": "Partition — шард топика. Offset — позиция в partition. Consumer group — каждый partition читает один consumer из группы."
+        },
+        {
+          "id": "c",
+          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+        },
+        {
+          "id": "d",
+          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн).",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делает-git-stash-625",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 297,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Git"
+        }
+      ],
+      "prompt": "Что делает git stash?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+        },
+        {
+          "id": "b",
+          "text": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop."
+        },
+        {
+          "id": "c",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+        },
+        {
+          "id": "d",
+          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делает-spring-security-617",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 267,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
+        }
+      ],
+      "prompt": "Что делает Spring Security?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "checkout → build → test → docker build → push registry → deploy staging → (approval) → prod. В Яндексе: Arcadia CI + Nanny для деплоя."
+        },
+        {
+          "id": "b",
+          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+        },
+        {
+          "id": "c",
+          "text": "JPQL работает с сущностями и полями Java. Native SQL — прямой SQL, нужен для специфичных фич БД. Native помечается nativeQuery = true."
+        },
+        {
+          "id": "d",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делает-springbootapplication-613",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 247,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 272,
+          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Что делает @SpringBootApplication?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Self-invocation идёт минуя прокси. Решение: вынести метод в отдельный бин или inject self."
+        },
+        {
+          "id": "b",
+          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+        },
+        {
+          "id": "c",
+          "text": "FROM (базовый образ), COPY/ADD, RUN, WORKDIR, EXPOSE, ENV, CMD/ENTRYPOINT, VOLUME, USER."
+        },
+        {
+          "id": "d",
+          "text": "Это композиция трёх аннотаций: @Configuration + @EnableAutoConfiguration + @ComponentScan."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Это композиция трёх аннотаций: @Configuration + @EnableAutoConfiguration + @ComponentScan.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-делает-thread-sleep-и-thread-yield-605",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 211,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        }
+      ],
+      "prompt": "Что делает Thread.sleep() и Thread.yield()?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "sleep — приостанавливает поток на указанное время (не освобождает мониторы). yield — намекает планировщику «дай поработать другим», но это лишь подсказка."
+        },
+        {
+          "id": "b",
+          "text": "PRIMARY KEY — один на таблицу, NOT NULL. UNIQUE — может быть несколько UNIQUE-индексов, разрешает NULL (NULL не равно NULL, поэтому много NULL допустимо)."
+        },
+        {
+          "id": "c",
+          "text": "Если ситуация уникальна для домена — своё (наследник RuntimeException обычно). Если стандартное (например, IllegalArgumentException) подходит — лучше его."
+        },
+        {
+          "id": "d",
+          "text": "Для контекста (например, SecurityContext, транзакционный контекст). Опасен с пулами потоков — значение протекает между задачами, нужен remove() в finally."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "sleep — приостанавливает поток на указанное время (не освобождает мониторы). yield — намекает планировщику «дай поработать другим», но это лишь подсказка.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-произойдет-если-положить-объект-в-hashset-а-потом-изменить-поле-участвующее--581",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 104,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Что произойдёт, если положить объект в HashSet, а потом изменить поле, участвующее в hashCode?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Стирание дженериков во время компиляции. Последствия: нельзя new T(), нельзя instanceof T, нельзя создать массив T[]."
+        },
+        {
+          "id": "b",
+          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+        },
+        {
+          "id": "c",
+          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует данные через Arrays.copyOf."
+        },
+        {
+          "id": "d",
+          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-access-token-и-refresh-token-639",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "system-design",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 356,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое access token и refresh token?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "OAuth — про авторизацию (что можно). OIDC — надстройка над OAuth для аутентификации (кто ты), добавляет id_token с информацией о пользователе."
+        },
+        {
+          "id": "b",
+          "text": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа."
+        },
+        {
+          "id": "c",
+          "text": "В реальности чаще at-least-once + идемпотентность на стороне consumer'а. Kafka с transactional producer + read_committed даёт effectively-once."
+        },
+        {
+          "id": "d",
+          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Access token — короткоживущий, доступ к ресурсам. Refresh token — долгоживущий, нужен для получения нового access token без повторного входа.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-acid-630",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "concurrency",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 319,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Что такое ACID?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
+        },
+        {
+          "id": "b",
+          "text": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу..."
+        },
+        {
+          "id": "c",
+          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+        },
+        {
+          "id": "d",
+          "text": "Только внутри synchronized-блока на том же объекте. wait() отпускает монитор, поток засыпает. notify() / notifyAll() — будит. После notify поток должен снова получить монитор, чтобы продолжить..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу...",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-autowired-и-qualifier-608",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 232,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое @Autowired и @Qualifier?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
+        },
+        {
+          "id": "b",
+          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
+        },
+        {
+          "id": "c",
+          "text": "@Autowired — внедрение зависимости. Если бинов несколько — Spring не знает какой выбрать нужен @Qualifier(\"имяБина\") или @Primary на одном из бинов."
+        },
+        {
+          "id": "d",
+          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "@Autowired — внедрение зависимости. Если бинов несколько — Spring не знает какой выбрать нужен @Qualifier(\"имяБина\") или @Primary на одном из бинов.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-ci-и-cd-627",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "kafka",
+        "devops",
+        "testing-aqa",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 308,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 422,
+          "title": "Лига Цифровой Экономики · 10. Docker, Jenkins, Linux · Jenkins и CI/CD"
+        }
+      ],
+      "prompt": "Что такое CI и CD?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
+        },
+        {
+          "id": "b",
+          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+        },
+        {
+          "id": "c",
+          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
+        },
+        {
+          "id": "d",
+          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-dirty-read-non-repeatable-read-phantom-read-631",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 325,
+          "title": "ITK Academy · 8. Базы данных и SQL"
+        }
+      ],
+      "prompt": "Что такое dirty read, non-repeatable read, phantom read?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dirty: чтение незакоммиченных изменений другой транзакции. Non-repeatable: повторное чтение той же строки даёт другой результат. Phantom: повторный SELECT с WHERE возвращает другое количество строк."
+        },
+        {
+          "id": "b",
+          "text": "Для возвращаемых значений методов. НЕ для полей (не Serializable), НЕ для параметров, НЕ для коллекций (пустая лучше). Антипаттерны: Optional.get() без isPresent(), Optional в полях, Optional<List>."
+        },
+        {
+          "id": "c",
+          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
+        },
+        {
+          "id": "d",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Dirty: чтение незакоммиченных изменений другой транзакции. Non-repeatable: повторное чтение той же строки даёт другой результат. Phantom: повторный SELECT с WHERE возвращает другое количество строк.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-docker-compose-622",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "sql",
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 286,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Docker"
+        }
+      ],
+      "prompt": "Что такое docker-compose?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+        },
+        {
+          "id": "b",
+          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+        },
+        {
+          "id": "c",
+          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+        },
+        {
+          "id": "d",
+          "text": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-dockerfile-620",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 280,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Docker"
+        }
+      ],
+      "prompt": "Что такое Dockerfile?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Текстовый файл с инструкциями для сборки образа: FROM (базовый образ), COPY, RUN, CMD/ENTRYPOINT и т.д."
+        },
+        {
+          "id": "b",
+          "text": "kill PID (SIGTERM, мягкое завершение), kill -9 PID (SIGKILL, жёсткое). Команда pkill/killall — по имени."
+        },
+        {
+          "id": "c",
+          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+        },
+        {
+          "id": "d",
+          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Текстовый файл с инструкциями для сборки образа: FROM (базовый образ), COPY, RUN, CMD/ENTRYPOINT и т.д.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-fail-fast-итератор-596",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "collections",
+        "spring",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 167,
+          "title": "ITK Academy · 4. Коллекции"
+        }
+      ],
+      "prompt": "Что такое fail-fast итератор?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+        },
+        {
+          "id": "b",
+          "text": "DELETE — построчное удаление с триггерами и WAL, можно откатить в транзакции. TRUNCATE — быстрая очистка целиком, сбрасывает счётчики автоинкремента."
+        },
+        {
+          "id": "c",
+          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
+        },
+        {
+          "id": "d",
+          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-ioc-и-di-058",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "sber",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 266,
+          "title": "Сбер · 7. Spring и Spring Boot"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 223,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 233,
+          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
+        }
+      ],
+      "prompt": "Что такое IoC и DI?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
+        },
+        {
+          "id": "b",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+        },
+        {
+          "id": "c",
+          "text": "IoC — принцип: контейнер сам управляет жизненным циклом объектов. DI — реализация: зависимости в объект внедряются извне (через конструктор / сеттер / поле)."
+        },
+        {
+          "id": "d",
+          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "IoC — принцип: контейнер сам управляет жизненным циклом объектов. DI — реализация: зависимости в объект внедряются извне (через конструктор / сеттер / поле).",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-jwt-641",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 362,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое JWT?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+        },
+        {
+          "id": "b",
+          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+        },
+        {
+          "id": "c",
+          "text": "Cross-Site Scripting: вставка JavaScript в данные. <script>alert(1)</script> в поле имени → если отобразится без экранирования — XSS. Stored XSS: скрипт сохраняется в БД. Reflected: в URL-параметре..."
+        },
+        {
+          "id": "d",
+          "text": "JSON Web Token — компактный формат для передачи информации в виде подписанного JSON. Состоит из трёх частей через точку: header.payload.signature. Можно проверять валидность без обращения к серверу."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "JSON Web Token — компактный формат для передачи информации в виде подписанного JSON. Состоит из трёх частей через точку: header.payload.signature. Можно проверять валидность без обращения к серверу.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-keycloak-642",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 365,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое Keycloak?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
+        },
+        {
+          "id": "b",
+          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+        },
+        {
+          "id": "c",
+          "text": "grep \"$(date +%Y-%m-%d)\" app.log | grep -c \"ERROR\". find: find . -name \"*.log\" -mtime -1 (файлы за сутки). Уникальные IP: grep -oE '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log | sort -u. tail -f app..."
+        },
+        {
+          "id": "d",
+          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-load-factor-021",
+      "type": "single",
+      "level": "middle",
+      "topics": [
+        "collections",
+        "devops",
+        "system-design"
+      ],
+      "companies": [
+        "sber",
+        "sberseasons",
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber.md",
+          "line": 145,
+          "title": "Сбер · 4. Collections Framework"
+        },
+        {
+          "path": "guides/sber-internship.md",
+          "line": 339,
+          "title": "SberSeasons · 4. Коллекции · HashMap (самый частый вопрос)"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 149,
+          "title": "ITK Academy · 4. Коллекции"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 156,
+          "title": "Лига Цифровой Экономики · 4. Коллекции"
+        }
+      ],
+      "prompt": "Что такое load factor?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
+        },
+        {
+          "id": "b",
+          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
+        },
+        {
+          "id": "c",
+          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+        },
+        {
+          "id": "d",
+          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются...",
+      "reviewLinks": [
+        {
+          "label": "Сбер",
+          "href": "../guides/sber/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-oauth-2-0-637",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 350,
+          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
+        }
+      ],
+      "prompt": "Что такое OAuth 2.0?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally."
+        },
+        {
+          "id": "b",
+          "text": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google»."
+        },
+        {
+          "id": "c",
+          "text": "Типобезопасность на этапе компиляции. Без generics: List list = new ArrayList(); list.add(123); String s = (String)list.get(0) → ClassCastException в рантайме..."
+        },
+        {
+          "id": "d",
+          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google».",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-pipeline-в-gitlab-github-actions-628",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "devops"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 311,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
+        }
+      ],
+      "prompt": "Что такое pipeline в GitLab/GitHub Actions?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
+        },
+        {
+          "id": "b",
+          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
+        },
+        {
+          "id": "c",
+          "text": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml."
+        },
+        {
+          "id": "d",
+          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-pull-request-merge-request-250",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "java-core",
+        "devops"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 865,
+          "title": "SberSeasons · 11. Git, Maven, Liquibase · Git"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 303,
+          "title": "ITK Academy · 7. Docker, Git и CI/CD · Git"
+        }
+      ],
+      "prompt": "Что такое Pull Request / Merge Request?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Предложение влить твою ветку в основную (master / main / develop). Коллеги делают код-ревью, оставляют комментарии, требуют изменений. После одобрения — merge. В банках обычно нужно 2 аппрува."
+        },
+        {
+          "id": "b",
+          "text": "Абстрактный класс может содержать состояние и реализованные методы, наследуется только один. Интерфейс — контракт, можно реализовать несколько. С Java 8 в интерфейсах появились default-методы."
+        },
+        {
+          "id": "c",
+          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
+        },
+        {
+          "id": "d",
+          "text": "JDK dynamic proxy — если бин реализует интерфейс (через Proxy.newProxyInstance). CGLIB — наследование от класса (final-классы нельзя проксировать). Spring Boot 3 по умолчанию использует CGLIB."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Предложение влить твою ветку в основную (master / main / develop). Коллеги делают код-ревью, оставляют комментарии, требуют изменений. После одобрения — merge. В банках обычно нужно 2 аппрува.",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-boot-и-чем-он-отличается-от-spring-610",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 238,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое Spring Boot и чем он отличается от Spring?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
+        },
+        {
+          "id": "b",
+          "text": "IoC — принцип: контейнер сам управляет жизненным циклом объектов. DI — реализация: зависимости в объект внедряются извне (через конструктор / сеттер / поле)."
+        },
+        {
+          "id": "c",
+          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+        },
+        {
+          "id": "d",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML».",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-cloud-и-для-чего-он-618",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring",
+        "kafka",
+        "devops",
+        "security"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 270,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
+        }
+      ],
+      "prompt": "Что такое Spring Cloud и для чего он?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SRP (одна причина для изменения), OCP (расширение без модификации), LSP (подтипы взаимозаменяемы), ISP (мелкие интерфейсы), DIP (зависимость от абстракций)."
+        },
+        {
+          "id": "b",
+          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+        },
+        {
+          "id": "c",
+          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+        },
+        {
+          "id": "d",
+          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем».",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-data-jpa-235",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "hibernate",
+        "sql"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 780,
+          "title": "SberSeasons · 9. Hibernate / JPA (минимум) · Spring Data"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 256,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое Spring Data JPA?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "singleton (default), prototype, request, session, application, websocket. Инжект prototype в singleton: через Provider<T>, ObjectFactory<T> или @Lookup. Иначе prototype создастся один раз."
+        },
+        {
+          "id": "b",
+          "text": "JDBC — низкий уровень, прямой SQL, ResultSet, ручной маппинг колонок в поля. Hibernate — поверх JDBC. Генерирует SQL автоматически, маппит результаты в объекты. Удобно для типового CRUD..."
+        },
+        {
+          "id": "c",
+          "text": "Удобная обёртка над JPA / Hibernate. Создаёшь интерфейс, наследуешь JpaRepository — Spring сам сгенерирует реализацию. Query methods: метод findByEmail — Spring сам соберёт SQL по имени..."
+        },
+        {
+          "id": "d",
+          "text": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Удобная обёртка над JPA / Hibernate. Создаёшь интерфейс, наследуешь JpaRepository — Spring сам сгенерирует реализацию. Query methods: метод findByEmail — Spring сам соберёт SQL по имени...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-spring-и-зачем-он-нужен-205",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "spring",
+        "sql",
+        "security"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 644,
+          "title": "SberSeasons · 8. Spring и Spring Boot · Зачем нужен Spring"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 220,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое Spring и зачем он нужен?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error..."
+        },
+        {
+          "id": "b",
+          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
+        },
+        {
+          "id": "c",
+          "text": "PUT — полная замена ресурса. Передаём весь объект целиком. Если не указать поле — оно станет null. PATCH — частичное обновление. Передаём только изменяемые поля, остальное остаётся."
+        },
+        {
+          "id": "d",
+          "text": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate..."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Фреймворк, который берёт на себя «инфраструктурный код»: создание объектов, связи между ними (DI), управление транзакциями, обработка HTTP, доступ к БД. Освобождает от boilerplate...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-string-pool-578",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core",
+        "jvm",
+        "algorithms"
+      ],
+      "companies": [
+        "itk-academy",
+        "liga"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 92,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        },
+        {
+          "path": "guides/liga.md",
+          "line": 96,
+          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое String Pool?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Неограниченное количество потоков — при всплеске нагрузки может положить JVM через OutOfMemoryError (unable to create new native thread)."
+        },
+        {
+          "id": "b",
+          "text": "Массив бакетов. По хэшу ключа определяется индекс. Две стратегии разрешения коллизий: (1) Chaining (цепочки) — в бакете связный список..."
+        },
+        {
+          "id": "c",
+          "text": "Deadlock — два потока ждут друг друга. Livelock — активны, но не прогрессируют (оба уступают). Starvation — поток не получает CPU/ресурс."
+        },
+        {
+          "id": "d",
+          "text": "Область в heap, где хранятся уникальные строковые литералы. String s = \"hi\" кладёт в пул, new String(\"hi\") — создаёт новый объект в heap."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Область в heap, где хранятся уникальные строковые литералы. String s = \"hi\" кладёт в пул, new String(\"hi\") — создаёт новый объект в heap.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-synchronized-603",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "collections",
+        "concurrency"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 202,
+          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
+        }
+      ],
+      "prompt": "Что такое synchronized?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода."
+        },
+        {
+          "id": "b",
+          "text": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный."
+        },
+        {
+          "id": "c",
+          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
+        },
+        {
+          "id": "d",
+          "text": "При 8 элементах в бакете и размере таблицы ≥ 64 список превращается в red-black tree. Поиск становится O(log n) вместо O(n) в худшем случае."
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-transactional-217",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "java-core",
+        "spring",
+        "sql",
+        "collections"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 692,
+          "title": "SberSeasons · 8. Spring и Spring Boot · @Transactional"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 262,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое @Transactional?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Автоматически вызывает close() в finally. Ресурс реализует AutoCloseable. Закрытие в обратном порядке объявления. Если и try, и close бросают исключение — close-исключение подавляется (getSuppressed())..."
+        },
+        {
+          "id": "b",
+          "text": "Аннотация, которая открывает транзакцию вокруг метода. На успешный возврат — COMMIT, на RuntimeException — ROLLBACK. Реализуется через AOP-прокси: вызов идёт через прокси, который и управляет транзакцией."
+        },
+        {
+          "id": "c",
+          "text": "Инкапсуляция — скрытие внутреннего состояния объекта, доступ только через методы. Наследование — один класс получает поля и методы другого через extends. Полиморфизм — один интерфейс, разные реализации..."
+        },
+        {
+          "id": "d",
+          "text": "Transient — new User(), Hibernate не знает. Persistent/Managed — связан с сессией, dirty checking автоматически синхронизирует изменения. Detached — сессия закрыта/detach. Removed — помечен на удаление..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Аннотация, которая открывает транзакцию вокруг метода. На успешный возврат — COMMIT, на RuntimeException — ROLLBACK. Реализуется через AOP-прокси: вызов идёт через прокси, который и управляет транзакцией.",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-try-with-resources-114",
+      "type": "single",
+      "level": "trainee",
+      "topics": [
+        "java-core",
+        "collections"
+      ],
+      "companies": [
+        "sberseasons",
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/sber-internship.md",
+          "line": 226,
+          "title": "SberSeasons · 3. Java Core и ООП · Исключения"
+        },
+        {
+          "path": "guides/itk-academy.md",
+          "line": 116,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Что такое try-with-resources?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+        },
+        {
+          "id": "b",
+          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
+        },
+        {
+          "id": "c",
+          "text": "Конструкция, которая гарантирует вызов close() у ресурсов, реализующих AutoCloseable. Заменяет try-finally. При исключении в try ресурсы всё равно закроются..."
+        },
+        {
+          "id": "d",
+          "text": "Два варианта в зависимости от ответа на «зачем»: (1) Если фильтр случайный или для отладки — удалить полностью. Если ничего не сломается — фильтр был лишним..."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Конструкция, которая гарантирует вызов close() у ресурсов, реализующих AutoCloseable. Заменяет try-finally. При исключении в try ресурсы всё равно закроются...",
+      "reviewLinks": [
+        {
+          "label": "SberSeasons",
+          "href": "../guides/sber-internship/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-абстрактный-класс-чем-отличается-от-интерфейса-586",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 125,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Что такое абстрактный класс? Чем отличается от интерфейса?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JDK dynamic proxy — если бин реализует интерфейс (через Proxy.newProxyInstance). CGLIB — наследование от класса (final-классы нельзя проксировать). Spring Boot 3 по умолчанию использует CGLIB."
+        },
+        {
+          "id": "b",
+          "text": "Предложение влить твою ветку в основную (master / main / develop). Коллеги делают код-ревью, оставляют комментарии, требуют изменений. После одобрения — merge. В банках обычно нужно 2 аппрува."
+        },
+        {
+          "id": "c",
+          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
+        },
+        {
+          "id": "d",
+          "text": "Абстрактный класс может содержать состояние и реализованные методы, наследуется только один. Интерфейс — контракт, можно реализовать несколько. С Java 8 в интерфейсах появились default-методы."
+        }
+      ],
+      "correct": [
+        "d"
+      ],
+      "explanation": "Абстрактный класс может содержать состояние и реализованные методы, наследуется только один. Интерфейс — контракт, можно реализовать несколько. С Java 8 в интерфейсах появились default-методы.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-автобоксинг-и-распаковка-576",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "java-core"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 86,
+          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
+        }
+      ],
+      "prompt": "Что такое автобоксинг и распаковка?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Конструкция, которая гарантирует вызов close() у ресурсов, реализующих AutoCloseable. Заменяет try-finally. При исключении в try ресурсы всё равно закроются..."
+        },
+        {
+          "id": "b",
+          "text": "Два варианта в зависимости от ответа на «зачем»: (1) Если фильтр случайный или для отладки — удалить полностью. Если ничего не сломается — фильтр был лишним..."
+        },
+        {
+          "id": "c",
+          "text": "Автоматическое преобразование примитива в обёртку (int → Integer) и обратно. Имеет цену: создание объекта, возможный NullPointerException при распаковке null."
+        },
+        {
+          "id": "d",
+          "text": "Обычно 2 аппрува от backend-разработчиков + финальный просмотр начальника отдела перед влитием. Это compliance-требование (важная сумма банковских регуляторов)."
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Автоматическое преобразование примитива в обёртку (int → Integer) и обратно. Имеет цену: создание объекта, возможный NullPointerException при распаковке null.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    },
+    {
+      "id": "auto-что-такое-стартер-в-spring-boot-611",
+      "type": "single",
+      "level": "junior",
+      "topics": [
+        "spring"
+      ],
+      "companies": [
+        "itk-academy"
+      ],
+      "sourceRefs": [
+        {
+          "path": "guides/itk-academy.md",
+          "line": 241,
+          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
+        }
+      ],
+      "prompt": "Что такое стартер в Spring Boot?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "IoC — принцип: контейнер сам управляет жизненным циклом объектов. DI — реализация: зависимости в объект внедряются извне (через конструктор / сеттер / поле)."
+        },
+        {
+          "id": "b",
+          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+        },
+        {
+          "id": "c",
+          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+        },
+        {
+          "id": "d",
+          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает.",
+      "reviewLinks": [
+        {
+          "label": "ITK Academy",
+          "href": "../guides/itk-academy/"
+        }
+      ]
+    }
+  ]
+}

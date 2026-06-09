@@ -458,5 +458,6 @@ public class BlackFridayPricingService {
 - Повторить: `parallelStream`, общий `ForkJoinPool`, `ThreadLocalRandom`, interruption, BigDecimal и code review-подход.
 - Спросить в канале: свежие code review-задачи, разборы production-багов и примеры Senior-вопросов.
 - Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)
