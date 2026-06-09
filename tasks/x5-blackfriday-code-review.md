@@ -4,7 +4,7 @@ Code-review под Senior на собесе в X5 Tech / Farzoom: разбор 4
 
 **Стек:** Java 21 · Spring Boot 3 · PostgreSQL · concurrency · BigDecimal · code review
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/your_channel)
+[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/java_jub)
 
 ---
 
@@ -447,12 +447,12 @@ public class BlackFridayPricingService {
 
 > **JavaJub Pro.** Что внутри подписки Все гайды по вакансиям (X5, Совкомбанк, Т1, новые добавляются). Полные разборы задач дня — каждая с production-кейсом и финальным кодом. Quiz-сборники с 50+ вопросами под каждую вакансию, с разборами. Доступ к канальному чату — обсуждение собесов, фидбэки, договорённости. Стоимость: меньше одного обеда в месяц.
 
-Перейти в Java Jub Pro — @Java_Jub_Pro
+Перейти в Java Jub Pro — https://t.me/java_jub_subscriptions_bot?start=prt_G50jpvdFbhKLxOGs
 
 Если этот разбор был полезен — поделись им с коллегой, который тоже готовится. Хорошие материалы расходятся через людей, не через рекламу.
 
 ---
 
-Это бесплатный разбор из серии **JavaJub**. Свежие задачи с собесов выходят в канале первыми: [@your_channel](https://t.me/your_channel).
+Это бесплатный разбор из серии **JavaJub**. Свежие задачи с собесов выходят в канале первыми: [@java_jub](https://t.me/java_jub).
 
 [← Ко всем гайдам](../README.md)

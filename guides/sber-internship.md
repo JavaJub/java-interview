@@ -4,7 +4,7 @@
 
 **Темы:** Java Core · ООП · Коллекции · SQL · Алгоритмы · Spring · Git
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/your_channel)
+[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/java_jub)
 
 ---
 
@@ -2158,6 +2158,6 @@ R (Результат): Проект сдали на отлично, попал 
 
 ---
 
-Гайд из канала **JavaJub** — свежие разборы собесов выходят там первыми: [@your_channel](https://t.me/your_channel).
+Гайд из канала **JavaJub** — свежие разборы собесов выходят там первыми: [@java_jub](https://t.me/java_jub).
 
 [← Ко всем гайдам](../README.md)
