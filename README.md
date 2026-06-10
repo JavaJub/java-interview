@@ -2,8 +2,8 @@
 
 Реальные вопросы для Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность, live-coding, code review и System Design. Проект помогает быстро понять, что именно повторять перед интервью в Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС и другие команды.
 
-[![Telegram](https://img.shields.io/badge/Telegram-JavaJub-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+6GwSVWu9VIxlN2Yy)
-[![Site](https://img.shields.io/badge/Site-www.javajub.com-222?logo=github)](https://www.javajub.com/)
+[![Telegram](https://img.shields.io/badge/Telegram-JavaJub-FF3D00?logo=telegram&logoColor=white)](https://t.me/+6GwSVWu9VIxlN2Yy)
+[![Site](https://img.shields.io/badge/Site-www.javajub.com-090E09?logo=github)](https://www.javajub.com/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
 > Новые разборы собеседований и свежие вопросы сначала выходят в Telegram-канале [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy). GitHub — бесплатная база, которую удобно читать, искать и дополнять.

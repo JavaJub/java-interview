@@ -1,0 +1,132 @@
+:root {
+  --javajub-ink: #090e09;
+  --javajub-ink-soft: #101710;
+  --javajub-surface: #fdf7f3;
+  --javajub-surface-muted: #fff2eb;
+  --javajub-accent: #ff3d00;
+  --javajub-accent-dark: #c92f00;
+  --javajub-accent-soft: rgba(255, 61, 0, .12);
+  --javajub-cream: #ffd8c7;
+  --javajub-accent-contrast: #fff7f2;
+
+  --md-primary-fg-color: var(--javajub-ink);
+  --md-primary-fg-color--light: #182118;
+  --md-primary-fg-color--dark: #050805;
+  --md-accent-fg-color: var(--javajub-accent-dark);
+  --md-accent-fg-color--transparent: var(--javajub-accent-soft);
+  --md-typeset-a-color: var(--javajub-accent-dark);
+}
+
+[data-md-color-primary="black"] {
+  --md-primary-fg-color: var(--javajub-ink);
+  --md-primary-fg-color--light: #182118;
+  --md-primary-fg-color--dark: #050805;
+}
+
+[data-md-color-accent="deep-orange"] {
+  --md-accent-fg-color: var(--javajub-accent-dark);
+  --md-accent-fg-color--transparent: var(--javajub-accent-soft);
+}
+
+body {
+  color: var(--javajub-ink);
+}
+
+.md-header,
+.md-tabs,
+.md-footer {
+  background-color: var(--javajub-ink) !important;
+  color: var(--javajub-cream);
+}
+
+.md-header__title,
+.md-header__button,
+.md-tabs__link,
+.md-footer,
+.md-footer-meta {
+  color: var(--javajub-cream);
+}
+
+.md-header__button:hover,
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  color: var(--javajub-accent-contrast);
+}
+
+.md-search__form {
+  background-color: rgba(255, 216, 199, .12);
+  color: var(--javajub-cream);
+}
+
+.md-search__form:hover {
+  background-color: rgba(255, 216, 199, .18);
+}
+
+.md-search__input,
+.md-search__input::placeholder {
+  color: var(--javajub-cream);
+}
+
+.md-search__input + .md-search__icon,
+.md-search__icon {
+  color: var(--javajub-cream);
+}
+
+.md-typeset a {
+  color: var(--javajub-accent-dark);
+}
+
+.md-typeset a:hover {
+  color: var(--javajub-accent);
+}
+
+.md-nav__link--active,
+.md-nav__link[for]:focus,
+.md-nav__link:hover {
+  color: var(--javajub-accent-dark);
+}
+
+.md-typeset .md-button,
+.md-typeset .md-button--primary {
+  border-color: var(--javajub-accent);
+  background-color: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+}
+
+.md-typeset .md-button:is(:focus, :hover),
+.md-typeset .md-button--primary:is(:focus, :hover) {
+  border-color: var(--javajub-accent-dark);
+  background-color: var(--javajub-accent-dark);
+  color: var(--javajub-accent-contrast);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--javajub-ink);
+  color: var(--javajub-cream);
+}
+
+.md-typeset mark,
+.md-search-result mark {
+  background-color: var(--javajub-accent-soft);
+  color: var(--javajub-ink);
+}
+
+.md-top {
+  background-color: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-color: var(--javajub-accent);
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: var(--javajub-accent-soft);
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  background-color: var(--javajub-accent-dark);
+}

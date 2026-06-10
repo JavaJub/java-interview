@@ -24,8 +24,8 @@ theme:
     - content.code.copy
   palette:
     - scheme: default
-      primary: blue
-      accent: light blue
+      primary: black
+      accent: deep orange
 
 plugins:
   - search:
@@ -42,6 +42,7 @@ markdown_extensions:
   - pymdownx.superfences
 
 extra_css:
+  - assets/css/brand.css
   - assets/css/quiz.css
 
 extra_javascript:
