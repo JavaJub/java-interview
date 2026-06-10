@@ -1,6 +1,11 @@
+---
+title: "Сбер Java Middle interview guide"
+description: "Гайд JavaJub по собеседованию в Сбер на Java Middle: Java Core, JVM, Collections, Multithreading, Spring, SQL, code review и System Design."
+---
+
 # Собес в Сбер · Java Middle
 
-Вопросы, задачи и реальные кейсы с технических интервью.
+Гайд для подготовки к Java Middle interview в Сбер: Java Core, JVM, Collections, Multithreading, Spring, SQL, code review и System Design. Внутри — реальные вопросы, задачи и кейсы с технических интервью.
 
 **Темы:** JavaCore · JVM · Collections · Multithreading · Spring · SQL · System Design
 

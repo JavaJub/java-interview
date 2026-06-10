@@ -38,6 +38,9 @@ jobs:
       - name: Validate quiz bank
         run: node tools/validate-quizzes.mjs
 
+      - name: Build SEO quiz pages
+        run: node tools/build-seo-pages.mjs
+
       - name: Build site
         run: mkdocs build --strict
 

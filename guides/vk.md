@@ -4,7 +4,7 @@
 
 **Темы:** Java 21 · Spring Boot 3 · Kafka · PostgreSQL · Kubernetes · gRPC · HAProxy · Docker
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../../../../../../private/tmp/java-interview-review/README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
 
 ---
 
@@ -574,4 +574,4 @@ INSERT + бизнес-логика в одной транзакции. PK confli
 - Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
 - Проверить знания: [тесты JavaJub](https://javajub.github.io/java-interview/quizzes/).
 
-[← Ко всем гайдам](../README.md)
+[← Ко всем гайдам](../../../../../../private/tmp/java-interview-review/README.md)

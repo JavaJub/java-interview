@@ -9,6 +9,32 @@ const forbidden = [
   /оба\s+варианта\s+верны/i,
   /зависит\s+от\s+настроения/i,
 ];
+const incompatibleDistractorTerms = {
+  "java-core": {
+    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
+    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
+    sql: /\b(sql|postgres|postgresql|explain|mvcc)\b/i,
+  },
+  collections: {
+    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
+    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
+  },
+  jvm: {
+    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
+    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
+    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
+  },
+  concurrency: {
+    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
+    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
+    sql: /\b(sql|postgres|postgresql|explain|mvcc|acid)\b/i,
+  },
+  algorithms: {
+    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
+    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
+    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
+  },
+};
 
 let failures = 0;
 
@@ -23,6 +49,10 @@ function readJson(file) {
 
 function assertArray(value, message) {
   if (!Array.isArray(value) || value.length === 0) fail(message);
+}
+
+function primaryTopic(question) {
+  return question.topics?.[0] || "java-core";
 }
 
 function validateQuestion(question, file) {
@@ -49,6 +79,13 @@ function validateQuestion(question, file) {
   for (const choice of question.choices || []) {
     if (!choice.text || choice.text.length < 12) fail(`${prefix} choice ${choice.id} is too short`);
     if (forbidden.some((pattern) => pattern.test(choice.text))) fail(`${prefix} choice ${choice.id} contains weak wording`);
+    if (question.correct.includes(choice.id)) continue;
+    const incompatibleTerms = incompatibleDistractorTerms[primaryTopic(question)] || {};
+    for (const [topic, pattern] of Object.entries(incompatibleTerms)) {
+      if (pattern.test(choice.text)) {
+        fail(`${prefix} choice ${choice.id} contains incompatible ${topic} wording for ${primaryTopic(question)}`);
+      }
+    }
   }
 
   if (!question.explanation || question.explanation.length < 20) fail(`${prefix} explanation is too short`);

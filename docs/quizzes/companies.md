@@ -1,16 +1,21 @@
+---
+title: "Тесты по компаниям"
+description: "Readiness-тесты по форматам собеседований: Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС Банк, Лига и X5 Tech."
+---
+
 # Тесты по компаниям
 
-Readiness-тесты помогают быстро понять, насколько вы готовы к конкретному формату собеседования.
+Readiness-тесты по форматам собеседований: Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС Банк, Лига и X5 Tech.
 
-| Компания | Открыть |
-|---|---|
-| Сбер Java Middle | [Начать](index.md?quiz=sber-middle) |
-| SberSeasons Java Trainee | [Начать](index.md?quiz=sberseasons-trainee) |
-| Альфа-Банк Java Middle | [Начать](index.md?quiz=alfa-bank-middle) |
-| Т1 Иннотех Java Junior/Middle | [Начать](index.md?quiz=t1-innotech-middle) |
-| VK Java Middle | [Начать](index.md?quiz=vk-middle) |
-| Яндекс Путешествия Java Middle | [Начать](index.md?quiz=yandex-travel-middle) |
-| МТС Банк AQA Java Junior | [Начать](index.md?quiz=mts-bank-aqa-junior) |
-| ITK Academy Java Junior | [Начать](index.md?quiz=itk-academy-junior) |
-| Лига Java Middle | [Начать](index.md?quiz=liga-middle) |
-| X5 Tech Senior code review | [Начать](index.md?quiz=x5-code-review-senior) |
+| Тест | Вопросов | Открыть |
+|---|---:|---|
+| Сбер Java Middle readiness | 91 | [Описание и старт](companies/sber-middle.md) |
+| SberSeasons Java Trainee | 224 | [Описание и старт](companies/sberseasons-trainee.md) |
+| Альфа-Банк Java Middle | 79 | [Описание и старт](companies/alfa-bank-middle.md) |
+| Т1 Иннотех Java Junior/Middle | 56 | [Описание и старт](companies/t1-innotech-middle.md) |
+| VK Java Middle | 67 | [Описание и старт](companies/vk-middle.md) |
+| Яндекс Путешествия Java Middle | 58 | [Описание и старт](companies/yandex-travel-middle.md) |
+| МТС Банк AQA Java Junior | 86 | [Описание и старт](companies/mts-bank-aqa-junior.md) |
+| ITK Academy Java Junior | 86 | [Описание и старт](companies/itk-academy-junior.md) |
+| Лига Java Middle | 111 | [Описание и старт](companies/liga-middle.md) |
+| X5 Tech Senior code review | 16 | [Описание и старт](companies/x5-code-review-senior.md) |

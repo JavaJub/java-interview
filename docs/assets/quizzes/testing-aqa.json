@@ -4,7 +4,7 @@
   "kind": "topic",
   "description": "Самопроверка по теме: Testing / AQA.",
   "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
-  "questionCount": 112,
+  "questionCount": 77,
   "questions": [
     {
       "id": "auto-401-vs-403-в-чем-разница-521",
@@ -12,9 +12,7 @@
       "level": "junior",
       "topics": [
         "spring",
-        "hibernate",
-        "testing-aqa",
-        "security"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -30,15 +28,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
+          "text": "Для 401 vs 403 — в чём разница Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -61,7 +59,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
         "kafka",
         "testing-aqa",
         "algorithms"
@@ -80,15 +77,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Все объекты попадут в один bucket HashMap. В Java 8+ при 8 коллизиях список превращается в red-black tree, но O(log n) вместо O(1) — всё равно деградация производительности."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Collection хранит элементы — единичные значения. Map хранит ПАРЫ ключ-значение, у неё другой API: put(key, value), get(key), entrySet(). Хотя по сути обе — структуры данных."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -128,7 +125,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+          "text": "Для Allure: зачем и основные аннотации container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -136,11 +133,11 @@
         },
         {
           "id": "c",
-          "text": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "(1) Защита от регресса — поменял код, прогнал тесты, увидел что сломалось. (2) Документация — тест показывает, как код должен использоваться. (3) Дизайн — код, который сложно тестировать, обычно плохо спроектирован..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -181,11 +178,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "mock() — пустой объект, всё default. spy() — обёртка над реальным: методы вызываются, если не замокать. Для spy: doReturn().when(spy).method() (иначе вызовется реальный метод)."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -193,7 +190,7 @@
         },
         {
           "id": "d",
-          "text": "PUT: замена ресурса целиком. Отправляешь ВСЕ поля, даже неизменённые. Идемпотентен. PATCH: частичное обновление. Отправляешь ТОЛЬКО изменённые поля. Обычно НЕ идемпотентен..."
+          "text": "Для ArgumentCaptor лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -212,8 +209,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "devops",
         "testing-aqa"
       ],
       "companies": [
@@ -230,15 +225,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Обращение к lazy-полю после закрытия сессии. Решения (от лучшего к худшему): DTO-проекция (SELECT NEW), JOIN FETCH (@Query), @EntityGraph(attributePaths), @BatchSize(size=100)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Используем два индекса, движущиеся по массиву по правилам. Часто для отсортированного массива: пара с заданной суммой, разворот строки, проверка палиндрома. Сложность обычно O(n)."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Stateless — сервер не хранит сессию клиента, каждый запрос самодостаточен. Cacheable — ответы могут кэшироваться. Uniform interface — единый интерфейс через HTTP-методы и URL..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -261,7 +256,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -278,15 +272,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "SRP (одна причина для изменения), OCP (расширение без модификации), LSP (подтипы взаимозаменяемы), ISP (мелкие интерфейсы), DIP (зависимость от абстракций)."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -309,7 +303,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "testing-aqa"
       ],
       "companies": [
@@ -326,7 +319,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "E2E-тесты должны покрывать большинство сценариев, потому что они ближе всего к пользователю."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения."
         },
         {
           "id": "b",
@@ -334,11 +327,11 @@
         },
         {
           "id": "c",
-          "text": "Java heap space, Metaspace, Unable to create new native thread, GC overhead limit exceeded."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта."
         },
         {
           "id": "d",
-          "text": "Оптимизация «горячего» кода в нативный. C1 — быстрый прогрев, C2 — агрессивная оптимизация."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI."
         }
       ],
       "correct": [
@@ -357,8 +350,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "testing-aqa",
-        "system-design"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -378,327 +370,21 @@
         },
         {
           "id": "b",
-          "text": "Active: балансер периодически проверяет backend (HTTP GET /health, TCP connect). Passive: считает ошибки от реальных запросов. Комбинация — best practice."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Virtual Router Redundancy Protocol. active-standby пара балансеров. При падении primary — мгновенное переключение, IP не меняется. Используется в VK Cloud."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "a"
       ],
       "explanation": "Black Box: не знаем внутреннюю реализацию, тестируем по спецификации. White Box: знаем код, тестируем ветвления, покрытие. Grey Box: знаем архитектуру...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-case-when-для-условных-значений-552",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "concurrency",
-        "sql",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 345,
-          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
-        }
-      ],
-      "prompt": "CASE WHEN — для условных значений?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
-        },
-        {
-          "id": "b",
-          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
-        },
-        {
-          "id": "c",
-          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
-        },
-        {
-          "id": "d",
-          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики.",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-ci-cd-pipeline-488",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 484,
-          "title": "Яндекс Путешествия · 11. Docker, Kubernetes, CI/CD"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «CI/CD pipeline» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "checkout → build → test → docker build → push registry → deploy staging → (approval) → prod. В Яндексе: Arcadia CI + Nanny для деплоя."
-        },
-        {
-          "id": "b",
-          "text": "JPQL работает с сущностями и полями Java. Native SQL — прямой SQL, нужен для специфичных фич БД. Native помечается nativeQuery = true."
-        },
-        {
-          "id": "c",
-          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
-        },
-        {
-          "id": "d",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "checkout → build → test → docker build → push registry → deploy staging → (approval) → prod. В Яндексе: Arcadia CI + Nanny для деплоя.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
-      "id": "auto-ci-vs-cd-373",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 344,
-          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: CI vs CD?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы."
-        },
-        {
-          "id": "b",
-          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
-        },
-        {
-          "id": "c",
-          "text": "newFixedThreadPool, newCachedThreadPool, newSingleThreadExecutor, newScheduledThreadPool, newWorkStealingPool. Для прода обычно создают ThreadPoolExecutor вручную, чтобы контролировать очередь."
-        },
-        {
-          "id": "d",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-circuit-breaker-366",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "spring",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "java-core"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 321,
-          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 323,
-          "title": "VK · 8. Kafka и микросервисы"
-        }
-      ],
-      "prompt": "Что важно сказать на собеседовании про Circuit Breaker?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Read Uncommitted (можно читать незакоммиченные — dirty read). Read Committed (только закоммиченные, но возможен non-repeatable read). Repeatable Read (повторное чтение даст тот же результат, но возможен phantom read)..."
-        },
-        {
-          "id": "b",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
-        },
-        {
-          "id": "c",
-          "text": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict..."
-        },
-        {
-          "id": "d",
-          "text": "start() — создаёт новый поток ОС и в нём вызывает run(). run() напрямую — это обычный метод, выполнится В ТЕКУЩЕМ потоке. Это любимая ловушка на собесах. Запомни: «start запускает новый, run просто исполняет в этом же»."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-circuit-breaker-три-состояния-432",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 278,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Circuit Breaker: три состояния?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
-        },
-        {
-          "id": "b",
-          "text": "Иммутабельность зависимостей — основа thread-safe сервиса. После создания объекта его зависимости НЕ должны меняться. final гарантирует это на уровне компилятора. Конструктор делает зависимости явными — открыл класс..."
-        },
-        {
-          "id": "c",
-          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
-        },
-        {
-          "id": "d",
-          "text": "Git Flow — модель с долгоживущими ветками master, develop, feature/*, release/*, hotfix/*. Подходит для релизного цикла с явными версиями. Trunk-based — все работают близко к master (через короткие feature-branch'ы)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-content-type-json-vs-form-urlencoded-vs-multipart-530",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "hibernate",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 216,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: Content-Type: json vs form-urlencoded vs multipart?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Привязка клиента к конкретному backend. По cookie, IP, header. Проблема: неравномерная нагрузка при скейлинге. Решение: shared session storage (Redis) или stateless (JWT)."
-        },
-        {
-          "id": "b",
-          "text": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)..."
-        },
-        {
-          "id": "c",
-          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
-        },
-        {
-          "id": "d",
-          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "application/json: JSON в body (REST API). application/x-www-form-urlencoded: пары key=value (формы логина). multipart/form-data: для загрузки файлов (binary + metadata)...",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -728,15 +414,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)..."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "1 findAll() + N доп. запросов на lazy-коллекции. 1000 заказов → 1001 SQL. Обнаружение: hibernate.generate_statistics=true, datasource-proxy. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), @Fetch(FetchMode..."
+          "text": "Для CORS — что это и когда возникает Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method..."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -759,8 +445,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "testing-aqa",
-        "security"
+        "security",
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -776,11 +462,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
+          "text": "Для CSRF — что это и как проверить JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "b",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+          "text": "OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "c",
@@ -788,7 +474,7 @@
         },
         {
           "id": "d",
-          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+          "text": "Refresh token безопасно хранить в localStorage, потому что он используется редко. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         }
       ],
       "correct": [
@@ -807,7 +493,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
         "testing-aqa"
       ],
       "companies": [
@@ -824,15 +509,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Red-Green-Refactor. Сначала пишешь падающий тест (Red), потом минимальный код чтобы он прошёл (Green), потом рефакторишь без изменения поведения."
+          "text": "Для Decision Table — когда применять лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю."
         },
         {
           "id": "b",
-          "text": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -855,10 +540,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
-        "concurrency",
-        "spring",
-        "sql",
         "devops",
         "testing-aqa"
       ],
@@ -876,7 +557,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
+          "text": "Для ELK: как искать логи теста container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -884,11 +565,11 @@
         },
         {
           "id": "c",
-          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -907,8 +588,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
-        "kafka",
         "testing-aqa"
       ],
       "companies": [
@@ -925,7 +604,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Mock — полная имитация, по умолчанию все методы возвращают null / 0 / false. Поведение задаёшь через when().thenReturn(). Spy — обёртка над реальным объектом. Методы, которые ты не подменил, работают как обычно. Полезно..."
+          "text": "Для End-to-End тест — что это лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -933,69 +612,17 @@
         },
         {
           "id": "c",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "b"
       ],
       "explanation": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-eventual-consistency-почему-assertequals-сразу-может-упасть-555",
-      "type": "scenario",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "concurrency",
-        "sql",
-        "kafka",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 383,
-          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
-        }
-      ],
-      "prompt": "Eventual consistency — почему assertEquals сразу может упасть?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "== сравнивает ссылки. equals — содержимое. Из-за String Pool два литерала \"abc\" == \"abc\" дадут true, но new String(\"abc\") == \"abc\" — false (new создаёт новый объект вне пула). На собесе всегда отвечать «equals для содержимого»."
-        },
-        {
-          "id": "b",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
-        },
-        {
-          "id": "c",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
-        },
-        {
-          "id": "d",
-          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener.",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -1024,15 +651,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
+          "text": "Для Hard assertions vs Soft assertions лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "assertEquals(expected, actual) — равенство. assertTrue / assertFalse — для boolean. assertNotNull / assertNull. assertThrows(Exception.class, () -> ...) — проверка, что код бросает исключение..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -1056,7 +683,6 @@
       "level": "junior",
       "topics": [
         "spring",
-        "sql",
         "testing-aqa"
       ],
       "companies": [
@@ -1073,15 +699,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Захват аргумента: verify(repo).save(captor.capture()); assertThat(captor.getValue().getName()).isEqualTo(\"Alice\"). Когда нужно проверить не факт вызова, а конкретные значения."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "Подзапрос: в WHERE для фильтрации (WHERE id IN (SELECT ...)). JOIN: для объединения данных из нескольких таблиц. CTE (WITH ... AS): для читаемости сложных запросов, рекурсия..."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -1104,9 +730,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "java-core",
-        "jvm",
-        "spring",
         "testing-aqa",
         "security"
       ],
@@ -1128,15 +751,15 @@
         },
         {
           "id": "b",
-          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+          "text": "Для IDOR — что это лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1151,121 +774,12 @@
       ]
     },
     {
-      "id": "auto-ioc-и-di-339",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "testing-aqa",
-        "java-core"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 218,
-          "title": "Альфа-Банк · 6. Spring и Spring Boot"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 233,
-          "title": "VK · 6. Spring и Spring Boot"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 213,
-          "title": "Яндекс Путешествия · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «IoC и DI» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
-        },
-        {
-          "id": "b",
-          "text": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0..."
-        },
-        {
-          "id": "c",
-          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
-        },
-        {
-          "id": "d",
-          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-jenkins-pipeline-что-это-700",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 425,
-          "title": "Лига Цифровой Экономики · 10. Docker, Jenkins, Linux · Jenkins и CI/CD"
-        }
-      ],
-      "prompt": "Jenkins Pipeline — что это?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Декларативный или scripted pipeline, описан в Jenkinsfile в корне репозитория. Этапы (stages): checkout, build, test, deploy."
-        },
-        {
-          "id": "b",
-          "text": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста."
-        },
-        {
-          "id": "c",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
-        },
-        {
-          "id": "d",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Декларативный или scripted pipeline, описан в Jenkinsfile в корне репозитория. Этапы (stages): checkout, build, test, deploy.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
       "id": "auto-json-schema-validation-зачем-533",
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "testing-aqa"
+        "testing-aqa",
+        "spring"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1281,7 +795,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+          "text": "Для JSON Schema validation — зачем лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -1289,11 +803,11 @@
         },
         {
           "id": "c",
-          "text": "JDBC — низкий уровень, прямой SQL и работа с ResultSet. JPA / Hibernate — ORM, маппинг объектов на таблицы. jOOQ — typesafe SQL builder, generated code. Spring Data — удобная обёртка над JPA, query methods..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "REQUIRED (default) — использует существующую транзакцию или создаёт новую. REQUIRES_NEW — приостанавливает текущую и создаёт новую. Полезно для аудита: должно записаться даже если основная транзакция упала..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1312,8 +826,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "testing-aqa"
+        "testing-aqa",
+        "spring"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1329,11 +843,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
+          "text": "Для JSONPath — как извлекать данные лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -1341,7 +855,7 @@
         },
         {
           "id": "d",
-          "text": "Технически почти ничем — все они помечают бин для регистрации в контексте. Но семантически: @Service — бизнес-логика, @Repository — работа с БД (плюс перевод исключений в DataAccessException), @Controller — веб-слой."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1360,8 +874,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "java-core",
-        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -1384,11 +896,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)..."
+          "text": "Для JUnit 5: основные аннотации лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Готовы 2–3 факта: масштаб (один из крупнейших IT-работодателей России), Platform V (своя облачная платформа), SberAI (GigaChat, Kandinsky), 78% оффер после стажировки. Можешь упомянуть конкретный продукт Сбера..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -1396,64 +908,13 @@
         },
         {
           "id": "d",
-          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "c"
       ],
       "explanation": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-jwt-структура-и-как-работает-522",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa",
-        "algorithms",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 190,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "JWT — структура и как работает?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
-        },
-        {
-          "id": "b",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
-        },
-        {
-          "id": "c",
-          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
-        },
-        {
-          "id": "d",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)...",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -1482,11 +943,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Захват аргумента: verify(repo).save(captor.capture()); assertThat(captor.getValue().getName()).isEqualTo(\"Alice\"). Когда нужно проверить не факт вызова, а конкретные значения."
+          "text": "Для mock vs spy лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "GET (получить, идемпотентен), POST (создать, НЕ идемпотентен), PUT (заменить полностью, идемпотентен), PATCH (частично обновить, обычно нет), DELETE (удалить, идемпотентен)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -1494,7 +955,7 @@
         },
         {
           "id": "d",
-          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1533,15 +994,15 @@
         },
         {
           "id": "b",
-          "text": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Red: падающий тест. Green: минимальный код. Refactor: улучшаем без изменения поведения. Private-методы не тестируем — через публичные. Если сложно — выдели класс."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1576,7 +1037,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+          "text": "Для Mockito: Mock vs Spy — в чём разница лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -1584,11 +1045,11 @@
         },
         {
           "id": "c",
-          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1599,57 +1060,6 @@
         {
           "label": "МТС Банк AQA",
           "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-n-1-в-jpa-как-диагностировать-078",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "spring",
-        "hibernate",
-        "sql",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 334,
-          "title": "Сбер · 8. Базы данных и SQL"
-        }
-      ],
-      "prompt": "N+1 в JPA — как диагностировать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Включить логи SQL (spring.jpa.show-sql=true), смотреть количество запросов на эндпоинт, использовать p6spy или Hibernate Statistics."
-        },
-        {
-          "id": "b",
-          "text": "Вызов this.method() идёт минуя прокси. Решение: вынести метод в другой бин или инжектить self через ApplicationContext / @Lazy self."
-        },
-        {
-          "id": "c",
-          "text": "INNER — пересечение. LEFT — все из левой + совпадения из правой. RIGHT — наоборот. FULL OUTER — всё. CROSS — декартово произведение."
-        },
-        {
-          "id": "d",
-          "text": "Хотя Hash = O(1), Tree (B-tree) поддерживает диапазонные запросы, сортировку, BETWEEN, LIKE 'abc%'. Hash — только точное совпадение."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Включить логи SQL (spring.jpa.show-sql=true), смотреть количество запросов на эндпоинт, использовать p6spy или Hibernate Statistics.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
         }
       ]
     },
@@ -1675,11 +1085,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Comparable<T> — внутри класса (метод compareTo). Описывает «естественный» порядок. Один на класс. Comparator<T> — отдельно. Можно сделать несколько разных Comparator'ов для одного класса..."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Экосистема: СберМаркет, Самокат, Okko, СберЗдоровье, СберДевайсы, Сбер Бизнес. Platform V — собственная low-code платформа. SberAI с GigaChat и Kandinsky. Программа стажировок Sberseasons..."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
@@ -1687,65 +1097,13 @@
         },
         {
           "id": "d",
-          "text": "Удобная обёртка над JPA / Hibernate. Создаёшь интерфейс, наследуешь JpaRepository — Spring сам сгенерирует реализацию. Query methods: метод findByEmail — Spring сам соберёт SQL по имени..."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
         "c"
       ],
       "explanation": "Спецификация REST API в формате YAML/JSON. Описывает endpoints, методы, параметры, тела запросов/ответов, коды ответов. Swagger UI — интерактивная документация (можно отправлять запросы)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-pagination-offset-limit-vs-cursor-based-529",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "collections",
-        "spring",
-        "sql",
-        "kafka",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 211,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: Pagination: offset/limit vs cursor-based?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Начальная capacity = 10. При переполнении создаётся новый массив размером 1.5× от старого, элементы копируются. Метод trimToSize() ужимает массив до текущего количества элементов..."
-        },
-        {
-          "id": "b",
-          "text": "PUT — полная замена ресурса. Передаём весь объект целиком. Если не указать поле — оно станет null. PATCH — частичное обновление. Передаём только изменяемые поля, остальное остаётся."
-        },
-        {
-          "id": "c",
-          "text": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE."
-        },
-        {
-          "id": "d",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -1774,7 +1132,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
+          "text": "Для Pairwise testing — зачем лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -1782,11 +1140,11 @@
         },
         {
           "id": "c",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -1805,9 +1163,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
-        "testing-aqa",
-        "security"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1823,15 +1179,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -1854,9 +1210,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "jvm",
-        "testing-aqa"
+        "testing-aqa",
+        "collections"
       ],
       "companies": [
         "vk"
@@ -1872,15 +1227,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
+          "text": "Для PriorityQueue лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю."
         },
         {
           "id": "b",
-          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority."
         },
         {
           "id": "c",
-          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения."
         },
         {
           "id": "d",
@@ -1924,15 +1279,15 @@
         },
         {
           "id": "b",
-          "text": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев..."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
-          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -1967,11 +1322,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+          "text": "Для QA vs QC лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -1979,62 +1334,13 @@
         },
         {
           "id": "d",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "c"
       ],
       "explanation": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA.",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-rest-vs-soap-523",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "testing-aqa",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 193,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: REST vs SOAP?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Spring находит бин подходящего типа в контексте и подставляет. Если в контексте несколько бинов одного типа — нужна @Qualifier или @Primary, иначе ошибка. С Spring 4.3+ @Autowired на единственном конструкторе можно не писать."
-        },
-        {
-          "id": "b",
-          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
-        },
-        {
-          "id": "c",
-          "text": "List.of(1,2,3) — Java 9+, immutable, null запрещён. List.copyOf(list) — Java 10+, глубокая неизменяемая копия. Collections.unmodifiableList(list) — обёртка (изменения в оригинале видны!). Предпочитай List.of или List.copyOf."
-        },
-        {
-          "id": "d",
-          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс.",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -2063,15 +1369,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+          "text": "Для Scrum церемонии: Planning, Daily, Review, Retro лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "New → Open → Assigned → In Progress → Fixed → Resolved → Verified → Closed (или Reopen). Severity: Blocker (блокирует работу), Critical (потеря денег), Major (основной сценарий с workaround), Minor (косметика)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -2094,7 +1400,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -2111,7 +1416,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Оба — обёртка над другим объектом, реализуют тот же интерфейс. Но цели разные: Proxy — НЕ МЕНЯЕТ поведение оригинального объекта. Добавляет «инфраструктуру»: контроль доступа, ленивая инициализация, кэширование..."
+          "text": "Для Severity vs Priority лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -2119,11 +1424,11 @@
         },
         {
           "id": "c",
-          "text": "401 Unauthorized — НЕ АУТЕНТИФИЦИРОВАН (не знаем кто ты — нет токена / он невалидный). Сделай login и приходи снова. 403 Forbidden — АУТЕНТИФИЦИРОВАН, но нет ПРАВ. Знаем кто ты, но эту операцию делать не можешь..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2158,15 +1463,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "compile (default) — доступно везде, идёт в финальный jar. test — только для тестов. provided — для компиляции, но не в финальный jar (например, servlet-api — его даёт Tomcat). runtime — в рантайме..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -2189,9 +1494,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
         "hibernate",
-        "sql",
+        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -2208,7 +1512,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Dirty — чтение незакоммиченных данных. Non-repeatable — два чтения одной строки дают разный результат. Phantom — два SELECT с WHERE возвращают разное число строк."
+          "text": "Для @SpringBootTest vs @WebMvcTest vs @DataJpaTest Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять."
         },
         {
           "id": "b",
@@ -2216,66 +1520,17 @@
         },
         {
           "id": "c",
-          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
+          "text": "Dirty checking срабатывает только после явного вызова save на каждой изменённой сущности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         },
         {
           "id": "d",
-          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, встроенный Tomcat, Jackson. Один импорт — и веб-приложение работает."
+          "text": "Кэш второго уровня включён по умолчанию и автоматически решает проблемы производительности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         }
       ],
       "correct": [
         "b"
       ],
       "explanation": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-sql-инъекция-что-это-и-как-проверить-557",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "sql",
-        "testing-aqa",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 393,
-          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
-        }
-      ],
-      "prompt": "SQL-инъекция — что это и как проверить?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
-        },
-        {
-          "id": "b",
-          "text": "Автономный сервис с одной зоной ответственности, собственной БД, независимым деплоем. Общается через REST/gRPC (синхронно) или брокер (асинхронно). Плюсы: независимый деплой, масштабирование, технологическая гибкость..."
-        },
-        {
-          "id": "c",
-          "text": "Liquibase — описание изменений в XML / YAML, поддерживает rollback, кросс-БД (одно описание — для разных БД). Flyway — версионированные SQL-скрипты (V1__init.sql, V2__add_table.sql), проще, но без rollback и кросс-БД..."
-        },
-        {
-          "id": "d",
-          "text": "Технически — да, через ALTER. Но фактически — нельзя, потому что: (1) на нём FK из других таблиц. (2) Индексы строятся по PK. (3) В кластерных индексах данные физически отсортированы по PK. Операция дорогая и опасная..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ...",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -2308,15 +1563,15 @@
         },
         {
           "id": "b",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+          "text": "Для State Transition — как использовать лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2335,7 +1590,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -2356,69 +1610,21 @@
         },
         {
           "id": "b",
-          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
+          "text": "Для Stub vs Verify в WireMock лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "a"
       ],
       "explanation": "Stub: настроить фиксированный ответ — stubFor(get(\"/api/rates\").willReturn(okJson(...))). Verify: проверить, что наш сервис сделал ожидаемый запрос — verify(getRequestedFor(urlEqualTo(\"/api/rates\"))...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-surefire-vs-failsafe-разница-569",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 433,
-          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: Surefire vs Failsafe — разница?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
-        },
-        {
-          "id": "c",
-          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
-        },
-        {
-          "id": "d",
-          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail...",
       "reviewLinks": [
         {
           "label": "МТС Банк AQA",
@@ -2451,15 +1657,15 @@
         },
         {
           "id": "b",
-          "text": "@SpringBootTest: поднимает ВЕСЬ контекст (медленно, для E2E). @WebMvcTest: только контроллеры + MockMvc (без БД). @DataJpaTest: только JPA-слой + встроенная БД..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2478,10 +1684,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "alfa-bank"
@@ -2501,15 +1705,15 @@
         },
         {
           "id": "b",
-          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+          "text": "Для Testcontainers лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "ID, заголовок (что тестируем), предусловие (авторизован, баланс > 0), шаги (1. POST /payment..., 2. GET /status...), ожидаемый результат (статус 200, баланс уменьшился), постусловие (откатить данные)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2528,10 +1732,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -2551,15 +1753,15 @@
         },
         {
           "id": "b",
-          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
+          "text": "Для Testcontainers — что это лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2574,60 +1776,10 @@
       ]
     },
     {
-      "id": "auto-union-vs-union-all-549",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "sql",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 336,
-          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: UNION vs UNION ALL?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
-        },
-        {
-          "id": "b",
-          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
-        },
-        {
-          "id": "c",
-          "text": "ACK: consumer подтверждает обработку. NACK: отказ (retry или DLQ). DLQ (Dead Letter Queue): очередь для «мёртвых» сообщений, которые не удалось обработать после N ретраев..."
-        },
-        {
-          "id": "d",
-          "text": "Только для отсортированного массива. Берём середину, сравниваем с искомым. Если меньше — ищем в левой половине, больше — в правой. Каждая итерация — ÷2. Сложность O(log n)."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL.",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-verify-что-это-и-зачем-689",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "testing-aqa"
       ],
       "companies": [
@@ -2648,15 +1800,15 @@
         },
         {
           "id": "b",
-          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority."
         },
         {
           "id": "c",
-          "text": "Нет. Record неявно наследуется от java.lang.Record, а Java не поддерживает множественное наследование классов."
+          "text": "Для verify — что это и зачем лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю."
         },
         {
           "id": "d",
-          "text": "List.of возвращает immutable-список. Любая попытка изменить — UnsupportedOperationException. И в нём нельзя null."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения."
         }
       ],
       "correct": [
@@ -2667,54 +1819,6 @@
         {
           "label": "Лига Цифровой Экономики",
           "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-view-vs-materialized-view-550",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "sql",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 339,
-          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: VIEW vs MATERIALIZED VIEW?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Поддерживаем «окно» — диапазон [left, right] в массиве. Двигаем right (расширяем), при нарушении условия — двигаем left (сужаем). Используется для подстрок без повторов, максимума в окне фиксированного размера. Сложность O(n)."
-        },
-        {
-          "id": "b",
-          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
-        },
-        {
-          "id": "c",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
-        },
-        {
-          "id": "d",
-          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов.",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
         }
       ]
     },
@@ -2739,11 +1843,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Unit (много, быстро) → интеграционные (связь компонентов) → e2e (мало, хрупко). В банках: обязательно unit + integration. E2e — на критичных сценариях."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -2751,7 +1855,7 @@
         },
         {
           "id": "d",
-          "text": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2786,7 +1890,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -2794,11 +1898,11 @@
         },
         {
           "id": "c",
-          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+          "text": "Для WireMock лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "PII (Personal Identifiable Information): номер карты, паспорт, телефон. В логах нельзя в открытом виде. Проверка: сделать запрос с номером карты → посмотреть логи → должно быть ****1234, не полный номер..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2817,7 +1921,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
         "testing-aqa"
       ],
       "companies": [
@@ -2838,15 +1941,15 @@
         },
         {
           "id": "b",
-          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+          "text": "Для WireMock — зачем нужен лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2865,9 +1968,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
-        "testing-aqa",
-        "security"
+        "security",
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -2887,15 +1989,15 @@
         },
         {
           "id": "b",
-          "text": "Lazy. Eager почти всегда плохо — Hibernate тянет лишнее, и часто это даёт N+1 в неожиданном месте. Правило: ставь Lazy везде, а конкретный JOIN FETCH делай в запросах, где данные действительно нужны."
+          "text": "Для XSS — что это и как проверить JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "c",
-          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Это важно: WHERE применяется ДО агрегации, HAVING — после. Алиасы из SELECT можно использовать в ORDER BY, но не в WHERE."
+          "text": "OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "d",
-          "text": "Нормализация — процесс приведения схемы БД к виду без избыточности данных. 1НФ — все атрибуты атомарны (нет списков в одной ячейке). 2НФ — 1НФ + каждый не-ключевой атрибут зависит от полного ключа..."
+          "text": "Refresh token безопасно хранить в localStorage, потому что он используется редко. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         }
       ],
       "correct": [
@@ -2934,68 +2036,21 @@
         },
         {
           "id": "b",
-          "text": "Позитивное: проверяем штатное поведение (валидные данные → ожидаемый результат). Негативное: проверяем реакцию на невалидные данные (пустое поле, отрицательная сумма, SQL-инъекция → ожидаем ошибку, а не падение)..."
+          "text": "Для Базовый набор Mockito лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
         "a"
       ],
       "explanation": "@Mock — создать мок. @InjectMocks — создать тестируемый объект и подставить в него моки. @ExtendWith(MockitoExtension.class) — активировать. when(mock.method(...)).thenReturn(...) — задать поведение. verify(mock)...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-в-чем-разница-comparable-и-comparator-145",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 377,
-          "title": "SberSeasons · 4. Коллекции · Comparable и Comparator"
-        }
-      ],
-      "prompt": "В чём разница Comparable и Comparator?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Comparable<T> — внутри класса (метод compareTo). Описывает «естественный» порядок. Один на класс. Comparator<T> — отдельно. Можно сделать несколько разных Comparator'ов для одного класса..."
-        },
-        {
-          "id": "b",
-          "text": "Спецификация REST API в формате YAML/JSON. Описывает endpoints, методы, параметры, тела запросов/ответов, коды ответов. Swagger UI — интерактивная документация (можно отправлять запросы)..."
-        },
-        {
-          "id": "c",
-          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
-        },
-        {
-          "id": "d",
-          "text": "Hard (по умолчанию): при первом assertFalse тест падает, остальные проверки не выполняются. Soft (assertAll в JUnit 5, SoftAssertions в AssertJ): все проверки выполняются, ошибки собираются..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Comparable<T> — внутри класса (метод compareTo). Описывает «естественный» порядок. Один на класс. Comparator<T> — отдельно. Можно сделать несколько разных Comparator'ов для одного класса...",
       "reviewLinks": [
         {
           "label": "SberSeasons",
@@ -3024,11 +2079,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке..."
+          "text": "Для В чём разница Mock и Spy лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -3036,7 +2091,7 @@
         },
         {
           "id": "d",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3075,15 +2130,15 @@
         },
         {
           "id": "b",
-          "text": "Хранимая процедура, которая автоматически вызывается БД при определённом событии (BEFORE / AFTER INSERT / UPDATE / DELETE). Часто используется для аудита, валидации, поддержки целостности. В банке любят триггеры для аудита."
+          "text": "Для Верификация vs Валидация лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Их немного, и все маловероятны. (1) Тесты на edge cases — фильтр оставили из отладочного кода. (2) Какой-то странный бизнес-юзкейс типа «скидку даём только на товары с нечётной ценой» — но это нонсенс с точки зрения марк..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Cross-Site Request Forgery: злоумышленник заставляет браузер отправить запрос от имени авторизованного пользователя. Пример: скрытая форма на вредоносном сайте делает POST /transfer. Защита: CSRF-токен в форме/заголовке..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3122,15 +2177,15 @@
         },
         {
           "id": "b",
-          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
+          "text": "Для Где брать тестовые данные в банке лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "(1) Защита от регресса — поменял код, прогнал тесты, увидел что сломалось. (2) Документация — тест показывает, как код должен использоваться. (3) Дизайн — код, который сложно тестировать, обычно плохо спроектирован..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3145,63 +2200,10 @@
       ]
     },
     {
-      "id": "auto-где-передавать-данные-body-path-query-headers-525",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "sql",
-        "testing-aqa",
-        "algorithms",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 199,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "Где передавать данные: body / path / query / headers?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Проверяет структуру ответа (типы полей, обязательные поля, формат). body(matchesJsonSchemaInClasspath(\"schemas/user.json\")). Защищает от непредвиденных изменений API-контракта. Генерация схемы: jsonschema..."
-        },
-        {
-          "id": "b",
-          "text": "NULL — это «значение неизвестно». Два неизвестных значения — нельзя сказать, равны они или нет. Поэтому NULL = NULL это не TRUE, а UNKNOWN, в условиях ведёт себя как FALSE. Для проверки используется IS NULL."
-        },
-        {
-          "id": "c",
-          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
-        },
-        {
-          "id": "d",
-          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-главный-плюс-constructor-injection-в-тестах-720",
       "type": "code_review",
       "level": "senior",
       "topics": [
-        "spring",
-        "devops",
         "testing-aqa"
       ],
       "companies": [
@@ -3218,11 +2220,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
+          "text": "Для Главный плюс constructor injection в тестах лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -3230,7 +2232,7 @@
         },
         {
           "id": "d",
-          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3265,11 +2267,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Unit (юнит) — проверяет один класс или метод изолированно, зависимости замокированы. Быстро, много, легко отлаживать. Integration — проверяет взаимодействие нескольких компонентов..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -3277,7 +2279,7 @@
         },
         {
           "id": "d",
-          "text": "clean — удаляет директорию target/. install — проходит весь жизненный цикл (compile → test → package) и кладёт артефакт в локальный репозиторий ~/.m2. Самая часто используемая команда."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3292,61 +2294,10 @@
       ]
     },
     {
-      "id": "auto-жизненный-цикл-maven-568",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 430,
-          "title": "МТС Банк AQA · 13. Maven, Git и CI/CD"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Жизненный цикл Maven» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
-        },
-        {
-          "id": "b",
-          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
-        },
-        {
-          "id": "c",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
-        },
-        {
-          "id": "d",
-          "text": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-жизненный-цикл-бага-497",
       "type": "code_review",
       "level": "junior",
       "topics": [
-        "concurrency",
-        "hibernate",
         "testing-aqa"
       ],
       "companies": [
@@ -3367,15 +2318,15 @@
         },
         {
           "id": "b",
-          "text": "Сканирует указанный пакет (по умолчанию — пакет класса, на котором стоит) и все подпакеты на предмет аннотаций @Component, @Service, @Repository, @Controller. Найденные классы регистрируются как бины в контексте."
+          "text": "Для Жизненный цикл бага лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Готовы 2–3 факта: масштаб (один из крупнейших IT-работодателей России), Platform V (своя облачная платформа), SberAI (GigaChat, Kandinsky), 78% оффер после стажировки. Можешь упомянуть конкретный продукт Сбера..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3412,7 +2363,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера."
+          "text": "Для Зачем брокеры в банке достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -3420,11 +2371,11 @@
         },
         {
           "id": "c",
-          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -3435,54 +2386,6 @@
         {
           "label": "МТС Банк AQA",
           "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-зачем-нужны-docker-образы-в-ci-cd-629",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 314,
-          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
-        }
-      ],
-      "prompt": "Зачем нужны Docker-образы в CI/CD?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
-        },
-        {
-          "id": "b",
-          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
-        },
-        {
-          "id": "c",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
-        },
-        {
-          "id": "d",
-          "text": "Нет — тестируются через публичные. Если private стало сложно — это сигнал, что надо выделить отдельный класс."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
         }
       ]
     },
@@ -3507,11 +2410,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)..."
+          "text": "Для Зачем писать тесты лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -3519,7 +2422,7 @@
         },
         {
           "id": "d",
-          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3559,15 +2462,15 @@
         },
         {
           "id": "b",
-          "text": "Mock: полностью пустой объект, все методы возвращают default (null, 0, false). Spy: обёртка над реальным объектом, методы вызываются по-настоящему, если не замоканы. Для Spy: doReturn().when(spy).method() (не when(spy..."
+          "text": "Для Как автотесты встраиваются в CI/CD pipeline container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -3587,9 +2490,7 @@
       "level": "junior",
       "topics": [
         "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -3605,7 +2506,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+          "text": "Для Как тестировать Kafka в автотесте достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -3613,11 +2514,11 @@
         },
         {
           "id": "c",
-          "text": "Да! Условие в ON применяется ДО объединения — несоответствующие строки правой таблицы становятся NULL. Условие в WHERE применяется ПОСЛЕ — строки с NULL отфильтровываются, и LEFT JOIN превращается в INNER JOIN..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "BFS (Breadth-First Search) — обход в ширину. Идёт по уровням. Используется в: поиск кратчайшего пути в невзвешенном графе, обход дерева по уровням. Внутри — очередь. DFS (Depth- First Search) — обход в глубину..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -3636,8 +2537,6 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "collections",
         "testing-aqa"
       ],
       "companies": [
@@ -3654,7 +2553,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Автоматическое преобразование примитива в обёртку и обратно: Integer i = 5; — это int 5 заворачивается в Integer (boxing). int j = i; — обратно (unboxing). Подвох в том, что если обёртка null..."
+          "text": "Для Какие assertions используются лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -3662,11 +2561,11 @@
         },
         {
           "id": "c",
-          "text": "(1) Spring находит определение (BeanDefinition). (2) Вызывает конструктор. (3) Инжектит зависимости (setter / field). (4) @PostConstruct — пользовательская инициализация. (5) BeanPostProcessor..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3681,62 +2580,11 @@
       ]
     },
     {
-      "id": "auto-какие-scope-у-зависимостей-в-maven-256",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "spring",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 885,
-          "title": "SberSeasons · 11. Git, Maven, Liquibase · Maven"
-        }
-      ],
-      "prompt": "Какие scope у зависимостей в Maven?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Spring создаёт прокси (JDK/CGLIB). Прокси открывает транзакцию, вызывает метод, commit/rollback. self-call минует прокси → @Transactional/@Cacheable/@Async не работают. Решение: вынести в другой бин."
-        },
-        {
-          "id": "b",
-          "text": "JOOQ: типизированный SQL, compile-time проверка запросов, нет dirty checking. Hibernate: ORM, lazy loading, кэширование. В Путешествиях используют оба — JOOQ для сложных запросов, Hibernate для CRUD."
-        },
-        {
-          "id": "c",
-          "text": "compile (default) — доступно везде, идёт в финальный jar. test — только для тестов. provided — для компиляции, но не в финальный jar (например, servlet-api — его даёт Tomcat). runtime — в рантайме..."
-        },
-        {
-          "id": "d",
-          "text": "FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → DISTINCT → ORDER BY → LIMIT. Важно: WHERE выполняется ДО GROUP BY (нельзя фильтровать по агрегату в WHERE). HAVING — после GROUP BY (для агрегатов)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "compile (default) — доступно везде, идёт в финальный jar. test — только для тестов. provided — для компиляции, но не в финальный jar (например, servlet-api — его даёт Tomcat). runtime — в рантайме...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-какие-аннотации-для-тестов-в-spring-boot-281",
       "type": "single",
       "level": "trainee",
       "topics": [
-        "jvm",
         "spring",
-        "hibernate",
-        "sql",
         "testing-aqa"
       ],
       "companies": [
@@ -3753,11 +2601,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
+          "text": "Для Какие аннотации для тестов в Spring Boot Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
@@ -3765,7 +2613,7 @@
         },
         {
           "id": "d",
-          "text": "Без сессии на сервере любой запрос можно отправить на любой сервер кластера. Это позволяет легко горизонтально масштабироваться: добавил инстанс — балансер начал слать на него. Состояние держит клиент (например, в JWT)."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -3784,7 +2632,6 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
         "testing-aqa"
       ],
       "companies": [
@@ -3801,11 +2648,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
+          "text": "Для Какие базовые аннотации JUnit 5 лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -3813,7 +2660,7 @@
         },
         {
           "id": "d",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3852,15 +2699,15 @@
         },
         {
           "id": "b",
-          "text": "Баги чаще всего на границах: 0, 1, max, max+1. Пример: пароль 8–20 символов → тестируем: 7 (отказ), 8 (ок), 20 (ок), 21 (отказ). Для Junior: уметь определять границы для любого поля."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+          "text": "Для Какие виды тестов бывают лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "clean — удаляет директорию target/. install — проходит весь жизненный цикл (compile → test → package) и кладёт артефакт в локальный репозиторий ~/.m2. Самая часто используемая команда."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -3871,302 +2718,6 @@
         {
           "label": "SberSeasons",
           "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какие-могут-быть-легитимные-причины-715",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "concurrency",
-        "testing-aqa"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 213,
-          "title": "X5 Tech · 4. Баг #3 — magic filter в стриме · Что не так"
-        }
-      ],
-      "prompt": "Какие могут быть «легитимные» причины?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Хранимая процедура, которая автоматически вызывается БД при определённом событии (BEFORE / AFTER INSERT / UPDATE / DELETE). Часто используется для аудита, валидации, поддержки целостности. В банке любят триггеры для аудита."
-        },
-        {
-          "id": "b",
-          "text": "Верификация: «Строим ли мы продукт правильно?» — соответствие требованиям (ревью, инспекции, статический анализ). Валидация: «Строим ли мы правильный продукт?» — соответствие ожиданиям пользователя (тестирование на реаль..."
-        },
-        {
-          "id": "c",
-          "text": "Несколько связанных проблем. (1) Поле не final — может быть случайно перезаписано, в том числе через reflection. Для thread-safe сервиса (а Spring singleton — он всегда thread-safe должен быть) — это потенциальная пробле..."
-        },
-        {
-          "id": "d",
-          "text": "Их немного, и все маловероятны. (1) Тесты на edge cases — фильтр оставили из отладочного кода. (2) Какой-то странный бизнес-юзкейс типа «скидку даём только на товары с нечётной ценой» — но это нонсенс с точки зрения марк..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Их немного, и все маловероятны. (1) Тесты на edge cases — фильтр оставили из отладочного кода. (2) Какой-то странный бизнес-юзкейс типа «скидку даём только на товары с нечётной ценой» — но это нонсенс с точки зрения марк...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какой-di-лучше-340",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 221,
-          "title": "Альфа-Банк · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Какой DI лучше?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching."
-        },
-        {
-          "id": "b",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
-        },
-        {
-          "id": "c",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
-        },
-        {
-          "id": "d",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какой-способ-di-предпочтительнее-606",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "spring",
-        "testing-aqa"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 226,
-          "title": "ITK Academy · 6. Spring и Spring Boot · Базовые вопросы"
-        }
-      ],
-      "prompt": "Какой способ DI предпочтительнее?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
-        },
-        {
-          "id": "b",
-          "text": "Декларативный или scripted pipeline, описан в Jenkinsfile в корне репозитория. Этапы (stages): checkout, build, test, deploy."
-        },
-        {
-          "id": "c",
-          "text": "Поле @Version (int/long/timestamp). При update Hibernate сравнивает версию — если не совпала, бросает OptimisticLockException."
-        },
-        {
-          "id": "d",
-          "text": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какой-способ-внедрения-предпочтительнее-661",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "testing-aqa"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 236,
-          "title": "Лига Цифровой Экономики · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Какой способ внедрения предпочтительнее?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
-        },
-        {
-          "id": "b",
-          "text": "И то, и другое. Сначала компилируется в байт-код (.class), потом JVM его интерпретирует и компилирует «горячие» места JIT-компилятором в нативный код."
-        },
-        {
-          "id": "c",
-          "text": "when(x.method()).thenReturn(y) — стандартный способ. doReturn(y).when(x).method() — нужен для spy (иначе вызовется реальный метод) и для void-методов."
-        },
-        {
-          "id": "d",
-          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какой-способ-внедрения-предпочтительнее-и-почему-059",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 269,
-          "title": "Сбер · 7. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Какой способ внедрения предпочтительнее и почему?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object."
-        },
-        {
-          "id": "b",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
-        },
-        {
-          "id": "c",
-          "text": "@Autowired — внедрение зависимости. Если бинов несколько — Spring не знает какой выбрать нужен @Qualifier(\"имяБина\") или @Primary на одном из бинов."
-        },
-        {
-          "id": "d",
-          "text": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-сеть-моргнула-на-2-секунды-что-делать-429",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 269,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: сеть «моргнула» на 2 секунды. Что делать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
-        },
-        {
-          "id": "b",
-          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
-        },
-        {
-          "id": "c",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
-        },
-        {
-          "id": "d",
-          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
         }
       ]
     },
@@ -4191,11 +2742,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -4203,7 +2754,7 @@
         },
         {
           "id": "d",
-          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4238,15 +2789,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority."
         },
         {
           "id": "b",
-          "text": "Нет — тестируются через публичные. Если private стало сложно — это сигнал, что надо выделить отдельный класс."
+          "text": "Для Когда TDD не работает лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю."
         },
         {
           "id": "c",
-          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения."
         },
         {
           "id": "d",
@@ -4265,62 +2816,12 @@
       ]
     },
     {
-      "id": "auto-когда-использовать-что-random-securerandom-threadlocalrandom-709",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "java-core",
-        "concurrency",
-        "testing-aqa"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 105,
-          "title": "X5 Tech · 2. Баг #1 — contention на shared Random · Решение: ThreadLocalRandom"
-        }
-      ],
-      "prompt": "Когда использовать что — Random, SecureRandom, ThreadLocalRandom?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Процесс — изолированный экземпляр программы. У каждого процесса своё адресное пространство, файловые дескрипторы, переменные окружения. Процессы не могут просто так читать память друг друга..."
-        },
-        {
-          "id": "b",
-          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
-        },
-        {
-          "id": "c",
-          "text": "Hard (по умолчанию): при первом assertFalse тест падает, остальные проверки не выполняются. Soft (assertAll в JUnit 5, SoftAssertions в AssertJ): все проверки выполняются, ошибки собираются..."
-        },
-        {
-          "id": "d",
-          "text": "Абстрактный класс может содержать состояние и реализованные методы, наследуется только один. Интерфейс — контракт, можно реализовать несколько. С Java 8 в интерфейсах появились default-методы."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
       "id": "auto-маскирование-pii-в-логах-560",
       "type": "single",
       "level": "junior",
       "topics": [
-        "hibernate",
-        "testing-aqa",
-        "security"
+        "security",
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -4336,11 +2837,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+          "text": "Для Маскирование PII в логах JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "b",
-          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+          "text": "OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         },
         {
           "id": "c",
@@ -4348,7 +2849,7 @@
         },
         {
           "id": "d",
-          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
+          "text": "Refresh token безопасно хранить в localStorage, потому что он используется редко. Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз."
         }
       ],
       "correct": [
@@ -4363,67 +2864,10 @@
       ]
     },
     {
-      "id": "auto-обработка-исключений-346",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "spring",
-        "testing-aqa"
-      ],
-      "companies": [
-        "alfa-bank",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 242,
-          "title": "Альфа-Банк · 6. Spring и Spring Boot"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 234,
-          "title": "Яндекс Путешествия · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Обработка исключений» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
-        },
-        {
-          "id": "b",
-          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
-        },
-        {
-          "id": "c",
-          "text": "merge сохраняет историю как есть — создаёт merge-коммит, объединяющий ветки. Виден факт слияния. rebase «перематывает» твои коммиты поверх свежей основной ветки — история линейная, без merge-коммитов..."
-        },
-        {
-          "id": "d",
-          "text": "First-level: автоматический, привязан к Session. Гарантирует identity (один PK = один объект). Second-level: опциональный, общий (EhCache, Caffeine, Infinispan). Query cache: кэширует JPQL-результаты..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
       "id": "auto-параметризация-тестов-в-junit-5-537",
       "type": "single",
       "level": "junior",
       "topics": [
-        "java-core",
         "testing-aqa"
       ],
       "companies": [
@@ -4440,15 +2884,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+          "text": "Для Параметризация тестов в JUnit 5 лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Mock — полная имитация, по умолчанию все методы возвращают null / 0 / false. Поведение задаёшь через when().thenReturn(). Spy — обёртка над реальным объектом. Методы, которые ты не подменил, работают как обычно. Полезно..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -4493,7 +2937,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "when(x.method()).thenReturn(y) — стандартный способ. doReturn(y).when(x).method() — нужен для spy (иначе вызовется реальный метод) и для void-методов."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -4501,11 +2945,11 @@
         },
         {
           "id": "c",
-          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Black Box: не знаем внутреннюю реализацию, тестируем по спецификации. White Box: знаем код, тестируем ветвления, покрытие. Grey Box: знаем архитектуру..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4524,9 +2968,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
-        "testing-aqa",
-        "security"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -4542,15 +2984,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Заглушка для внешних сервисов. Вместо реального API курсов валют — мок с фиксированным ответом. Преимущества: тесты не зависят от внешнего сервиса, можно имитировать ошибки (500, таймаут), детерминированные данные."
+          "text": "Для Позитивное vs негативное тестирование лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -4565,56 +3007,6 @@
         {
           "label": "МТС Банк AQA",
           "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-почему-constructor-injection-лучше-field-injection-211",
-      "type": "scenario",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 666,
-          "title": "SberSeasons · 8. Spring и Spring Boot · Способы инъекции"
-        }
-      ],
-      "prompt": "Почему constructor injection лучше field injection?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
-        },
-        {
-          "id": "b",
-          "text": "Strong: обычная, GC не трогает. Soft: GC собирает при нехватке памяти (кэши). Weak: GC собирает при первой сборке (WeakHashMap). Phantom: get() всегда null, уведомление через ReferenceQueue (постфинализационная очистка)..."
-        },
-        {
-          "id": "c",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
-        },
-        {
-          "id": "d",
-          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -4639,11 +3031,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+          "text": "Для Принципы тестирования лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Severity: техническая серьёзность (Critical/Major/Minor/Trivial). Priority: бизнес-важность исправления (High/Medium/Low). Пример: Critical + Low = баг критичный, но в третьестепенной фиче (которой пользуются 0..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -4651,7 +3043,7 @@
         },
         {
           "id": "d",
-          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4666,59 +3058,11 @@
       ]
     },
     {
-      "id": "auto-расскажи-жизненный-цикл-maven-255",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 882,
-          "title": "SberSeasons · 11. Git, Maven, Liquibase · Maven"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Расскажи жизненный цикл Maven» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
-        },
-        {
-          "id": "b",
-          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
-        },
-        {
-          "id": "c",
-          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
-        },
-        {
-          "id": "d",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-структура-тест-кейса-508",
       "type": "scenario",
       "level": "junior",
       "topics": [
-        "testing-aqa",
-        "system-design"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -4734,7 +3078,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+          "text": "Для Структура тест-кейса лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -4742,11 +3086,11 @@
         },
         {
           "id": "c",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4765,8 +3109,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "testing-aqa"
+        "testing-aqa",
+        "spring"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -4782,11 +3126,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Транзакция НЕ откроется. Внутри одного бина вызов this.method() идёт напрямую на объект, в обход прокси. Это любимая ловушка на собесах — самая частая ошибка..."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Spring Boot имеет много готовых «конфигурационных рецептов». Они применяются автоматически, если выполнены условия: например, есть нужные классы на classpath..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -4794,7 +3138,7 @@
         },
         {
           "id": "d",
-          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4829,7 +3173,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Когда параметров много (5 полей по 4 значения = 1024 комбинации). Pairwise: покрыть все ПАРЫ параметров (не все комбинации). Инструменты: PICT (Microsoft), AllPairs. Сокращает количество тестов с 1024 до ~20, покрывая 80% багов."
+          "text": "Для Тест-кейс vs чек-лист лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -4837,11 +3181,11 @@
         },
         {
           "id": "c",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4860,8 +3204,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "testing-aqa",
-        "security"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -4877,7 +3220,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
+          "text": "Для Тестирование авторизации лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
@@ -4885,11 +3228,11 @@
         },
         {
           "id": "c",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -4924,11 +3267,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Исследовательский код (прототипы), UI-разработка, GUI, задачи где требования постоянно меняются в процессе."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority."
         },
         {
           "id": "b",
-          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
+          "text": "Для Тестировать ли private методы лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю."
         },
         {
           "id": "c",
@@ -4936,7 +3279,7 @@
         },
         {
           "id": "d",
-          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения."
         }
       ],
       "correct": [
@@ -4955,7 +3298,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
         "testing-aqa"
       ],
       "companies": [
@@ -4976,15 +3318,15 @@
         },
         {
           "id": "b",
-          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
+          "text": "Для Уровни тестирования лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5003,10 +3345,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
-        "spring",
-        "testing-aqa",
-        "security"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -5026,15 +3365,15 @@
         },
         {
           "id": "b",
-          "text": "$.user.id — поле id объекта user. $..items[*].name — все name из массива items. $..items[?(@.price > 100)] — фильтрация. В Rest Assured: .extract().path(\"user.id\"). Для валидации: body(\"user.name\", equalTo(\"Alice\"))."
+          "text": "Для Цепочка запросов в Postman лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "at-most-once — может потеряться. at-least-once — может продублироваться (default). exactly-once — idempotent producer + transactional + read_committed. В проде: at-least-once + идемпотентная обработка (upsert в БД..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5049,58 +3388,10 @@
       ]
     },
     {
-      "id": "auto-что-делает-mvn-clean-install-257",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 888,
-          "title": "SberSeasons · 11. Git, Maven, Liquibase · Maven"
-        }
-      ],
-      "prompt": "Что делает mvn clean install?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Баги чаще всего на границах: 0, 1, max, max+1. Пример: пароль 8–20 символов → тестируем: 7 (отказ), 8 (ок), 20 (ок), 21 (отказ). Для Junior: уметь определять границы для любого поля."
-        },
-        {
-          "id": "b",
-          "text": "clean — удаляет директорию target/. install — проходит весь жизненный цикл (compile → test → package) и кладёт артефакт в локальный репозиторий ~/.m2. Самая часто используемая команда."
-        },
-        {
-          "id": "c",
-          "text": "Unit (юнит) — проверяет один класс или метод изолированно, зависимости замокированы. Быстро, много, легко отлаживать. Integration — проверяет взаимодействие нескольких компонентов..."
-        },
-        {
-          "id": "d",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "clean — удаляет директорию target/. install — проходит весь жизненный цикл (compile → test → package) и кладёт артефакт в локальный репозиторий ~/.m2. Самая часто используемая команда.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-делать-если-разработчик-говорит-не-баг-а-фича-498",
       "type": "code_review",
       "level": "junior",
       "topics": [
-        "jvm",
         "testing-aqa"
       ],
       "companies": [
@@ -5117,15 +3408,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
@@ -5140,62 +3431,6 @@
         {
           "label": "МТС Банк AQA",
           "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-ci-и-cd-627",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 308,
-          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 422,
-          "title": "Лига Цифровой Экономики · 10. Docker, Jenkins, Linux · Jenkins и CI/CD"
-        }
-      ],
-      "prompt": "Что такое CI и CD?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
-        },
-        {
-          "id": "b",
-          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
-        },
-        {
-          "id": "c",
-          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
-        },
-        {
-          "id": "d",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
         }
       ]
     },
@@ -5224,15 +3459,15 @@
         },
         {
           "id": "b",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5271,15 +3506,15 @@
         },
         {
           "id": "b",
-          "text": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Когда поведение зависит от комбинации условий. Пример: кредит одобряется если (доход > 50к) И (кредитная история хорошая) И (возраст 21–65)..."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5298,10 +3533,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "liga"
@@ -5317,11 +3550,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Lazy — связь подгружается только при обращении (прокси). Eager — сразу в SELECT. Default для @OneToMany и @ManyToMany — Lazy, для @ManyToOne и @OneToOne — Eager."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Библиотека для создания моков (имитаций) объектов в тестах. Позволяет «подменить» зависимость тестируемого класса фейком, который ведёт себя так, как тебе нужно."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -5329,7 +3562,7 @@
         },
         {
           "id": "d",
-          "text": "ENTRYPOINT задаёт основную исполняемую команду. CMD — аргументы по умолчанию. CMD легко переопределить при docker run, ENTRYPOINT — сложнее (через --entrypoint)."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5344,59 +3577,10 @@
       ]
     },
     {
-      "id": "auto-что-такое-триггер-201",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "sql",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 622,
-          "title": "SberSeasons · 7. БД и SQL · VIEW и хранимые процедуры"
-        }
-      ],
-      "prompt": "Что такое триггер?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Их немного, и все маловероятны. (1) Тесты на edge cases — фильтр оставили из отладочного кода. (2) Какой-то странный бизнес-юзкейс типа «скидку даём только на товары с нечётной ценой» — но это нонсенс с точки зрения марк..."
-        },
-        {
-          "id": "b",
-          "text": "Верификация: «Строим ли мы продукт правильно?» — соответствие требованиям (ревью, инспекции, статический анализ). Валидация: «Строим ли мы правильный продукт?» — соответствие ожиданиям пользователя (тестирование на реаль..."
-        },
-        {
-          "id": "c",
-          "text": "Master принимает запись. Slave (replica) — копия, на которую идут чтения. Изменения с Master реплицируются на Slave. Помогает: (1) масштабировать чтение. (2) Резервная копия (если Master упал — promotion Slave в Master)..."
-        },
-        {
-          "id": "d",
-          "text": "Хранимая процедура, которая автоматически вызывается БД при определённом событии (BEFORE / AFTER INSERT / UPDATE / DELETE). Часто используется для аудита, валидации, поддержки целостности. В банке любят триггеры для аудита."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Хранимая процедура, которая автоматически вызывается БД при определённом событии (BEFORE / AFTER INSERT / UPDATE / DELETE). Часто используется для аудита, валидации, поддержки целостности. В банке любят триггеры для аудита.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-такое-фикстура-в-тестах-543",
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
         "testing-aqa"
       ],
       "companies": [
@@ -5413,15 +3597,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "Разбиваем входные данные на группы, в которых поведение системы одинаковое. Пример: поле «возраст» 18–60 → три класса: <18 (отказ), 18–60 (принимаем), >60 (отказ)..."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",

@@ -1,6 +1,11 @@
+---
+title: "ITK Academy Java Junior interview guide"
+description: "Гайд JavaJub по собеседованию в ITK Academy на Java Junior: Java Core, Spring, Spring Boot, Docker, SQL, Git, OAuth и pet-проект."
+---
+
 # Собес в ITK Academy · Java Junior
 
-Вопросы, задачи и подготовка к первому техническому интервью.
+Гайд для подготовки к Java Junior interview в ITK Academy: Java Core, Spring, Spring Boot, Docker, SQL, Git, OAuth и рассказ о pet-проекте. Подходит для первого технического интервью после обучения.
 
 **Темы:** Java · Spring · Spring Boot · Docker · SQL · Git · OAuth
 

@@ -11,9 +11,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "sql",
-        "devops"
+        "sql"
       ],
       "companies": [
         "sber"
@@ -33,15 +31,15 @@
         },
         {
           "id": "b",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
+          "text": "Для ACID — расшифровать индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно."
         },
         {
           "id": "c",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
+          "text": "TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое."
         },
         {
           "id": "d",
-          "text": "Два рабочих варианта. Первый — создать свой ForkJoinPool под конкретную задачу и передать параллельный стрим внутрь его submit..."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями."
         }
       ],
       "correct": [
@@ -77,11 +75,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Гарантирует видимость изменений переменной между потоками (без кэширования в регистрах). НЕ гарантирует атомарность операций типа i++."
+          "text": "Для ArrayList vs LinkedList — где быстрее вставка в середину порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса."
         },
         {
           "id": "b",
-          "text": "Технически можно, но опасно: если изменить объект после добавления — его hashCode может измениться, и найти элемент станет невозможно."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют."
         },
         {
           "id": "c",
@@ -89,7 +87,7 @@
         },
         {
           "id": "d",
-          "text": "HashMap — быстрый доступ без порядка. TreeMap — сортировка ключей, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -108,9 +106,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -126,15 +122,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)..."
+          "text": "Для At-least-once vs at-most-once vs exactly-once достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "При fetch = LAZY на связи, при итерации по списку делается +1 запрос за каждую связанную сущность. Решения: JOIN FETCH, @EntityGraph, BatchSize."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -157,11 +153,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "hibernate",
-        "algorithms",
-        "jvm",
-        "devops"
+        "concurrency"
       ],
       "companies": [
         "sber",
@@ -183,11 +175,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "b",
-          "text": "JIT определяет, «сбегает» ли объект из метода. Если нет — может аллоцировать на стеке вместо heap (scalar replacement)."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "c",
@@ -195,7 +187,7 @@
         },
         {
           "id": "d",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         }
       ],
       "correct": [
@@ -214,7 +206,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
         "system-design"
       ],
       "companies": [
@@ -231,15 +222,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+          "text": "Для CAP-теорема. В финтехе что важнее достаточно перечислить технологии; оценка нагрузки и отказов обычно вторична."
         },
         {
           "id": "b",
-          "text": "processed_events(event_id UUID PK). INSERT ON CONFLICT DO NOTHING. В транзакции с бизнес-логикой. Или upsert по бизнес-ключу."
+          "text": "CAP-теорема позволяет одновременно гарантировать строгую консистентность, доступность и устойчивость к partition."
         },
         {
           "id": "c",
-          "text": "CAP-теорема означает, что можно одновременно получить сильную консистентность, доступность и устойчивость к разделению сети."
+          "text": "Очередь сообщений автоматически решает все проблемы консистентности между сервисами. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "d",
@@ -262,9 +253,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "devops",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -280,11 +269,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
+          "text": "Для Circuit Breaker — зачем достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
@@ -292,7 +281,7 @@
         },
         {
           "id": "d",
-          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -311,9 +300,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "hibernate",
         "system-design"
       ],
       "companies": [
@@ -330,11 +317,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "JVM — виртуальная машина. JRE = JVM + библиотеки. JDK = JRE + инструменты разработки (javac, jdb)."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "b",
-          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "c",
@@ -342,7 +329,7 @@
         },
         {
           "id": "d",
-          "text": "AutoCloseable (или Closeable). Ресурсы закрываются автоматически в обратном порядке объявления."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         }
       ],
       "correct": [
@@ -361,10 +348,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "concurrency",
-        "devops",
-        "sql"
+        "devops"
       ],
       "companies": [
         "sber",
@@ -386,11 +371,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "REQUIRED (default) — присоединяется или создаёт. REQUIRES_NEW — всегда новая, приостанавливает текущую. NESTED — savepoint. SUPPORTS, MANDATORY, NOT_SUPPORTED, NEVER."
+          "text": "CompletableFuture: thenApply vs thenCompose vs thenCombine решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "b",
-          "text": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record..."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "c",
@@ -398,7 +383,7 @@
         },
         {
           "id": "d",
-          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         }
       ],
       "correct": [
@@ -433,15 +418,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Два рабочих варианта. Первый — создать свой ForkJoinPool под конкретную задачу и передать параллельный стрим внутрь его submit..."
+          "text": "Для Covering index — что это индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно."
         },
         {
           "id": "b",
-          "text": "Pessimistic: SELECT ... FOR UPDATE блокирует строку. Optimistic: версия (@Version) — при commit проверяется, изменилась ли она."
+          "text": "TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое."
         },
         {
           "id": "c",
-          "text": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit)."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями."
         },
         {
           "id": "d",
@@ -465,7 +450,6 @@
       "level": "middle",
       "topics": [
         "concurrency",
-        "hibernate",
         "algorithms"
       ],
       "companies": [
@@ -482,15 +466,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException, ClassCastException, NumberFormatException."
+          "text": "Deadlock, livelock, starvation — в чём разница решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "b",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "c",
-          "text": "Только внутри synchronized на том же объекте. wait() освобождает монитор и засыпает. notify будит один, notifyAll — все."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "d",
@@ -513,9 +497,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "sql",
-        "algorithms"
+        "spring"
       ],
       "companies": [
         "sber"
@@ -531,15 +513,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
+          "text": "Для Dirty / non-repeatable / phantom read — пример каждого Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна."
         },
         {
           "id": "b",
-          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -562,8 +544,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -579,11 +561,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "Для Escape analysis — что это даёт достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна."
         },
         {
           "id": "b",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "c",
@@ -591,7 +573,7 @@
         },
         {
           "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -610,10 +592,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "spring",
-        "algorithms"
+        "collections"
       ],
       "companies": [
         "sber"
@@ -629,7 +608,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Двусторонняя очередь. Можно добавлять и удалять с обоих концов. В Java — Deque interface, реализация ArrayDeque. Универсальная — может работать как стек и как очередь."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "b",
@@ -637,11 +616,11 @@
         },
         {
           "id": "c",
-          "text": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "d",
-          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         }
       ],
       "correct": [
@@ -660,8 +639,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "kafka"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -677,11 +655,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
-          "text": "List.of возвращает неизменяемый список. add/remove бросают UnsupportedOperationException."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
@@ -689,7 +667,7 @@
         },
         {
           "id": "d",
-          "text": "Java heap space, Metaspace, Unable to create new native thread, GC overhead limit exceeded."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -708,8 +686,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "concurrency"
+        "collections"
       ],
       "companies": [
         "sber"
@@ -725,11 +702,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Jakarta EE (раньше Java EE) — стандарт корпоративной Java. Включает спецификации: сервлеты, JPA, JMS, EJB. Реализации — серверы приложений (GlassFish, WildFly). Spring — фреймворк поверх стандартной Java..."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "b",
-          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "c",
@@ -737,7 +714,7 @@
         },
         {
           "id": "d",
-          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         }
       ],
       "correct": [
@@ -772,7 +749,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Массив бакетов. По хэшу ключа определяется индекс. Две стратегии разрешения коллизий: (1) Chaining (цепочки) — в бакете связный список..."
+          "text": "Для HashMap vs TreeMap vs LinkedHashMap — когда что порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса."
         },
         {
           "id": "b",
@@ -780,11 +757,11 @@
         },
         {
           "id": "c",
-          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют."
         },
         {
           "id": "d",
-          "text": "У LinkedList O(1) на саму вставку, но O(n) на поиск позиции. В реальности ArrayList почти всегда быстрее из-за локальности в кэше CPU."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -803,9 +780,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -821,15 +796,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "WireMock используется для запуска настоящего внешнего сервиса в тестовой среде."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka."
         },
         {
           "id": "b",
-          "text": "Если a.equals(b), то hashCode совпадают. Иначе HashMap/HashSet теряют объекты."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений."
         },
         {
           "id": "c",
-          "text": "На HashMap, где значение — заглушка (PRESENT). Все операции делегируются HashMap."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем."
         },
         {
           "id": "d",
@@ -852,8 +827,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -869,15 +844,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Bootstrap → Platform (ext) → Application. Дочерний сначала делегирует родителю, потом грузит сам."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "b",
-          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "c",
-          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
@@ -900,9 +875,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -922,15 +895,15 @@
         },
         {
           "id": "b",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+          "text": "Для Kafka: partition, offset, consumer group достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "c",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы."
         },
         {
           "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -949,7 +922,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "collections",
         "algorithms"
       ],
@@ -967,7 +939,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Да, один null-ключ, кладётся в bucket 0. В ConcurrentHashMap нельзя ни ключ, ни значение."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность."
         },
         {
           "id": "b",
@@ -975,11 +947,11 @@
         },
         {
           "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные."
         },
         {
           "id": "d",
-          "text": "Young: Eden + 2 Survivor. После нескольких переживаний minor GC — объект попадает в Old."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -998,8 +970,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "algorithms"
+        "sql"
       ],
       "companies": [
         "sber",
@@ -1021,15 +992,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "Для MVCC в PostgreSQL — как работает индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно."
         },
         {
           "id": "b",
-          "text": "Hash: O(1) только =. B-tree: O(log n) но поддерживает <, >, BETWEEN, ORDER BY, LIKE 'abc%'. Поэтому B-tree — default."
+          "text": "TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое."
         },
         {
           "id": "c",
-          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует данные через Arrays.copyOf."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями."
         },
         {
           "id": "d",
@@ -1052,11 +1023,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "spring",
-        "hibernate",
-        "sql",
-        "testing-aqa"
+        "hibernate"
       ],
       "companies": [
         "sber"
@@ -1076,15 +1043,15 @@
         },
         {
           "id": "b",
-          "text": "Вызов this.method() идёт минуя прокси. Решение: вынести метод в другой бин или инжектить self через ApplicationContext / @Lazy self."
+          "text": "Для N+1 в JPA — как диагностировать Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять."
         },
         {
           "id": "c",
-          "text": "INNER — пересечение. LEFT — все из левой + совпадения из правой. RIGHT — наоборот. FULL OUTER — всё. CROSS — декартово произведение."
+          "text": "Dirty checking срабатывает только после явного вызова save на каждой изменённой сущности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         },
         {
           "id": "d",
-          "text": "Хотя Hash = O(1), Tree (B-tree) поддерживает диапазонные запросы, сортировку, BETWEEN, LIKE 'abc%'. Hash — только точное совпадение."
+          "text": "Кэш второго уровня включён по умолчанию и автоматически решает проблемы производительности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         }
       ],
       "correct": [
@@ -1103,9 +1070,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "hibernate",
-        "sql"
+        "spring"
       ],
       "companies": [
         "sber"
@@ -1125,15 +1091,15 @@
         },
         {
           "id": "b",
-          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+          "text": "Для N+1 проблема в Spring Data JPA Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять."
         },
         {
           "id": "c",
-          "text": "В реальности чаще at-least-once + идемпотентность на стороне consumer'а. Kafka с transactional producer + read_committed даёт effectively-once."
+          "text": "Dirty checking срабатывает только после явного вызова save на каждой изменённой сущности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         },
         {
           "id": "d",
-          "text": "singleton (по умолчанию — один на контекст), prototype (новый при каждом запросе), request, session, application, websocket — для веб-приложений."
+          "text": "Кэш второго уровня включён по умолчанию и автоматически решает проблемы производительности. Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции."
         }
       ],
       "correct": [
@@ -1152,10 +1118,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "hibernate",
-        "sql",
-        "algorithms"
+        "hibernate"
       ],
       "companies": [
         "sber"
@@ -1171,15 +1134,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM."
+          "text": "Для Pessimistic vs optimistic locking Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять."
         },
         {
           "id": "b",
-          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+          "text": "Entity можно без риска использовать как HashMap key до и после persist, даже если id меняется."
         },
         {
           "id": "c",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
+          "text": "Lazy-загрузка безопасна после закрытия транзакции, если объект был получен через repository."
         },
         {
           "id": "d",
@@ -1225,11 +1188,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "thenApply — преобразование результата. thenCompose — flatMap для CompletableFuture (нужен, когда лямбда возвращает CompletableFuture). thenCombine — объединение двух."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "synchronized + wait/notify. while(!condition) wait() — не if! (spurious wakeups). put() ждёт если полная, take() ждёт если пустая. notifyAll() после каждой операции."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
@@ -1237,7 +1200,7 @@
         },
         {
           "id": "d",
-          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -1272,15 +1235,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "b",
-          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
-          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+          "text": "Главная идея Records (Java 16+): можно ли от них наследоваться в том, что компилятор автоматически предотвращает все такие ошибки."
         },
         {
           "id": "d",
@@ -1303,11 +1266,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "spring",
-        "kafka",
-        "devops",
-        "system-design"
+        "spring"
       ],
       "companies": [
         "sber"
@@ -1323,15 +1282,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
+          "text": "Для REST vs gRPC — когда что Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна."
         },
         {
           "id": "b",
-          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах."
         },
         {
           "id": "c",
-          "text": "Стирание дженериков во время компиляции. Последствия: нельзя new T(), нельзя instanceof T, нельзя создать массив T[]."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса."
         },
         {
           "id": "d",
@@ -1370,15 +1329,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Self-invocation всегда проходит через proxy и открывает новую транзакцию."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией."
         },
         {
           "id": "b",
-          "text": "Stop-the-World полностью отсутствует во всех современных сборщиках мусора."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл."
         },
         {
           "id": "c",
-          "text": "Constructor injection хуже field injection, потому что усложняет unit-тесты."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса."
         },
         {
           "id": "d",
@@ -1417,7 +1376,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Это нужно в основном для unit-тестов и редко влияет на production-код."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
@@ -1425,11 +1384,11 @@
         },
         {
           "id": "c",
-          "text": "Keycloak нужен только для генерации паролей и не связан с OAuth/OIDC."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "Для возвращаемых значений. НЕ для полей, параметров методов, коллекций."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -1468,15 +1427,15 @@
         },
         {
           "id": "b",
-          "text": "NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException, ClassCastException, NumberFormatException."
+          "text": "Для Sequenced Collections (Java 21) — что это порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса."
         },
         {
           "id": "c",
-          "text": "processed_events(event_id UUID PK). INSERT ON CONFLICT DO NOTHING. В транзакции с бизнес-логикой. Или upsert по бизнес-ключу."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют."
         },
         {
           "id": "d",
-          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -1495,9 +1454,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "kafka",
-        "system-design"
+        "system-design",
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -1513,11 +1471,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+          "text": "Очередь сообщений автоматически решает все проблемы консистентности между сервисами. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "b",
-          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+          "text": "Rate limiter надёжнее всего хранить локально на каждом инстансе без общей координации. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "c",
@@ -1525,7 +1483,7 @@
         },
         {
           "id": "d",
-          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+          "text": "Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         }
       ],
       "correct": [
@@ -1560,15 +1518,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "Inversion of Control — инверсия управления. Вместо того чтобы класс сам создавал свои зависимости (new), он получает их извне — фреймворк сам решает, кого с кем связать."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -1591,8 +1549,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -1612,15 +1569,15 @@
         },
         {
           "id": "b",
-          "text": "Для любой задачи со строками достаточно отсортировать символы, это всегда оптимально."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "c",
-          "text": "Объект «потеряется». hashCode станет другим, и при поиске мы попадём не в тот bucket."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "Entity безопасно использовать как ключ HashMap, даже если id появляется после persist."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -1639,10 +1596,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "concurrency",
-        "algorithms",
-        "security"
+        "concurrency"
       ],
       "companies": [
         "sber"
@@ -1658,11 +1612,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "b",
-          "text": "Протокол авторизации. Позволяет одному приложению получить доступ к ресурсам пользователя в другом приложении без передачи пароля. Например: «войти через Google»."
+          "text": "ThreadLocal — где пригождается и где опасен решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "c",
@@ -1670,7 +1624,7 @@
         },
         {
           "id": "d",
-          "text": "Dirty — чтение незакоммиченных данных. Non-repeatable — два чтения одной строки дают разный результат. Phantom — два SELECT с WHERE возвращают разное число строк."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         }
       ],
       "correct": [
@@ -1715,15 +1669,15 @@
         },
         {
           "id": "b",
-          "text": "От java.lang.Object. Это корень иерархии — даже массивы и enum'ы наследуются от него косвенно."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "c",
-          "text": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "Пауза приложения для сборки мусора. У ZGC и Shenandoah паузы < 10 мс даже на огромных heap'ах."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         }
       ],
       "correct": [
@@ -1742,10 +1696,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate"
+        "concurrency"
       ],
       "companies": [
         "sber"
@@ -1765,15 +1716,15 @@
         },
         {
           "id": "b",
-          "text": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода."
+          "text": "Virtual Threads — чем отличаются от обычных решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "c",
-          "text": "1 findAll() + N доп. запросов на lazy-коллекции. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), DTO-проекция. EAGER — неправильный ответ."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "d",
-          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         }
       ],
       "correct": [
@@ -1812,15 +1763,15 @@
         },
         {
           "id": "b",
-          "text": "Гарантирует видимость изменений переменной между потоками (без кэширования в регистрах). НЕ гарантирует атомарность операций типа i++."
+          "text": "wait / notify / notifyAll — правила использования решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "c",
-          "text": "extends Thread, implements Runnable/Callable, через ExecutorService, CompletableFuture. Предпочтительнее — пулы потоков через Executors."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "d",
-          "text": "Deadlock — два потока ждут друг друга. Livelock — активны, но не прогрессируют (оба уступают). Starvation — поток не получает CPU/ресурс."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         }
       ],
       "correct": [
@@ -1839,8 +1790,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -1856,11 +1807,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "List.of возвращает неизменяемый список. add/remove бросают UnsupportedOperationException."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "b",
-          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "c",
@@ -1868,7 +1819,7 @@
         },
         {
           "id": "d",
-          "text": "JVM автоматически нормализует такой случай, поэтому коллекции и сравнение не страдают."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -1903,7 +1854,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Heap — объекты и массивы; stack — фреймы методов, примитивы, ссылки."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
@@ -1911,11 +1862,11 @@
         },
         {
           "id": "c",
-          "text": "Ограничение иерархии наследования. Хорошо работает с pattern matching."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "Это нужно в основном для unit-тестов и редко влияет на production-код."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -1934,9 +1885,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency"
+        "jvm"
       ],
       "companies": [
         "sber"
@@ -1952,7 +1901,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Оптимизация «горячего» кода в нативный. C1 — быстрый прогрев, C2 — агрессивная оптимизация."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "b",
@@ -1960,11 +1909,11 @@
         },
         {
           "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "d",
-          "text": "В JUnit 5 они должны быть static (или класс аннотирован @TestInstance(Lifecycle.PER_CLASS))."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         }
       ],
       "correct": [
@@ -1983,9 +1932,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "hibernate",
-        "algorithms"
+        "concurrency"
       ],
       "companies": [
         "sber"
@@ -2001,15 +1948,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "b",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "c",
-          "text": "@EnableAutoConfiguration + @Conditional. Если DataSource в classpath — автоматически настроит JPA. Список: META-INF/spring/...AutoConfiguration.imports (Spring Boot 3+, раньше spring.factories)."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "d",
@@ -2032,7 +1979,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "spring"
       ],
       "companies": [
@@ -2073,11 +2019,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+          "text": "Для Жизненный цикл бина Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
@@ -2085,7 +2031,7 @@
         },
         {
           "id": "d",
-          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -2104,8 +2050,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "hibernate"
+        "concurrency"
       ],
       "companies": [
         "sber",
@@ -2127,15 +2072,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "ThreadLocal безопасно переиспользовать в пулах потоков без очистки."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет."
         },
         {
           "id": "b",
-          "text": "Коллизии невозможны, если hashCode распределён достаточно хорошо."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "c",
-          "text": "volatile делает любую составную операцию атомарной, включая i++."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "d",
@@ -2158,8 +2103,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "collections"
+        "concurrency"
       ],
       "companies": [
         "sber",
@@ -2181,15 +2125,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Технически можно, но опасно: если изменить объект после добавления — его hashCode может измениться, и найти элемент станет невозможно."
+          "text": "volatile решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "b",
-          "text": "У LinkedList O(1) на саму вставку, но O(n) на поиск позиции. В реальности ArrayList почти всегда быстрее из-за локальности в кэше CPU."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "c",
-          "text": "Вызывать только внутри synchronized на том же объекте. wait() освобождает монитор и засыпает. notify будит один поток, notifyAll — все."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "d",
@@ -2212,9 +2156,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -2230,7 +2173,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "JVM автоматически нормализует такой случай, поэтому коллекции и сравнение не страдают."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "b",
@@ -2238,11 +2181,11 @@
         },
         {
           "id": "c",
-          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
-          "text": "put, get, remove — O(1) в среднем. В худшем случае O(log n) благодаря дереву (Java 8+)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -2261,8 +2204,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "jvm",
         "sql"
       ],
       "companies": [
@@ -2279,7 +2220,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "HashMap: не потокобезопасен, null-ключ. Hashtable: потокобезопасен (synchronized на всё), устаревший, нет null. LinkedHashMap: порядок вставки (или access order для LRU)..."
+          "text": "EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "b",
@@ -2287,11 +2228,11 @@
         },
         {
           "id": "c",
-          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
+          "text": "WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "d",
-          "text": "Структура данных (обычно B-tree), позволяющая БД быстро находить строки по значениям колонок. Без индекса — Seq Scan (полный обход таблицы). С индексом — поиск за O(log n)."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         }
       ],
       "correct": [
@@ -2310,9 +2251,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "hibernate",
-        "devops"
+        "spring"
       ],
       "companies": [
         "sber"
@@ -2332,15 +2271,15 @@
         },
         {
           "id": "b",
-          "text": "ClusterIP (внутренний), NodePort (внешний на каждой ноде), LoadBalancer (облачный LB — именно это делает группа балансеров в VK)."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах."
         },
         {
           "id": "c",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
+          "text": "Для @ComponentScan Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна."
         },
         {
           "id": "d",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса."
         }
       ],
       "correct": [
@@ -2376,15 +2315,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Изменяемые ключи безопасны, если equals переопределён корректно."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность."
         },
         {
           "id": "b",
-          "text": "Коллизии невозможны, если hashCode распределён достаточно хорошо."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные."
         },
         {
           "id": "c",
-          "text": "Read Uncommitted в PostgreSQL позволяет читать грязные данные."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         },
         {
           "id": "d",
@@ -2407,10 +2346,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "spring",
-        "sql",
-        "collections"
+        "spring"
       ],
       "companies": [
         "sber",
@@ -2432,15 +2368,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Inversion of Control — инверсия управления. Вместо того чтобы класс сам создавал свои зависимости (new), он получает их извне — фреймворк сам решает, кого с кем связать."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Iterator — однонаправленный обход. Методы hasNext, next, remove. Доступен для любой Collection. ListIterator — только у List. Двунаправленный (hasPrevious / previous)..."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "d",
@@ -2463,11 +2399,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "system-design",
         "security"
       ],
       "companies": [
@@ -2484,7 +2415,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
+          "text": "OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя."
         },
         {
           "id": "b",
@@ -2492,11 +2423,11 @@
         },
         {
           "id": "c",
-          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
+          "text": "Для Как сделать потокобезопасный singleton JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия."
         },
         {
           "id": "d",
-          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+          "text": "Refresh token безопасно хранить в localStorage, потому что он используется редко."
         }
       ],
       "correct": [
@@ -2535,15 +2466,15 @@
         },
         {
           "id": "b",
-          "text": "Saga заменяет транзакции БД и гарантирует мгновенный rollback всех сервисов."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность."
         },
         {
           "id": "c",
-          "text": "Амортизированная O(1), в худшем случае O(log n) (Java 8+) или O(n) (Java 7)."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные."
         },
         {
           "id": "d",
-          "text": "Если a.equals(b), то hashCode совпадают. Иначе HashMap/HashSet теряют объекты."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -2562,7 +2493,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -2579,11 +2509,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
+          "text": "Для Какие бывают сборщики мусора достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна."
         },
         {
           "id": "b",
-          "text": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2591,7 +2521,7 @@
         },
         {
           "id": "d",
-          "text": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2610,8 +2540,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -2631,15 +2561,15 @@
         },
         {
           "id": "b",
-          "text": "Композиция = владение (жизненные циклы связаны), агрегация = ссылка."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "c",
-          "text": "Ограничение иерархии наследования. Хорошо работает с pattern matching."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
-          "text": "false по контракту. equals не должен бросать NPE на null-аргумент."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -2658,9 +2588,7 @@
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "java-core",
-        "spring",
-        "testing-aqa"
+        "spring"
       ],
       "companies": [
         "sber"
@@ -2676,15 +2604,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object."
+          "text": "Для Какой способ внедрения предпочтительнее и почему Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна."
         },
         {
           "id": "b",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
-          "text": "@Autowired — внедрение зависимости. Если бинов несколько — Spring не знает какой выбрать нужен @Qualifier(\"имяБина\") или @Primary на одном из бинов."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах."
         },
         {
           "id": "d",
@@ -2727,15 +2655,15 @@
         },
         {
           "id": "b",
-          "text": "Это нужно в основном для unit-тестов и редко влияет на production-код."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "c",
-          "text": "Ограничение иерархии наследования. Хорошо работает с pattern matching."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "== сравнивает ссылки; equals(null) по контракту должен возвращать false."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -2754,8 +2682,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -2771,15 +2698,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Refresh token можно свободно хранить в localStorage без дополнительных рисков."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
-          "text": "Клиент шлёт повтор — сервер распознаёт по ключу и не выполняет операцию дважды."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
-          "text": "Deadlock можно полностью исключить, если заменить все synchronized на volatile."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "d",
@@ -2802,7 +2729,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "collections"
       ],
       "companies": [
@@ -2819,7 +2745,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "У LinkedList O(1) на саму вставку, но O(n) на поиск позиции. В реальности ArrayList почти всегда быстрее из-за локальности в кэше CPU."
+          "text": "Для Можно ли использовать как ключ изменяемый объект (например, массив) порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса."
         },
         {
           "id": "b",
@@ -2827,11 +2753,11 @@
         },
         {
           "id": "c",
-          "text": "Гарантирует видимость изменений переменной между потоками (без кэширования в регистрах). НЕ гарантирует атомарность операций типа i++."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют."
         },
         {
           "id": "d",
-          "text": "HashMap — быстрый доступ без порядка. TreeMap — сортировка ключей, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -2850,8 +2776,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -2867,15 +2792,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+          "text": "Для Монолит vs микросервисы — когда что достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Поиск с динамическими ценами. Outbox-паттерн для финансовых операций. Идемпотентность платежей. Партнёрские интеграции через API Gateway."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -2898,11 +2823,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "concurrency",
-        "algorithms",
-        "hibernate"
+        "java-core"
       ],
       "companies": [
         "sber",
@@ -2942,11 +2864,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+          "text": "Для Области памяти JVM достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2954,7 +2876,7 @@
         },
         {
           "id": "d",
-          "text": "equals(Object) — проверка равенства. hashCode() — целочисленный хэш. toString() — строковое представление. getClass() — Class-объект. clone() — копия объекта (нужно implements Cloneable). wait(), notify()..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2989,7 +2911,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Это композиция трёх аннотаций: @Configuration + @EnableAutoConfiguration + @ComponentScan."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса."
         },
         {
           "id": "b",
@@ -2997,11 +2919,11 @@
         },
         {
           "id": "c",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл."
         },
         {
           "id": "d",
-          "text": "FROM (базовый образ), COPY/ADD, RUN, WORKDIR, EXPOSE, ENV, CMD/ENTRYPOINT, VOLUME, USER."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией."
         }
       ],
       "correct": [
@@ -3040,15 +2962,15 @@
         },
         {
           "id": "b",
-          "text": "Лучший вариант — enum. Альтернативы: static holder (Initialization-on-demand), double-checked locking с volatile."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "c",
-          "text": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "d",
-          "text": "Unbounded очередь и неограниченное количество потоков — при всплеске нагрузки можно положить JVM OutOfMemoryError."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         }
       ],
       "correct": [
@@ -3067,11 +2989,7 @@
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "algorithms"
+        "concurrency"
       ],
       "companies": [
         "sber"
@@ -3091,15 +3009,15 @@
         },
         {
           "id": "b",
-          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "c",
-          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "d",
-          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         }
       ],
       "correct": [
@@ -3118,7 +3036,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "collections"
       ],
       "companies": [
@@ -3147,7 +3064,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Класс с @RestController, метод с @GetMapping/@PostMapping. Параметры — @PathVariable, @RequestParam, @RequestBody. Возвращаемый объект сериализуется в JSON через Jackson."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "b",
@@ -3155,11 +3072,11 @@
         },
         {
           "id": "c",
-          "text": "Отношение в JMM, гарантирующее видимость. Примеры: synchronized release → acquire, volatile write → read, Thread.start() → действия потока, final-поля после конструктора."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "d",
-          "text": "S — Single Responsibility (один класс — одна ответственность). O — Open/Closed (открыт для расширения, закрыт для модификации — добавляй наследников, не правь оригинал)..."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         }
       ],
       "correct": [
@@ -3178,7 +3095,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "collections"
       ],
       "companies": [
@@ -3201,7 +3117,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Будьте готовы объяснить полиморфизм пятикласснику."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность."
         },
         {
           "id": "b",
@@ -3209,11 +3125,11 @@
         },
         {
           "id": "c",
-          "text": "N+1 решается только увеличением connection pool."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные."
         },
         {
           "id": "d",
-          "text": "Новый массив в 1.5 раза больше, копирование через Arrays.copyOf."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -3232,7 +3148,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "concurrency"
       ],
       "companies": [
@@ -3249,7 +3164,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "b",
@@ -3257,11 +3172,11 @@
         },
         {
           "id": "c",
-          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "d",
-          "text": "При выводе backend из ротации — дождаться завершения активных соединений, а не обрывать. Graceful shutdown."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         }
       ],
       "correct": [
@@ -3296,11 +3211,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Для возвращаемых значений. НЕ для полей, параметров методов, коллекций."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
-          "text": "Self-invocation всегда проходит через proxy и открывает новую транзакцию."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
@@ -3308,7 +3223,7 @@
         },
         {
           "id": "d",
-          "text": "Rate limiter всегда лучше хранить в локальной памяти каждого инстанса."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -3327,10 +3242,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
         "kafka",
-        "algorithms",
-        "system-design"
+        "sql"
       ],
       "companies": [
         "sber"
@@ -3346,15 +3259,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "B-tree (default — =, <, >, BETWEEN, ORDER BY), Hash (только =), GIN (массивы, JSONB, full-text), GiST (геометрия), BRIN (большие таблицы с порядком), SP-GiST."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -3393,7 +3306,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "map: T → R. flatMap: T → Stream с уплощением результата."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
@@ -3401,11 +3314,11 @@
         },
         {
           "id": "c",
-          "text": "Read Uncommitted в PostgreSQL позволяет читать грязные данные."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "d",
-          "text": "CI и CD означают одно и то же: запуск unit-тестов после коммита."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         }
       ],
       "correct": [
@@ -3441,11 +3354,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Массив связных списков (Node[]). Бакет = ячейка массива. Коллизия → цепочка."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность."
         },
         {
           "id": "b",
-          "text": "Constructor injection хуже field injection, потому что усложняет unit-тесты."
+          "text": "В многопоточном коде такая структура безопасна, если большинство операций только читают данные."
         },
         {
           "id": "c",
@@ -3453,7 +3366,7 @@
         },
         {
           "id": "d",
-          "text": "HashMap всегда делает алгоритм O(1), независимо от числа операций и коллизий."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают."
         }
       ],
       "correct": [
@@ -3473,8 +3386,6 @@
       "level": "middle",
       "topics": [
         "concurrency",
-        "spring",
-        "devops",
         "collections"
       ],
       "companies": [
@@ -3501,15 +3412,15 @@
         },
         {
           "id": "b",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+          "text": "Способы создать поток в Java решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "c",
-          "text": "wait() отпускает монитор объекта. sleep() — НЕ отпускает, поток продолжает держать все свои блокировки, просто не выполняется."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "d",
-          "text": "Поле @Version (int/long/timestamp). При update Hibernate сравнивает версию — если не совпала, бросает OptimisticLockException."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         }
       ],
       "correct": [
@@ -3550,7 +3461,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "2PC — координатор + участники, блокировки, плохо масштабируется. Saga — цепочка локальных транзакций с компенсирующими действиями. Хореография vs оркестрация."
+          "text": "WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "b",
@@ -3558,11 +3469,11 @@
         },
         {
           "id": "c",
-          "text": "DELETE — построчное удаление с триггерами и логированием, может быть откачено в транзакции. TRUNCATE — быстрая очистка таблицы целиком, обнуляет автоинкремент."
+          "text": "EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "d",
-          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         }
       ],
       "correct": [
@@ -3581,7 +3492,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "sql"
       ],
       "companies": [
@@ -3598,11 +3508,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Read Committed — убирает dirty read. Repeatable Read — убирает non-repeatable read. Serializable — убирает phantom read и всё остальное."
+          "text": "Для Уровни изоляции и какие проблемы решают индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно."
         },
         {
           "id": "b",
-          "text": "extends Thread, implements Runnable/Callable, через ExecutorService, CompletableFuture. Предпочтительнее — пулы потоков через Executors."
+          "text": "WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "c",
@@ -3610,7 +3520,7 @@
         },
         {
           "id": "d",
-          "text": "Массив бакетов. По хэшу ключа определяется индекс. Две стратегии разрешения коллизий: (1) Chaining (цепочки) — в бакете связный список..."
+          "text": "TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое."
         }
       ],
       "correct": [
@@ -3629,7 +3539,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "sql"
       ],
       "companies": [
@@ -3652,11 +3561,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Read Committed. В Postgres вообще нет Read Uncommitted — это его особенность. Repeatable Read в Postgres ДОПОЛНИТЕЛЬНО защищает от phantom read через MVCC."
+          "text": "WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "b",
-          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+          "text": "EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "c",
@@ -3664,7 +3573,7 @@
         },
         {
           "id": "d",
-          "text": "AssertJ — fluent API (assertThat(x).isEqualTo(y).hasSize(3)), более читаемый, богаче. Hamcrest — matchers (assertThat(x, equalTo(y))). В вакансии Лиги оба."
+          "text": "Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         }
       ],
       "correct": [
@@ -3683,7 +3592,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
         "spring"
       ],
       "companies": [
@@ -3704,15 +3612,15 @@
         },
         {
           "id": "b",
-          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
+          "text": "Для Чем @Async может удивить Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна."
         },
         {
           "id": "c",
-          "text": "Неограниченное количество потоков — при всплеске нагрузки может положить JVM через OutOfMemoryError (unable to create new native thread)."
+          "text": "Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах."
         },
         {
           "id": "d",
-          "text": "Deadlock — два потока ждут друг друга. Livelock — активны, но не прогрессируют (оба уступают). Starvation — поток не получает CPU/ресурс."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -3731,7 +3639,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "jvm",
         "concurrency",
         "collections"
       ],
@@ -3761,11 +3668,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует через Arrays.copyOf."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "b",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "c",
@@ -3773,7 +3680,7 @@
         },
         {
           "id": "d",
-          "text": "Из-за spurious wakeup — поток может проснуться сам по себе. После пробуждения условие может быть уже невалидным."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         }
       ],
       "correct": [
@@ -3792,8 +3699,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -3809,7 +3715,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "b",
@@ -3817,11 +3723,11 @@
         },
         {
           "id": "c",
-          "text": "После успешного завершения метода (без исключений). Прокси: try { beginTransaction; target.method(); commit; } catch { rollback; }. Rollback по умолчанию: RuntimeException и Error..."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "d",
-          "text": "Управление версиями схемы БД. Без них: разработчики применяют SQL руками, кто-то применил, кто-то нет, на проде катастрофа. С Liquibase: changeset-ы (изменения) лежат в репозитории..."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         }
       ],
       "correct": [
@@ -3856,11 +3762,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
+          "text": "Для Что поменялось в HashMap с Java 8 порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса."
         },
         {
           "id": "b",
-          "text": "Среднее: get / put / containsKey — O(1). Худший случай при плохих хэшах: O(log n) при treeified бакете, O(n) если treeify ещё не сработал."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют."
         },
         {
           "id": "c",
@@ -3868,7 +3774,7 @@
         },
         {
           "id": "d",
-          "text": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода."
+          "text": "Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         }
       ],
       "correct": [
@@ -3887,7 +3793,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "jvm",
         "concurrency"
       ],
       "companies": [
@@ -3904,15 +3809,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "b",
-          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         },
         {
           "id": "c",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "d",
@@ -3935,9 +3840,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "spring",
-        "kafka"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -3953,11 +3856,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "b",
-          "text": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
@@ -3965,7 +3868,7 @@
         },
         {
           "id": "d",
-          "text": "Через прокси, генерируемый в рантайме. Имя метода (findByEmailAndStatus) парсится и превращается в JPQL."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         }
       ],
       "correct": [
@@ -3984,8 +3887,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "java-core"
+        "concurrency"
       ],
       "companies": [
         "sber",
@@ -4007,15 +3909,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Checked наследуются от Exception (но не RuntimeException) — компилятор требует обработки или throws. Unchecked — от RuntimeException и Error — обрабатывать необязательно."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "b",
-          "text": "S — Single Responsibility (один класс — одна ответственность). O — Open/Closed (открыт для расширения, закрыт для модификации — добавляй наследников, не правь оригинал)..."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "c",
-          "text": "Готовь рассказ на 2–3 минуты. Структура: (1) Кто ты — имя, курс, вуз, специальность. (2) Как пришёл в Java — через что попал в программирование, какие курсы/книги читал..."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "d",
@@ -4066,11 +3968,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
+          "text": "Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "b",
-          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+          "text": "Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         },
         {
           "id": "c",
@@ -4078,7 +3980,7 @@
         },
         {
           "id": "d",
-          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+          "text": "Такое поведение одинаково для public, private и self-invocation методов внутри одного класса. Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов."
         }
       ],
       "correct": [
@@ -4097,7 +3999,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -4118,15 +4019,15 @@
         },
         {
           "id": "b",
-          "text": "Java heap space, Metaspace, Unable to create new native thread, GC overhead limit exceeded."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "d",
-          "text": "E2E-тесты должны покрывать большинство сценариев, потому что они ближе всего к пользователю."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         }
       ],
       "correct": [
@@ -4145,9 +4046,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "devops",
-        "system-design"
+        "collections"
       ],
       "companies": [
         "sber",
@@ -4181,7 +4080,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
+          "text": "Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "b",
@@ -4189,11 +4088,11 @@
         },
         {
           "id": "c",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
+          "text": "Для load factor порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         },
         {
           "id": "d",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
+          "text": "Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают. Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций."
         }
       ],
       "correct": [
@@ -4212,8 +4111,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -4229,15 +4128,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "От java.lang.Object. Это корень иерархии — даже массивы и enum'ы наследуются от него косвенно."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "b",
-          "text": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "c",
-          "text": "AutoCloseable (или Closeable). Ресурсы закрываются автоматически в обратном порядке объявления."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
@@ -4260,8 +4159,7 @@
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "java-core",
-        "security"
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -4277,15 +4175,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Binary search безопасно писать как (left + right) / 2 для любых int-границ."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах."
         },
         {
           "id": "b",
-          "text": "Constructor injection хуже field injection, потому что усложняет unit-тесты."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен."
         },
         {
           "id": "c",
-          "text": "OAuth 2.0 отвечает за аутентификацию пользователя и заменяет OpenID Connect."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "d",
@@ -4324,15 +4222,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+          "text": "Это про type erasure: достаточно назвать синтаксис, runtime-контракты и поведение JVM здесь не важны."
         },
         {
           "id": "b",
-          "text": "private — только в классе. (default/package-private) — в пакете. protected — в пакете + наследникам. public — везде."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать."
         },
         {
           "id": "c",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "Главная идея type erasure в том, что компилятор автоматически предотвращает все такие ошибки."
         },
         {
           "id": "d",
@@ -4355,7 +4253,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "concurrency"
       ],
       "companies": [
@@ -4376,15 +4273,15 @@
         },
         {
           "id": "b",
-          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
+          "text": "Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга."
         },
         {
           "id": "c",
-          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует данные через Arrays.copyOf."
+          "text": "Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер."
         },
         {
           "id": "d",
-          "text": "Unbounded очередь и неограниченное количество потоков — при всплеске нагрузки можно положить JVM OutOfMemoryError."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками."
         }
       ],
       "correct": [
@@ -4403,8 +4300,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "system-design"
+        "sql"
       ],
       "companies": [
         "sber"
@@ -4424,15 +4320,15 @@
         },
         {
           "id": "b",
-          "text": "При fetch = LAZY на связи, при итерации по списку делается +1 запрос за каждую связанную сущность. Решения: JOIN FETCH, @EntityGraph, BatchSize."
+          "text": "Для Шардирование vs репликация индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно."
         },
         {
           "id": "c",
-          "text": "В реальности чаще at-least-once + идемпотентность на стороне consumer'а. Kafka с transactional producer + read_committed даёт effectively-once."
+          "text": "WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         },
         {
           "id": "d",
-          "text": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)..."
+          "text": "EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных. Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи."
         }
       ],
       "correct": [

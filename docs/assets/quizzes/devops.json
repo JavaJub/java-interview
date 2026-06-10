@@ -4,217 +4,8 @@
   "kind": "topic",
   "description": "Самопроверка по теме: Docker / Kubernetes / CI/CD.",
   "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
-  "questionCount": 107,
+  "questionCount": 46,
   "questions": [
-    {
-      "id": "auto-4-условия-возникновения-deadlock-172",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "concurrency",
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 493,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Race condition и deadlock"
-        }
-      ],
-      "prompt": "4 условия возникновения deadlock?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
-        },
-        {
-          "id": "b",
-          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
-        },
-        {
-          "id": "c",
-          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
-        },
-        {
-          "id": "d",
-          "text": "(1) Mutual exclusion — ресурс не разделяемый. (2) Hold and wait — поток держит один ресурс, ждёт другой. (3) No preemption — отнять ресурс нельзя. (4) Circular wait — цикл ожидания. Чтобы deadlock был — нужны все четыре..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "(1) Mutual exclusion — ресурс не разделяемый. (2) Hold and wait — поток держит один ресурс, ждёт другой. (3) No preemption — отнять ресурс нельзя. (4) Circular wait — цикл ожидания. Чтобы deadlock был — нужны все четыре...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-acid-353",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 278,
-          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 258,
-          "title": "VK · 7. Базы данных и SQL"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 263,
-          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
-        }
-      ],
-      "prompt": "Что важно сказать на собеседовании про ACID?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Merge: создаёт коммит-слияние, история ветвится (видно откуда пришли изменения). Rebase: перемещает коммиты на вершину целевой ветки, линейная история. Rebase в публичных ветках — не стоит (переписывает историю)..."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
-        },
-        {
-          "id": "c",
-          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
-        },
-        {
-          "id": "d",
-          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL).",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-acid-расшифровать-070",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 310,
-          "title": "Сбер · 8. Базы данных и SQL"
-        }
-      ],
-      "prompt": "ACID — расшифровать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit)."
-        },
-        {
-          "id": "b",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
-        },
-        {
-          "id": "c",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
-        },
-        {
-          "id": "d",
-          "text": "Два рабочих варианта. Первый — создать свой ForkJoinPool под конкретную задачу и передать параллельный стрим внутрь его submit..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit).",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-acid-расшифровать-каждое-681",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 328,
-          "title": "Лига Цифровой Экономики · 8. SQL и PostgreSQL"
-        }
-      ],
-      "prompt": "ACID — расшифровать каждое?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "PG: SERIAL/IDENTITY (автоинкремент), LIMIT/OFFSET, нет Read Uncommitted. Oracle: SEQUENCE, ROWNUM / FETCH FIRST N ROWS, NVL вместо COALESCE, DUAL для SELECT без таблицы, CONNECT BY для иерархий..."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
-        },
-        {
-          "id": "c",
-          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
-        },
-        {
-          "id": "d",
-          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
     {
       "id": "auto-allure-зачем-и-основные-аннотации-567",
       "type": "single",
@@ -237,7 +28,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
+          "text": "Для Allure: зачем и основные аннотации container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -245,11 +36,11 @@
         },
         {
           "id": "c",
-          "text": "Продовые данные нельзя — персональные данные (152-ФЗ). Варианты: 1) Синтетические генераторы (JavaFaker, DataFactory). 2) Маскированный прод (замена ФИО, телефонов, номеров карт). 3) Фикстуры в тестах (@BeforeEach)..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "(1) Защита от регресса — поменял код, прогнал тесты, увидел что сломалось. (2) Документация — тест показывает, как код должен использоваться. (3) Дизайн — код, который сложно тестировать, обычно плохо спроектирован..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -264,220 +55,11 @@
       ]
     },
     {
-      "id": "auto-aop-кейс-замерить-время-всех-методов-сервиса-412",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 183,
-          "title": "Т1 Иннотех · 7. Spring и транзакции"
-        }
-      ],
-      "prompt": "AOP: кейс «замерить время всех методов сервиса»?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Короткий способ описать иммутабельный DTO. Автоматически генерируются: конструктор, геттеры (имя поля без get-), equals, hashCode, toString. record User(String name, int age) {} — всё. Меньше boilerplate, чем Lombok."
-        },
-        {
-          "id": "b",
-          "text": "Если в учебном проекте делали daily-стендапы и спринты — это уже опыт. Можно сказать: «В курсовой работали по двухнедельным спринтам, делали ретро в конце». Если не делали — честно: «Знаю теорию (роли Scrum Master..."
-        },
-        {
-          "id": "c",
-          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
-        },
-        {
-          "id": "d",
-          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-argumentcaptor-зачем-нужен-540",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 305,
-          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
-        }
-      ],
-      "prompt": "ArgumentCaptor — зачем нужен?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Обращение к lazy-полю после закрытия сессии. Решения (от лучшего к худшему): DTO-проекция (SELECT NEW), JOIN FETCH (@Query), @EntityGraph(attributePaths), @BatchSize(size=100)..."
-        },
-        {
-          "id": "b",
-          "text": "Используем два индекса, движущиеся по массиву по правилам. Часто для отсортированного массива: пара с заданной суммой, разворот строки, проверка палиндрома. Сложность обычно O(n)."
-        },
-        {
-          "id": "c",
-          "text": "Stateless — сервер не хранит сессию клиента, каждый запрос самодостаточен. Cacheable — ответы могут кэшироваться. Uniform interface — единый интерфейс через HTTP-методы и URL..."
-        },
-        {
-          "id": "d",
-          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-atomic-классы-333",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 196,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Atomic-классы» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
-        },
-        {
-          "id": "b",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
-        },
-        {
-          "id": "c",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
-        },
-        {
-          "id": "d",
-          "text": "Гонка — ситуация, когда результат зависит от порядка выполнения потоков. Классика: i++ из двух потоков. Может быть +1, может быть +2 — зависит от планировщика. Решение — синхронизация (synchronized, locks, atomic) или immutable."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется).",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-atomic-классы-как-работают-без-блокировок-049",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "hibernate",
-        "algorithms",
-        "jvm",
-        "devops"
-      ],
-      "companies": [
-        "sber",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 235,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 208,
-          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Atomic-классы — как работают без блокировок?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
-        },
-        {
-          "id": "b",
-          "text": "JIT определяет, «сбегает» ли объект из метода. Если нет — может аллоцировать на стеке вместо heap (scalar replacement)."
-        },
-        {
-          "id": "c",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
-        },
-        {
-          "id": "d",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
       "id": "auto-ci-cd-pipeline-488",
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
+        "devops"
       ],
       "companies": [
         "yandex-travel"
@@ -497,15 +79,15 @@
         },
         {
           "id": "b",
-          "text": "JPQL работает с сущностями и полями Java. Native SQL — прямой SQL, нужен для специфичных фич БД. Native помечается nativeQuery = true."
+          "text": "Для CI/CD pipeline container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "c",
-          "text": "Защищает приложение: аутентификация (кто ты) и авторизация (что тебе можно). Работает через цепочку фильтров перед твоим контроллером."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -524,10 +106,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
+        "devops"
       ],
       "companies": [
         "alfa-bank"
@@ -543,7 +122,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -551,11 +130,11 @@
         },
         {
           "id": "c",
-          "text": "newFixedThreadPool, newCachedThreadPool, newSingleThreadExecutor, newScheduledThreadPool, newWorkStealingPool. Для прода обычно создают ThreadPoolExecutor вручную, чтобы контролировать очередь."
+          "text": "Для CI vs CD container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -566,214 +145,6 @@
         {
           "label": "Альфа-Банк",
           "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-circuit-breaker-366",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "spring",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "java-core"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 321,
-          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 323,
-          "title": "VK · 8. Kafka и микросервисы"
-        }
-      ],
-      "prompt": "Что важно сказать на собеседовании про Circuit Breaker?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Read Uncommitted (можно читать незакоммиченные — dirty read). Read Committed (только закоммиченные, но возможен non-repeatable read). Repeatable Read (повторное чтение даст тот же результат, но возможен phantom read)..."
-        },
-        {
-          "id": "b",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
-        },
-        {
-          "id": "c",
-          "text": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict..."
-        },
-        {
-          "id": "d",
-          "text": "start() — создаёт новый поток ОС и в нём вызывает run(). run() напрямую — это обычный метод, выполнится В ТЕКУЩЕМ потоке. Это любимая ловушка на собесах. Запомни: «start запускает новый, run просто исполняет в этом же»."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-circuit-breaker-зачем-088",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 366,
-          "title": "Сбер · 9. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Circuit Breaker — зачем?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
-        },
-        {
-          "id": "b",
-          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
-        },
-        {
-          "id": "c",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
-        },
-        {
-          "id": "d",
-          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-circuit-breaker-три-состояния-432",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 278,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Circuit Breaker: три состояния?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
-        },
-        {
-          "id": "b",
-          "text": "Иммутабельность зависимостей — основа thread-safe сервиса. После создания объекта его зависимости НЕ должны меняться. final гарантирует это на уровне компилятора. Конструктор делает зависимости явными — открыл класс..."
-        },
-        {
-          "id": "c",
-          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
-        },
-        {
-          "id": "d",
-          "text": "Git Flow — модель с долгоживущими ветками master, develop, feature/*, release/*, hotfix/*. Подходит для релизного цикла с явными версиями. Trunk-based — все работают близко к master (через короткие feature-branch'ы)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-client-side-load-balancer-486",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "algorithms",
-        "system-design"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 462,
-          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Client-side Load Balancer» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop."
-        },
-        {
-          "id": "b",
-          "text": "Partition — шард топика. Offset — позиция в partition. Consumer group — каждый partition читает один consumer из группы."
-        },
-        {
-          "id": "c",
-          "text": "Deadlock: два потока ждут друг друга. Livelock: потоки активны, но не прогрессируют. Starvation: поток не получает ресурс."
-        },
-        {
-          "id": "d",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
         }
       ]
     },
@@ -798,11 +169,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
+          "text": "Для CMD vs ENTRYPOINT container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit)."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "c",
@@ -810,7 +181,7 @@
         },
         {
           "id": "d",
-          "text": "ClusterIP (внутренний), NodePort (внешний на каждой ноде), LoadBalancer (облачный LB — именно это делает группа балансеров в VK)."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -825,72 +196,12 @@
       ]
     },
     {
-      "id": "auto-completablefuture-338",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "concurrency",
-        "spring",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 211,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 221,
-          "title": "VK · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Что важно сказать на собеседовании про CompletableFuture?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Checked — компилятор требует обработать (catch) или объявить в throws. Используются для ожидаемых внешних ошибок (IO, БД). Unchecked (RuntimeException и наследники) — обрабатывать не обязательно..."
-        },
-        {
-          "id": "b",
-          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
-        },
-        {
-          "id": "c",
-          "text": "Маленькие таблицы. Низкая selectivity (boolean). Функции (LOWER(email) — нужен expression index). LIKE '%abc' (wildcard в начале). Часто обновляемые колонки (индекс замедляет INSERT/UPDATE/DELETE)."
-        },
-        {
-          "id": "d",
-          "text": "Если a.equals(b), то hashCode одинаков. Обратное необязательно. При константном hashCode — все в одном bucket: Java 7 — список O(n), Java 8+ при 8 коллизиях — red-black tree O(log n). Деградация..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
       "id": "auto-completablefuture-thenapply-vs-thencompose-vs-thencombine-054",
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "concurrency",
-        "devops",
-        "sql"
+        "devops"
       ],
       "companies": [
         "sber",
@@ -912,11 +223,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "REQUIRED (default) — присоединяется или создаёт. REQUIRES_NEW — всегда новая, приостанавливает текущую. NESTED — savepoint. SUPPORTS, MANDATORY, NOT_SUPPORTED, NEVER."
+          "text": "CompletableFuture: thenApply vs thenCompose vs thenCombine решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение."
         },
         {
           "id": "b",
-          "text": "Immutable-объекты потокобезопасны по определению — нет shared mutable state. Нет необходимости в synchronized/volatile. Примеры: String, Integer, LocalDate, record..."
+          "text": "Если код проходит unit-тесты локально, race condition в production уже не возникнет. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         },
         {
           "id": "c",
@@ -924,7 +235,7 @@
         },
         {
           "id": "d",
-          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+          "text": "synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками. Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков."
         }
       ],
       "correct": [
@@ -943,7 +254,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "devops"
       ],
       "companies": [
@@ -964,15 +274,15 @@
         },
         {
           "id": "b",
-          "text": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM."
+          "text": "Для ConfigMap vs Secret container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "c",
-          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -987,170 +297,11 @@
       ]
     },
     {
-      "id": "auto-consumer-group-364",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 315,
-          "title": "Альфа-Банк · 9. Микросервисы и Kafka"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 314,
-          "title": "VK · 8. Kafka и микросервисы"
-        }
-      ],
-      "prompt": "Что важно сказать на собеседовании про Consumer Group?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
-        },
-        {
-          "id": "b",
-          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
-        },
-        {
-          "id": "c",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
-        },
-        {
-          "id": "d",
-          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-deadlock-337",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 208,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 218,
-          "title": "VK · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Deadlock» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
-        },
-        {
-          "id": "b",
-          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
-        },
-        {
-          "id": "c",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
-        },
-        {
-          "id": "d",
-          "text": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-decision-table-когда-применять-505",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 127,
-          "title": "МТС Банк AQA · 4. Тест-дизайн"
-        }
-      ],
-      "prompt": "Decision Table — когда применять?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Red-Green-Refactor. Сначала пишешь падающий тест (Red), потом минимальный код чтобы он прошёл (Green), потом рефакторишь без изменения поведения."
-        },
-        {
-          "id": "b",
-          "text": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml."
-        },
-        {
-          "id": "c",
-          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
-        },
-        {
-          "id": "d",
-          "text": "Когда поведение зависит от комбинации условий. Пример: кредит одобряется если (доход > 50к) И (кредитная история хорошая) И (возраст 21–65)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Когда поведение зависит от комбинации условий. Пример: кредит одобряется если (доход > 50к) И (кредитная история хорошая) И (возраст 21–65)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-declarative-vs-scripted-pipeline-701",
       "type": "single",
       "level": "middle",
       "topics": [
-        "devops",
-        "system-design"
+        "devops"
       ],
       "companies": [
         "liga"
@@ -1166,11 +317,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+          "text": "Для Declarative vs Scripted Pipeline container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Монолит проще разрабатывать и деплоить, микросервисы — масштабировать независимо и развивать большими командами. Начинайте с монолита."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "c",
@@ -1178,7 +329,7 @@
         },
         {
           "id": "d",
-          "text": "checkout → build → test → docker build → push registry → deploy staging → (approval) → prod. В Яндексе: Arcadia CI + Nanny для деплоя."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -1197,9 +348,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "sql",
-        "kafka",
         "devops"
       ],
       "companies": [
@@ -1216,15 +364,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
+          "text": "Для docker-compose container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "INNER — пересечение. LEFT — все из левой + совпадения из правой. RIGHT — наоборот. FULL OUTER — всё. CROSS — декартово произведение."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "c",
-          "text": "Монолит проще разрабатывать и деплоить, микросервисы — масштабировать независимо и развивать большими командами. Начинайте с монолита."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         },
         {
           "id": "d",
@@ -1263,11 +411,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
+          "text": "Для Docker: образ vs контейнер. CMD vs ENTRYPOINT container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -1275,7 +423,7 @@
         },
         {
           "id": "d",
-          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -1294,7 +442,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "devops"
       ],
       "companies": [
@@ -1315,15 +462,15 @@
         },
         {
           "id": "b",
-          "text": "Secret в Kubernetes автоматически шифрует данные end-to-end без дополнительных настроек."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки."
         },
         {
           "id": "c",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image."
         },
         {
           "id": "d",
-          "text": "Self-invocation идёт минуя прокси. Решение: вынести метод в отдельный бин или inject self."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -1342,10 +489,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
-        "concurrency",
-        "spring",
-        "sql",
         "devops",
         "testing-aqa"
       ],
@@ -1363,7 +506,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
+          "text": "Для ELK: как искать логи теста container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -1371,11 +514,11 @@
         },
         {
           "id": "c",
-          "text": "List.of(...) — с Java 9, неизменяемый. Collections.unmodifiableList(list) — обёртка, но если изменить оригинальный list — обёртка тоже увидит изменения. List.copyOf(list) — полноценная иммутабельная копия."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -1390,161 +533,11 @@
       ]
     },
     {
-      "id": "auto-haproxy-vs-nginx-vs-envoy-458",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 336,
-          "title": "VK · 9. Сети и балансировка"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: HAProxy vs Nginx vs Envoy?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Spring создаёт прокси (JDK dynamic proxy для интерфейсов или CGLIB для классов). Прокси открывает транзакцию перед методом, коммитит после или откатывает при исключении."
-        },
-        {
-          "id": "b",
-          "text": "Inversion of Control — инверсия управления. Вместо того чтобы класс сам создавал свои зависимости (new), он получает их извне — фреймворк сам решает, кого с кем связать."
-        },
-        {
-          "id": "c",
-          "text": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач."
-        },
-        {
-          "id": "d",
-          "text": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "HAProxy: L4/L7, production-proven, простая конфигурация. Nginx: L7, статика + reverse proxy. Envoy: L4/L7, gRPC, service mesh (Istio). В VK — все три в разных сценариях.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-hashmap-расчет-бакета-на-примере-397",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "devops",
-        "algorithms",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 134,
-          "title": "Т1 Иннотех · 5. Коллекции"
-        }
-      ],
-      "prompt": "HashMap: расчёт бакета на примере?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Каждая строка: xmin (создавшая транзакция), xmax (удалившая/обновившая). Читатели не блокируют писателей. Snapshot isolation. Старые версии чистит VACUUM (autovacuum). Проблема: table bloat если VACUUM не успевает."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
-        },
-        {
-          "id": "c",
-          "text": "static Map без eviction: статический Map, добавляешь объекты в цикле → heap exhaustion. Бесконечное создание Thread: каждый поток = ~1MB стека → native OOM. Metaspace: динамическая генерация классов (CGLIB, ASM)..."
-        },
-        {
-          "id": "d",
-          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-hashmap-устройство-443",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "sql",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 178,
-          "title": "VK · 4. Коллекции"
-        }
-      ],
-      "prompt": "HashMap — устройство?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree."
-        },
-        {
-          "id": "b",
-          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
-        },
-        {
-          "id": "c",
-          "text": "JpaRepository extends PagingAndSortingRepository extends CrudRepository. Добавляет flush(), saveAllAndFlush(), работу с List вместо Iterable, deleteAllInBatch."
-        },
-        {
-          "id": "d",
-          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key). Коллизии — список. Java 8+: TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
       "id": "auto-jenkins-pipeline-что-это-700",
       "type": "single",
       "level": "middle",
       "topics": [
-        "devops",
-        "testing-aqa"
+        "devops"
       ],
       "companies": [
         "liga"
@@ -1564,15 +557,15 @@
         },
         {
           "id": "b",
-          "text": "Constructor injection. Поля можно сделать final, явно видны обязательные зависимости, легко тестировать без Spring-контекста."
+          "text": "Для Jenkins Pipeline — что это container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "c",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -1587,65 +580,12 @@
       ]
     },
     {
-      "id": "auto-jwt-структура-и-как-работает-522",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa",
-        "algorithms",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 190,
-          "title": "МТС Банк AQA · 6. HTTP, REST API и Postman"
-        }
-      ],
-      "prompt": "JWT — структура и как работает?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
-        },
-        {
-          "id": "b",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
-        },
-        {
-          "id": "c",
-          "text": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)..."
-        },
-        {
-          "id": "d",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Три части через точку: header.payload.signature. Header: алгоритм (HS256). Payload: данные (userId, exp, roles). Signature: HMAC(header+payload, secret). Хранится на клиенте (localStorage/cookie)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-kubernetes-pod-deployment-service-371",
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "concurrency",
-        "spring",
-        "devops"
+        "devops",
+        "spring"
       ],
       "companies": [
         "alfa-bank",
@@ -1673,7 +613,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Распределённый лог-ориентированный брокер. Данные хранятся на диске (retention), не удаляются после прочтения. Topic → Partition → Offset. Partition — единица параллелизма. Зачем: асинхронное взаимодействие..."
+          "text": "Для Kubernetes: Pod, Deployment, Service container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -1681,11 +621,11 @@
         },
         {
           "id": "c",
-          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Через потоки I/O: InputStream / OutputStream — для байтов. Reader / Writer — для символов (с учётом кодировки). Buffered-обёртки (BufferedReader, BufferedInputStream) — для эффективности, читают сразу пачку..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -1704,8 +644,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
-        "algorithms"
+        "devops"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1721,15 +660,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "Поведенческий паттерн: вынесение алгоритма в отдельный класс. У клиента — поле типа интерфейса, можно подменять реализацию. Например, разные алгоритмы сортировки, разные способы расчёта комиссии..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "List — интерфейс, ArrayList — реализация. Правило: писать переменные через интерфейс — List<String> list = new ArrayList<>(); — чтобы потом можно было сменить реализацию без правок остального кода."
+          "text": "Для Linux: найти все ERROR за сегодня и посчитать container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход..."
         },
         {
           "id": "d",
@@ -1752,10 +691,9 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "devops",
         "algorithms",
-        "system-design"
+        "spring"
       ],
       "companies": [
         "vk",
@@ -1777,7 +715,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -1785,11 +723,11 @@
         },
         {
           "id": "c",
-          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "AssertJ — fluent API (assertThat(x).isEqualTo(y).hasSize(3)), более читаемый, богаче. Hamcrest — matchers (assertThat(x, equalTo(y))). В вакансии Лиги оба."
+          "text": "Для Liveness vs Readiness probe container и image можно считать одним и тем же: это разные названия запущенного приложения."
         }
       ],
       "correct": [
@@ -1808,9 +746,9 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "devops",
-        "algorithms"
+        "algorithms",
+        "spring"
       ],
       "companies": [
         "alfa-bank"
@@ -1826,15 +764,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Интерфейс extends JpaRepository<Entity, ID>. Spring создаёт прокси в рантайме. Имя метода парсится: findByEmailAndStatus → JPQL. @Query для сложных запросов. Pageable → Page/Slice. JpaRepository добавляет flush()..."
+          "text": "Для Liveness vs Readiness vs Startup probe container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "RandomGenerator — общий интерфейс для всех ГСЧ в Java 17+. Это часть JEP 356: Enhanced Pseudo- Random Number Generators. Реализации: ThreadLocalRandom, SplittableRandom, различные алгоритмы (Xoshiro, L128X, L64X)..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Бросается итератором, если коллекция изменилась во время итерации не через сам итератор. Реализуется через счётчик modCount внутри коллекции и expectedModCount внутри итератора. Если они разъезжаются — исключение..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
@@ -1845,67 +783,6 @@
         "d"
       ],
       "explanation": "Liveness — жив ли? Нет → перезапуск. Readiness — готов к трафику? Нет → убирается из LB. Startup — для медленного старта: пока не пройдёт, остальные не проверяются. Spring Boot Actuator: /actuator/health/liveness...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-load-factor-и-resize-324",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 165,
-          "title": "Альфа-Банк · 4. Коллекции"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 181,
-          "title": "VK · 4. Коллекции"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 161,
-          "title": "Яндекс Путешествия · 4. Коллекции"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «load factor и resize» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Короткий способ описать иммутабельный DTO. Автоматически генерируются: конструктор, геттеры (имя поля без get-), equals, hashCode, toString. record User(String name, int age) {} — всё. Меньше boilerplate, чем Lombok."
-        },
-        {
-          "id": "b",
-          "text": "HashMap — основная, не потокобезопасна, без порядка, null-ключ можно. LinkedHashMap — порядок вставки или access-order (последнее нужно для LRU-кэша). TreeMap — отсортирована по ключу, через NavigableMap (firstKey..."
-        },
-        {
-          "id": "c",
-          "text": "1) POST /auth/login → получить accessToken. 2) В Tests: pm.environment.set(\"token\", jsonData.accessToken). 3) GET /users/me с заголовком Authorization: Bearer {{token}}. 4) Проверка: pm.expect(pm.response.code).to..."
-        },
-        {
-          "id": "d",
-          "text": "Порог 0.75 по умолчанию. При size >= capacity * loadFactor — resize: массив вдвое + перехеширование ВСЕХ элементов (дорого!). Совет: если знаешь количество элементов — задай initialCapacity = expectedSize / 0.75 + 1."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Порог 0.75 по умолчанию. При size >= capacity * loadFactor — resize: массив вдвое + перехеширование ВСЕХ элементов (дорого!). Совет: если знаешь количество элементов — задай initialCapacity = expectedSize / 0.75 + 1.",
       "reviewLinks": [
         {
           "label": "Альфа-Банк",
@@ -1934,11 +811,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
+          "text": "Для Merge vs Rebase в Git container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -1946,7 +823,7 @@
         },
         {
           "id": "d",
-          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -1965,9 +842,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "devops",
-        "security"
+        "devops"
       ],
       "companies": [
         "alfa-bank",
@@ -1999,15 +874,15 @@
         },
         {
           "id": "b",
-          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -2042,7 +917,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit)."
+          "text": "Для Multi-stage build — зачем container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -2050,11 +925,11 @@
         },
         {
           "id": "c",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -2069,257 +944,12 @@
       ]
     },
     {
-      "id": "auto-pci-dss-что-должен-знать-aqa-563",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "testing-aqa",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 411,
-          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
-        }
-      ],
-      "prompt": "PCI DSS — что должен знать AQA?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "given() — настройка запроса (headers, body, params). when() — HTTP-метод + URL. then() — проверки (statusCode, body). extract() — извлечение данных из ответа..."
-        },
-        {
-          "id": "b",
-          "text": "list.sort(Comparator.comparing(User::getAge).reversed()) или с лямбдой list.sort((a, b) -> b.getAge() - a.getAge()) — но безопаснее через Comparator.comparing."
-        },
-        {
-          "id": "c",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
-        },
-        {
-          "id": "d",
-          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-records-java-16-441",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "devops"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 127,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Records (Java 16+)?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
-        },
-        {
-          "id": "b",
-          "text": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы."
-        },
-        {
-          "id": "c",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
-        },
-        {
-          "id": "d",
-          "text": "Автоматическое преобразование примитива в обёртку и обратно: Integer i = 5; — это int 5 заворачивается в Integer (boxing). int j = i; — обратно (unboxing). Подвох в том, что если обёртка null..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-records-в-java-что-это-517",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "devops"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 171,
-          "title": "МТС Банк AQA · 5. Java Core (Junior)"
-        }
-      ],
-      "prompt": "Records в Java — что это?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
-        },
-        {
-          "id": "b",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
-        },
-        {
-          "id": "c",
-          "text": "Да, и стоит это раскрыть. В банке много legacy — никуда не деться. Хорошие фразы: «Понимаю, что legacy — это часть работы», «Это полезный опыт — понять, как развивается большая система», «Скорее всего..."
-        },
-        {
-          "id": "d",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-rest-vs-grpc-когда-что-085",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 357,
-          "title": "Сбер · 9. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "REST vs gRPC — когда что?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
-        },
-        {
-          "id": "b",
-          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
-        },
-        {
-          "id": "c",
-          "text": "Стирание дженериков во время компиляции. Последствия: нельзя new T(), нельзя instanceof T, нельзя создать массив T[]."
-        },
-        {
-          "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming).",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-sealed-classes-java-17-442",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "devops"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 130,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Sealed Classes (Java 17+)?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21)."
-        },
-        {
-          "id": "b",
-          "text": "FROM maven:3.9 → сборка. FROM eclipse-temurin:21-jre → копируем только JAR. Финальный образ ~200 MB вместо ~800 MB. Безопаснее (меньше attack surface), быстрее деплой."
-        },
-        {
-          "id": "c",
-          "text": "Fail-fast (HashMap, ArrayList) кидают ConcurrentModificationException при изменении коллекции. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) работают со снимком."
-        },
-        {
-          "id": "d",
-          "text": "Класс — нельзя наследовать. Метод — нельзя переопределить. Поле — нельзя переприсваивать (но можно менять внутреннее состояние, если поле — ссылка на mutable-объект)."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Ограничение иерархии наследования: sealed class Shape permits Circle, Square. Компилятор гарантирует exhaustive switch. Связка с Pattern Matching for switch (Java 21).",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
       "id": "auto-service-типы-в-k8s-463",
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "devops",
-        "system-design"
+        "spring"
       ],
       "companies": [
         "vk"
@@ -2335,7 +965,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller."
+          "text": "Для Service типы в K8s container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -2343,11 +973,11 @@
         },
         {
           "id": "c",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -2362,160 +992,11 @@
       ]
     },
     {
-      "id": "auto-spring-boot-3-java-21-451",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "spring",
-        "devops"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 251,
-          "title": "VK · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Spring Boot 3 + Java 21» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
-        },
-        {
-          "id": "b",
-          "text": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая."
-        },
-        {
-          "id": "c",
-          "text": "Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty/Undertow) + стартеры. Минимизирует boilerplate."
-        },
-        {
-          "id": "d",
-          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-spring-kafka-основные-компоненты-425",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "kafka",
-        "devops"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 255,
-          "title": "Т1 Иннотех · 10. Kafka"
-        }
-      ],
-      "prompt": "Spring Kafka: основные компоненты?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
-        },
-        {
-          "id": "b",
-          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
-        },
-        {
-          "id": "c",
-          "text": "(1) Spring находит определение (BeanDefinition). (2) Вызывает конструктор. (3) Инжектит зависимости (setter / field). (4) @PostConstruct — пользовательская инициализация. (5) BeanPostProcessor..."
-        },
-        {
-          "id": "d",
-          "text": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-stream-api-промежуточные-vs-терминальные-операции-645",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "devops",
-        "algorithms"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 120,
-          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: Stream API: промежуточные vs терминальные операции?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Atomicity (всё или ничего), Consistency (целостность), Isolation (параллельные транзакции), Durability (сохранность после commit)."
-        },
-        {
-          "id": "b",
-          "text": "Ответ через STAR. Главное — не просто описать, что сделал, а показать рефлексию: что было сложно, чему научился, что бы переделал."
-        },
-        {
-          "id": "c",
-          "text": "Включить логи SQL (spring.jpa.show-sql=true), смотреть количество запросов на эндпоинт, использовать p6spy или Hibernate Statistics."
-        },
-        {
-          "id": "d",
-          "text": "Промежуточные (filter, map, sorted) возвращают Stream и ленивые. Терминальные (collect, forEach, count, reduce) запускают pipeline."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Промежуточные (filter, map, sorted) возвращают Stream и ленивые. Терминальные (collect, forEach, count, reduce) запускают pipeline.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
       "id": "auto-surefire-vs-failsafe-разница-569",
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
-        "testing-aqa"
+        "devops"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -2531,11 +1012,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -2543,7 +1024,7 @@
         },
         {
           "id": "d",
-          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -2562,10 +1043,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "alfa-bank"
@@ -2585,15 +1064,15 @@
         },
         {
           "id": "b",
-          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
+          "text": "Для Testcontainers лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "ID, заголовок (что тестируем), предусловие (авторизован, баланс > 0), шаги (1. POST /payment..., 2. GET /status...), ожидаемый результат (статус 200, баланс уменьшился), постусловие (откатить данные)..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2612,10 +1091,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -2635,15 +1112,15 @@
         },
         {
           "id": "b",
-          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
+          "text": "Для Testcontainers — что это лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
-          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
+          "text": "Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "d",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -2654,114 +1131,6 @@
         {
           "label": "МТС Банк AQA",
           "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-volatile-331",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 190,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 206,
-          "title": "VK · 5. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 186,
-          "title": "Яндекс Путешествия · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «volatile» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
-        },
-        {
-          "id": "b",
-          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching."
-        },
-        {
-          "id": "c",
-          "text": "validate → compile → test → package → verify → install → deploy. mvn test: прогоняет unit-тесты (Surefire plugin). mvn verify: прогоняет интеграционные (Failsafe plugin). Scope: compile (по умолчанию)..."
-        },
-        {
-          "id": "d",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-volatile-что-гарантирует-и-почему-недостаточно-для-i-389",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "devops"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 108,
-          "title": "Т1 Иннотех · 4. Многопоточность"
-        }
-      ],
-      "prompt": "volatile: что гарантирует и почему недостаточно для i++?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
-        },
-        {
-          "id": "b",
-          "text": "Видимость (запрет кэширования), happens-before (volatile write → read), запрет reordering. i++ = read+increment+write — три операции. Между ними другой поток может прочитать старое значение. Решения: AtomicInteger (CAS)..."
-        },
-        {
-          "id": "c",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
-        },
-        {
-          "id": "d",
-          "text": "(1) Mutual exclusion — ресурс не разделяемый. (2) Hold and wait — поток держит один ресурс, ждёт другой. (3) No preemption — отнять ресурс нельзя. (4) Circular wait — цикл ожидания. Чтобы deadlock был — нужны все четыре..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Видимость (запрет кэширования), happens-before (volatile write → read), запрет reordering. i++ = read+increment+write — три операции. Между ними другой поток может прочитать старое значение. Решения: AtomicInteger (CAS)...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
         }
       ]
     },
@@ -2786,11 +1155,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "Payment Card Industry Data Security Standard. Нельзя хранить CVV/CVC вообще. Номер карты только маскированный (****1234). Логи не должны содержать полный PAN..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -2798,7 +1167,7 @@
         },
         {
           "id": "d",
-          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -2813,62 +1182,11 @@
       ]
     },
     {
-      "id": "auto-главный-плюс-constructor-injection-в-тестах-720",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 315,
-          "title": "X5 Tech · 4. Баг #3 — magic filter в стриме · Главное преимущество — тесты"
-        }
-      ],
-      "prompt": "Главный плюс constructor injection в тестах?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
-        },
-        {
-          "id": "b",
-          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
-        },
-        {
-          "id": "c",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
-        },
-        {
-          "id": "d",
-          "text": "JSON компактнее, читабельнее, нативно поддерживается в JavaScript. XML — стандартизированный, есть схемы (XSD), namespace, можно валидировать. Для REST почти всегда JSON, для SOAP — обязательно XML."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
       "id": "auto-жизненный-цикл-maven-568",
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "devops",
-        "testing-aqa"
+        "devops"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -2884,7 +1202,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
+          "text": "Для Жизненный цикл Maven container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -2892,11 +1210,11 @@
         },
         {
           "id": "c",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "QA (Quality Assurance): процесс обеспечения качества — стандарты, процессы, предотвращение дефектов. QC (Quality Control): контроль качества — тестирование, нахождение дефектов. QA — шире, QC — часть QA."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -2915,8 +1233,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "devops",
-        "testing-aqa"
+        "devops"
       ],
       "companies": [
         "itk-academy"
@@ -2932,7 +1249,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Проверка, что метод был вызван (сколько раз, с какими аргументами). verify(mock, times(2)).method(anyString())."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "b",
@@ -2940,11 +1257,11 @@
         },
         {
           "id": "c",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         },
         {
           "id": "d",
-          "text": "Нет — тестируются через публичные. Если private стало сложно — это сигнал, что надо выделить отдельный класс."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image."
         }
       ],
       "correct": [
@@ -2955,56 +1272,6 @@
         {
           "label": "ITK Academy",
           "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-зачем-нужны-пулы-потоков-175",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "concurrency",
-        "spring",
-        "devops",
-        "algorithms"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 506,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · ExecutorService и пулы"
-        }
-      ],
-      "prompt": "Зачем нужны пулы потоков?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "@EnableAutoConfiguration + @Conditional. Конфиги описаны в META- INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports (ранее — spring.factories)."
-        },
-        {
-          "id": "b",
-          "text": "Stream — конвейер обработки данных. Промежуточные (ленивые): filter, map, flatMap, sorted. Терминальные (запускают): collect, forEach, count, reduce. Стрим одноразовый."
-        },
-        {
-          "id": "c",
-          "text": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач."
-        },
-        {
-          "id": "d",
-          "text": "Inversion of Control — инверсия управления. Вместо того чтобы класс сам создавал свои зависимости (new), он получает их извне — фреймворк сам решает, кого с кем связать."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Создание потока — дорогая операция (~1 МБ памяти + системный вызов). Пул переиспользует потоки. Также даёт контроль над количеством (не создаст тысячу) и очередь задач.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -3034,15 +1301,15 @@
         },
         {
           "id": "b",
-          "text": "Mock: полностью пустой объект, все методы возвращают default (null, 0, false). Spy: обёртка над реальным объектом, методы вызываются по-настоящему, если не замоканы. Для Spy: doReturn().when(spy).method() (не when(spy..."
+          "text": "Для Как автотесты встраиваются в CI/CD pipeline container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Вставка SQL-кода в поле ввода: ' OR 1=1 -- в поле логина. Если приложение подставляет ввод напрямую в SQL — получаем доступ ко всем данным. Как проверить: ввести ' ; DROP TABLE users; -- в поля формы, проверить ответ..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -3077,15 +1344,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Offset всегда коммитится до обработки сообщения, чтобы не было дублей."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки."
         },
         {
           "id": "b",
-          "text": "Rate limiter всегда лучше хранить в локальной памяти каждого инстанса."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image."
         },
         {
           "id": "c",
-          "text": "Testcontainers нужен только для unit-тестов без внешних зависимостей."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         },
         {
           "id": "d",
@@ -3108,9 +1375,7 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
-        "devops",
-        "security"
+        "devops"
       ],
       "companies": [
         "itk-academy"
@@ -3130,15 +1395,15 @@
         },
         {
           "id": "b",
-          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Java 7: массив Segment (ReentrantLock), каждый сегмент — свой HashMap. Java 8: убрали Segment, CAS + synchronized на головах бакетов (лучше параллелизм). Treeify при 8 коллизиях."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -3177,15 +1442,15 @@
         },
         {
           "id": "b",
-          "text": "Текстовый файл с инструкциями для сборки образа: FROM (базовый образ), COPY, RUN, CMD/ENTRYPOINT и т.д."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "c",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         },
         {
           "id": "d",
-          "text": "Чтобы среда сборки была одинаковая на всех машинах. И на проде запускается тот же образ, что был протестирован."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image."
         }
       ],
       "correct": [
@@ -3204,7 +1469,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "devops"
       ],
       "companies": [
@@ -3221,11 +1485,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         },
         {
           "id": "b",
-          "text": "В многопоточном коде достаточно использовать обычный HashMap, если чтений больше, чем записей."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image."
         },
         {
           "id": "c",
@@ -3233,7 +1497,7 @@
         },
         {
           "id": "d",
-          "text": "Readiness probe перезапускает контейнер, если приложение временно не готово принимать трафик."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки."
         }
       ],
       "correct": [
@@ -3244,323 +1508,6 @@
         {
           "label": "Лига Цифровой Экономики",
           "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-работает-componentscan-066",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 290,
-          "title": "Сбер · 7. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Как работает @ComponentScan?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller."
-        },
-        {
-          "id": "b",
-          "text": "ClusterIP (внутренний), NodePort (внешний на каждой ноде), LoadBalancer (облачный LB — именно это делает группа балансеров в VK)."
-        },
-        {
-          "id": "c",
-          "text": "Собираешь в одном образе (с Maven/Gradle), а в финальный копируешь только JAR. Финальный образ маленький и без build-инструментов."
-        },
-        {
-          "id": "d",
-          "text": "ENTRYPOINT — основная исполняемая команда, сложно переопределить. CMD — аргументы по умолчанию, легко переопределить в docker run."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Сканирует пакеты (по умолчанию — пакет класса с @SpringBootApplication) в поисках @Component, @Service, @Repository, @Controller.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-растет-arraylist-134",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "devops",
-        "algorithms",
-        "system-design"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 315,
-          "title": "SberSeasons · 4. Коллекции · List и его реализации"
-        }
-      ],
-      "prompt": "Как растёт ArrayList?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
-        },
-        {
-          "id": "b",
-          "text": "Начальная capacity = 10. При переполнении создаётся новый массив размером 1.5× от старого, элементы копируются. Метод trimToSize() ужимает массив до текущего количества элементов..."
-        },
-        {
-          "id": "c",
-          "text": "ConcurrentHashMap — потокобезопасная HashMap. Не блокирует чтение, на запись — синхронизация по бакету. CopyOnWriteArrayList — копирует весь массив при записи, lock-free на чтение..."
-        },
-        {
-          "id": "d",
-          "text": "PRIMARY KEY — уникальный идентификатор строки. NOT NULL, UNIQUE автоматически. На таблицу может быть только один. FOREIGN KEY — ссылка на PRIMARY KEY (или UNIQUE) другой таблицы..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Начальная capacity = 10. При переполнении создаётся новый массив размером 1.5× от старого, элементы копируются. Метод trimToSize() ужимает массив до текущего количества элементов...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-создать-бин-в-spring-208",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 655,
-          "title": "SberSeasons · 8. Spring и Spring Boot · IoC и DI"
-        }
-      ],
-      "prompt": "Как создать бин в Spring?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Read-modify-write: прочитать значение, добавить 1, записать обратно. Это ТРИ операции, и они НЕ атомарны. Поэтому в многопоточной среде два потока могут одновременно прочитать одно значение и оба прибавить — итог будет +..."
-        },
-        {
-          "id": "b",
-          "text": "(1) Аннотация на классе: @Component, @Service, @Repository, @Controller — Spring найдёт через component scan. (2) Метод с @Bean внутри @Configuration — явное создание (для бинов из чужих библиотек или сложной инициализац..."
-        },
-        {
-          "id": "c",
-          "text": "Несколько связанных проблем. (1) Поле не final — может быть случайно перезаписано, в том числе через reflection. Для thread-safe сервиса (а Spring singleton — он всегда thread-safe должен быть) — это потенциальная пробле..."
-        },
-        {
-          "id": "d",
-          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "(1) Аннотация на классе: @Component, @Service, @Repository, @Controller — Spring найдёт через component scan. (2) Метод с @Bean внутри @Configuration — явное создание (для бинов из чужих библиотек или сложной инициализац...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-тестировать-kafka-в-автотесте-554",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 380,
-          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
-        }
-      ],
-      "prompt": "Как тестировать Kafka в автотесте?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
-        },
-        {
-          "id": "b",
-          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
-        },
-        {
-          "id": "c",
-          "text": "Да! Условие в ON применяется ДО объединения — несоответствующие строки правой таблицы становятся NULL. Условие в WHERE применяется ПОСЛЕ — строки с NULL отфильтровываются, и LEFT JOIN превращается в INNER JOIN..."
-        },
-        {
-          "id": "d",
-          "text": "BFS (Breadth-First Search) — обход в ширину. Идёт по уровням. Используется в: поиск кратчайшего пути в невзвешенном графе, обход дерева по уровням. Внутри — очередь. DFS (Depth- First Search) — обход в глубину..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(.....",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-устроен-hashmap-323",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "sql",
-        "devops",
-        "system-design",
-        "algorithms"
-      ],
-      "companies": [
-        "alfa-bank",
-        "yandex-travel",
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 162,
-          "title": "Альфа-Банк · 4. Коллекции"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 158,
-          "title": "Яндекс Путешествия · 4. Коллекции"
-        },
-        {
-          "path": "guides/itk-academy.md",
-          "line": 146,
-          "title": "ITK Academy · 4. Коллекции"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 153,
-          "title": "Лига Цифровой Экономики · 4. Коллекции"
-        }
-      ],
-      "prompt": "Как устроен HashMap?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree..."
-        },
-        {
-          "id": "b",
-          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
-        },
-        {
-          "id": "c",
-          "text": "pg_stat_activity: текущие запросы, их состояние (active/idle/waiting), PID, query_start. Для поиска long-running queries и блокировок. pg_stat_statements: статистика по запросам (calls, total_time, mean_time, rows)..."
-        },
-        {
-          "id": "d",
-          "text": "Наглядные отчёты с историей, вложениями, ретраями. @Step — шаг теста в отчёте. @Description — описание. @Severity — приоритет. @Epic/@Feature/@Story — иерархия. Allure.addAttachment — прикрепить запрос/ответ/скриншот."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Массив Node<K,V>[]. Размер — степень двойки (default 16). Индекс: (n-1) & hash(key), hash — XOR верхних 16 бит с нижними. Коллизии — связный список. Java 8+: при TREEIFY_THRESHOLD=8 И capacity ≥ 64 → red-black tree...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-устроена-hashmap-внутри-138",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "sql",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 333,
-          "title": "SberSeasons · 4. Коллекции · HashMap (самый частый вопрос)"
-        }
-      ],
-      "prompt": "Как устроена HashMap внутри?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
-        },
-        {
-          "id": "b",
-          "text": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime..."
-        },
-        {
-          "id": "c",
-          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
-        },
-        {
-          "id": "d",
-          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -3585,7 +1532,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "Для Какие команды Docker ты знаешь container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -3593,11 +1540,11 @@
         },
         {
           "id": "c",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -3608,306 +1555,6 @@
         {
           "label": "ITK Academy",
           "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какие-типы-пулов-есть-в-executors-176",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "concurrency",
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 509,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · ExecutorService и пулы"
-        }
-      ],
-      "prompt": "Какие типы пулов есть в Executors?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Records: immutable data-класс с equals/hashCode/toString. Sealed Classes: ограничение иерархии (exhaustive switch). Pattern Matching: instanceof без cast, switch по типам..."
-        },
-        {
-          "id": "b",
-          "text": "PERSIST + MERGE + REMOVE + REFRESH + DETACH. Опасность: CascadeType.REMOVE при OneToMany — удаление родителя удалит ВСЕХ детей. Если детей 10 000 — 10 000 DELETE запросов..."
-        },
-        {
-          "id": "c",
-          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
-        },
-        {
-          "id": "d",
-          "text": "Образ — неизменяемый шаблон из слоёв (каждая инструкция Dockerfile — слой). Контейнер — запущенный экземпляр с writable-слоем. docker images → образы, docker ps → контейнеры."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какой-di-лучше-340",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 221,
-          "title": "Альфа-Банк · 6. Spring и Spring Boot"
-        }
-      ],
-      "prompt": "Какой DI лучше?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + библиотеки. JDK = JRE + инструменты. С Java 9 JRE отдельно не поставляется. Java 21: Virtual Threads, Records, Sealed Classes, Pattern Matching."
-        },
-        {
-          "id": "b",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
-        },
-        {
-          "id": "c",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
-        },
-        {
-          "id": "d",
-          "text": "Видимость между потоками (запрет кэширования в регистрах/L1-кэше) + запрет reordering вокруг volatile. НЕ гарантирует атомарность i++ (read-increment-write = три операции). Для атомарных — AtomicInteger."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-два-дата-центра-один-упал-как-балансировщик-узнает-430",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 272,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: два дата-центра, один упал. Как балансировщик узнает?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят..."
-        },
-        {
-          "id": "b",
-          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
-        },
-        {
-          "id": "c",
-          "text": "Автоконфигурация — Spring Boot сам подключает компоненты в зависимости от того, что есть на classpath. Стартеры — готовые наборы зависимостей (spring-boot-starter-web подтягивает Spring MVC, Tomcat, Jackson)..."
-        },
-        {
-          "id": "d",
-          "text": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-сервис-a-1000-tps-сервис-b-200-tps-как-защитить-b-428",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 266,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: сервис A — 1000 TPS, сервис B — 200 TPS. Как защитить B?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election..."
-        },
-        {
-          "id": "b",
-          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
-        },
-        {
-          "id": "c",
-          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
-        },
-        {
-          "id": "d",
-          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-сеть-моргнула-на-2-секунды-что-делать-429",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 269,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: сеть «моргнула» на 2 секунды. Что делать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
-        },
-        {
-          "id": "b",
-          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
-        },
-        {
-          "id": "c",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
-        },
-        {
-          "id": "d",
-          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-конфликт-зависимостей-как-искать-413",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "sql",
-        "devops",
-        "algorithms"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 186,
-          "title": "Т1 Иннотех · 7. Spring и транзакции"
-        }
-      ],
-      "prompt": "Конфликт зависимостей: как искать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
-        },
-        {
-          "id": "b",
-          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
-        },
-        {
-          "id": "c",
-          "text": "Master принимает запись. Slave (replica) — копия, на которую идут чтения. Изменения с Master реплицируются на Slave. Помогает: (1) масштабировать чтение. (2) Резервная копия (если Master упал — promotion Slave в Master)..."
-        },
-        {
-          "id": "d",
-          "text": "Порождающие (Creational) — про создание объектов: Singleton, Builder, Factory Method, Abstract Factory, Prototype. Структурные (Structural) — про композицию объектов: Adapter, Decorator, Proxy, Facade, Composite, Bridge..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
         }
       ]
     },
@@ -3932,7 +1579,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
+          "text": "Для Образ (image) vs контейнер (container) container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -3940,11 +1587,11 @@
         },
         {
           "id": "c",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Промежуточные (filter, map, sorted) возвращают Stream и ленивые. Терминальные (collect, forEach, count, reduce) запускают pipeline."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -3991,15 +1638,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "merge создаёт коммит-слияние, история ветвится. rebase «переносит» коммиты твоей ветки поверх другой, делая историю линейной. Rebase в публичных ветках обычно делать не стоит."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
@@ -4018,367 +1665,13 @@
       ]
     },
     {
-      "id": "auto-почему-constructor-injection-лучше-field-injection-211",
-      "type": "scenario",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "spring",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 666,
-          "title": "SberSeasons · 8. Spring и Spring Boot · Способы инъекции"
-        }
-      ],
-      "prompt": "Почему constructor injection лучше field injection?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "mvn dependency:tree — показывает дерево зависимостей. Ищем разные версии одной библиотеки. Gradle: ./gradlew dependencies. Решение: exclusion в Maven/Gradle, dependencyManagement/BOM, force в Gradle. Классика: Jackson 2..."
-        },
-        {
-          "id": "b",
-          "text": "Strong: обычная, GC не трогает. Soft: GC собирает при нехватке памяти (кэши). Weak: GC собирает при первой сборке (WeakHashMap). Phantom: get() всегда null, уведомление через ReferenceQueue (постфинализационная очистка)..."
-        },
-        {
-          "id": "c",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
-        },
-        {
-          "id": "d",
-          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-разница-между-save-persist-merge-update-675",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 306,
-          "title": "Лига Цифровой Экономики · 7. Hibernate и Spring Data JPA"
-        }
-      ],
-      "prompt": "Разница между save(), persist(), merge(), update()?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
-        },
-        {
-          "id": "b",
-          "text": "Интерфейс с ровно одним абстрактным методом. @FunctionalInterface — опциональная аннотация. Примеры: Function, Predicate, Consumer, Supplier, Runnable, Comparator."
-        },
-        {
-          "id": "c",
-          "text": "JPA — спецификация (набор интерфейсов и аннотаций). Hibernate — реализация (конкретная библиотека). EntityManager — JPA-интерфейс, Session — Hibernate-интерфейс..."
-        },
-        {
-          "id": "d",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-расскажи-acid-193",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "concurrency",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 592,
-          "title": "SberSeasons · 7. БД и SQL · ACID и транзакции"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Расскажи ACID» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "ArrayList — на основе массива. Доступ по индексу O(1), вставка в конец амортизированно O(1), в середину O(n). Самая популярная. LinkedList — двусвязный список. Доступ по индексу O(n)..."
-        },
-        {
-          "id": "b",
-          "text": "Check-then-act без атомарности: if (map.containsKey(k)) map.get(k). Между проверкой и получением другой поток может удалить. Решение: computeIfAbsent (атомарно). Воспроизвести: Thread..."
-        },
-        {
-          "id": "c",
-          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
-        },
-        {
-          "id": "d",
-          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-способы-создать-поток-651",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "spring",
-        "devops"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 187,
-          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Способы создать поток» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "extends Thread, implements Runnable/Callable, через ExecutorService, CompletableFuture. Предпочтительнее — пулы потоков через Executors."
-        },
-        {
-          "id": "b",
-          "text": "READ_UNCOMMITTED — dirty read. READ_COMMITTED — non-repeatable read. REPEATABLE_READ — phantom read. SERIALIZABLE — полная сериализация."
-        },
-        {
-          "id": "c",
-          "text": "Read Committed — убирает dirty read. Repeatable Read — убирает non-repeatable read. Serializable — убирает phantom read и всё остальное."
-        },
-        {
-          "id": "d",
-          "text": "Вызывать только внутри synchronized на том же объекте. wait() освобождает монитор и засыпает. notify будит один поток, notifyAll — все."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "extends Thread, implements Runnable/Callable, через ExecutorService, CompletableFuture. Предпочтительнее — пулы потоков через Executors.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-способы-создать-поток-в-java-041",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "spring",
-        "devops",
-        "collections"
-      ],
-      "companies": [
-        "sber",
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 211,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/itk-academy.md",
-          "line": 199,
-          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Способы создать поток в Java» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
-        },
-        {
-          "id": "b",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
-        },
-        {
-          "id": "c",
-          "text": "wait() отпускает монитор объекта. sleep() — НЕ отпускает, поток продолжает держать все свои блокировки, просто не выполняется."
-        },
-        {
-          "id": "d",
-          "text": "Поле @Version (int/long/timestamp). При update Hibernate сравнивает версию — если не совпала, бросает OptimisticLockException."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-уровни-тестирования-491",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 83,
-          "title": "МТС Банк AQA · 3. Теория тестирования"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Уровни тестирования» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
-        },
-        {
-          "id": "b",
-          "text": "REST: HTTP, JSON, легковесный, stateless, гибкий. SOAP: XML, WSDL, строгий контракт, WS- Security. В банках: REST для новых API, SOAP для legacy (АБС, процессинг). Junior AQA: REST — основной, но упомянуть знание SOAP — плюс."
-        },
-        {
-          "id": "c",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
-        },
-        {
-          "id": "d",
-          "text": "VIEW: виртуальная таблица, запрос выполняется при каждом обращении. MATERIALIZED VIEW: результат сохраняется на диске, нужен REFRESH для обновления. Для AQA: VIEW для упрощения запросов в тестах, MATERIALIZED VIEW для отчётов."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT).",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-atomic-лучше-volatile-167",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 474,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Atomic"
-        }
-      ],
-      "prompt": "Чем Atomic лучше volatile?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
-        },
-        {
-          "id": "b",
-          "text": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet..."
-        },
-        {
-          "id": "c",
-          "text": "Heap: объекты (Young=Eden+Survivor, Old). Stack: фреймы методов (на каждый поток свой, LIFO), примитивы, ссылки. Metaspace: метаданные классов, статические поля. Code Cache: JIT-скомпилированный код..."
-        },
-        {
-          "id": "d",
-          "text": "JVM (Java Virtual Machine) — виртуальная машина, которая исполняет байткод. Содержит GC и JIT-компилятор. JRE (Java Runtime Environment) — JVM + стандартные библиотеки (java.lang, java.util и т.д.)..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-чем-component-отличается-от-service-repository-controller-607",
       "type": "single",
       "level": "junior",
       "topics": [
-        "java-core",
-        "collections",
+        "devops",
         "spring",
-        "hibernate",
-        "sql",
-        "devops"
+        "hibernate"
       ],
       "companies": [
         "itk-academy",
@@ -4400,15 +1693,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "@Aspect + @Around(\"execution(* com.example.service.*.*(..))\"). ProceedingJoinPoint: long start = System.nanoTime(); Object result = pjp.proceed(); long elapsed = System.nanoTime() - start; log.info(\"{} took {} ms\"..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Long: компактный (8 байт), быстрый B-tree (последовательная вставка), auto-increment. UUID: скрывает количество записей (безопасность), не нужен центральный генератор (распределённые системы). Минусы UUID: 16 байт..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
@@ -4447,15 +1740,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Образ — неизменяемый шаблон из слоёв (каждая инструкция Dockerfile — слой). Контейнер — запущенный экземпляр с writable-слоем. docker images → образы, docker ps → контейнеры."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "newFixedThreadPool(n) — фиксированный размер. newCachedThreadPool() — растёт по необходимости, потоки умирают через 60 сек простоя. newSingleThreadExecutor() — один поток..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Захват аргумента, переданного в замоканный метод. verify(service).send(captor.capture()); assertThat(captor.getValue().getEmail()).isEqualTo(\"test@mts.ru\"). Для AQA: проверить..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
@@ -4470,57 +1763,6 @@
         {
           "label": "ITK Academy",
           "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-runnable-отличается-от-callable-161",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "collections",
-        "concurrency",
-        "spring",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 450,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Как создать поток"
-        }
-      ],
-      "prompt": "Чем Runnable отличается от Callable?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
-        },
-        {
-          "id": "b",
-          "text": "Минимальный уровень — Read Committed. PostgreSQL использует MVCC: каждая транзакция видит snapshot, грязные данные физически невозможно прочитать (нет dirty read). Read Uncommitted в PG ведёт себя как Read Committed..."
-        },
-        {
-          "id": "c",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
-        },
-        {
-          "id": "d",
-          "text": "Ключевое слово для вывода типа локальной переменной. var list = new ArrayList<String>(); — компилятор сам определит, что это ArrayList<String>. Использовать только для локальных переменных, не для полей и параметров..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -4545,11 +1787,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Liveness: жив ли? Нет → перезапуск. Readiness: готов к трафику? Нет → убирается из балансировки. Spring Boot Actuator: /health/liveness, /health/readiness."
+          "text": "Для Чем образ (image) отличается от контейнера (container) container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -4557,7 +1799,7 @@
         },
         {
           "id": "d",
-          "text": "Образ: шаблон (класс). Контейнер: запущенный экземпляр (объект). CMD: аргументы по умолчанию (легко переопределить). ENTRYPOINT: основная команда (сложнее)..."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -4576,12 +1818,9 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "collections",
+        "devops",
         "spring",
-        "hibernate",
-        "sql",
-        "devops"
+        "hibernate"
       ],
       "companies": [
         "sberseasons"
@@ -4597,15 +1836,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "@Configuration + @EnableAutoConfiguration + @ComponentScan. Автоконфигурация через @Conditional: если DataSource в classpath — настроит JPA. Список в META- INF/spring/...AutoConfiguration.imports (Spring Boot 3+..."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
-          "text": "Формула: (n-1) & hash(key). Если capacity=16 (n=16): (15) & hash. 15 в бинарном = 1111. hash = 2_000_000_000: 2000000000 & 15 = 0 (последние 4 бита = 0000). Результат: bucket 0. Поэтому capacity — степень двойки..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+          "text": "Для @Component, @Service, @Repository, @Controller container и image можно считать одним и тем же: это разные названия запущенного приложения. Формулировка похожа на production-подход..."
         },
         {
           "id": "d",
@@ -4644,15 +1883,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Цепочка job'ов, выполняемых на runner'ах при определённых событиях (push, merge request). Описывается в .gitlab-ci.yml или .github/workflows/*.yml."
+          "text": "Для Чем отличаются soft link и hard link container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
@@ -4667,55 +1906,6 @@
         {
           "label": "Лига Цифровой Экономики",
           "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-делает-componentscan-222",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "spring",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 709,
-          "title": "SberSeasons · 8. Spring и Spring Boot · Spring Boot"
-        }
-      ],
-      "prompt": "Что делает @ComponentScan?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "1 findAll() + N доп. запросов на lazy-коллекции. 1000 заказов → 1001 SQL. Обнаружение: hibernate.generate_statistics=true, datasource-proxy. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), @Fetch(FetchMode..."
-        },
-        {
-          "id": "b",
-          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
-        },
-        {
-          "id": "c",
-          "text": "Сканирует указанный пакет (по умолчанию — пакет класса, на котором стоит) и все подпакеты на предмет аннотаций @Component, @Service, @Repository, @Controller. Найденные классы регистрируются как бины в контексте."
-        },
-        {
-          "id": "d",
-          "text": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Сканирует указанный пакет (по умолчанию — пакет класса, на котором стоит) и все подпакеты на предмет аннотаций @Component, @Service, @Repository, @Controller. Найденные классы регистрируются как бины в контексте.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -4740,7 +1930,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+          "text": "Для Что делает git stash container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -4748,11 +1938,11 @@
         },
         {
           "id": "c",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml-файл. Обычно: приложение + БД + Redis."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -4767,169 +1957,11 @@
       ]
     },
     {
-      "id": "auto-что-сломается-если-hashcode-вернет-константу-313",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 83,
-          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Что сломается, если hashCode() вернёт константу?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "С Java 8 в интерфейсе можно объявить метод с реализацией через ключевое слово default. Это решает проблему расширения интерфейсов без поломки совместимости: добавляешь новый метод с default-реализацией..."
-        },
-        {
-          "id": "b",
-          "text": "Автоматически вызывает close() в finally. Ресурс реализует AutoCloseable. Закрытие в обратном порядке объявления. Если и try, и close бросают исключение — close-исключение подавляется (getSuppressed())..."
-        },
-        {
-          "id": "c",
-          "text": "Все объекты попадут в один bucket HashMap. Java 7: связный список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — перестройка в red-black tree O(log n). Это лучше O(n), но деградация по сравнению с O(1)."
-        },
-        {
-          "id": "d",
-          "text": "Инкапсуляция — скрытие внутреннего состояния объекта, доступ только через методы. Наследование — один класс получает поля и методы другого через extends. Полиморфизм — один интерфейс, разные реализации..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Все объекты попадут в один bucket HashMap. Java 7: связный список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — перестройка в red-black tree O(log n). Это лучше O(n), но деградация по сравнению с O(1).",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-сломается-если-hashcode-константа-434",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 106,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 91,
-          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Что сломается, если hashCode() — константа?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
-        },
-        {
-          "id": "b",
-          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
-        },
-        {
-          "id": "c",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
-        },
-        {
-          "id": "d",
-          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1).",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-acid-630",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "concurrency",
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 319,
-          "title": "ITK Academy · 8. Базы данных и SQL"
-        }
-      ],
-      "prompt": "Что такое ACID?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу..."
-        },
-        {
-          "id": "c",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
-        },
-        {
-          "id": "d",
-          "text": "Только внутри synchronized-блока на том же объекте. wait() отпускает монитор, поток засыпает. notify() / notifyAll() — будит. После notify поток должен снова получить монитор, чтобы продолжить..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу...",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-такое-ci-и-cd-627",
       "type": "single",
       "level": "junior",
       "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
+        "devops"
       ],
       "companies": [
         "itk-academy",
@@ -4951,7 +1983,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "b",
@@ -4959,11 +1991,11 @@
         },
         {
           "id": "c",
-          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "d",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -4982,8 +2014,6 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "spring",
-        "sql",
         "devops"
       ],
       "companies": [
@@ -5000,7 +2030,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+          "text": "Для docker-compose container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
@@ -5008,11 +2038,11 @@
         },
         {
           "id": "c",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "d",
-          "text": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -5051,15 +2081,15 @@
         },
         {
           "id": "b",
-          "text": "kill PID (SIGTERM, мягкое завершение), kill -9 PID (SIGKILL, жёсткое). Команда pkill/killall — по имени."
+          "text": "Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек."
         },
         {
           "id": "c",
-          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
+          "text": "Для Dockerfile container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "d",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
+          "text": "CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам."
         }
       ],
       "correct": [
@@ -5070,121 +2100,6 @@
         {
           "label": "ITK Academy",
           "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-keycloak-642",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "devops",
-        "security"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 365,
-          "title": "ITK Academy · 9. Безопасность: OAuth и Keycloak"
-        }
-      ],
-      "prompt": "Что такое Keycloak?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "thenApply: T → R. thenCompose: T → CF<R> (flatMap). thenCombine: объединение двух CF. exceptionally: обработка ошибки. Async-варианты выполняются в ForkJoinPool.commonPool() или указанном Executor."
-        },
-        {
-          "id": "b",
-          "text": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации."
-        },
-        {
-          "id": "c",
-          "text": "grep \"$(date +%Y-%m-%d)\" app.log | grep -c \"ERROR\". find: find . -name \"*.log\" -mtime -1 (файлы за сутки). Уникальные IP: grep -oE '([0-9]{1,3}\\.){3}[0-9]{1,3}' access.log | sort -u. tail -f app..."
-        },
-        {
-          "id": "d",
-          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Open-source решение для аутентификации и авторизации. Реализует OAuth 2.0, OIDC, SAML. Поддерживает SSO, federation, social login. Удобен тем, что готовый — не нужно писать свой сервер авторизации.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-load-factor-021",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "sber",
-        "sberseasons",
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 145,
-          "title": "Сбер · 4. Collections Framework"
-        },
-        {
-          "path": "guides/sber-internship.md",
-          "line": 339,
-          "title": "SberSeasons · 4. Коллекции · HashMap (самый частый вопрос)"
-        },
-        {
-          "path": "guides/itk-academy.md",
-          "line": 149,
-          "title": "ITK Academy · 4. Коллекции"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 156,
-          "title": "Лига Цифровой Экономики · 4. Коллекции"
-        }
-      ],
-      "prompt": "Что такое load factor?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
-        },
-        {
-          "id": "b",
-          "text": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются..."
-        },
-        {
-          "id": "c",
-          "text": "Не нужен Spring-контекст для юнит-теста. Просто new MyService(mock1, mock2) — и можно тестировать. Контекст Spring поднимается секунды-десятки секунд, на тысячах юнит-тестов это разница в часы CI..."
-        },
-        {
-          "id": "d",
-          "text": "Field (через @Autowired на поле) — короткий, но плохой. Setter (через @Autowired на сеттере) — гибкий, но позволяет создать неполностью сконфигурированный объект. Constructor — лучший: final-поля..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Соотношение size / capacity, при котором происходит расширение таблицы. По умолчанию 0.75. То есть когда size превышает 75% от capacity, таблица расширяется в 2 раза и все элементы перехэшируются...",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
         }
       ]
     },
@@ -5209,11 +2124,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
+          "text": "Для pipeline в GitLab/GitHub Actions container и image можно считать одним и тем же: это разные названия запущенного приложения."
         },
         {
           "id": "b",
-          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
+          "text": "Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         },
         {
           "id": "c",
@@ -5221,7 +2136,7 @@
         },
         {
           "id": "d",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
+          "text": "Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image. Формулировка похожа на production-подход, но неверно описывает ответственность платформы."
         }
       ],
       "correct": [
@@ -5267,15 +2182,15 @@
         },
         {
           "id": "b",
-          "text": "Абстрактный класс может содержать состояние и реализованные методы, наследуется только один. Интерфейс — контракт, можно реализовать несколько. С Java 8 в интерфейсах появились default-методы."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "c",
-          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
+          "text": "Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "d",
-          "text": "JDK dynamic proxy — если бин реализует интерфейс (через Proxy.newProxyInstance). CGLIB — наследование от класса (final-классы нельзя проксировать). Spring Boot 3 по умолчанию использует CGLIB."
+          "text": "В production это почти не влияет: проблема проявляется только в учебных примерах и тестах. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         }
       ],
       "correct": [
@@ -5290,64 +2205,12 @@
       ]
     },
     {
-      "id": "auto-что-такое-spring-cloud-и-для-чего-он-618",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "kafka",
-        "devops",
-        "security"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 270,
-          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
-        }
-      ],
-      "prompt": "Что такое Spring Cloud и для чего он?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "SRP (одна причина для изменения), OCP (расширение без модификации), LSP (подтипы взаимозаменяемы), ISP (мелкие интерфейсы), DIP (зависимость от абстракций)."
-        },
-        {
-          "id": "b",
-          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
-        },
-        {
-          "id": "c",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
-        },
-        {
-          "id": "d",
-          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем».",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-такое-testcontainers-694",
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
+        "testing-aqa",
+        "devops"
       ],
       "companies": [
         "liga"
@@ -5363,11 +2226,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Lazy — связь подгружается только при обращении (прокси). Eager — сразу в SELECT. Default для @OneToMany и @ManyToMany — Lazy, для @ManyToOne и @OneToOne — Eager."
+          "text": "Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "b",
-          "text": "Библиотека для создания моков (имитаций) объектов в тестах. Позволяет «подменить» зависимость тестируемого класса фейком, который ведёт себя так, как тебе нужно."
+          "text": "Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         },
         {
           "id": "c",
@@ -5375,7 +2238,7 @@
         },
         {
           "id": "d",
-          "text": "ENTRYPOINT задаёт основную исполняемую команду. CMD — аргументы по умолчанию. CMD легко переопределить при docker run, ENTRYPOINT — сложнее (через --entrypoint)."
+          "text": "WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения. Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов."
         }
       ],
       "correct": [
@@ -5386,54 +2249,6 @@
         {
           "label": "Лига Цифровой Экономики",
           "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-транзакция-192",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "sql",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 589,
-          "title": "SberSeasons · 7. БД и SQL · ACID и транзакции"
-        }
-      ],
-      "prompt": "Что такое транзакция?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
-        },
-        {
-          "id": "b",
-          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
-        },
-        {
-          "id": "c",
-          "text": "Soft (ln -s) — указатель на путь, работает через каталоги. Hard — второе имя для того же inode, нельзя через каталоги и на другую файловую систему."
-        },
-        {
-          "id": "d",
-          "text": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Последовательность операций, которая выполняется как единое целое. Либо все операции применяются (COMMIT), либо ни одна (ROLLBACK). Гарантии — ACID.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     }

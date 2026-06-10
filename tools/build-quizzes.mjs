@@ -97,7 +97,7 @@ const topicDefs = [
   {
     id: "collections",
     label: "Collections",
-    match: /(collection|hashmap|hashset|arraylist|linkedlist|treemap|linkedhashmap|concurrenthashmap|priorityqueue|iterator|fail-fast|list\.of|load factor|bucket|resize|ключ|map|set|queue)/i,
+    match: /(collection|hashmap|hashset|arraylist|linkedlist|treemap|linkedhashmap|concurrenthashmap|priorityqueue|iterator|fail-fast|list\.of|load factor|bucket|resize|ключ|\bmap\b|\bset\b|\bqueue\b)/i,
     generic: [
       "Коллекция сохраняет порядок вставки и всегда даёт O(1) для любых операций.",
       "Коллизии невозможны, если hashCode распределён достаточно хорошо.",
@@ -121,7 +121,7 @@ const topicDefs = [
   {
     id: "concurrency",
     label: "Concurrency / JMM",
-    match: /(thread|многопоточ|jmm|volatile|synchronized|happens-before|atomic|cas|executor|completablefuture|wait|notify|deadlock|livelock|starvation|threadlocal|virtual thread|parallelstream|forkjoin|race|lock|semaphore|countdownlatch|cyclicbarrier)/i,
+    match: /(thread|многопоточ|jmm|volatile|synchronized|happens-before|atomic|\bcas\b|executor|completablefuture|\bwait\b|\bnotify\b|deadlock|livelock|starvation|threadlocal|virtual thread|parallelstream|forkjoin|race condition|reentrantlock|semaphore|countdownlatch|cyclicbarrier)/i,
     generic: [
       "volatile делает любую составную операцию атомарной, включая i++.",
       "synchronized нужен только для взаимного исключения и не влияет на видимость данных.",
@@ -133,7 +133,7 @@ const topicDefs = [
   {
     id: "spring",
     label: "Spring Boot",
-    match: /(spring|bean|ioc|di|dependency|autowired|qualifier|component|service|repository|controller|transactional|propagation|self-invocation|aop|proxy|springbootapplication|starter|autoconfiguration|scope|rest|exceptionhandler|async)/i,
+    match: /(spring|\bbean\b|ioc|di|dependency|autowired|qualifier|component|\bservice\b|\brepository\b|\bcontroller\b|transactional|propagation|self-invocation|aop|proxy|springbootapplication|\bstarter\b|autoconfiguration|\bscope\b|\brest\b|exceptionhandler|\basync\b)/i,
     generic: [
       "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection.",
       "Spring создаёт новый singleton-бин на каждый HTTP-запрос, если включён Spring Boot.",
@@ -145,7 +145,7 @@ const topicDefs = [
   {
     id: "hibernate",
     label: "Hibernate / JPA",
-    match: /(hibernate|jpa|orm|entity|lazy|eager|n\+1|persistence|dirty checking|optimistic|lock|cache|spring data|repository|jooq|jdbctemplate|cascade|lazyinitialization)/i,
+    match: /(hibernate|jpa|orm|entity|n\+1|persistence|dirty checking|optimistic|pessimistic|spring data|\brepository\b|jooq|jdbctemplate|cascade|lazyinitialization|fetch type|fetch strategy)/i,
     generic: [
       "Lazy-загрузка всегда лучше eager-загрузки, потому что не делает SQL-запросов.",
       "N+1 решается только увеличением connection pool.",
@@ -157,7 +157,7 @@ const topicDefs = [
   {
     id: "sql",
     label: "SQL / PostgreSQL",
-    match: /(sql|postgres|postgresql|acid|isolation|mvcc|join|group by|having|where|index|explain|analyze|window|delete|truncate|uuid|primary key|read committed|repeatable read|serializable|query|select|oracle|бд|индекс|транзакц)/i,
+    match: /(\bsql\b|postgres|postgresql|\bacid\b|isolation|mvcc|\bjoin\b|group by|\bhaving\b|\bwhere\b|\bindex\b|\bexplain\b|\banalyze\b|\bwindow\b|\bdelete\b|\btruncate\b|\buuid\b|primary key|read committed|repeatable read|serializable|\bquery\b|\bselect\b|oracle|бд|индекс|транзакц)/i,
     generic: [
       "Индекс всегда ускоряет запрос и никогда не замедляет запись.",
       "WHERE и HAVING взаимозаменяемы, если запрос использует GROUP BY.",
@@ -169,7 +169,7 @@ const topicDefs = [
   {
     id: "kafka",
     label: "Kafka / Microservices",
-    match: /(kafka|rabbitmq|consumer|producer|topic|partition|offset|broker|consumer group|delivery|at-least-once|exactly-once|idempot|outbox|saga|circuit breaker|microservice|микросервис|kraft|zookeeper|retry)/i,
+    match: /(kafka|rabbitmq|\bconsumer\b|\bproducer\b|\btopic\b|partition|offset|\bbroker\b|consumer group|delivery|at-least-once|exactly-once|idempot|outbox|saga|circuit breaker|microservice|микросервис|kraft|zookeeper|\bretry\b)/i,
     generic: [
       "Consumer group нужен, чтобы одно сообщение гарантированно обработал каждый consumer.",
       "Exactly-once в Kafka автоматически делает весь бизнес-процесс идемпотентным.",
@@ -181,7 +181,7 @@ const topicDefs = [
   {
     id: "devops",
     label: "Docker / Kubernetes / CI/CD",
-    match: /(docker|kubernetes|k8s|pod|deployment|service|probe|liveness|readiness|startup|configmap|secret|ci|cd|pipeline|jenkins|gitlab|github actions|dockerfile|compose|image|container|multi-stage|linux|elk|allure)/i,
+    match: /(docker|kubernetes|k8s|\bpod\b|deployment|\bservice\b|probe|liveness|readiness|startup|configmap|secret|\bci\b|\bcd\b|ci\/cd|pipeline|jenkins|gitlab|github actions|dockerfile|compose|\bimage\b|container|multi-stage|linux|elk|allure)/i,
     generic: [
       "Контейнер — это неизменяемый шаблон, а image — запущенный процесс.",
       "Readiness probe перезапускает контейнер, если приложение временно не готово принимать трафик.",
@@ -217,7 +217,7 @@ const topicDefs = [
   {
     id: "system-design",
     label: "System Design",
-    match: /(system design|архитектур|rate limiter|load balancer|баланс|коротк|short url|booking|такси|metrics|capacity|cap-|slo|high-load|дата-центр|отказоустойчив)/i,
+    match: /(system design|архитектур|rate limiter|load balancer|балансировщик|коротк|short url|booking|такси|metrics|capacity estimate|оценка нагрузки|cap-|slo|high-load|дата-центр|отказоустойчив)/i,
     generic: [
       "В System Design достаточно перечислить технологии, детали нагрузки обычно вторичны.",
       "CAP-теорема означает, что можно одновременно получить сильную консистентность, доступность и устойчивость к разделению сети.",
@@ -474,10 +474,45 @@ function currentHeading(headings) {
   return headings.filter(Boolean).slice(-2).join(" · ");
 }
 
-function topicIdsFor(text) {
-  const matched = topicDefs.filter((topic) => topic.match.test(text)).map((topic) => topic.id);
-  if (matched.length > 0) return [...new Set(matched)];
+function matchTopicIds(text) {
+  return topicDefs.filter((topic) => topic.match.test(text)).map((topic) => topic.id);
+}
+
+function topicIdsFor(prompt, heading = "") {
+  const promptMatched = matchTopicIds(prompt);
+  if (promptMatched.length > 0) return prioritizeTopics([...new Set(promptMatched)], prompt);
+
+  const headingMatched = matchTopicIds(heading);
+  if (headingMatched.length > 0) return prioritizeTopics([...new Set(headingMatched)], heading);
+
+  const matched = matchTopicIds(`${prompt} ${heading}`);
+  if (matched.length > 0) return prioritizeTopics([...new Set(matched)], `${prompt} ${heading}`);
   return ["java-core"];
+}
+
+function prioritizeTopics(topics, text) {
+  const priority = [
+    [/rest assured|wiremock|junit|mockito|testcontainers|тест-дизайн|severity|priority|aqa|qa/i, "testing-aqa"],
+    [/oauth|openid|oidc|jwt|keycloak|csrf|xss|owasp|security|безопасн/i, "security"],
+    [/kafka|rabbitmq|consumer|producer|partition|offset|broker|outbox|saga|circuit breaker/i, "kafka"],
+    [/hibernate|jpa|entity|n\+1|persistence|dirty checking|optimistic|pessimistic|cascade|orm|jooq|jdbctemplate|fetch type|fetch strategy/i, "hibernate"],
+    [/spring|bean|transactional|autowired|qualifier|aop|proxy|springbootapplication/i, "spring"],
+    [/\bsql\b|postgres|\bjoin\b|group by|\bhaving\b|\bwhere\b|\bindex\b|\bexplain\b|mvcc|\bacid\b|isolation/i, "sql"],
+    [/docker|kubernetes|k8s|pod|deployment|service|probe|pipeline|ci\/cd/i, "devops"],
+    [/thread|volatile|synchronized|happens-before|atomic|executor|completablefuture|deadlock|threadlocal|parallelstream/i, "concurrency"],
+    [/hashmap|arraylist|linkedlist|treemap|hashset|collection|iterator|priorityqueue/i, "collections"],
+    [/heap|stack|metaspace|gc|classloader|jit|oom|zgc|jvm/i, "jvm"],
+    [/system design|rate limiter|load balancer|capacity|архитектур/i, "system-design"],
+    [/алгоритм|live|coding|palindrome|fizzbuzz|binary search|bfs|dfs|leetcode/i, "algorithms"],
+  ];
+  const ordered = [];
+  for (const [pattern, topic] of priority) {
+    if (topics.includes(topic) && pattern.test(text)) ordered.push(topic);
+  }
+  for (const topic of topics) {
+    if (!ordered.includes(topic)) ordered.push(topic);
+  }
+  return ordered;
 }
 
 function inferType(prompt, sourcePath, heading) {
@@ -533,7 +568,7 @@ function extractCandidates() {
       const meta = sourceMeta[sourcePath];
       const heading = currentHeading(headings);
       const key = normalizeQuestion(rawPrompt);
-      const topics = topicIdsFor(`${rawPrompt} ${answer} ${heading}`);
+      const topics = topicIdsFor(rawPrompt, heading);
       const existing = byKey.get(key);
       const sourceRef = {
         path: sourcePath,
@@ -567,30 +602,139 @@ function extractCandidates() {
   return [...byKey.values()];
 }
 
-function answerPoolByTopic(items) {
-  const pools = new Map();
-  for (const item of items) {
-    for (const topic of item.topics) {
-      if (!pools.has(topic)) pools.set(topic, []);
-      pools.get(topic).push(item.correctAnswer);
-    }
-  }
-  return pools;
+function questionSubject(item) {
+  return item.rawPrompt
+    .replace(/[?。.!]+$/g, "")
+    .replace(/^(что такое|зачем нужен|зачем нужна|как работает|как устроен|чем отличается|почему|когда использовать)\s+/i, "")
+    .trim();
 }
 
-function pickDistractors(item, pools) {
+function topicSpecificDistractors(item) {
+  const subject = questionSubject(item);
+  const primary = item.topics[0] || "java-core";
+  const templates = {
+    "java-core": [
+      `Это про ${subject}: достаточно назвать синтаксис, runtime-контракты и поведение JVM здесь не важны.`,
+      `Главная идея ${subject} в том, что компилятор автоматически предотвращает все такие ошибки.`,
+      `В production это почти не влияет: проблема проявляется только в учебных примерах и тестах.`,
+      `Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать.`,
+      `Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен.`,
+    ],
+    collections: [
+      `Для ${subject} порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса.`,
+      `Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют.`,
+      `В многопоточном коде такая структура безопасна, если большинство операций только читают данные.`,
+      `Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность.`,
+      `Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают.`,
+    ],
+    jvm: [
+      `Для ${subject} достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна.`,
+      `Все данные Java живут в heap, а stack используется только самой операционной системой.`,
+      `JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска.`,
+      `Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load.`,
+      `OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём.`,
+    ],
+    concurrency: [
+      `${subject} решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение.`,
+      `Если код проходит unit-тесты локально, race condition в production уже не возникнет.`,
+      `synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками.`,
+      `Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер.`,
+      `Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга.`,
+    ],
+    spring: [
+      `Для ${subject} Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна.`,
+      `Такое поведение одинаково для public, private и self-invocation методов внутри одного класса.`,
+      `Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах.`,
+      `Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл.`,
+      `Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией.`,
+    ],
+    hibernate: [
+      `Для ${subject} Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять.`,
+      `Lazy-загрузка безопасна после закрытия транзакции, если объект был получен через repository.`,
+      `Entity можно без риска использовать как HashMap key до и после persist, даже если id меняется.`,
+      `Dirty checking срабатывает только после явного вызова save на каждой изменённой сущности.`,
+      `Кэш второго уровня включён по умолчанию и автоматически решает проблемы производительности.`,
+    ],
+    sql: [
+      `Для ${subject} индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно.`,
+      `WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану.`,
+      `EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных.`,
+      `Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями.`,
+      `TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое.`,
+    ],
+    kafka: [
+      `Для ${subject} достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once.`,
+      `Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы.`,
+      `Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений.`,
+      `Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем.`,
+      `Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka.`,
+    ],
+    devops: [
+      `Для ${subject} container и image можно считать одним и тем же: это разные названия запущенного приложения.`,
+      `Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки.`,
+      `Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image.`,
+      `Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек.`,
+      `CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам.`,
+    ],
+    "testing-aqa": [
+      `Для ${subject} лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю.`,
+      `Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта.`,
+      `Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority.`,
+      `WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения.`,
+      `Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI.`,
+    ],
+    algorithms: [
+      `Для ${subject} главное написать код сразу; проговаривать ограничения и сложность обычно не нужно.`,
+      `Если решение работает на одном примере, Big-O можно не обсуждать до просьбы интервьюера.`,
+      `Сортировка всегда оптимальна для задач со строками и массивами, потому что код получается короче.`,
+      `HashMap автоматически делает любое решение O(1), независимо от числа операций и коллизий.`,
+      `Пограничные случаи лучше проверять после интервью, чтобы не тратить время live-coding секции.`,
+    ],
+    "system-design": [
+      `Для ${subject} достаточно перечислить технологии; оценка нагрузки и отказов обычно вторична.`,
+      `CAP-теорема позволяет одновременно гарантировать строгую консистентность, доступность и устойчивость к partition.`,
+      `Rate limiter надёжнее всего хранить локально на каждом инстансе без общей координации.`,
+      `Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик.`,
+      `Очередь сообщений автоматически решает все проблемы консистентности между сервисами.`,
+    ],
+    security: [
+      `Для ${subject} JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия.`,
+      `OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя.`,
+      `Refresh token безопасно хранить в localStorage, потому что он используется редко.`,
+      `CSRF невозможен в любом JSON API, поэтому защиту можно не проектировать.`,
+      `Keycloak нужен только как база пользователей и не связан с ролями OAuth/OIDC.`,
+    ],
+  };
+  return templates[primary] || templates["java-core"];
+}
+
+function balanceLength(candidate, correct, item) {
+  if (candidate.length >= correct.length * 0.72 || correct.length < 110) return candidate;
+  const tails = {
+    "java-core": " На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие.",
+    collections: " Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций.",
+    jvm: " Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM.",
+    concurrency: " Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков.",
+    spring: " Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов.",
+    hibernate: " Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции.",
+    sql: " Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи.",
+    kafka: " Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции.",
+    devops: " Формулировка похожа на production-подход, но неверно описывает ответственность платформы.",
+    "testing-aqa": " Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов.",
+    algorithms: " На live-coding такой подход рискованный: он не проверяет ограничения и пограничные случаи.",
+    "system-design": " В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off.",
+    security: " Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз.",
+  };
+  return `${candidate}${tails[item.topics[0]] || tails["java-core"]}`;
+}
+
+function pickDistractors(item) {
   const correct = item.correctAnswer;
   const correctNorm = normalizeQuestion(correct);
-  const candidates = [];
-  for (const topic of item.topics) {
-    candidates.push(...(pools.get(topic) || []));
-    const topicDef = topicDefs.find((entry) => entry.id === topic);
-    if (topicDef) candidates.push(...topicDef.generic);
-  }
-  for (const topicDef of topicDefs) candidates.push(topicDef.generic[hash(item.prompt + topicDef.id) % topicDef.generic.length]);
+  const candidates = topicSpecificDistractors(item);
 
   const unique = [...new Set(candidates)]
-    .map(trimAnswer)
+    .map((candidate) => trimAnswer(balanceLength(candidate, correct, item)))
     .filter((candidate) => {
       const normalized = normalizeQuestion(candidate);
       return candidate.length >= 28 && normalized !== correctNorm && !normalized.includes(correctNorm) && !correctNorm.includes(normalized);
@@ -609,16 +753,14 @@ function pickDistractors(item, pools) {
     }
   }
 
-  while (selected.length < 3) {
-    selected.push(topicDefs[selected.length].generic[0]);
-  }
+  while (selected.length < 3) selected.push(topicSpecificDistractors(item)[selected.length]);
   return selected;
 }
 
-function withChoices(item, index, pools) {
+function withChoices(item, index) {
   const correctId = ["a", "b", "c", "d"][hash(item.prompt) % 4];
   const ids = ["a", "b", "c", "d"];
-  const distractors = pickDistractors(item, pools);
+  const distractors = pickDistractors(item);
   const choices = [];
   let distractorIndex = 0;
   for (const id of ids) {
@@ -674,8 +816,7 @@ function selectForQuiz(allQuestions, quiz) {
 function build() {
   fs.mkdirSync(outDir, { recursive: true });
   const extracted = extractCandidates();
-  const pools = answerPoolByTopic(extracted);
-  const generated = extracted.map((item, index) => withChoices(item, index, pools));
+  const generated = extracted.map((item, index) => withChoices(item, index));
   const allQuestions = uniqueById([...curatedQuestions, ...generated]).sort((a, b) => a.id.localeCompare(b.id));
 
   writeJson("full-bank.json", {

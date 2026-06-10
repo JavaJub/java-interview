@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% set image_url = config.site_url ~ (config.extra.social_image or "assets/images/og-javajub.png") %}
+  {% set logo_url = config.site_url ~ (config.extra.logo_image or "assets/images/javajub-logo.png") %}
+  {% set apple_touch_icon_url = config.site_url ~ (config.extra.apple_touch_icon or "assets/images/apple-touch-icon.png") %}
+  {% if page %}
+    {% set page_title = page.title %}
+    {% set page_description = page.meta.description or config.site_description %}
+    {% set page_url = page.canonical_url %}
+    {% set is_learning_page = page.file.src_uri.startswith("guides/") or page.file.src_uri.startswith("roadmaps/") or page.file.src_uri.startswith("tasks/") %}
+  {% else %}
+    {% set page_title = config.site_name %}
+    {% set page_description = config.site_description %}
+    {% set page_url = config.site_url %}
+    {% set is_learning_page = false %}
+  {% endif %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ apple_touch_icon_url }}">
+  <meta name="theme-color" content="#090e09">
+  {% if config.extra.yandex_verification %}
+  <meta name="yandex-verification" content="{{ config.extra.yandex_verification | e }}">
+  {% endif %}
+  <meta property="og:type" content="{% if is_learning_page %}article{% else %}website{% endif %}">
+  <meta property="og:site_name" content="JavaJub">
+  <meta property="og:title" content="{{ page_title | e }}">
+  <meta property="og:description" content="{{ page_description | e }}">
+  <meta property="og:url" content="{{ page_url }}">
+  <meta property="og:image" content="{{ image_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title | e }}">
+  <meta name="twitter:description" content="{{ page_description | e }}">
+  <meta name="twitter:image" content="{{ image_url }}">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "{{ config.site_url }}#organization",
+          "name": "JavaJub",
+          "url": "{{ config.site_url }}",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ logo_url }}",
+            "width": 1024,
+            "height": 768
+          },
+          "sameAs": [
+            "https://t.me/java_jub",
+            "{{ config.repo_url }}"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ config.site_url }}#website",
+          "name": "JavaJub · Java interview guides",
+          "url": "{{ config.site_url }}",
+          "description": {{ config.site_description | tojson }},
+          "inLanguage": "ru",
+          "publisher": {
+            "@id": "{{ config.site_url }}#organization"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "{{ page_url }}#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "JavaJub",
+              "item": "{{ config.site_url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": {{ page_title | tojson }},
+              "item": "{{ page_url }}"
+            }
+          ]
+        },
+        {
+          "@type": "{% if is_learning_page %}LearningResource{% else %}WebPage{% endif %}",
+          "@id": "{{ page_url }}#primary",
+          "name": {{ page_title | tojson }},
+          "url": "{{ page_url }}",
+          "description": {{ page_description | tojson }},
+          "inLanguage": "ru",
+          "isPartOf": {
+            "@id": "{{ config.site_url }}#website"
+          }
+        }
+      ]
+    }
+  </script>
+{% endblock %}

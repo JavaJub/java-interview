@@ -4,14 +4,13 @@
   "kind": "topic",
   "description": "Самопроверка по теме: Kafka / Microservices.",
   "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
-  "questionCount": 61,
+  "questionCount": 29,
   "questions": [
     {
       "id": "auto-ack-nack-dlq-что-это-556",
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
         "kafka",
         "testing-aqa",
         "algorithms"
@@ -30,15 +29,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Все объекты попадут в один bucket HashMap. В Java 8+ при 8 коллизиях список превращается в red-black tree, но O(log n) вместо O(1) — всё равно деградация производительности."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Collection хранит элементы — единичные значения. Map хранит ПАРЫ ключ-значение, у неё другой API: put(key, value), get(key), entrySet(). Хотя по сути обе — структуры данных."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "UNION: объединяет результаты и удаляет дубликаты (медленнее — сортировка). UNION ALL: объединяет без удаления (быстрее). Для AQA: если знаешь что дубликатов нет — UNION ALL."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -61,9 +60,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -79,15 +76,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Одна. Вызов this.B() минует прокси → @Transactional на B() не работает. B() выполняется в транзакции A() (Propagation.REQUIRED по умолчанию)..."
+          "text": "Для At-least-once vs at-most-once vs exactly-once достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "При fetch = LAZY на связи, при итерации по списку делается +1 запрос за каждую связанную сущность. Решения: JOIN FETCH, @EntityGraph, BatchSize."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Репликация — копия данных для отказоустойчивости и масштабирования чтения. Шардирование — разделение данных по узлам для масштабирования записи."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -106,114 +103,11 @@
       ]
     },
     {
-      "id": "auto-cap-теорема-в-финтехе-что-важнее-082",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "system-design"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 348,
-          "title": "Сбер · 9. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "CAP-теорема. В финтехе что важнее?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
-        },
-        {
-          "id": "b",
-          "text": "processed_events(event_id UUID PK). INSERT ON CONFLICT DO NOTHING. В транзакции с бизнес-логикой. Или upsert по бизнес-ключу."
-        },
-        {
-          "id": "c",
-          "text": "CAP-теорема означает, что можно одновременно получить сильную консистентность, доступность и устойчивость к разделению сети."
-        },
-        {
-          "id": "d",
-          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды).",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-ci-vs-cd-373",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 344,
-          "title": "Альфа-Банк · 10. Docker, Kubernetes, CI/CD"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: CI vs CD?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Иммутабельные data-классы: record Point(int x, int y) {}. Автоматически: конструктор, getters, equals, hashCode, toString. Нельзя наследовать (implicitly final). Можно реализовывать интерфейсы."
-        },
-        {
-          "id": "b",
-          "text": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod."
-        },
-        {
-          "id": "c",
-          "text": "newFixedThreadPool, newCachedThreadPool, newSingleThreadExecutor, newScheduledThreadPool, newWorkStealingPool. Для прода обычно создают ThreadPoolExecutor вручную, чтобы контролировать очередь."
-        },
-        {
-          "id": "d",
-          "text": "Промежуточные (intermediate) — возвращают Stream, lazy: filter, map, flatMap, distinct, sorted, peek. Терминальные (terminal) — запускают конвейер: collect, reduce, forEach, count, findFirst..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "CI — автосборка+тесты при push. CD — Delivery (ручной деплой) или Deployment (автодеплой). Pipeline: checkout → build → test → docker build → push registry → deploy staging → (approval) → prod.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
       "id": "auto-circuit-breaker-366",
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "spring",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "java-core"
+        "kafka"
       ],
       "companies": [
         "alfa-bank",
@@ -235,7 +129,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Read Uncommitted (можно читать незакоммиченные — dirty read). Read Committed (только закоммиченные, но возможен non-repeatable read). Repeatable Read (повторное чтение даст тот же результат, но возможен phantom read)..."
+          "text": "Для Circuit Breaker достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -243,11 +137,11 @@
         },
         {
           "id": "c",
-          "text": "2xx — успех (200 OK, 201 Created, 204 No Content). 3xx — редирект (301 постоянный, 302 временный, 304 Not Modified). 4xx — ошибка клиента (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "start() — создаёт новый поток ОС и в нём вызывает run(). run() напрямую — это обычный метод, выполнится В ТЕКУЩЕМ потоке. Это любимая ловушка на собесах. Запомни: «start запускает новый, run просто исполняет в этом же»."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -266,9 +160,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "devops",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -284,11 +176,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "extends Thread, implements Runnable, через Callable + ExecutorService, через CompletableFuture. На Java 21+ — Virtual Threads."
+          "text": "Для Circuit Breaker — зачем достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
@@ -296,7 +188,7 @@
         },
         {
           "id": "d",
-          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -315,11 +207,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "concurrency",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "t1-innotech"
@@ -339,15 +227,15 @@
         },
         {
           "id": "b",
-          "text": "Иммутабельность зависимостей — основа thread-safe сервиса. После создания объекта его зависимости НЕ должны меняться. final гарантирует это на уровне компилятора. Конструктор делает зависимости явными — открыл класс..."
+          "text": "Для Circuit Breaker: три состояния достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Runnable — run() возвращает void, не может бросать checked-исключения. Подходит для «просто запусти». Callable<V> — call() возвращает V, может бросать Exception. Используется через ExecutorService.submit() и Future<V>."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "Git Flow — модель с долгоживущими ветками master, develop, feature/*, release/*, hotfix/*. Подходит для релизного цикла с явными версиями. Trunk-based — все работают близко к master (через короткие feature-branch'ы)..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -362,62 +250,11 @@
       ]
     },
     {
-      "id": "auto-client-side-load-balancer-486",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "devops",
-        "algorithms",
-        "system-design"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 462,
-          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Client-side Load Balancer» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Откладывает незакоммиченные изменения «на полку», возвращая рабочую копию к чистому состоянию. Потом можно git stash pop."
-        },
-        {
-          "id": "b",
-          "text": "Partition — шард топика. Offset — позиция в partition. Consumer group — каждый partition читает один consumer из группы."
-        },
-        {
-          "id": "c",
-          "text": "Deadlock: два потока ждут друг друга. Livelock: потоки активны, но не прогрессируют. Starvation: поток не получает ресурс."
-        },
-        {
-          "id": "d",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
       "id": "auto-consumer-group-364",
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "devops"
+        "kafka"
       ],
       "companies": [
         "alfa-bank",
@@ -439,15 +276,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
+          "text": "Для Consumer Group достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "offset/limit: GET /users?offset=20&limit=10. Простой, но медленный на больших данных (БД пропускает offset строк). cursor-based: GET /users?after=abc123&limit=10. Быстрый (индекс по"
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -466,308 +303,11 @@
       ]
     },
     {
-      "id": "auto-docker-compose-699",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "sql",
-        "kafka",
-        "devops"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 417,
-          "title": "Лига Цифровой Экономики · 10. Docker, Jenkins, Linux · Docker"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «docker-compose» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
-        },
-        {
-          "id": "b",
-          "text": "INNER — пересечение. LEFT — все из левой + совпадения из правой. RIGHT — наоборот. FULL OUTER — всё. CROSS — декартово произведение."
-        },
-        {
-          "id": "c",
-          "text": "Монолит проще разрабатывать и деплоить, микросервисы — масштабировать независимо и развивать большими командами. Начинайте с монолита."
-        },
-        {
-          "id": "d",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-end-to-end-тест-что-это-496",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "sql",
-        "kafka",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 98,
-          "title": "МТС Банк AQA · 3. Теория тестирования"
-        }
-      ],
-      "prompt": "End-to-End тест — что это?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Mock — полная имитация, по умолчанию все методы возвращают null / 0 / false. Поведение задаёшь через when().thenReturn(). Spy — обёртка над реальным объектом. Методы, которые ты не подменил, работают как обычно. Полезно..."
-        },
-        {
-          "id": "b",
-          "text": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы..."
-        },
-        {
-          "id": "c",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
-        },
-        {
-          "id": "d",
-          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Тест полного пользовательского сценария от начала до конца. Пример: регистрация → логин → создание заявки → одобрение → выдача кредита → погашение. Проходит через все слои: UI/API → бэкенд → БД → Kafka → внешние сервисы...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-eventual-consistency-почему-assertequals-сразу-может-упасть-555",
-      "type": "scenario",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "concurrency",
-        "sql",
-        "kafka",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 383,
-          "title": "МТС Банк AQA · 10. Kafka, RabbitMQ и тестирование очередей"
-        }
-      ],
-      "prompt": "Eventual consistency — почему assertEquals сразу может упасть?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "== сравнивает ссылки. equals — содержимое. Из-за String Pool два литерала \"abc\" == \"abc\" дадут true, но new String(\"abc\") == \"abc\" — false (new создаёт новый объект вне пула). На собесе всегда отвечать «equals для содержимого»."
-        },
-        {
-          "id": "b",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
-        },
-        {
-          "id": "c",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
-        },
-        {
-          "id": "d",
-          "text": "Тест-кейс: подробный (шаги, ожидаемый результат, предусловия) — для критичных сценариев, передачи другим. Чек-лист: краткий список проверок без деталей — для опытных, быстрой проверки. В автоматизации: тест-кейс → метод с @Test."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener.",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-generics-pecs-что-означает-extends-t-и-super-t-016",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "kafka"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 124,
-          "title": "Сбер · 3. Java Core & ООП · Типовые вопросы"
-        }
-      ],
-      "prompt": "Generics: PECS. Что означает ? extends T и ? super T?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
-        },
-        {
-          "id": "b",
-          "text": "List.of возвращает неизменяемый список. add/remove бросают UnsupportedOperationException."
-        },
-        {
-          "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
-        },
-        {
-          "id": "d",
-          "text": "Java heap space, Metaspace, Unable to create new native thread, GC overhead limit exceeded."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-generics-type-erasure-pecs-436",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "kafka"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 112,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Generics: type erasure, PECS?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object."
-        },
-        {
-          "id": "b",
-          "text": "Constructor injection: immutable-поля (final), явные обязательные зависимости, удобство в тестах без mock-контейнера, нет циклических зависимостей."
-        },
-        {
-          "id": "c",
-          "text": "Прокси (JDK/CGLIB). Открывает транзакцию, commit/rollback. self-call минует прокси. Rollback на RuntimeException/Error; checked — нужен rollbackFor."
-        },
-        {
-          "id": "d",
-          "text": "Все объекты в одном bucket. Java 7: список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — red-black tree O(log n). Деградация по сравнению с O(1)."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Type erasure: в рантайме нет типового параметра. PECS: Producer Extends (читать), Consumer Super (писать). Wildcard <?> — только чтение как Object.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-generics-type-erasure-и-pecs-470",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "kafka"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 97,
-          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Generics: type erasure и PECS?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Дженерики стираются компилятором (type erasure) — в рантайме нет информации о типовом параметре. PECS: Producer Extends, Consumer Super. List<? extends Number> — читать, List<? super Integer> — писать."
-        },
-        {
-          "id": "b",
-          "text": "Heap: объекты (Young=Eden+Survivor, Old). Stack: фреймы методов (на каждый поток свой, LIFO), примитивы, ссылки. Metaspace: метаданные классов, статические поля. Code Cache: JIT-скомпилированный код..."
-        },
-        {
-          "id": "c",
-          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
-        },
-        {
-          "id": "d",
-          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Дженерики стираются компилятором (type erasure) — в рантайме нет информации о типовом параметре. PECS: Producer Extends, Consumer Super. List<? extends Number> — читать, List<? super Integer> — писать.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
       "id": "auto-idempotency-key-зачем-в-платежах-084",
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -783,15 +323,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "WireMock используется для запуска настоящего внешнего сервиса в тестовой среде."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka."
         },
         {
           "id": "b",
-          "text": "Если a.equals(b), то hashCode совпадают. Иначе HashMap/HashSet теряют объекты."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений."
         },
         {
           "id": "c",
-          "text": "На HashMap, где значение — заглушка (PRESENT). Все операции делегируются HashMap."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем."
         },
         {
           "id": "d",
@@ -814,8 +354,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -832,7 +370,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Iterator — однонаправленный обход. Методы hasNext, next, remove. Доступен для любой Collection. ListIterator — только у List. Двунаправленный (hasPrevious / previous)..."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -840,11 +378,11 @@
         },
         {
           "id": "c",
-          "text": "Spring создаёт прокси (JDK dynamic proxy для интерфейсов или CGLIB для классов). Прокси открывает транзакцию перед методом, коммитит после или откатывает при исключении."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "DML: SELECT, INSERT, UPDATE, DELETE (данные). DDL: CREATE, ALTER, DROP, TRUNCATE (структура). DCL: GRANT, REVOKE (права). TCL: COMMIT, ROLLBACK, SAVEPOINT (транзакции)."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -863,9 +401,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -885,15 +421,15 @@
         },
         {
           "id": "b",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+          "text": "Для Kafka: partition, offset, consumer group достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "c",
-          "text": "Round-robin → retry → circuit breaker. Обсудить: health checks, backoff, fallback. Реальная задача Middle в Путешествиях."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы."
         },
         {
           "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -912,10 +448,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "sql",
-        "kafka"
+        "kafka",
+        "java-core"
       ],
       "companies": [
         "t1-innotech"
@@ -931,15 +465,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Захватывает монитор объекта. Instance-метод — монитор this. Static — монитор Class. Блок — указанный объект. Только один поток. Reentrant: поток может повторно захватить свой монитор (счётчик)..."
+          "text": "Для Kafka Streams vs обычный Consumer достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -962,8 +496,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "kafka"
+        "kafka",
+        "collections"
       ],
       "companies": [
         "t1-innotech"
@@ -979,7 +513,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+          "text": "Для Kafka vs RabbitMQ: ключевые различия достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -987,11 +521,11 @@
         },
         {
           "id": "c",
-          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "Все объекты попадут в один bucket HashMap. Java 7: связный список O(n). Java 8+: при 8 коллизиях И capacity ≥ 64 — перестройка в red-black tree O(log n). Это лучше O(n), но деградация по сравнению с O(1)."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1010,7 +544,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
         "kafka"
       ],
       "companies": [
@@ -1033,7 +566,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Pod — 1+ контейнер, общий network. Deployment — управляет ReplicaSet: реплики, rolling update, rollback. Service — стабильный IP/DNS: ClusterIP (внутренний), NodePort, LoadBalancer. Ingress — L7 маршрутизация."
+          "text": "Для Kafka — зачем достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -1041,11 +574,11 @@
         },
         {
           "id": "c",
-          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1060,66 +593,11 @@
       ]
     },
     {
-      "id": "auto-optional-основные-методы-и-антипаттерны-518",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "collections",
-        "hibernate",
-        "kafka"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 174,
-          "title": "МТС Банк AQA · 5. Java Core (Junior)"
-        }
-      ],
-      "prompt": "Optional — основные методы и антипаттерны?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
-        },
-        {
-          "id": "b",
-          "text": "Для класса — нельзя унаследовать (final class String). Для метода — нельзя переопределить в наследнике. Для переменной — можно присвоить один раз. Для поля — становится константой (часто вместе со static)."
-        },
-        {
-          "id": "c",
-          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
-        },
-        {
-          "id": "d",
-          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-pagination-offset-limit-vs-cursor-based-529",
       "type": "single",
       "level": "junior",
       "topics": [
-        "collections",
-        "spring",
-        "sql",
-        "kafka",
-        "testing-aqa",
-        "algorithms"
+        "kafka"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1135,15 +613,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Начальная capacity = 10. При переполнении создаётся новый массив размером 1.5× от старого, элементы копируются. Метод trimToSize() ужимает массив до текущего количества элементов..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "PUT — полная замена ресурса. Передаём весь объект целиком. Если не указать поле — оно станет null. PATCH — частичное обновление. Передаём только изменяемые поля, остальное остаётся."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Маленькие таблицы (full scan быстрее). Колонки с малым числом уникальных значений (boolean, enum с 2–3 значениями). Часто меняющиеся колонки — индекс замедлит INSERT/UPDATE/DELETE."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -1162,112 +640,10 @@
       ]
     },
     {
-      "id": "auto-postgresql-vs-oracle-ключевые-отличия-546",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "collections",
-        "hibernate",
-        "sql",
-        "kafka"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 327,
-          "title": "МТС Банк AQA · 9. SQL (PostgreSQL + Oracle)"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: PostgreSQL vs Oracle — ключевые отличия?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "PG: SERIAL/IDENTITY (автоинкремент), LIMIT/OFFSET, нет Read Uncommitted. Oracle: SEQUENCE, ROWNUM / FETCH FIRST N ROWS, NVL вместо COALESCE, DUAL для SELECT без таблицы, CONNECT BY для иерархий..."
-        },
-        {
-          "id": "b",
-          "text": "Atomicity — транзакция целиком или никак. Consistency — БД переходит из валидного состояния в валидное. Isolation — параллельные транзакции не мешают. Durability — после commit данные не теряются."
-        },
-        {
-          "id": "c",
-          "text": "Data Transfer Object — объект для передачи данных между слоями системы или между сервисами. Не содержит логики, только поля и геттеры/сеттеры. Часто используется как тело REST-запросов и ответов."
-        },
-        {
-          "id": "d",
-          "text": "Checked — компилятор требует обработать (catch) или объявить в throws. Используются для ожидаемых внешних ошибок (IO, БД). Unchecked (RuntimeException и наследники) — обрабатывать не обязательно..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "PG: SERIAL/IDENTITY (автоинкремент), LIMIT/OFFSET, нет Read Uncommitted. Oracle: SEQUENCE, ROWNUM / FETCH FIRST N ROWS, NVL вместо COALESCE, DUAL для SELECT без таблицы, CONNECT BY для иерархий...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-rest-vs-grpc-когда-что-085",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 357,
-          "title": "Сбер · 9. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "REST vs gRPC — когда что?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
-        },
-        {
-          "id": "b",
-          "text": "Потеряешь объект — найти его через contains() будет уже нельзя. Классическая ошибка с mutable-объектами в коллекциях."
-        },
-        {
-          "id": "c",
-          "text": "Стирание дженериков во время компиляции. Последствия: нельзя new T(), нельзя instanceof T, нельзя создать массив T[]."
-        },
-        {
-          "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming).",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
       "id": "auto-saga-367",
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -1288,15 +664,15 @@
         },
         {
           "id": "b",
-          "text": "Entity — связана с БД (@Entity). Может иметь связи (LazyInitializationException наружу!). DTO — независимый объект для передачи. Хорошая практика: НЕ возвращать Entity из REST-контроллеров, маппить в DTO..."
+          "text": "Для Saga достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1315,7 +691,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -1336,15 +711,15 @@
         },
         {
           "id": "b",
-          "text": "E2E-тесты должны покрывать большинство сценариев, потому что они ближе всего к пользователю."
+          "text": "Для Saga-паттерн достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "c",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы."
         },
         {
           "id": "d",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем."
         }
       ],
       "correct": [
@@ -1363,9 +738,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "kafka",
-        "system-design"
+        "system-design",
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -1381,11 +755,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
+          "text": "Очередь сообщений автоматически решает все проблемы консистентности между сервисами. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "b",
-          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
+          "text": "Rate limiter надёжнее всего хранить локально на каждом инстансе без общей координации. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "c",
@@ -1393,7 +767,7 @@
         },
         {
           "id": "d",
-          "text": "Готовый набор зависимостей под задачу. Например, spring-boot-starter-web подтянет Spring MVC, Tomcat, Jackson и т.д. Один импорт — и веб-приложение работает."
+          "text": "Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         }
       ],
       "correct": [
@@ -1412,9 +786,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
         "kafka",
-        "devops"
+        "spring"
       ],
       "companies": [
         "t1-innotech"
@@ -1430,7 +803,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
+          "text": "Для Spring Kafka: основные компоненты достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -1438,167 +811,17 @@
         },
         {
           "id": "c",
-          "text": "(1) Spring находит определение (BeanDefinition). (2) Вызывает конструктор. (3) Инжектит зависимости (setter / field). (4) @PostConstruct — пользовательская инициализация. (5) BeanPostProcessor..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "Atomicity — транзакция выполняется целиком или не выполняется вовсе. Consistency — БД переходит из одного валидного состояния в другое. Isolation — параллельные транзакции не мешают друг другу..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
         "b"
       ],
       "explanation": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-testcontainers-377",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 360,
-          "title": "Альфа-Банк · 11. Тесты: JUnit, Mockito, TDD"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Testcontainers» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers."
-        },
-        {
-          "id": "b",
-          "text": "401 Unauthorized: не аутентифицирован (нет токена или токен невалидный). 403 Forbidden: аутентифицирован, но нет прав (пытаешься удалить чужой заказ). Ловушка: 401 — про identity, 403 — про permissions."
-        },
-        {
-          "id": "c",
-          "text": "ID, заголовок (что тестируем), предусловие (авторизован, баланс > 0), шаги (1. POST /payment..., 2. GET /status...), ожидаемый результат (статус 200, баланс уменьшился), постусловие (откатить данные)..."
-        },
-        {
-          "id": "d",
-          "text": "@RestControllerAdvice + @ExceptionHandler. ErrorDto с code, message, timestamp. HTTP-статусы: 400 (валидация), 404 (не найдено), 409 (бизнес-конфликт), 500. MethodArgumentNotValidException для @Valid..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Реальные БД/Kafka в Docker из тестов. @Testcontainers + @Container PostgreSQLContainer. Зачем: тесты на реальной PostgreSQL, а не H2 (которая отличается). Проверка миграций Flyway, SQL, Kafka-consumers.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-testcontainers-что-это-541",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 308,
-          "title": "МТС Банк AQA · 8. JUnit 5, Mockito и тестирование"
-        }
-      ],
-      "prompt": "Testcontainers — что это?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2..."
-        },
-        {
-          "id": "b",
-          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
-        },
-        {
-          "id": "c",
-          "text": "KafkaTemplate: отправка сообщений (send). @KafkaListener: получение (метод с @KafkaListener(topics=\"...\")). ConcurrentKafkaListenerContainerFactory: настройка concurrency, error handler, retry..."
-        },
-        {
-          "id": "d",
-          "text": "Consumer: ты сам управляешь offset, обработкой, сохранением. Kafka Streams: декларативная обработка потоков (filter, map, groupBy, aggregate, join). Stateful (RocksDB для локального состояния)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Библиотека для запуска Docker-контейнеров из Java-тестов. PostgreSQLContainer, KafkaContainer, GenericContainer (WireMock). @Testcontainers + @Container. Для AQA: поднять реальную БД вместо H2...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-uuid-vs-long-как-pk-для-соцсети-на-2-млн-пользователей-431",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "sql",
-        "kafka",
-        "system-design",
-        "security"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 275,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: UUID vs Long как PK для соцсети на 2 млн пользователей?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
-        },
-        {
-          "id": "b",
-          "text": "Без токена → 401. С истёкшим токеном → 401. С токеном другого пользователя → 403. С битым токеном → 401. С правильным токеном → 200. Double submit: дважды нажать «Оплатить» → должно списать один раз (идемпотентность..."
-        },
-        {
-          "id": "c",
-          "text": "Многократный вызов даёт тот же результат, что и однократный. Не путать с «безопасностью» (никак не меняет состояние) — GET и safe, и идемпотентен. PUT и DELETE идемпотентны (повторное PUT того же — тот же результат)..."
-        },
-        {
-          "id": "d",
-          "text": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Long: компактный, быстрый, но раскрывает количество (user/12345 → 12345 пользователей). UUID: безопаснее, но 2x размер индекса. UUIDv7 (time-ordered): лучший выбор — безопасность UUID + последовательность для B-tree...",
       "reviewLinks": [
         {
           "label": "Т1 Иннотех",
@@ -1627,15 +850,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
+          "text": "Для ZooKeeper vs KRaft — что изменилось достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Ровно один абстрактный метод (SAM). @FunctionalInterface — опциональная аннотация, но защищает от случайного добавления второго метода. Основные: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -1658,8 +881,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -1682,7 +903,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "(1) Описываешь changeset'ы — изменения схемы. Формат: XML, YAML, JSON или SQL. (2) При старте Liquibase подключается к БД, смотрит в таблицу DATABASECHANGELOG — какие уже применены. (3) Применяет новые changeset'ы..."
+          "text": "Для Гарантии доставки достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -1690,11 +911,11 @@
         },
         {
           "id": "c",
-          "text": "Лямбда захватывает копию значения переменной, не ссылку на неё. Если переменная изменится после захвата — копия устареет → неочевидное поведение. Компилятор требует final или effectively final для защиты от ошибок..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "SELECT name, CASE WHEN balance > 100000 THEN 'VIP' WHEN balance > 10000 THEN 'Standard' ELSE 'Basic' END AS category FROM accounts. Для AQA: CASE WHEN удобен в SQL-проверках — классифицировать данные без Java-логики."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1705,55 +926,6 @@
         {
           "label": "Альфа-Банк",
           "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-где-видишь-себя-через-год-306",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "concurrency",
-        "sql",
-        "kafka"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 2008,
-          "title": "SberSeasons · 19. Soft skills и рассказ о себе (STAR) · Топовые soft-вопросы"
-        }
-      ],
-      "prompt": "Где видишь себя через год?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "INNER JOIN — только совпадения из обеих таблиц. LEFT JOIN — все строки из левой + совпадения из правой (несовпадения = NULL). RIGHT JOIN — наоборот. FULL OUTER JOIN — все строки из обеих, несовпадения = NULL..."
-        },
-        {
-          "id": "b",
-          "text": "Для обычного метода блокировка идёт на this (на сам объект). Для static-метода — на Class-объект (ClassName.class). На уровне байткода — это инструкции monitorenter / monitorexit. Если уже владеешь монитором..."
-        },
-        {
-          "id": "c",
-          "text": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят..."
-        },
-        {
-          "id": "d",
-          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     },
@@ -1780,7 +952,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "TreeMap: красно-чёрное дерево, O(log n), ключи отсортированы (Comparable/Comparator). LinkedHashMap: HashMap + двусвязный список — порядок вставки. accessOrder=true — LRU-кэш. removeEldestEntry() для ограничения размера."
+          "text": "Для Зачем брокеры в банке достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -1788,11 +960,11 @@
         },
         {
           "id": "c",
-          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "1) Smoke-тесты: после каждого деплоя (быстрые, 5–10 кейсов). 2) Регрессия: на merge request или ночной запуск (полный набор). 3) Nightly: полная регрессия + отчёт Allure. Jenkins/GitLab CI → mvn verify → Allure report..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1811,8 +983,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "collections",
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -1829,7 +999,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "List.of — immutable, add/remove → UnsupportedOperationException, null-элементы запрещены. ArrayList — обычный mutable список."
+          "text": "Для Идемпотентный consumer достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
@@ -1837,11 +1007,11 @@
         },
         {
           "id": "c",
-          "text": "При партиционировании выбираем между Consistency и Availability. В платежах обычно C > A (лучше отказать, чем списать дважды)."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "Защита от каскадных падений. При N ошибках подряд «размыкается» — запросы сразу отклоняются, сервис получает время оправиться."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -1860,7 +1030,6 @@
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "concurrency",
         "kafka"
       ],
       "companies": [
@@ -1877,15 +1046,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "Нет. Оба используют один монитор — this. Пока один поток в methodA(), другой не может войти в methodB(). Решение: synchronized(privateLockA) и synchronized(privateLockB) — разные мониторы."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Rate limiter на стороне A (ограничить исходящие). Kafka как буфер: A пишет в топик → B читает со своей скоростью (backpressure). Circuit Breaker: при перегрузке B → A получает fallback..."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -1904,64 +1073,12 @@
       ]
     },
     {
-      "id": "auto-как-сделать-пагинацию-679",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "spring",
-        "hibernate",
-        "kafka"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 318,
-          "title": "Лига Цифровой Экономики · 7. Hibernate и Spring Data JPA"
-        }
-      ],
-      "prompt": "Как сделать пагинацию?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Это композиция трёх аннотаций: @Configuration + @EnableAutoConfiguration + @ComponentScan."
-        },
-        {
-          "id": "b",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
-        },
-        {
-          "id": "c",
-          "text": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET."
-        },
-        {
-          "id": "d",
-          "text": "Self-invocation идёт минуя прокси. Решение: вынести метод в отдельный бин или inject self."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Метод принимает Pageable, возвращает Page или Slice. Spring Data сам добавит LIMIT/OFFSET.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
       "id": "auto-как-тестировать-kafka-в-автотесте-554",
       "type": "single",
       "level": "junior",
       "topics": [
         "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
+        "testing-aqa"
       ],
       "companies": [
         "mts-bank-aqa"
@@ -1977,7 +1094,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
+          "text": "Для Как тестировать Kafka в автотесте достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -1985,11 +1102,11 @@
         },
         {
           "id": "c",
-          "text": "Да! Условие в ON применяется ДО объединения — несоответствующие строки правой таблицы становятся NULL. Условие в WHERE применяется ПОСЛЕ — строки с NULL отфильтровываются, и LEFT JOIN превращается в INNER JOIN..."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "BFS (Breadth-First Search) — обход в ширину. Идёт по уровням. Используется в: поиск кратчайшего пути в невзвешенном графе, обход дерева по уровням. Внутри — очередь. DFS (Depth- First Search) — обход в глубину..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -2004,113 +1121,12 @@
       ]
     },
     {
-      "id": "auto-какие-функциональные-интерфейсы-из-java-util-function-ты-знаешь-118",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "spring",
-        "sql",
-        "kafka"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 251,
-          "title": "SberSeasons · 3. Java Core и ООП · Лямбды и функциональные интерфейсы"
-        }
-      ],
-      "prompt": "Какие функциональные интерфейсы из java.util.function ты знаешь?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Strong (обычная new) — пока есть Strong-ссылка, объект не соберётся. Soft (SoftReference) — собирается, когда не хватает памяти. Для кэшей. Weak (WeakReference) — собирается при следующей сборке, даже если есть память..."
-        },
-        {
-          "id": "b",
-          "text": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра..."
-        },
-        {
-          "id": "c",
-          "text": "Подход: (1) Сначала пробую решить 1-на-1, спокойно. (2) Стараюсь понять его сторону — может, я не так понял. (3) Если не получается — иду к тимлиду, не за «он плохой», а за «помогите разрулить процесс». Конструктивный..."
-        },
-        {
-          "id": "d",
-          "text": "Асинхронные платежи (не блокировать пользователя), уведомления (SMS/push), события между микросервисами (заявка одобрена → выдать кредит → отправить SMS). Kafka: pull, хранит сообщения, high throughput. RabbitMQ: push..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Consumer<T> — принимает T, ничего не возвращает (T → void). Supplier<T> — без параметров, возвращает T (() → T). Predicate<T> — принимает T, возвращает boolean. Function<T,R> — T → R. BiFunction<T,U,R> — два параметра...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-два-дата-центра-один-упал-как-балансировщик-узнает-430",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "spring",
-        "kafka",
-        "devops",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 272,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: два дата-центра, один упал. Как балансировщик узнает?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят..."
-        },
-        {
-          "id": "b",
-          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
-        },
-        {
-          "id": "c",
-          "text": "Автоконфигурация — Spring Boot сам подключает компоненты в зависимости от того, что есть на classpath. Стартеры — готовые наборы зависимостей (spring-boot-starter-web подтягивает Spring MVC, Tomcat, Jackson)..."
-        },
-        {
-          "id": "d",
-          "text": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
       "id": "auto-кейс-сервис-a-1000-tps-сервис-b-200-tps-как-защитить-b-428",
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "kafka",
-        "devops",
-        "system-design"
+        "system-design",
+        "kafka"
       ],
       "companies": [
         "t1-innotech"
@@ -2126,7 +1142,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "replication.factor=3 (каждая партиция на 3 брокерах). min.insync.replicas=2 (минимум 2 реплики подтверждают). acks=all (producer ждёт подтверждения от всех ISR). unclean.leader.election..."
+          "text": "Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "b",
@@ -2134,11 +1150,11 @@
         },
         {
           "id": "c",
-          "text": "Atomicity — атомарность: транзакция выполняется целиком или откатывается. Consistency — консистентность: БД переходит из одного валидного состояния в другое (констрейнты соблюдаются)..."
+          "text": "Rate limiter надёжнее всего хранить локально на каждом инстансе без общей координации. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "d",
-          "text": "Каждая партиция — ровно один consumer из группы. Больше партиций → больше параллелизма. Если consumers > partitions — лишние простаивают. Rebalancing при добавлении/падении consumer..."
+          "text": "Очередь сообщений автоматически решает все проблемы консистентности между сервисами. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         }
       ],
       "correct": [
@@ -2157,11 +1173,8 @@
       "type": "scenario",
       "level": "middle",
       "topics": [
-        "jvm",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
+        "system-design",
+        "kafka"
       ],
       "companies": [
         "t1-innotech"
@@ -2181,15 +1194,15 @@
         },
         {
           "id": "b",
-          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
+          "text": "Для Кейс: сеть «моргнула» на 2 секунды. Что делать достаточно перечислить технологии; оценка нагрузки и отказов обычно вторична. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "c",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
+          "text": "CAP-теорема позволяет одновременно гарантировать строгую консистентность, доступность и устойчивость к partition. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         },
         {
           "id": "d",
-          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
+          "text": "Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик. В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off."
         }
       ],
       "correct": [
@@ -2208,8 +1221,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "kafka",
-        "system-design"
+        "kafka"
       ],
       "companies": [
         "sber"
@@ -2225,15 +1237,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
+          "text": "Для Монолит vs микросервисы — когда что достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once."
         },
         {
           "id": "b",
-          "text": "Declarative — более структурированный, с фиксированным синтаксисом (pipeline { agent, stages }). Scripted — Groovy-код, более гибкий."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Поиск с динамическими ценами. Outbox-паттерн для финансовых операций. Идемпотентность платежей. Партнёрские интеграции через API Gateway."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -2252,123 +1264,12 @@
       ]
     },
     {
-      "id": "auto-оконные-функции-357",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "sql",
-        "kafka",
-        "algorithms"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 290,
-          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 276,
-          "title": "VK · 7. Базы данных и SQL"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 275,
-          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Оконные функции» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Используем два индекса, движущиеся по массиву по правилам. Часто для отсортированного массива: пара с заданной суммой, разворот строки, проверка палиндрома. Сложность обычно O(n)."
-        },
-        {
-          "id": "b",
-          "text": "Только final или effectively final (не меняются после присваивания). Поля класса можно использовать без ограничений. Локальные переменные — только если они эффективно финальные..."
-        },
-        {
-          "id": "c",
-          "text": "ROW_NUMBER(), RANK(), DENSE_RANK() — нумерация/ранжирование. LAG/LEAD — предыдущая/следующая строка. SUM/AVG/COUNT OVER (PARTITION BY ... ORDER BY ...) — агрегация без GROUP BY..."
-        },
-        {
-          "id": "d",
-          "text": "Интерфейс с РОВНО ОДНИМ абстрактным методом (default и static не считаются). Можно реализовать лямбдой. @FunctionalInterface — необязательная аннотация для compile-time проверки."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "ROW_NUMBER(), RANK(), DENSE_RANK() — нумерация/ранжирование. LAG/LEAD — предыдущая/следующая строка. SUM/AVG/COUNT OVER (PARTITION BY ... ORDER BY ...) — агрегация без GROUP BY...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-почему-shared-random-может-быть-медленнее-sequential-707",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "concurrency",
-        "kafka"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 93,
-          "title": "X5 Tech · 2. Баг #1 — contention на shared Random · Что не так — внутреннее устройство Random"
-        }
-      ],
-      "prompt": "Почему shared Random может быть медленнее sequential?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Для обычного метода блокировка идёт на this (на сам объект). Для static-метода — на Class-объект (ClassName.class). На уровне байткода — это инструкции monitorenter / monitorexit. Если уже владеешь монитором..."
-        },
-        {
-          "id": "b",
-          "text": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят..."
-        },
-        {
-          "id": "c",
-          "text": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize..."
-        },
-        {
-          "id": "d",
-          "text": "Health checks: HTTP GET /health каждые N секунд. Если 3 подряд неуспешных → убрать из ротации. Service Discovery (Eureka/Consul): сервис регистрируется, посылает heartbeat. Если heartbeat пропал → deregister..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "В sequential один поток последовательно дёргает nextDouble — CAS всегда успешен, никаких retry. В parallel 7 потоков одновременно пытаются обновить seed. Только один CAS успешен, остальные 6 потоков retry-ят...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
       "id": "auto-распределенные-транзакции-2pc-vs-saga-083",
       "type": "single",
       "level": "middle",
       "topics": [
-        "sql",
         "kafka",
-        "algorithms",
-        "system-design"
+        "sql"
       ],
       "companies": [
         "sber"
@@ -2384,15 +1285,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "B-tree (default — =, <, >, BETWEEN, ORDER BY), Hash (только =), GIN (массивы, JSONB, full-text), GiST (геометрия), BRIN (большие таблицы с порядком), SP-GiST."
+          "text": "Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
-          "text": "HashMap — хэш, без порядка, O(1). TreeMap — красно-чёрное дерево, отсортирован по ключам, O(log n). LinkedHashMap — сохраняет порядок вставки или access order."
+          "text": "Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "c",
-          "text": "Dirty: чтение незакоммиченных данных. Non-repeatable: два чтения одной строки дают разный результат. Phantom: два чтения с WHERE возвращают разное число строк."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
@@ -2411,462 +1312,10 @@
       ]
     },
     {
-      "id": "auto-сервис-бронирования-отелей-487",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "kafka",
-        "system-design"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 465,
-          "title": "Яндекс Путешествия · 10. System Design · Реальные задачи из Яндекса"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Сервис бронирования отелей» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable."
-        },
-        {
-          "id": "b",
-          "text": "Поиск с динамическими ценами. Outbox-паттерн для финансовых операций. Идемпотентность платежей. Партнёрские интеграции через API Gateway."
-        },
-        {
-          "id": "c",
-          "text": "Монолит проще разрабатывать и деплоить, микросервисы — масштабировать независимо и развивать большими командами. Начинайте с монолита."
-        },
-        {
-          "id": "d",
-          "text": "Инструмент для запуска нескольких связанных контейнеров одной командой через yaml. Типовой сценарий: приложение + БД + Redis + Kafka."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Поиск с динамическими ценами. Outbox-паттерн для финансовых операций. Идемпотентность платежей. Партнёрские интеграции через API Gateway.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
-      "id": "auto-функциональные-интерфейсы-438",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 118,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Функциональные интерфейсы» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
-        },
-        {
-          "id": "b",
-          "text": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable."
-        },
-        {
-          "id": "c",
-          "text": "List.copyOf(list) (Java 10+) или Collections.unmodifiableList(list) — обёртка, которая бросит UnsupportedOperationException на add/remove."
-        },
-        {
-          "id": "d",
-          "text": "Не работает self-invocation (как у @Transactional). Нужен @EnableAsync. Default executor может быть неподходящим — часто настраивают свой."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-функциональные-интерфейсы-и-stream-api-471",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 103,
-          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Функциональные интерфейсы и Stream API» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "@Test — тестовый метод. @BeforeEach/@AfterEach — до/после каждого теста. @BeforeAll/@AfterAll — до/после всех (static). @DisplayName — читаемое имя. @Disabled — пропустить. @Tag — категория (smoke, regression)..."
-        },
-        {
-          "id": "b",
-          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
-        },
-        {
-          "id": "c",
-          "text": "BeanDefinition → инстанцирование → DI → Aware-интерфейсы → BPP.postProcessBefore → @PostConstruct → InitializingBean → init-method → BPP.postProcessAfter → ГОТОВ → @PreDestroy → DisposableBean → destroy-method..."
-        },
-        {
-          "id": "d",
-          "text": "Готовы 2–3 факта: масштаб (один из крупнейших IT-работодателей России), Platform V (своя облачная платформа), SberAI (GigaChat, Kandinsky), 78% оффер после стажировки. Можешь упомянуть конкретный продукт Сбера..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый.",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
-      "id": "auto-функциональный-интерфейс-316",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 92,
-          "title": "Альфа-Банк · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Функциональный интерфейс» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Ровно один абстрактный метод (SAM). @FunctionalInterface — опциональная аннотация, но защищает от случайного добавления второго метода. Основные: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>..."
-        },
-        {
-          "id": "b",
-          "text": "Strong (обычная new) — пока есть Strong-ссылка, объект не соберётся. Soft (SoftReference) — собирается, когда не хватает памяти. Для кэшей. Weak (WeakReference) — собирается при следующей сборке, даже если есть память..."
-        },
-        {
-          "id": "c",
-          "text": "Ключевое отношение JMM. Если A happens-before B, то записи в A видны в B. Примеры: unlock → lock того же монитора. volatile write → read. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join()..."
-        },
-        {
-          "id": "d",
-          "text": "Подход: (1) Сначала пробую решить 1-на-1, спокойно. (2) Стараюсь понять его сторону — может, я не так понял. (3) Если не получается — иду к тимлиду, не за «он плохой», а за «помогите разрулить процесс». Конструктивный..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Ровно один абстрактный метод (SAM). @FunctionalInterface — опциональная аннотация, но защищает от случайного добавления второго метода. Основные: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-это-грозит-в-проде-711",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "java-core",
-        "concurrency",
-        "sql",
-        "kafka"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 137,
-          "title": "X5 Tech · 3. Баг #2 — parallelStream на общем ForkJoinPool · Что не так"
-        }
-      ],
-      "prompt": "Чем это грозит в проде?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "1 findAll() + N доп. запросов на lazy-коллекции. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), DTO-проекция. EAGER — неправильный ответ."
-        },
-        {
-          "id": "b",
-          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
-        },
-        {
-          "id": "c",
-          "text": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода."
-        },
-        {
-          "id": "d",
-          "text": "Один абстрактный метод. Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>, BiFunction, Comparator, Runnable, Callable."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-ci-и-cd-627",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "algorithms"
-      ],
-      "companies": [
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 308,
-          "title": "ITK Academy · 7. Docker, Git и CI/CD · CI/CD"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 422,
-          "title": "Лига Цифровой Экономики · 10. Docker, Jenkins, Linux · Jenkins и CI/CD"
-        }
-      ],
-      "prompt": "Что такое CI и CD?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Подготовка данных перед тестом. @BeforeEach: создать пользователя, залить данные в БД. @AfterEach: удалить данные. Builder/Factory для создания тестовых объектов..."
-        },
-        {
-          "id": "b",
-          "text": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды."
-        },
-        {
-          "id": "c",
-          "text": "mock() — пустой объект, все методы возвращают default (null, 0, false). spy() — обёртка над реальным объектом, методы вызываются по-настоящему, если не заmock'ать."
-        },
-        {
-          "id": "d",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "CI (Continuous Integration) — автоматическая сборка, тесты, статический анализ при каждом push. CD (Continuous Delivery/Deployment) — автоматический деплой в среды.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-functional-interface-приведите-3-примера-из-java-util-function-010",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 106,
-          "title": "Сбер · 3. Java Core & ООП · Типовые вопросы"
-        }
-      ],
-      "prompt": "Что такое functional interface? Приведите 3 примера из java.util.function?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
-        },
-        {
-          "id": "b",
-          "text": "Безопасность (передача в файлы, БД, сеть), потокобезопасность, кэширование hashCode, работа String Pool."
-        },
-        {
-          "id": "c",
-          "text": "Интерфейс с одним абстрактным методом. Примеры: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>."
-        },
-        {
-          "id": "d",
-          "text": "Через прокси, генерируемый в рантайме. Имя метода (findByEmailAndStatus) парсится и превращается в JPQL."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Интерфейс с одним абстрактным методом. Примеры: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-spring-cloud-и-для-чего-он-618",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "spring",
-        "kafka",
-        "devops",
-        "security"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 270,
-          "title": "ITK Academy · 6. Spring и Spring Boot · Про Spring Security и Cloud (на пальцах)"
-        }
-      ],
-      "prompt": "Что такое Spring Cloud и для чего он?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "SRP (одна причина для изменения), OCP (расширение без модификации), LSP (подтипы взаимозаменяемы), ISP (мелкие интерфейсы), DIP (зависимость от абстракций)."
-        },
-        {
-          "id": "b",
-          "text": "Spring Boot — это Spring + автоконфигурация + встроенный сервер (Tomcat/Jetty) + удобные стартеры. Минимизирует boilerplate. По сути «Spring без боли с XML»."
-        },
-        {
-          "id": "c",
-          "text": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем»."
-        },
-        {
-          "id": "d",
-          "text": "READ_UNCOMMITTED, READ_COMMITTED (default в PostgreSQL), REPEATABLE_READ, SERIALIZABLE. От низкого к высокому: больше консистентности, меньше параллелизма."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Набор инструментов для микросервисов: service discovery (Eureka), конфиг-сервер, API Gateway, Circuit Breaker. На Junior достаточно знать «что это и зачем».",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-testcontainers-694",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "sql",
-        "kafka",
-        "devops",
-        "testing-aqa"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 398,
-          "title": "Лига Цифровой Экономики · 9. Тесты: JUnit, Mockito, TDD"
-        }
-      ],
-      "prompt": "Что такое Testcontainers?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Lazy — связь подгружается только при обращении (прокси). Eager — сразу в SELECT. Default для @OneToMany и @ManyToMany — Lazy, для @ManyToOne и @OneToOne — Eager."
-        },
-        {
-          "id": "b",
-          "text": "Библиотека для создания моков (имитаций) объектов в тестах. Позволяет «подменить» зависимость тестируемого класса фейком, который ведёт себя так, как тебе нужно."
-        },
-        {
-          "id": "c",
-          "text": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки."
-        },
-        {
-          "id": "d",
-          "text": "ENTRYPOINT задаёт основную исполняемую команду. CMD — аргументы по умолчанию. CMD легко переопределить при docker run, ENTRYPOINT — сложнее (через --entrypoint)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Библиотека для запуска реальных БД/брокеров в Docker из тестов. Нужна для интеграционных тестов, которые проверяют реальную работу с PostgreSQL/Kafka, а не моки.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-такое-микросервис-362",
       "type": "single",
       "level": "middle",
       "topics": [
-        "spring",
-        "sql",
         "kafka"
       ],
       "companies": [
@@ -2883,7 +1332,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+          "text": "Для микросервис достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "b",
@@ -2891,11 +1340,11 @@
         },
         {
           "id": "c",
-          "text": "Класс — нельзя наследовать (String, Integer). Метод — нельзя переопределить. Поле — нельзя переприсвоить ссылку, но можно менять внутреннее состояние (final List — можно add/remove). effectively final — нужна для лямбд."
+          "text": "Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         },
         {
           "id": "d",
-          "text": "ForkJoinPool — для CPU-bound задач: математика, парсинг, трансформации без IO. Размер пула = число ядер. Wow-эффекта не даст, но не блокирует common pool. Virtual threads — для IO-bound: блокирующий JDBC, HTTP-вызовы..."
+          "text": "Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем. Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции."
         }
       ],
       "correct": [
@@ -2906,106 +1355,6 @@
         {
           "label": "Альфа-Банк",
           "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-очередь-и-где-применяется-286",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "concurrency",
-        "hibernate",
-        "kafka",
-        "algorithms"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 1052,
-          "title": "SberSeasons · 14. Алгоритмы и структуры данных · Базовые структуры"
-        }
-      ],
-      "prompt": "Что такое очередь и где применяется?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "pg_stat_activity: текущие запросы, их состояние (active/idle/waiting), PID, query_start. Для поиска long-running queries и блокировок. pg_stat_statements: статистика по запросам (calls, total_time, mean_time, rows)..."
-        },
-        {
-          "id": "b",
-          "text": "Промежуточные операции не выполняются сразу. Они «копят» план. Терминальная операция запускает выполнение. Поэтому stream.filter(...).map(...) без terminal — не сделает ничего. Это позволяет оптимизировать выполнение."
-        },
-        {
-          "id": "c",
-          "text": "FIFO (First In, First Out). Используется в: (1) Обход графа в ширину (BFS). (2) Планировщик задач. (3) Producer-consumer (BlockingQueue). В Java — LinkedList, ArrayDeque, или ConcurrentLinkedQueue для многопоточности."
-        },
-        {
-          "id": "d",
-          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "FIFO (First In, First Out). Используется в: (1) Обход графа в ширину (BFS). (2) Планировщик задач. (3) Producer-consumer (BlockingQueue). В Java — LinkedList, ArrayDeque, или ConcurrentLinkedQueue для многопоточности.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-функциональный-интерфейс-примеры-644",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "spring",
-        "kafka"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 117,
-          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Что такое функциональный интерфейс? Примеры?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "persist — для новых (JPA стандарт, не возвращает id). save — Hibernate-specific, возвращает id. merge — копирует detached в managed. update — прикрепляет detached."
-        },
-        {
-          "id": "b",
-          "text": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime..."
-        },
-        {
-          "id": "c",
-          "text": "Интерфейс с ровно одним абстрактным методом. @FunctionalInterface — опциональная аннотация. Примеры: Function, Predicate, Consumer, Supplier, Runnable, Comparator."
-        },
-        {
-          "id": "d",
-          "text": "Промежуточные (ленивые): filter, map, flatMap, sorted, distinct. Терминальные: collect, forEach, count, reduce, toList. Обработка вертикальная. Стрим одноразовый."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Интерфейс с ровно одним абстрактным методом. @FunctionalInterface — опциональная аннотация. Примеры: Function, Predicate, Consumer, Supplier, Runnable, Comparator.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
         }
       ]
     },

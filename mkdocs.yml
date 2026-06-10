@@ -1,14 +1,20 @@
 site_name: JavaJub · Java interview guides
 site_description: "Реальные вопросы Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, live coding и System Design."
-site_url: https://javajub.github.io/java-interview/
+site_url: https://www.javajub.com/
 repo_url: https://github.com/JavaJub/java-interview
 repo_name: JavaJub/java-interview
 docs_dir: docs
 site_dir: site
+not_in_nav: |
+  404.md
 
 theme:
   name: material
+  custom_dir: overrides
   language: ru
+  logo: assets/images/javajub-mark-transparent.png
+  favicon: assets/images/favicon.png
+  font: false
   features:
     - navigation.instant
     - navigation.sections
@@ -39,7 +45,14 @@ extra_css:
   - assets/css/quiz.css
 
 extra_javascript:
+  - assets/js/analytics.js
   - assets/js/quiz.js
+
+extra:
+  social_image: assets/images/og-javajub.png
+  logo_image: assets/images/javajub-logo-transparent.png
+  apple_touch_icon: assets/images/apple-touch-icon.png
+  yandex_verification: ""
 
 nav:
   - Старт: index.md
@@ -49,6 +62,31 @@ nav:
       - Каталог: quizzes/index.md
       - По темам: quizzes/topics.md
       - По компаниям: quizzes/companies.md
+      - Тематические тесты:
+          - Java Core: quizzes/topics/java-core.md
+          - Collections: quizzes/topics/collections.md
+          - JVM: quizzes/topics/jvm.md
+          - Concurrency / JMM: quizzes/topics/concurrency.md
+          - Spring Boot: quizzes/topics/spring.md
+          - Hibernate / JPA: quizzes/topics/hibernate.md
+          - SQL / PostgreSQL: quizzes/topics/sql.md
+          - Kafka / Microservices: quizzes/topics/kafka.md
+          - Docker / Kubernetes / CI/CD: quizzes/topics/devops.md
+          - Testing / AQA: quizzes/topics/testing-aqa.md
+          - Algorithms / Live coding: quizzes/topics/algorithms.md
+          - System Design: quizzes/topics/system-design.md
+          - Security: quizzes/topics/security.md
+      - Тесты по компаниям:
+          - Сбер Java Middle: quizzes/companies/sber-middle.md
+          - SberSeasons Java Trainee: quizzes/companies/sberseasons-trainee.md
+          - Альфа-Банк Java Middle: quizzes/companies/alfa-bank-middle.md
+          - Т1 Иннотех Java Junior/Middle: quizzes/companies/t1-innotech-middle.md
+          - VK Java Middle: quizzes/companies/vk-middle.md
+          - Яндекс Путешествия Java Middle: quizzes/companies/yandex-travel-middle.md
+          - МТС Банк AQA Java Junior: quizzes/companies/mts-bank-aqa-junior.md
+          - ITK Academy Java Junior: quizzes/companies/itk-academy-junior.md
+          - Лига Java Middle: quizzes/companies/liga-middle.md
+          - X5 Tech Senior code review: quizzes/companies/x5-code-review-senior.md
   - Маршруты:
       - Java Junior: roadmaps/java-junior.md
       - Java Middle: roadmaps/java-middle.md

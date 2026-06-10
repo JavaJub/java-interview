@@ -1,6 +1,11 @@
+---
+title: "X5 Tech Senior code review: 8 багов в сервисе скидок"
+description: "Разбор Senior Java code review для X5 Tech: concurrency, parallelStream, Random, BigDecimal, PostgreSQL и production-мышление."
+---
+
 # Разбор задачи: X5 Tech · Senior — 8 багов в сервисе расчёта скидок
 
-Code-review под Senior на собесе в X5 Tech / Farzoom: разбор 4 из 8 багов сервиса «Чёрной пятницы».
+Code-review под Senior на собесе в X5 Tech / Farzoom: разбор 4 из 8 багов сервиса «Чёрной пятницы». Это практическая Java interview task для проверки concurrency, `parallelStream`, `Random`, `BigDecimal`, PostgreSQL и production-мышления.
 
 **Стек:** Java 21 · Spring Boot 3 · PostgreSQL · concurrency · BigDecimal · code review
 

@@ -1,6 +1,11 @@
+---
+title: "Индекс тем Java interview"
+description: "Индекс тем JavaJub для подготовки к Java interview: Java Core, Collections, JVM, Spring Boot, Hibernate, SQL, Kafka, System Design, live coding и AQA Java."
+---
+
 # Индекс тем
 
-Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Если хотите сначала проверить себя, откройте [интерактивные тесты](quizzes/index.md).
+Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Для самопроверки используйте [тесты на GitHub Pages](quizzes/index.md).
 
 [← На главную](index.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
 
@@ -14,7 +19,7 @@
 
 ## Collections
 
-- [Сбер · Collections Framework](guides/sber.md)
+- [Сбер · Collections Framework](guides/sber.md#4-collections-framework)
 - [Альфа-Банк · Коллекции](guides/alfa-bank.md)
 - [VK · Коллекции](guides/vk.md)
 - [Т1 Иннотех · Коллекции](guides/t1-innotech.md)
@@ -68,17 +73,17 @@
 
 ## Docker, Kubernetes, CI/CD
 
-- [Альфа-Банк · Docker, Kubernetes, CI/CD](guides/alfa-bank.md)
-- [VK · Docker, Kubernetes, CI/CD](guides/vk.md)
-- [Лига · Docker, Jenkins, Linux](guides/liga.md)
+- [Альфа-Банк · Docker, Kubernetes, CI/CD](guides/alfa-bank.md#10-docker-kubernetes-cicd)
+- [VK · Docker, Kubernetes, CI/CD](guides/vk.md#10-docker-kubernetes-cicd)
+- [Лига · Docker, Jenkins, Linux](guides/liga.md#10-docker-jenkins-linux)
 - [ITK Academy · Docker, Git и CI/CD](guides/itk-academy.md)
 - [МТС Банк AQA · Docker, Linux и ELK](guides/mts-bank-aqa.md)
 
 ## System Design и архитектура
 
 - [Сбер · Микросервисы и архитектура](guides/sber.md)
-- [VK · System Design](guides/vk.md)
-- [Яндекс Путешествия · System Design](guides/yandex-travel.md)
+- [VK · System Design](guides/vk.md#12-system-design)
+- [Яндекс Путешествия · System Design](guides/yandex-travel.md#10-system-design)
 - [Т1 Иннотех · Микросервисы и архитектура](guides/t1-innotech.md)
 
 ## Live coding и code review

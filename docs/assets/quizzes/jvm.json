@@ -4,192 +4,14 @@
   "kind": "topic",
   "description": "Самопроверка по теме: JVM.",
   "telegramUrl": "https://t.me/+vDYjUmPrBYZmMTAy",
-  "questionCount": 74,
+  "questionCount": 30,
   "questions": [
-    {
-      "id": "auto-arraylist-vs-linkedlist-326",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "sql",
-        "algorithms"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 171,
-          "title": "Альфа-Банк · 4. Коллекции"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 187,
-          "title": "VK · 4. Коллекции"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 167,
-          "title": "Яндекс Путешествия · 4. Коллекции"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 150,
-          "title": "Лига Цифровой Экономики · 4. Коллекции"
-        }
-      ],
-      "prompt": "Как лучше всего объяснить различие: ArrayList vs LinkedList?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "ArrayList: O(1) доступ по индексу, O(n) вставка в середину, дружелюбно к CPU-кэшу (непрерывная память). LinkedList: O(1) вставка в начало/конец (если есть ссылка), O(n) доступ по индексу..."
-        },
-        {
-          "id": "b",
-          "text": "Сложные аналитические запросы (оконные функции, CTE). Batch-операции (тысячи INSERT). Запросы, где ORM генерирует неоптимальный SQL. Миграция legacy-кода. Простые CRUD без сложных связей..."
-        },
-        {
-          "id": "c",
-          "text": "HashMap — да, ОДИН null-ключ (лежит в table[0]), null-значений сколько угодно. TreeMap — null-ключ нельзя (бросит NPE при сравнении). Hashtable — null нельзя ни в ключе, ни в значении (NPE)."
-        },
-        {
-          "id": "d",
-          "text": "volatile write → read. synchronized release → acquire. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join(). final поля после конструктора (если this не утёк)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "ArrayList: O(1) доступ по индексу, O(n) вставка в середину, дружелюбно к CPU-кэшу (непрерывная память). LinkedList: O(1) вставка в начало/конец (если есть ссылка), O(n) доступ по индексу...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-atomic-классы-333",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 196,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Atomic-классы» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Unit → Integration → System → Acceptance. Unit: отдельный метод/класс (JUnit, Mockito). Integration: взаимодействие компонентов (Testcontainers, WireMock). System: вся система целиком. Acceptance: приёмка пользователем (UAT)."
-        },
-        {
-          "id": "b",
-          "text": "Kafka/RabbitMQ — асинхронные. Сообщение отправлено, но ещё не обработано consumer'ом. assertEquals сразу после send → данных в БД ещё нет. Решение: Awaitility с polling, или Thread.sleep (плохо — хрупко), или callback/listener."
-        },
-        {
-          "id": "c",
-          "text": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется)."
-        },
-        {
-          "id": "d",
-          "text": "Гонка — ситуация, когда результат зависит от порядка выполнения потоков. Классика: i++ из двух потоков. Может быть +1, может быть +2 — зависит от планировщика. Решение — синхронизация (synchronized, locks, atomic) или immutable."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "AtomicInteger, AtomicLong, AtomicReference. CAS (Compare-And-Swap) — атомарная инструкция CPU. Lock-free. Методы: get, set, compareAndSet, incrementAndGet. Для счётчиков с высоким contention — LongAdder (лучше масштабируется).",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-atomic-классы-как-работают-без-блокировок-049",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "concurrency",
-        "hibernate",
-        "algorithms",
-        "jvm",
-        "devops"
-      ],
-      "companies": [
-        "sber",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 235,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 208,
-          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Atomic-классы — как работают без блокировок?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "docker build, docker run, docker ps, docker logs, docker exec, docker stop, docker rm, docker images, docker pull/push."
-        },
-        {
-          "id": "b",
-          "text": "JIT определяет, «сбегает» ли объект из метода. Если нет — может аллоцировать на стеке вместо heap (scalar replacement)."
-        },
-        {
-          "id": "c",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
-        },
-        {
-          "id": "d",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
     {
       "id": "auto-classloader-parent-delegation-model-037",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "hibernate",
         "system-design"
       ],
       "companies": [
@@ -206,11 +28,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "JVM — виртуальная машина. JRE = JVM + библиотеки. JDK = JRE + инструменты разработки (javac, jdb)."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "b",
-          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "c",
@@ -218,7 +40,7 @@
         },
         {
           "id": "d",
-          "text": "AutoCloseable (или Closeable). Ресурсы закрываются автоматически в обратном порядке объявления."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         }
       ],
       "correct": [
@@ -233,167 +55,12 @@
       ]
     },
     {
-      "id": "auto-deadlock-337",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "devops"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 208,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 218,
-          "title": "VK · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Deadlock» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
-        },
-        {
-          "id": "b",
-          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
-        },
-        {
-          "id": "c",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
-        },
-        {
-          "id": "d",
-          "text": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Два+ потока ждут друг друга. Условия Коффмана: mutual exclusion, hold and wait, no preemption, circular wait. Избегать: упорядочить захват мониторов (lock A → lock B), tryLock с таймаутом. Обнаружение: jstack, VisualVM.",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-deadlock-как-возникает-476",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "concurrency",
-        "hibernate"
-      ],
-      "companies": [
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 201,
-          "title": "Яндекс Путешествия · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Deadlock — как возникает?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
-        },
-        {
-          "id": "b",
-          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки (javac, jdb, jar)."
-        },
-        {
-          "id": "c",
-          "text": "Два+ потока ждут друг друга. Условия Коффмана. Избежать: упорядочить захват мониторов, tryLock с таймаутом. Обнаружение: jstack, VisualVM, Thread.getState()."
-        },
-        {
-          "id": "d",
-          "text": "Самое простое — захватывать ресурсы в едином порядке (например, по ID). Тогда циклический wait невозможен. Альтернатива — tryLock с таймаутом (ReentrantLock)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Два+ потока ждут друг друга. Условия Коффмана. Избежать: упорядочить захват мониторов, tryLock с таймаутом. Обнаружение: jstack, VisualVM, Thread.getState().",
-      "reviewLinks": [
-        {
-          "label": "Яндекс Путешествия",
-          "href": "../guides/yandex-travel/"
-        }
-      ]
-    },
-    {
-      "id": "auto-entity-как-ключ-hashmap-что-может-пойти-не-так-416",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "collections",
-        "jvm",
-        "hibernate"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 197,
-          "title": "Т1 Иннотех · 8. Hibernate и JPA"
-        }
-      ],
-      "prompt": "Entity как ключ HashMap — что может пойти не так?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "НЕТ. Singleton означает один экземпляр на контекст, но это НЕ делает его потокобезопасным. Если есть mutable state (поля, не final) — race condition. Решения: stateless бины (без полей-состояний), ThreadLocal..."
-        },
-        {
-          "id": "b",
-          "text": "String — immutable. Каждая конкатенация создаёт новый объект, в цикле это O(n²) по памяти. StringBuilder — mutable, не потокобезопасный, быстрый. StringBuffer — mutable + synchronized методы, потокобезопасный..."
-        },
-        {
-          "id": "c",
-          "text": "HashSet — на основе HashMap (значение в виде специальной заглушки). Не сохраняет порядок. LinkedHashSet — HashSet + порядок вставки. TreeSet — на основе TreeMap (красно-чёрное дерево), элементы отсортированы..."
-        },
-        {
-          "id": "d",
-          "text": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Если equals/hashCode используют lazy-связи (ManyToOne, OneToMany) — при первом вызове hashCode загрузится N связанных сущностей (N+1). Хуже: если связи двусторонние — StackOverflowError (бесконечная рекурсия)...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
       "id": "auto-escape-analysis-что-это-дает-039",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -409,11 +76,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Через CAS (compare-and-swap) — атомарную инструкцию CPU. Lock-free. Классы: AtomicInteger, AtomicLong, AtomicReference."
+          "text": "Для Escape analysis — что это даёт достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна."
         },
         {
           "id": "b",
-          "text": "Finally выполнится перед фактическим возвратом. Если в finally тоже return — он перебьёт значение из try (анти-паттерн)."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "c",
@@ -421,7 +88,7 @@
         },
         {
           "id": "d",
-          "text": "REST — публичные API, простая отладка. gRPC — внутренний inter-service (быстрее, типизация через protobuf, streaming)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -436,122 +103,11 @@
       ]
     },
     {
-      "id": "auto-explain-analyze-359",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "sql",
-        "collections",
-        "jvm"
-      ],
-      "companies": [
-        "alfa-bank",
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 296,
-          "title": "Альфа-Банк · 8. SQL и PostgreSQL"
-        },
-        {
-          "path": "guides/vk.md",
-          "line": 273,
-          "title": "VK · 7. Базы данных и SQL"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 278,
-          "title": "Яндекс Путешествия · 8. SQL и PostgreSQL"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «EXPLAIN ANALYZE» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
-        },
-        {
-          "id": "b",
-          "text": "HashMap не потокобезопасен, допускает null-ключ/значение. ConcurrentHashMap потокобезопасен, не допускает null, в Java 7 использовал сегментную блокировку, в Java 8+ — CAS + synchronized на головах бакетов."
-        },
-        {
-          "id": "c",
-          "text": "Распределённые транзакции через цепочку локальных + компенсирующие действия. Choreography (события, децентрализованно) vs Orchestration (центральный оркестратор). Пример: оплата → списание → бронирование..."
-        },
-        {
-          "id": "d",
-          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-final-finally-finalize-три-разных-слова-511",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "jvm"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 147,
-          "title": "МТС Банк AQA · 5. Java Core (Junior)"
-        }
-      ],
-      "prompt": "final, finally, finalize — три разных слова?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
-        },
-        {
-          "id": "b",
-          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
-        },
-        {
-          "id": "c",
-          "text": "map: T → R, один элемент → один. flatMap: T → Stream<R> с уплощением. Пример: List<List<String>> → flatMap(Collection::stream) → плоский Stream<String>. Для Optional: flatMap избегает Optional<Optional<T>>."
-        },
-        {
-          "id": "d",
-          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
       "id": "auto-generational-zgc-что-нового-403",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "system-design"
+        "jvm"
       ],
       "companies": [
         "t1-innotech"
@@ -571,15 +127,15 @@
         },
         {
           "id": "b",
-          "text": "Все объекты попадут в один бакет HashMap. Поиск превратится в перебор связного списка (или дерева с Java 8) — деградация с O(1) до O(n) или O(log n). Карта работает, но медленно. Это любимый подвох на собесе."
+          "text": "Для Generational ZGC — что нового достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "Value Object — объект, который определяется ТОЛЬКО своими значениями (не identity). Например, Money(amount, currency) — два VO с одинаковыми полями равны. Иммутабельны, имеют equals/hashCode по содержимому..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
-          "text": "final — модификатор. final class / method / field. finally — блок в try-catch-finally, выполняется ВСЕГДА (даже при исключении или return). Используется для освобождения ресурсов. finalize() — метод Object..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -594,112 +150,12 @@
       ]
     },
     {
-      "id": "auto-idor-что-это-559",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "jvm",
-        "spring",
-        "testing-aqa",
-        "security"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 399,
-          "title": "МТС Банк AQA · 11. Безопасность (OWASP)"
-        }
-      ],
-      "prompt": "IDOR — что это?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A..."
-        },
-        {
-          "id": "b",
-          "text": "1) Поднять Kafka через Testcontainers. 2) Отправить сообщение KafkaTemplate.send(topic, message). 3) Прочитать ответное через KafkaConsumer.poll(). 4) Проверить содержимое. Через Citrus: send(kafka).message(....."
-        },
-        {
-          "id": "c",
-          "text": "Один абстрактный метод (SAM). Function, Predicate, Consumer, Supplier, Comparator. Стрим: промежуточные (ленивые) → терминальные (запускают конвейер). Обработка вертикальная, не горизонтальная. Стрим одноразовый."
-        },
-        {
-          "id": "d",
-          "text": "Cross-Origin Resource Sharing: браузер блокирует запросы к другому домену. Сервер разрешает через заголовки: Access-Control-Allow-Origin, Access-Control-Allow-Methods. Preflight запрос (OPTIONS) перед POST/PUT..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Insecure Direct Object Reference: один клиент видит данные другого. GET /api/users/123/accounts — если проверки прав нет, можно подставить чужой ID и увидеть чужие счета. Как тестировать: авторизоваться user A...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-java-компилируемый-или-интерпретируемый-язык-574",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "jvm"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 80,
-          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
-        }
-      ],
-      "prompt": "Java — компилируемый или интерпретируемый язык?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "И то, и другое. Сначала компилируется в байт-код (.class), потом JVM его интерпретирует и компилирует «горячие» места JIT-компилятором в нативный код."
-        },
-        {
-          "id": "b",
-          "text": "orElse(value) — eager: значение вычисляется ВСЕГДА, даже если Optional не пустой. orElseGet(Supplier) — lazy: вызывается только если Optional пустой..."
-        },
-        {
-          "id": "c",
-          "text": "Constructor injection. Поля можно final, явно видны обязательные зависимости, удобно тестировать без контекста, нет скрытых циклических зависимостей."
-        },
-        {
-          "id": "d",
-          "text": "Итератор, который кидает ConcurrentModificationException, если коллекция изменена не через сам итератор. Так работают итераторы у HashMap, ArrayList."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "И то, и другое. Сначала компилируется в байт-код (.class), потом JVM его интерпретирует и компилирует «горячие» места JIT-компилятором в нативный код.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
       "id": "auto-jdk-jre-jvm-433",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "concurrency"
+        "java-core"
       ],
       "companies": [
         "vk",
@@ -721,15 +177,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
+          "text": "Для JDK, JRE, JVM достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
@@ -752,8 +208,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -769,15 +225,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Bootstrap → Platform (ext) → Application. Дочерний сначала делегирует родителю, потом грузит сам."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "b",
-          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "c",
-          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
@@ -796,367 +252,10 @@
       ]
     },
     {
-      "id": "auto-priorityqueue-444",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "testing-aqa"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 193,
-          "title": "VK · 4. Коллекции"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «PriorityQueue» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
-        },
-        {
-          "id": "b",
-          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
-        },
-        {
-          "id": "c",
-          "text": "@Transactional работает на private-методах так же, как на public, потому что аннотация читается reflection."
-        },
-        {
-          "id": "d",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-string-pool-и-immutability-435",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "security"
-      ],
-      "companies": [
-        "vk",
-        "yandex-travel"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 109,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        },
-        {
-          "path": "guides/yandex-travel.md",
-          "line": 94,
-          "title": "Яндекс Путешествия · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «String Pool и immutability» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Java 14+: компактный immutable data-класс. record User(String name, int age) {} — автоматически: конструктор, getters (name(), age()), equals, hashCode, toString. Нельзя наследовать (implicitly final)..."
-        },
-        {
-          "id": "b",
-          "text": "Модификация коллекции во время итерации не через итератор. modCount-счётчик: при следующем next() проверяется. Решения: Iterator.remove(), CopyOnWriteArrayList, ConcurrentHashMap, removeIf() (Java 8+)..."
-        },
-        {
-          "id": "c",
-          "text": "Constructor injection. Поля можно final, явно видны зависимости, легко тестировать без контекста (new Service(mockRepo)), невозможен циклический DI при старте (сигнал о проблеме в дизайне). С Spring 4..."
-        },
-        {
-          "id": "d",
-          "text": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Pool в heap хранит уникальные литералы. new String(\"hi\") — новый объект вне пула. intern() добавляет в пул. Immutability: безопасность, потокобезопасность, кэширование hashCode, переиспользование в пуле.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-threadpoolexecutor-447",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "algorithms"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 215,
-          "title": "VK · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «ThreadPoolExecutor» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Pessimistic: SELECT ... FOR UPDATE блокирует строку. Optimistic: версия (@Version) — при commit проверяется, изменилась ли она."
-        },
-        {
-          "id": "b",
-          "text": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM."
-        },
-        {
-          "id": "c",
-          "text": "ConfigMap — не-секретная конфигурация. Secret — base64-encoded чувствительные данные. Оба монтируются как volumes или env vars."
-        },
-        {
-          "id": "d",
-          "text": "NEW (создан), RUNNABLE (готов или выполняется), BLOCKED (ждёт монитор), WAITING / TIMED_WAITING (ждёт сигнал/время), TERMINATED."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "corePoolSize, maxPoolSize, keepAliveTime, workQueue, threadFactory, rejectedExecutionHandler. newCachedThreadPool опасен — OOM.",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-virtual-threads-java-21-440",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "sql"
-      ],
-      "companies": [
-        "vk"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/vk.md",
-          "line": 124,
-          "title": "VK · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Virtual Threads (Java 21)?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Young Generation — новые объекты. Состоит из Eden (где создаются), Survivor 0, Survivor 1 (для тех, что пережили несколько Minor GC). Old Generation — долгоживущие объекты, которые пережили много циклов GC."
-        },
-        {
-          "id": "b",
-          "text": "HashMap не потокобезопасен, допускает null-ключ/значение. ConcurrentHashMap потокобезопасен, не допускает null, в Java 7 использовал сегментную блокировку, в Java 8+ — CAS + synchronized на головах бакетов."
-        },
-        {
-          "id": "c",
-          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
-        },
-        {
-          "id": "d",
-          "text": "final: класс (нельзя наследовать), метод (нельзя переопределить), поле (нельзя переприсвоить). finally: блок try-catch-finally, выполняется ВСЕГДА. finalize(): метод Object, вызывается GC перед удалением..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors...",
-      "reviewLinks": [
-        {
-          "label": "VK",
-          "href": "../guides/vk/"
-        }
-      ]
-    },
-    {
-      "id": "auto-virtual-threads-java-21-pinning-problem-394",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 123,
-          "title": "Т1 Иннотех · 4. Многопоточность"
-        }
-      ],
-      "prompt": "Virtual Threads (Java 21): pinning problem?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Virtual Thread на synchronized блоке → pinning (привязка к platform thread, теряется лёгкость). Причина: synchronized работает через монитор объекта, JVM не может «припарковать» виртуальный поток..."
-        },
-        {
-          "id": "b",
-          "text": "Спецификация не запрещает, но рекомендует не использовать. Многие фреймворки и прокси игнорируют body в GET. Если параметров много — лучше POST с явной семантикой («поиск с телом») или query string."
-        },
-        {
-          "id": "c",
-          "text": "В Metaspace. До Java 8 это была область PermGen (часть heap), с Java 8 — отдельная область в нативной памяти (off-heap). Это важно: при анализе утечек статические поля не видны в обычном дампе heap."
-        },
-        {
-          "id": "d",
-          "text": "Для возвращаемых значений методов. НЕ для полей (не Serializable), НЕ для параметров, НЕ для коллекций (пустая лучше). Антипаттерны: Optional.get() без isPresent(), Optional в полях, Optional<List>."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Virtual Thread на synchronized блоке → pinning (привязка к platform thread, теряется лёгкость). Причина: synchronized работает через монитор объекта, JVM не может «припарковать» виртуальный поток...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-virtual-threads-чем-отличаются-от-обычных-055",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 253,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Virtual Threads — чем отличаются от обычных?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный."
-        },
-        {
-          "id": "b",
-          "text": "Ключевое слово для захвата монитора объекта. Гарантирует, что в блок одновременно войдёт только один поток. Можно на методе или на блоке кода."
-        },
-        {
-          "id": "c",
-          "text": "1 findAll() + N доп. запросов на lazy-коллекции. Решения: JOIN FETCH, @EntityGraph, @BatchSize(100), DTO-проекция. EAGER — неправильный ответ."
-        },
-        {
-          "id": "d",
-          "text": "Сценарий: микросервис обрабатывает 1000 RPS обычных запросов. Каждый из них где-то использует parallelStream (агрегация, фильтр коллекции)..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-wait-notify-почему-while-334",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "spring"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 199,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "wait/notify — почему while?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "@Primary — пометить «приоритетный» бин. @Qualifier(\"name\") — точечно выбрать конкретный. @Profile(\"prod\") — активировать в определённом окружении. @ConditionalOnProperty / @ConditionalOnMissingBean — условное создание."
-        },
-        {
-          "id": "b",
-          "text": "this.method() минует прокси → @Transactional/@Async/@Cacheable не работают. Решения: вынести метод в другой бин (рекомендуемый), инжектить self через @Lazy или ObjectProvider, использовать AspectJ compile-time weaving."
-        },
-        {
-          "id": "c",
-          "text": "Spurious wakeup: JVM/ОС может разбудить поток без notify. while (!condition) { wait(); }. Важно: вызывать ТОЛЬКО внутри synchronized на том же объекте, иначе — IllegalMonitorStateException. notify() будит один поток..."
-        },
-        {
-          "id": "d",
-          "text": "CLOSED: всё работает, запросы проходят. При N ошибок (или % ошибок > threshold) → OPEN. OPEN: все запросы блокируются, возвращается fallback. Через waitDuration → HALF_OPEN. HALF_OPEN: пропускает N тестовых запросов..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Spurious wakeup: JVM/ОС может разбудить поток без notify. while (!condition) { wait(); }. Важно: вызывать ТОЛЬКО внутри synchronized на том же объекте, иначе — IllegalMonitorStateException. notify() будит один поток...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
       "id": "auto-weakreference-softreference-phantomreference-437",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
         "jvm"
       ],
       "companies": [
@@ -1179,11 +278,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Контейнер, который может содержать или не содержать значение. Появился в Java 8 как альтернатива null. Помогает явно показывать в сигнатуре методов, что результат может отсутствовать..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "ArrayList — на основе массива. Доступ по индексу O(1), вставка в конец амортизированно O(1), в середину O(n). Самая популярная. LinkedList — двусвязный список. Доступ по индексу O(n)..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -1191,7 +290,7 @@
         },
         {
           "id": "d",
-          "text": "Project Object Model — файл конфигурации Maven-проекта. Содержит: координаты артефакта (groupId, artifactId, version), зависимости, плагины, свойства, профили. Это сердце Maven-проекта."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1210,8 +309,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -1227,11 +326,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "List.of возвращает неизменяемый список. add/remove бросают UnsupportedOperationException."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "b",
-          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "c",
@@ -1239,7 +338,7 @@
         },
         {
           "id": "d",
-          "text": "JVM автоматически нормализует такой случай, поэтому коллекции и сравнение не страдают."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -1258,7 +357,6 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -1279,15 +377,15 @@
         },
         {
           "id": "b",
-          "text": "Файл со списком путей и шаблонов, которые Git должен игнорировать. Туда обычно кладут: target/ (Maven), node_modules/, .idea/ (IntelliJ), *.log, файлы с секретами (хотя секреты лучше вообще не класть в репозиторий)."
+          "text": "Для В чём разница StackOverflowError и OutOfMemoryError достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "Бросается итератором, если коллекция изменилась во время итерации не через сам итератор. Реализуется через счётчик modCount внутри коллекции и expectedModCount внутри итератора. Если они разъезжаются — исключение..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
-          "text": "С пулами потоков: поток переиспользуется, ThreadLocal остаётся от предыдущей задачи (утечка данных/памяти). Обязательно: try { ... } finally { threadLocal.remove(); }. В Reactor/WebFlux — не работает, нужен Context."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1306,8 +404,8 @@
       "type": "single",
       "level": "junior",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "itk-academy"
@@ -1323,15 +421,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "ThreadLocalRandom использует отдельный seed для каждого потока — хранится в полях класса Thread (это специальная JVM-оптимизация, не обычный ThreadLocal)..."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Два+ потока ждут друг друга. Условия Коффмана. Избежать: упорядочить захват мониторов, tryLock с таймаутом. Обнаружение: jstack, VisualVM, Thread.getState()."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
@@ -1350,61 +448,11 @@
       ]
     },
     {
-      "id": "auto-в-чем-разница-процесса-и-потока-158",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "jvm",
-        "concurrency"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 439,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Поток vs процесс"
-        }
-      ],
-      "prompt": "В чём разница процесса и потока?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Random — для однопоточного кода с обычной случайностью (тесты, моки, простой код). ThreadLocalRandom — для многопоточного кода с обычной случайностью (concurrent workloads, parallel stream)..."
-        },
-        {
-          "id": "b",
-          "text": "Процесс — изолированный экземпляр программы. У каждого процесса своё адресное пространство, файловые дескрипторы, переменные окружения. Процессы не могут просто так читать память друг друга..."
-        },
-        {
-          "id": "c",
-          "text": "newFixedThreadPool, newCachedThreadPool, newSingleThreadExecutor, newScheduledThreadPool, newWorkStealingPool. Для прода обычно создают ThreadPoolExecutor вручную, чтобы контролировать очередь."
-        },
-        {
-          "id": "d",
-          "text": "Введён в Java 8. Конвейерная обработка коллекций в декларативном стиле. Поток (Stream) — это последовательность элементов с операциями. Не путать с потоком (Thread) — это про многопоточность."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Процесс — изолированный экземпляр программы. У каждого процесса своё адресное пространство, файловые дескрипторы, переменные окружения. Процессы не могут просто так читать память друг друга...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-виды-outofmemoryerror-035",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency"
+        "jvm"
       ],
       "companies": [
         "sber"
@@ -1420,7 +468,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Оптимизация «горячего» кода в нативный. C1 — быстрый прогрев, C2 — агрессивная оптимизация."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "b",
@@ -1428,11 +476,11 @@
         },
         {
           "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "d",
-          "text": "В JUnit 5 они должны быть static (или класс аннотирован @TestInstance(Lifecycle.PER_CLASS))."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         }
       ],
       "correct": [
@@ -1451,9 +499,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "t1-innotech"
@@ -1469,7 +516,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Iterable → Collection. От Collection наследуются List, Set, Queue. Map стоит ОТДЕЛЬНО — она НЕ Collection. Это пары ключ-значение, не отдельные элементы. Поэтому у Map свои методы (put, get), и она не реализует Collection."
+          "text": "Для Виды ссылок: Strong, Soft, Weak, Phantom достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
@@ -1477,11 +524,11 @@
         },
         {
           "id": "c",
-          "text": "Serial — однопоточный, для маленьких приложений. Parallel — многопоточный для Young, был дефолтом до Java 9. G1 (Garbage First) — с Java 9 дефолт, делит heap на регионы, низкие паузы. ZGC и Shenandoah — для больших heap..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
-          "text": "@ParameterizedTest + источник данных: @ValueSource(strings = {\"a\", \"b\"}), @CsvSource({\"1, true\", \"2, false\"}), @MethodSource(\"dataProvider\"), @CsvFileSource(resources = \"/data.csv\"). Для AQA: параметризация status-кодов..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1526,15 +573,15 @@
         },
         {
           "id": "b",
-          "text": "Да. Java GC работает по reachability, а не по reference counting. Два объекта, ссылающиеся друг на друга, но не достижимые снаружи — будут собраны. Это отличие от Python, где есть reference counting + cycle collector."
+          "text": "Это про Где хранятся примитивы и где объекты: достаточно назвать синтаксис, runtime-контракты и поведение JVM здесь не важны. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "c",
-          "text": "Промежуточные операции не выполняются сразу. Они «копят» план. Терминальная операция запускает выполнение. Поэтому stream.filter(...).map(...) без terminal — не сделает ничего. Это позволяет оптимизировать выполнение."
+          "text": "Главная идея Где хранятся примитивы и где объекты в том, что компилятор автоматически предотвращает все такие ошибки. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         },
         {
           "id": "d",
-          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
+          "text": "Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать. На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие."
         }
       ],
       "correct": [
@@ -1553,8 +600,8 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sberseasons"
@@ -1570,15 +617,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "ArrayList: динамический массив, O(1) доступ, O(n) вставка в середину. LinkedList: двусвязный список, O(1) вставка/удаление, O(n) доступ. HashMap: бакеты + связный список → дерево при ≥8 коллизиях..."
+          "text": "Для Где хранятся статические поля достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Спецификация не запрещает, но рекомендует не использовать. Многие фреймворки и прокси игнорируют body в GET. Если параметров много — лучше POST с явной семантикой («поиск с телом») или query string."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "Для возвращаемых значений методов. НЕ для полей (не Serializable), НЕ для параметров, НЕ для коллекций (пустая лучше). Антипаттерны: Optional.get() без isPresent(), Optional в полях, Optional<List>."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
@@ -1597,109 +644,10 @@
       ]
     },
     {
-      "id": "auto-если-в-обработчике-сервлете-сделать-нестатическое-поле-какие-проблемы-возникнут-177",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "spring"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 514,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Проблема с нестатическими полями в сервлете"
-        }
-      ],
-      "prompt": "Если в обработчике (сервлете) сделать нестатическое поле — какие проблемы возникнут?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных..."
-        },
-        {
-          "id": "b",
-          "text": "Для класса — нельзя унаследовать (final class String). Для метода — нельзя переопределить в наследнике. Для переменной — можно присвоить один раз. Для поля — становится константой (часто вместе со static)."
-        },
-        {
-          "id": "c",
-          "text": "isPresent/isEmpty — проверка. ifPresent(consumer) — действие если есть. orElse(default) — значение по умолчанию (eager). orElseGet(supplier) — ленивый. map/flatMap — трансформация. Антипаттерн: optional..."
-        },
-        {
-          "id": "d",
-          "text": "Elasticsearch хранит/индексирует, Kibana — UI для поиска. Фильтр: traceId + временной диапазон. KQL: level:ERROR AND service:payment. MDC: Mapped Diagnostic Context — traceId пробрасывается через потоки..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Сервлет один на JVM (по умолчанию), обрабатывает много запросов параллельно. Нестатическое поле — общее для всех запросов. Получится shared mutable state без синхронизации = race condition, гонка данных...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-зачем-нужны-индексы-632",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "jvm",
-        "sql"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 328,
-          "title": "ITK Academy · 8. Базы данных и SQL"
-        }
-      ],
-      "prompt": "Зачем нужны индексы?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "PRIMARY KEY — один на таблицу, NOT NULL. UNIQUE — может быть несколько UNIQUE-индексов, разрешает NULL (NULL не равно NULL, поэтому много NULL допустимо)."
-        },
-        {
-          "id": "b",
-          "text": "При итерации по списку на каждую связанную сущность делается отдельный SELECT. Решения: JOIN FETCH, @EntityGraph, @BatchSize, @Fetch(FetchMode.SUBSELECT)."
-        },
-        {
-          "id": "c",
-          "text": "Сохранённый SELECT-запрос, к которому можно обращаться как к таблице. Виртуальная таблица — данных в ней нет, при обращении выполняется исходный запрос."
-        },
-        {
-          "id": "d",
-          "text": "Чтобы ускорить поиск. Без индекса — full scan O(n). С B-tree индексом — O(log n). Платим за это: дополнительная память + замедление INSERT/UPDATE/DELETE."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Чтобы ускорить поиск. Без индекса — full scan O(n). С B-tree индексом — O(log n). Платим за это: дополнительная память + замедление INSERT/UPDATE/DELETE.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
       "id": "auto-из-чего-состоит-память-java-149",
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -1716,11 +664,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
+          "text": "Для Из чего состоит память Java достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Защита от каскадных сбоев. CLOSED → OPEN (блокирует) → HALF_OPEN (тестовые запросы). Resilience4j + Spring Boot стартер. Конфигурация: failureRateThreshold, waitDurationInOpenState. Fallback: дефолтное значение или кэш."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -1728,7 +676,7 @@
         },
         {
           "id": "d",
-          "text": "singleton (default — один на контекст), prototype (новый при каждом запросе), request (один на HTTP-запрос), session, application, websocket. Важно: инжект prototype в singleton через Provider<T> или ObjectFactory<T>..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1747,7 +695,6 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -1764,11 +711,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "List — интерфейс, ArrayList — реализация. Правило: писать переменные через интерфейс — List<String> list = new ArrayList<>(); — чтобы потом можно было сменить реализацию без правок остального кода."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "HashMap использует hashCode для бакета и equals для разрешения коллизий. Если по умолчанию (Object) — каждый объект уникален, два «равных по смыслу» User'а с одинаковым id будут в разных бакетах..."
+          "text": "Для Как GC решает, что объект можно удалить достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -1776,7 +723,7 @@
         },
         {
           "id": "d",
-          "text": "Если a.equals(b), то hashCode одинаков. Обратное необязательно. При константном hashCode — все в одном bucket: Java 7 — список O(n), Java 8+ при 8 коллизиях — red-black tree O(log n). Деградация..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1795,10 +742,7 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "jvm",
-        "concurrency"
+        "jvm"
       ],
       "companies": [
         "t1-innotech"
@@ -1814,11 +758,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Atomicity — целиком или никак. Consistency — валидное состояние БД (constraints). Isolation — параллельные транзакции изолированы (зависит от уровня). Durability — после COMMIT данные сохранятся (WAL в PostgreSQL)."
+          "text": "Для Как воспроизвести OOM достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "ConcurrentModificationException при изменении коллекции не через сам итератор. Реализован через modCount. Не гарантирован в многопоточной среде — только best effort. Альтернатива: CopyOnWriteArrayList (fail-safe..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -1826,7 +770,7 @@
         },
         {
           "id": "d",
-          "text": "Технически — все создают бин (синглтон по умолчанию). Семантически разные: @Repository — слой доступа к данным, Spring дополнительно оборачивает SQL/JPA исключения в DataAccessException. @Service — бизнес-логика..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1845,7 +789,6 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -1862,11 +805,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "map: T → R, один элемент → один. flatMap: T → Stream<R> с уплощением. Пример: List<List<String>> → flatMap(Collection::stream) → плоский Stream<String>. Для Optional: flatMap избегает Optional<Optional<T>>."
+          "text": "Для Как делится Heap достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "EXPLAIN — план без выполнения. EXPLAIN ANALYZE — реальное выполнение + actual time. Seq Scan на большой таблице — плохо. Index Scan / Index Only Scan — хорошо. Rows Removed by Filter — индекс не помогает..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -1874,7 +817,7 @@
         },
         {
           "id": "d",
-          "text": "Лёгкие потоки, управляемые JVM (не ОС). Thread.ofVirtual().start(). Миллионы потоков без проблем. НЕ подходят для CPU-bound задач (нет preemption). Идеальны для I/O-bound (сетевые запросы, БД). Executors..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -1893,9 +836,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "collections",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -1911,7 +853,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "JVM автоматически нормализует такой случай, поэтому коллекции и сравнение не страдают."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "b",
@@ -1919,11 +861,11 @@
         },
         {
           "id": "c",
-          "text": "Проблема решается только увеличением heap, потому что структура коллекции не меняется."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
-          "text": "put, get, remove — O(1) в среднем. В худшем случае O(log n) благодаря дереву (Java 8+)."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -1938,261 +880,10 @@
       ]
     },
     {
-      "id": "auto-как-прочитать-explain-analyze-075",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "sql"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 325,
-          "title": "Сбер · 8. Базы данных и SQL"
-        }
-      ],
-      "prompt": "Как прочитать EXPLAIN ANALYZE?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "HashMap: не потокобезопасен, null-ключ. Hashtable: потокобезопасен (synchronized на всё), устаревший, нет null. LinkedHashMap: порядок вставки (или access order для LRU)..."
-        },
-        {
-          "id": "b",
-          "text": "Обратите внимание на Seq Scan (плохо на больших таблицах), Index Scan, Bitmap Heap Scan, Nested Loop vs Hash Join, Rows Removed by Filter, разницу estimated vs actual rows."
-        },
-        {
-          "id": "c",
-          "text": "get() — сразу идёт в БД и возвращает null если не найдено. load() — возвращает прокси, БД дёргается только при обращении к полям; если нет записи — ObjectNotFoundException."
-        },
-        {
-          "id": "d",
-          "text": "Структура данных (обычно B-tree), позволяющая БД быстро находить строки по значениям колонок. Без индекса — Seq Scan (полный обход таблицы). С индексом — поиск за O(log n)."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Обратите внимание на Seq Scan (плохо на больших таблицах), Index Scan, Bitmap Heap Scan, Nested Loop vs Hash Join, Rows Removed by Filter, разницу estimated vs actual rows.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-сделать-потокобезопасный-singleton-056",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "system-design",
-        "security"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 256,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как сделать потокобезопасный singleton?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
-        },
-        {
-          "id": "b",
-          "text": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile."
-        },
-        {
-          "id": "c",
-          "text": "@RestControllerAdvice + @ExceptionHandler. Внутри класса — просто @ExceptionHandler на методе контроллера."
-        },
-        {
-          "id": "d",
-          "text": "Throwable → Error (системные, не ловим) и Exception. От Exception → checked и RuntimeException (unchecked)."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Лучшее — enum. Альтернативы: static holder (lazy init via classloader), double-checked locking с volatile.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-устроен-threadlocalrandom-708",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 102,
-          "title": "X5 Tech · 2. Баг #1 — contention на shared Random · Решение: ThreadLocalRandom"
-        }
-      ],
-      "prompt": "Как устроен ThreadLocalRandom?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "JVM — виртуальная машина (исполняет байт-код). JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки (javac, jdb, jar)."
-        },
-        {
-          "id": "b",
-          "text": "== сравнивает ссылки. equals() сравнивает содержимое. Для строк, созданных литералом, == может вернуть true из-за String Pool, но полагаться на это нельзя."
-        },
-        {
-          "id": "c",
-          "text": "ThreadLocalRandom использует отдельный seed для каждого потока — хранится в полях класса Thread (это специальная JVM-оптимизация, не обычный ThreadLocal)..."
-        },
-        {
-          "id": "d",
-          "text": "Транзакция удерживает соединение к БД всё время REST-вызова (секунды). Пул соединений исчерпается → все потоки ждут → сервис висит (connection starvation)..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "ThreadLocalRandom использует отдельный seed для каждого потока — хранится в полях класса Thread (это специальная JVM-оптимизация, не обычный ThreadLocal)...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
-      "id": "auto-как-читать-explain-analyze-684",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "sql"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 352,
-          "title": "Лига Цифровой Экономики · 8. SQL и PostgreSQL"
-        }
-      ],
-      "prompt": "Как читать EXPLAIN ANALYZE?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Принудительно завершает JVM с кодом возврата. Не выполняются finally-блоки, не закрываются ресурсы. Использовать ТОЛЬКО в экстренных случаях. В обычной разработке — не нужен."
-        },
-        {
-          "id": "b",
-          "text": "ArrayList: быстрый доступ по индексу O(1), быстрая итерация. LinkedList: быстрая вставка/удаление в начале O(1), но поиск O(n). На практике почти всегда выигрывает ArrayList."
-        },
-        {
-          "id": "c",
-          "text": "Смотри на Seq Scan (на большой таблице — плохо), Index Scan, Bitmap Heap Scan, типы Join (Nested Loop vs Hash Join), Rows Removed by Filter, разницу estimated vs actual rows."
-        },
-        {
-          "id": "d",
-          "text": "WHERE — до группировки, работает с индексами. HAVING — после GROUP BY, для агрегатов. Пример: HAVING COUNT(*) > 5. Ошибка: ставить в HAVING то, что можно в WHERE — медленнее."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Смотри на Seq Scan (на большой таблице — плохо), Index Scan, Bitmap Heap Scan, типы Join (Nested Loop vs Hash Join), Rows Removed by Filter, разницу estimated vs actual rows.",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-какие-аннотации-для-тестов-в-spring-boot-281",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "jvm",
-        "spring",
-        "hibernate",
-        "sql",
-        "testing-aqa"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 1029,
-          "title": "SberSeasons · 13. Тесты — JUnit и Mockito · Spring Boot тесты"
-        }
-      ],
-      "prompt": "Какие аннотации для тестов в Spring Boot?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Основные области: Heap (куча) — здесь живут все объекты. Stack (стек) — у каждого потока свой, хранит локальные переменные и фреймы вызовов. Metaspace (с Java 8 заменил PermGen) — метаданные классов, статические поля..."
-        },
-        {
-          "id": "b",
-          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
-        },
-        {
-          "id": "c",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
-        },
-        {
-          "id": "d",
-          "text": "Без сессии на сервере любой запрос можно отправить на любой сервер кластера. Это позволяет легко горизонтально масштабироваться: добавил инстанс — балансер начал слать на него. Состояние держит клиент (например, в JWT)."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-какие-бывают-сборщики-мусора-033",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -2209,11 +900,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
+          "text": "Для Какие бывают сборщики мусора достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна."
         },
         {
           "id": "b",
-          "text": "Управляются JVM, а не ОС. Лёгкие (несколько KB против ~1 MB у platform). Можно писать блокирующий код, который масштабируется как асинхронный."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2221,7 +912,7 @@
         },
         {
           "id": "d",
-          "text": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2240,8 +931,8 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sberseasons"
@@ -2257,11 +948,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Подход: (1) Сначала пробую решить 1-на-1, спокойно. (2) Стараюсь понять его сторону — может, я не так понял. (3) Если не получается — иду к тимлиду, не за «он плохой», а за «помогите разрулить процесс». Конструктивный..."
+          "text": "Для Какие виды ссылок в Java достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Ключевое отношение JMM. Если A happens-before B, то записи в A видны в B. Примеры: unlock → lock того же монитора. volatile write → read. Thread.start() → первая инструкция потока. Последняя инструкция → Thread.join()..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2269,7 +960,7 @@
         },
         {
           "id": "d",
-          "text": "Ровно один абстрактный метод (SAM). @FunctionalInterface — опциональная аннотация, но защищает от случайного добавления второго метода. Основные: Function<T,R>, Predicate<T>, Consumer<T>, Supplier<T>, UnaryOperator<T>..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2284,60 +975,12 @@
       ]
     },
     {
-      "id": "auto-какие-есть-примитивные-типы-и-их-размеры-575",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "jvm"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 83,
-          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
-        }
-      ],
-      "prompt": "Какие есть примитивные типы и их размеры?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "@ExceptionHandler в самом контроллере или глобально через @RestControllerAdvice + @ExceptionHandler."
-        },
-        {
-          "id": "b",
-          "text": "К классу (нельзя наследовать), методу (нельзя переопределить), переменной (нельзя переприсваивать)."
-        },
-        {
-          "id": "c",
-          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
-        },
-        {
-          "id": "d",
-          "text": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо)."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "byte (1), short (2), int (4), long (8), float (4), double (8), char (2), boolean (~1, JVM-зависимо).",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
       "id": "auto-какие-области-памяти-в-jvm-что-хранится-в-heap-а-что-в-stack-003",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -2357,15 +1000,15 @@
         },
         {
           "id": "b",
-          "text": "Композиция = владение (жизненные циклы связаны), агрегация = ссылка."
+          "text": "Все данные Java живут в heap, а stack используется только самой операционной системой."
         },
         {
           "id": "c",
-          "text": "Ограничение иерархии наследования. Хорошо работает с pattern matching."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
-          "text": "false по контракту. equals не должен бросать NPE на null-аргумент."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         }
       ],
       "correct": [
@@ -2384,9 +1027,7 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm",
-        "concurrency"
+        "jvm"
       ],
       "companies": [
         "sberseasons"
@@ -2402,11 +1043,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "(1) Можно делать поля final — иммутабельность. (2) Видны все зависимости — если их 10, конструктор большой, это сигнал «класс делает слишком много» (SRP). (3) Легко тестировать без Spring — обычный new SomeService(mockA..."
+          "text": "Для Какие сборщики мусора ты знаешь достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Видимость записи между потоками — запись одного потока становится сразу видна другим. Запрет переупорядочивания инструкций вокруг volatile. НО volatile НЕ даёт атомарности составных операций. i++ — это read-modify-write..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2414,7 +1055,7 @@
         },
         {
           "id": "d",
-          "text": "Strong: обычная, GC не трогает. Soft: GC собирает при нехватке памяти (кэши). Weak: GC собирает при первой сборке (WeakHashMap). Phantom: get() всегда null, уведомление через ReferenceQueue (постфинализационная очистка)..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2429,213 +1070,12 @@
       ]
     },
     {
-      "id": "auto-какие-сортировки-знаешь-291",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "jvm",
-        "sql",
-        "algorithms"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 1073,
-          "title": "SberSeasons · 14. Алгоритмы и структуры данных · Сортировки"
-        }
-      ],
-      "prompt": "Какие сортировки знаешь?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Загрузил список из N сущностей одним запросом. Потом в цикле обращаешься к их LAZY-связям — на каждую идёт отдельный SELECT. Итого 1 + N запросов. На 100 сущностях это 101 запрос — катастрофа для производительности."
-        },
-        {
-          "id": "b",
-          "text": "Liveness — жив ли? Нет → перезапуск. Readiness — готов к трафику? Нет → убирается из LB. Startup — для медленного старта: пока не пройдёт, остальные не проверяются. Spring Boot Actuator: /actuator/health/liveness..."
-        },
-        {
-          "id": "c",
-          "text": "RandomGenerator — общий интерфейс для всех ГСЧ в Java 17+. Это часть JEP 356: Enhanced Pseudo- Random Number Generators. Реализации: ThreadLocalRandom, SplittableRandom, различные алгоритмы (Xoshiro, L128X, L64X)..."
-        },
-        {
-          "id": "d",
-          "text": "Простые O(n²): пузырёк (bubble), выбор (selection), вставка (insertion). Эффективные O(n log n): merge sort (через слияние), quick sort (через разбиение), heap sort (через кучу). Специфичные: counting sort O(n+k)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Простые O(n²): пузырёк (bubble), выбор (selection), вставка (insertion). Эффективные O(n log n): merge sort (через слияние), quick sort (через разбиение), heap sort (через кучу). Специфичные: counting sort O(n+k)...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-кейс-сеть-моргнула-на-2-секунды-что-делать-429",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "kafka",
-        "devops",
-        "testing-aqa",
-        "system-design"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 269,
-          "title": "Т1 Иннотех · 11. Микросервисы и архитектура"
-        }
-      ],
-      "prompt": "Кейс: сеть «моргнула» на 2 секунды. Что делать?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль..."
-        },
-        {
-          "id": "b",
-          "text": "Полное тестирование невозможно. Кластеризация дефектов (80% багов в 20% модулей). Парадокс пестицида (одни тесты перестают находить баги — обновляй). Раннее тестирование дешевле. Отсутствие ошибок — заблуждение..."
-        },
-        {
-          "id": "c",
-          "text": "IoC — контейнер управляет жизненным циклом. DI — зависимости внедряются извне. Три способа: конструктор (лучший), сеттер, поле (@Autowired). Constructor injection: поля final, явные зависимости, легко тестировать."
-        },
-        {
-          "id": "d",
-          "text": "REST — архитектурный стиль на HTTP. Обычно JSON. Гибкий, контракт через OpenAPI. SOAP — протокол на XML с собственным envelope (Header + Body). Строгий контракт через WSDL. Поддерживает WS-Security (подпись XML..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Retry с exponential backoff + jitter (не все клиенты ретраят одновременно). Circuit Breaker: после N ошибок → OPEN (не шлём запросы) → HALF_OPEN (тестовый) → CLOSED. Idempotency-Key: чтобы retry не создал дубль...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
-      "id": "auto-можно-ли-в-catch-ловить-throwable-стоит-ли-583",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "collections",
-        "jvm"
-      ],
-      "companies": [
-        "itk-academy"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 113,
-          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
-        }
-      ],
-      "prompt": "Можно ли в catch ловить Throwable? Стоит ли?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Захватывает монитор объекта. На методе — монитор this (на static — Class-объект). На блоке — указанного объекта. Только один поток одновременно."
-        },
-        {
-          "id": "b",
-          "text": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения."
-        },
-        {
-          "id": "c",
-          "text": "Serial, Parallel, CMS (deprecated с Java 9, удалён в Java 14), G1 (default с Java 9), ZGC, Shenandoah. Для low-latency выбирают ZGC/Shenandoah."
-        },
-        {
-          "id": "d",
-          "text": "Нет. Spring отлично инжектит и в не-final поля. Но смысл конструктора частично теряется — поле потом можно перезаписать. Конвенция: всегда final."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Можно, но не стоит — поймаешь и Error (OutOfMemoryError, StackOverflowError), которые обычно нельзя восстанавливать. Лови конкретные исключения.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-можно-ли-создать-свой-exception-от-runtimeexception-113",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "collections",
-        "jvm"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 223,
-          "title": "SberSeasons · 3. Java Core и ООП · Исключения"
-        }
-      ],
-      "prompt": "Можно ли создать свой exception от RuntimeException?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "singleton (default — один на контекст), prototype (новый при каждом запросе), request (один на HTTP-запрос), session, application, websocket. Важно: инжект prototype в singleton через Provider<T> или ObjectFactory<T>..."
-        },
-        {
-          "id": "b",
-          "text": "ForkJoinPool — для CPU-bound задач: математика, парсинг, трансформации без IO. Размер пула = число ядер. Wow-эффекта не даст, но не блокирует common pool. Virtual threads — для IO-bound: блокирующий JDBC, HTTP-вызовы..."
-        },
-        {
-          "id": "c",
-          "text": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM..."
-        },
-        {
-          "id": "d",
-          "text": "@SpringBootTest — поднимает весь контекст приложения. Долго, но полноценно. @WebMvcTest — только web-слой (контроллеры), без БД. @DataJpaTest — только JPA-слой, с in-memory БД. MockMvc — имитация HTTP-запросов в тестах."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Да, и это типовая практика. Большинство современных проектов делают свои исключения от RuntimeException — не загромождают сигнатуру методов throws. От Error не рекомендуется наследоваться — это «системные» ошибки JVM...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-области-памяти-jvm-031",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "concurrency",
-        "algorithms",
-        "hibernate"
+        "java-core"
       ],
       "companies": [
         "sber",
@@ -2675,11 +1115,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "Path: идентификатор ресурса (/users/123). Query: фильтрация, пагинация (?page=2&sort=name). Body: данные для создания/обновления (POST/PUT/PATCH). Headers: метаданные (Authorization, Content-Type, Accept)..."
+          "text": "Для Области памяти JVM достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Четыре причины: 1) безопасность — строки передаются в конструкторы файлов, БД, сетевых соединений, изменение привело бы к уязвимостям; 2) потокобезопасность — можно шарить между потоками без синхронизации..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -2687,7 +1127,7 @@
         },
         {
           "id": "d",
-          "text": "equals(Object) — проверка равенства. hashCode() — целочисленный хэш. toString() — строковое представление. getClass() — Class-объект. clone() — копия объекта (нужно implements Cloneable). wait(), notify()..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2702,214 +1142,12 @@
       ]
     },
     {
-      "id": "auto-почему-parallel-проблема-710",
-      "type": "code_review",
-      "level": "senior",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "sql"
-      ],
-      "companies": [
-        "x5-tech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "tasks/x5-blackfriday-code-review.md",
-          "line": 134,
-          "title": "X5 Tech · 3. Баг #2 — parallelStream на общем ForkJoinPool · Что не так"
-        }
-      ],
-      "prompt": "Почему .parallel() — проблема?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime..."
-        },
-        {
-          "id": "b",
-          "text": "Массив бакетов (table). По хэшу ключа определяется индекс бакета (примерно: hash mod capacity). В бакете — связный список узлов Node (hash + key + value + next)..."
-        },
-        {
-          "id": "c",
-          "text": "Интерфейс с ровно одним абстрактным методом. @FunctionalInterface — опциональная аннотация. Примеры: Function, Predicate, Consumer, Supplier, Runnable, Comparator."
-        },
-        {
-          "id": "d",
-          "text": "Удобен для контекста (например, SecurityContext). Опасен при использовании с пулами потоков — значение «протекает» между задачами. Обязательно remove() в finally."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "parallel() и parallelStream() под капотом используют ForkJoinPool.commonPool() — это один общий пул потоков на ВСЁ JVM-приложение. Размер по умолчанию = Runtime...",
-      "reviewLinks": [
-        {
-          "label": "X5 Tech",
-          "href": "../tasks/x5-blackfriday-code-review/"
-        }
-      ]
-    },
-    {
-      "id": "auto-почему-опасно-использовать-executors-newcachedthreadpool-в-проде-052",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate",
-        "algorithms"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 244,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Почему опасно использовать Executors.newCachedThreadPool() в проде?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Unbounded очередь и неограниченное количество потоков — при всплеске нагрузки можно положить JVM OutOfMemoryError."
-        },
-        {
-          "id": "b",
-          "text": "На RuntimeException и Error. Checked-исключения НЕ откатывают по умолчанию — нужно rollbackFor = Exception.class."
-        },
-        {
-          "id": "c",
-          "text": "Token Bucket vs Sliding Window Log. Redis + Lua-скрипт для атомарности. Обсудить: точность vs производительность."
-        },
-        {
-          "id": "d",
-          "text": "O(1) в среднем. O(log n) худший случай при treeified бакете (с Java 8). O(n) при катастрофически плохом hashCode."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Unbounded очередь и неограниченное количество потоков — при всплеске нагрузки можно положить JVM OutOfMemoryError.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-пулы-потоков-335",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "hibernate"
-      ],
-      "companies": [
-        "alfa-bank"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/alfa-bank.md",
-          "line": 202,
-          "title": "Альфа-Банк · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Пулы потоков» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "(1) JPQL с JOIN FETCH: select o from Order o join fetch o.user. (2) @EntityGraph — атрибут на репозиторий-методе, говорит «подгрузить эти поля сразу». (3) Hibernate batch_size — группирует SELECT'ы по пачкам..."
-        },
-        {
-          "id": "b",
-          "text": "Сломаются hash-структуры: HashMap, HashSet, Hashtable. Положили объект — посчитался один hashCode, переопределённый equals говорит «они равны», но другой hashCode значит другой бакет. Не найдёшь, что положил..."
-        },
-        {
-          "id": "c",
-          "text": "Развиваться как Java-разработчик: вырасти от стажёра до junior'а / middle, освоить более глубокие темы (микросервисы, многопоточность, БД). Если есть конкретное направление — упомяни. Главное — показать рост..."
-        },
-        {
-          "id": "d",
-          "text": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize...",
-      "reviewLinks": [
-        {
-          "label": "Альфа-Банк",
-          "href": "../guides/alfa-bank/"
-        }
-      ]
-    },
-    {
-      "id": "auto-расскажи-иерархию-исключений-111",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "collections",
-        "jvm",
-        "sql"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 217,
-          "title": "SberSeasons · 3. Java Core и ООП · Исключения"
-        }
-      ],
-      "prompt": "Как правильно объяснить тему «Расскажи иерархию исключений» на собеседовании?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "(1) JPQL с JOIN FETCH: select o from Order o join fetch o.user. (2) @EntityGraph — атрибут на репозиторий-методе, говорит «подгрузить эти поля сразу». (3) Hibernate batch_size — группирует SELECT'ы по пачкам..."
-        },
-        {
-          "id": "b",
-          "text": "newFixedThreadPool(n) — фикс. число, LinkedBlockingQueue. newCachedThreadPool — неограниченно (ОПАСНО — OOM). newScheduledThreadPool — периодические задачи. В проде: ThreadPoolExecutor вручную с corePoolSize..."
-        },
-        {
-          "id": "c",
-          "text": "Throwable — корень. Делится на Error (OOM, StackOverflow — не ловить) и Exception. Exception → checked (IOException, SQLException — обязаны быть в throws) и RuntimeException → unchecked (NullPointerException..."
-        },
-        {
-          "id": "d",
-          "text": "HashSet — на основе HashMap (значение в виде специальной заглушки). Не сохраняет порядок. LinkedHashSet — HashSet + порядок вставки. TreeSet — на основе TreeMap (красно-чёрное дерево), элементы отсортированы..."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Throwable — корень. Делится на Error (OOM, StackOverflow — не ловить) и Exception. Exception → checked (IOException, SQLException — обязаны быть в throws) и RuntimeException → unchecked (NullPointerException...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
       "id": "auto-структура-памяти-jvm-где-что-хранится-402",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm",
-        "hibernate"
+        "java-core"
       ],
       "companies": [
         "t1-innotech"
@@ -2925,7 +1163,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet..."
+          "text": "Для Структура памяти JVM: где что хранится достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
@@ -2933,11 +1171,11 @@
         },
         {
           "id": "c",
-          "text": "Ничего — транзакция не создастся. CGLIB-прокси наследует класс, но private методы не переопределяемы → прокси их не видит. JDK Dynamic Proxy работает через интерфейс — private вообще не в интерфейсе..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
-          "text": "Дженерики стираются компилятором (type erasure) — в рантайме нет информации о типовом параметре. PECS: Producer Extends, Consumer Super. List<? extends Number> — читать, List<? super Integer> — писать."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -2956,8 +1194,8 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sberseasons"
@@ -2973,7 +1211,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Если a.equals(b) == true, то a.hashCode() == b.hashCode(). Обратное необязательно (коллизии допустимы). equals(null) → false. Переопределяешь один — переопределяй оба. Практический пример: положить объект в HashSet..."
+          "text": "Для Циклические ссылки — соберутся достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
@@ -2981,11 +1219,11 @@
         },
         {
           "id": "c",
-          "text": "Примитивы как локальные переменные — на стеке. Если примитив — поле объекта, он лежит внутри объекта в куче. Все объекты — в куче (heap). Статические поля и метаданные классов — в Metaspace (с Java 8 заменил PermGen)."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
-          "text": "Промежуточные операции не выполняются сразу. Они «копят» план. Терминальная операция запускает выполнение. Поэтому stream.filter(...).map(...) без terminal — не сделает ничего. Это позволяет оптимизировать выполнение."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -3000,209 +1238,12 @@
       ]
     },
     {
-      "id": "auto-чем-atomic-лучше-volatile-167",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "jvm",
-        "concurrency",
-        "devops"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 474,
-          "title": "SberSeasons · 6. Многопоточность (базовое понимание) · Atomic"
-        }
-      ],
-      "prompt": "Чем Atomic лучше volatile?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Промежуточные (filter, map, flatMap, sorted, distinct, peek, limit, skip) — ленивые, возвращают Stream, не выполняются пока нет терминальной. Терминальные (collect, forEach, count, reduce, findFirst..."
-        },
-        {
-          "id": "b",
-          "text": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet..."
-        },
-        {
-          "id": "c",
-          "text": "Heap: объекты (Young=Eden+Survivor, Old). Stack: фреймы методов (на каждый поток свой, LIFO), примитивы, ссылки. Metaspace: метаданные классов, статические поля. Code Cache: JIT-скомпилированный код..."
-        },
-        {
-          "id": "d",
-          "text": "JVM (Java Virtual Machine) — виртуальная машина, которая исполняет байткод. Содержит GC и JIT-компилятор. JRE (Java Runtime Environment) — JVM + стандартные библиотеки (java.lang, java.util и т.д.)..."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "AtomicInteger / AtomicLong / AtomicReference дают и видимость, и атомарность через CAS (compare-and-swap). CAS — операция процессора «прочитать, проверить, заменить» одной инструкцией. compareAndSet...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-hashset-отличается-от-linkedhashset-136",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "collections",
-        "jvm"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 323,
-          "title": "SberSeasons · 4. Коллекции · Set и его реализации"
-        }
-      ],
-      "prompt": "Чем HashSet отличается от LinkedHashSet?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Распределённый лог-ориентированный брокер. Данные хранятся на диске (retention), не удаляются после прочтения. Topic → Partition → Offset. Partition — единица параллелизма. Зачем: асинхронное взаимодействие..."
-        },
-        {
-          "id": "b",
-          "text": "Pod — 1+ контейнер, общий network. Deployment — управляет ReplicaSet: реплики, rolling update, rollback. Service — стабильный IP/DNS: ClusterIP (внутренний), NodePort, LoadBalancer. Ingress — L7 маршрутизация."
-        },
-        {
-          "id": "c",
-          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
-        },
-        {
-          "id": "d",
-          "text": "Minor GC — собирает Young Generation. Быстро (миллисекунды), Stop-The-World, но коротко. Major GC — собирает Old Generation, медленнее. Full GC — весь heap + Metaspace. Тревожное событие, если случается часто."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка».",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-опасен-executors-newcachedthreadpool-в-проде-657",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "concurrency",
-        "hibernate"
-      ],
-      "companies": [
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/liga.md",
-          "line": 214,
-          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Чем опасен Executors.newCachedThreadPool() в проде?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Область в heap, где хранятся уникальные строковые литералы. String s = \"hi\" кладёт в пул, new String(\"hi\") — создаёт новый объект в heap."
-        },
-        {
-          "id": "b",
-          "text": "Неограниченное количество потоков — при всплеске нагрузки может положить JVM через OutOfMemoryError (unable to create new native thread)."
-        },
-        {
-          "id": "c",
-          "text": "Deadlock — два потока ждут друг друга. Livelock — активны, но не прогрессируют (оба уступают). Starvation — поток не получает CPU/ресурс."
-        },
-        {
-          "id": "d",
-          "text": "extends Thread, implements Runnable/Callable, через ExecutorService, CompletableFuture. Предпочтительнее — пулы потоков через Executors."
-        }
-      ],
-      "correct": [
-        "b"
-      ],
-      "explanation": "Неограниченное количество потоков — при всплеске нагрузки может положить JVM через OutOfMemoryError (unable to create new native thread).",
-      "reviewLinks": [
-        {
-          "label": "Лига Цифровой Экономики",
-          "href": "../guides/liga/"
-        }
-      ]
-    },
-    {
-      "id": "auto-чем-опасны-типы-обертки-integer-boolean-384",
-      "type": "scenario",
-      "level": "middle",
-      "topics": [
-        "java-core",
-        "jvm",
-        "hibernate"
-      ],
-      "companies": [
-        "t1-innotech"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/t1-innotech.md",
-          "line": 89,
-          "title": "Т1 Иннотех · 3. Java Core"
-        }
-      ],
-      "prompt": "Чем опасны типы-обёртки (Integer, Boolean)?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true..."
-        },
-        {
-          "id": "b",
-          "text": "merge сохраняет историю как есть — создаёт merge-коммит, объединяющий ветки. Виден факт слияния. rebase «перематывает» твои коммиты поверх свежей основной ветки — история линейная, без merge-коммитов..."
-        },
-        {
-          "id": "c",
-          "text": "IntegerCache кэширует значения от -128 до 127. valueOf(100) возвращает один и тот же объект из кэша → == сравнивает ссылки → true. valueOf(200) создаёт новый объект каждый раз → разные ссылки → false..."
-        },
-        {
-          "id": "d",
-          "text": "First-level: автоматический, привязан к Session. Гарантирует identity (один PK = один объект). Second-level: опциональный, общий (EhCache, Caffeine, Infinispan). Query cache: кэширует JPQL-результаты..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "NPE при unboxing null: Integer i = null; int x = i; → NPE. Лишняя память: Integer = 16 байт vs int = 4 байта. Медленнее: автобоксинг создаёт объекты. IntegerCache: valueOf(127) == valueOf(127) → true...",
-      "reviewLinks": [
-        {
-          "label": "Т1 Иннотех",
-          "href": "../guides/t1-innotech/"
-        }
-      ]
-    },
-    {
       "id": "auto-чем-отличаются-jvm-jre-и-jdk-092",
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sberseasons"
@@ -3218,15 +1259,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Overload (перегрузка): несколько методов с одним именем, но разными параметрами. Компилятор выбирает (статическое связывание). Override (переопределение): подкласс меняет реализацию метода родителя..."
+          "text": "Для Чем отличаются JVM, JRE и JDK достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Spring создаёт прокси (JDK/CGLIB). Прокси открывает транзакцию, вызывает метод, commit/rollback. self-call минует прокси → @Transactional/@Cacheable/@Async не работают. Решение: вынести в другой бин."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "this доступен извне — любой может случайно или намеренно synchronized(obj) на том же объекте. privateLock (private final Object lock = new Object()) — полный контроль, никто извне не может захватить."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
@@ -3245,217 +1286,12 @@
       ]
     },
     {
-      "id": "auto-чем-процесс-отличается-от-потока-040",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "concurrency",
-        "collections"
-      ],
-      "companies": [
-        "sber",
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 208,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        },
-        {
-          "path": "guides/itk-academy.md",
-          "line": 196,
-          "title": "ITK Academy · 5. Исключения и многопоточность (база) · Многопоточность — база"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 184,
-          "title": "Лига Цифровой Экономики · 5. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Чем процесс отличается от потока?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Динамический массив. При нехватке места создаёт новый массив в 1.5 раза больше и копирует через Arrays.copyOf."
-        },
-        {
-          "id": "b",
-          "text": "GraalVM native image, Virtual Threads support (spring.threads.virtual.enabled=true), Jakarta EE вместо javax."
-        },
-        {
-          "id": "c",
-          "text": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая."
-        },
-        {
-          "id": "d",
-          "text": "Из-за spurious wakeup — поток может проснуться сам по себе. После пробуждения условие может быть уже невалидным."
-        }
-      ],
-      "correct": [
-        "c"
-      ],
-      "explanation": "Процесс — изолированная единица ОС со своей памятью. Поток — единица исполнения внутри процесса, память общая.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-делает-system-exit-126",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "jvm"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 283,
-          "title": "SberSeasons · 3. Java Core и ООП · System.exit и потоки I/O"
-        }
-      ],
-      "prompt": "Что делает System.exit()?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Принудительно завершает JVM с кодом возврата. Не выполняются finally-блоки, не закрываются ресурсы. Использовать ТОЛЬКО в экстренных случаях. В обычной разработке — не нужен."
-        },
-        {
-          "id": "b",
-          "text": "Смотри на Seq Scan (на большой таблице — плохо), Index Scan, Bitmap Heap Scan, типы Join (Nested Loop vs Hash Join), Rows Removed by Filter, разницу estimated vs actual rows."
-        },
-        {
-          "id": "c",
-          "text": "IllegalStateException: stream has already been operated upon or closed. Стрим одноразовый — после терминальной операции закрывается. Если нужно два результата — Collectors..."
-        },
-        {
-          "id": "d",
-          "text": "Абстрактный класс может иметь состояние (поля), конструктор, реализованные методы. От него можно унаследоваться ТОЛЬКО одного. Интерфейс — контракт, описывающий «что умеет»..."
-        }
-      ],
-      "correct": [
-        "a"
-      ],
-      "explanation": "Принудительно завершает JVM с кодом возврата. Не выполняются finally-блоки, не закрываются ресурсы. Использовать ТОЛЬКО в экстренных случаях. В обычной разработке — не нужен.",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-делать-если-разработчик-говорит-не-баг-а-фича-498",
-      "type": "code_review",
-      "level": "junior",
-      "topics": [
-        "jvm",
-        "testing-aqa"
-      ],
-      "companies": [
-        "mts-bank-aqa"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/mts-bank-aqa.md",
-          "line": 104,
-          "title": "МТС Банк AQA · 3. Теория тестирования"
-        }
-      ],
-      "prompt": "Что делать, если разработчик говорит «не баг, а фича»?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Surefire: запускает unit-тесты (*Test.java) на фазе test. Failsafe: запускает интеграционные (*IT.java) на фазе verify. Failsafe НЕ падает сразу при ошибке — собирает все результаты, потом fail..."
-        },
-        {
-          "id": "b",
-          "text": "@Test — обозначает тестовый метод. @BeforeEach / @AfterEach — выполняется перед/после каждого теста. @BeforeAll / @AfterAll — один раз перед/после всех тестов класса (метод должен быть static)..."
-        },
-        {
-          "id": "c",
-          "text": "validate → compile → test → package → verify → install → deploy. validate — проверка проекта. compile — компиляция. test — юнит-тесты. package — упаковка в jar/war. verify — интеграционные тесты..."
-        },
-        {
-          "id": "d",
-          "text": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "1) Проверить требования — ссылка на спецификацию. 2) Если требований нет — эскалировать на PO/аналитика. 3) Оформить баг с чётким ОР/ФР и приложить доказательства. 4) Обсудить на daily/grooming...",
-      "reviewLinks": [
-        {
-          "label": "МТС Банк AQA",
-          "href": "../guides/mts-bank-aqa/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-aba-проблема-050",
-      "type": "single",
-      "level": "middle",
-      "topics": [
-        "jvm",
-        "concurrency"
-      ],
-      "companies": [
-        "sber"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber.md",
-          "line": 238,
-          "title": "Сбер · 6. Многопоточность и JMM"
-        }
-      ],
-      "prompt": "Что такое ABA-проблема?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "CAS + synchronized на головах бакетов. Treeify при 8 коллизиях. null запрещён. computeIfAbsent атомарен."
-        },
-        {
-          "id": "b",
-          "text": "Да, multi-catch с Java 7: catch (IOException | SQLException e). Переменная при этом effectively final."
-        },
-        {
-          "id": "c",
-          "text": "Min-heap по умолчанию. O(log n) offer/poll, O(1) peek. Для Top-K задач. Comparator для кастомного порядка."
-        },
-        {
-          "id": "d",
-          "text": "Значение сменилось с A на B и обратно на A. CAS это не видит. Решение: AtomicStampedReference с версией."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Значение сменилось с A на B и обратно на A. CAS это не видит. Решение: AtomicStampedReference с версией.",
-      "reviewLinks": [
-        {
-          "label": "Сбер",
-          "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
       "id": "auto-что-такое-jdk-jre-jvm-311",
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "alfa-bank",
@@ -3477,15 +1313,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Сломаются hash-структуры: HashMap, HashSet, Hashtable. Положили объект — посчитался один hashCode, переопределённый equals говорит «они равны», но другой hashCode значит другой бакет. Не найдёшь, что положил..."
+          "text": "Для JDK, JRE, JVM достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Throwable — корень. Делится на Error (OOM, StackOverflow — не ловить) и Exception. Exception → checked (IOException, SQLException — обязаны быть в throws) и RuntimeException → unchecked (NullPointerException..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
-          "text": "Для обычного метода блокировка идёт на this (на сам объект). Для static-метода — на Class-объект (ClassName.class). На уровне байткода — это инструкции monitorenter / monitorexit. Если уже владеешь монитором..."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "d",
@@ -3508,7 +1344,6 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
         "jvm"
       ],
       "companies": [
@@ -3529,15 +1364,15 @@
         },
         {
           "id": "b",
-          "text": "Java heap space, Metaspace, Unable to create new native thread, GC overhead limit exceeded."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "c",
-          "text": "Producer Extends, Consumer Super. extends — можно читать, нельзя писать; super — наоборот."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "d",
-          "text": "E2E-тесты должны покрывать большинство сценариев, потому что они ближе всего к пользователю."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         }
       ],
       "correct": [
@@ -3556,9 +1391,7 @@
       "type": "single",
       "level": "trainee",
       "topics": [
-        "java-core",
-        "jvm",
-        "system-design"
+        "jvm"
       ],
       "companies": [
         "sberseasons"
@@ -3574,11 +1407,11 @@
       "choices": [
         {
           "id": "a",
-          "text": "HashSet — без гарантии порядка. LinkedHashSet хранит порядок добавления. Дополнительная память на двусвязный список, но итерация предсказуемая. Часто используют как «уникальные значения с сохранением порядка»."
+          "text": "Для Minor GC и Major GC достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "b",
-          "text": "Через потоки I/O: InputStream / OutputStream — для байтов. Reader / Writer — для символов (с учётом кодировки). Buffered-обёртки (BufferedReader, BufferedInputStream) — для эффективности, читают сразу пачку..."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         },
         {
           "id": "c",
@@ -3586,7 +1419,7 @@
         },
         {
           "id": "d",
-          "text": "JVM — виртуальная машина, исполняет байт-код. JRE = JVM + стандартные библиотеки (нужно для запуска). JDK = JRE + инструменты разработки: javac, jdb, jar. С Java 9 JRE как отдельный дистрибутив не поставляется."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём. Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM."
         }
       ],
       "correct": [
@@ -3605,8 +1438,8 @@
       "type": "single",
       "level": "middle",
       "topics": [
-        "java-core",
-        "jvm"
+        "jvm",
+        "java-core"
       ],
       "companies": [
         "sber"
@@ -3622,15 +1455,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "От java.lang.Object. Это корень иерархии — даже массивы и enum'ы наследуются от него косвенно."
+          "text": "OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём."
         },
         {
           "id": "b",
-          "text": "Prototype-бин создастся один раз при инжекте. Решение: Provider<T>, ObjectFactory<T>, @Lookup."
+          "text": "JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска."
         },
         {
           "id": "c",
-          "text": "AutoCloseable (или Closeable). Ресурсы закрываются автоматически в обратном порядке объявления."
+          "text": "Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load."
         },
         {
           "id": "d",
@@ -3645,110 +1478,6 @@
         {
           "label": "Сбер",
           "href": "../guides/sber/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-string-pool-578",
-      "type": "single",
-      "level": "junior",
-      "topics": [
-        "java-core",
-        "jvm",
-        "algorithms"
-      ],
-      "companies": [
-        "itk-academy",
-        "liga"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/itk-academy.md",
-          "line": 92,
-          "title": "ITK Academy · 3. Java Core & ООП · Типовые вопросы"
-        },
-        {
-          "path": "guides/liga.md",
-          "line": 96,
-          "title": "Лига Цифровой Экономики · 3. Java Core — что точно спросят · Базовые вопросы"
-        }
-      ],
-      "prompt": "Что такое String Pool?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Неограниченное количество потоков — при всплеске нагрузки может положить JVM через OutOfMemoryError (unable to create new native thread)."
-        },
-        {
-          "id": "b",
-          "text": "Массив бакетов. По хэшу ключа определяется индекс. Две стратегии разрешения коллизий: (1) Chaining (цепочки) — в бакете связный список..."
-        },
-        {
-          "id": "c",
-          "text": "Deadlock — два потока ждут друг друга. Livelock — активны, но не прогрессируют (оба уступают). Starvation — поток не получает CPU/ресурс."
-        },
-        {
-          "id": "d",
-          "text": "Область в heap, где хранятся уникальные строковые литералы. String s = \"hi\" кладёт в пул, new String(\"hi\") — создаёт новый объект в heap."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "Область в heap, где хранятся уникальные строковые литералы. String s = \"hi\" кладёт в пул, new String(\"hi\") — создаёт новый объект в heap.",
-      "reviewLinks": [
-        {
-          "label": "ITK Academy",
-          "href": "../guides/itk-academy/"
-        }
-      ]
-    },
-    {
-      "id": "auto-что-такое-стек-и-где-применяется-285",
-      "type": "single",
-      "level": "trainee",
-      "topics": [
-        "java-core",
-        "jvm",
-        "algorithms"
-      ],
-      "companies": [
-        "sberseasons"
-      ],
-      "sourceRefs": [
-        {
-          "path": "guides/sber-internship.md",
-          "line": 1049,
-          "title": "SberSeasons · 14. Алгоритмы и структуры данных · Базовые структуры"
-        }
-      ],
-      "prompt": "Что такое стек и где применяется?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "На каждом шаге делаешь локально оптимальный выбор, надеясь, что в итоге получится глобально оптимальное решение. Работает не всегда! Пример где работает: размен сдачи стандартными монетами..."
-        },
-        {
-          "id": "b",
-          "text": "Введён в Java 8. Конвейерная обработка коллекций в декларативном стиле. Поток (Stream) — это последовательность элементов с операциями. Не путать с потоком (Thread) — это про многопоточность."
-        },
-        {
-          "id": "c",
-          "text": "JDK dynamic proxy — если бин реализует интерфейс (через Proxy.newProxyInstance). CGLIB — наследование от класса (final-классы нельзя проксировать). Spring Boot 3 по умолчанию использует CGLIB."
-        },
-        {
-          "id": "d",
-          "text": "LIFO (Last In, First Out). Используется в: (1) вызовы функций в JVM (stack frames). (2) Undo / отмена операций. (3) Парсинг (проверка корректности скобок). (4) Обход дерева в глубину (DFS)..."
-        }
-      ],
-      "correct": [
-        "d"
-      ],
-      "explanation": "LIFO (Last In, First Out). Используется в: (1) вызовы функций в JVM (stack frames). (2) Undo / отмена операций. (3) Парсинг (проверка корректности скобок). (4) Обход дерева в глубину (DFS)...",
-      "reviewLinks": [
-        {
-          "label": "SberSeasons",
-          "href": "../guides/sber-internship/"
         }
       ]
     }

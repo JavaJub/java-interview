@@ -1,6 +1,11 @@
+---
+title: "SberSeasons Java Trainee interview guide"
+description: "Гайд JavaJub по стажировке SberSeasons Java Trainee: Java Core, ООП, коллекции, SQL, алгоритмы, Spring basics и Git."
+---
+
 # Собес в Сбер · Стажировка SberSeasons (Java Trainee)
 
-Вопросы, задачи и подготовка к интервью на студенческую стажировку.
+Гайд для подготовки к SberSeasons Java Trainee interview: Java Core, ООП, коллекции, SQL, алгоритмы, Spring basics и Git. Подходит для стажёров и Junior-кандидатов без коммерческого опыта.
 
 **Темы:** Java Core · ООП · Коллекции · SQL · Алгоритмы · Spring · Git
 

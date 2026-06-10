@@ -1,6 +1,11 @@
+---
+title: "Яндекс Путешествия Java Middle interview guide"
+description: "Гайд JavaJub по собеседованию в Яндекс Путешествия на Java Middle: Java/Kotlin, Spring Boot, PostgreSQL, YDB, gRPC, алгоритмы и System Design."
+---
+
 # Собес в Яндекс Путешествия (Яндекс Вертикали) · Java Middle
 
-Вопросы, задачи и подготовка к live-coding и техническому интервью.
+Гайд для подготовки к Java Middle interview в Яндекс Путешествия: Java/Kotlin, Spring Boot, PostgreSQL, YDB, gRPC, алгоритмы и System Design. Подходит для подготовки к live coding, backend-секции и архитектурным вопросам.
 
 **Темы:** Java · Kotlin · Spring Boot · PostgreSQL · YDB · gRPC · Logbroker · Kubernetes
 

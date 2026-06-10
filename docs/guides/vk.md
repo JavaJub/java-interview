@@ -1,6 +1,11 @@
+---
+title: "VK Java Middle interview guide"
+description: "Гайд JavaJub по собеседованию в VK на Java Middle: Java 21, Spring Boot 3, Kafka, PostgreSQL, Kubernetes, gRPC, алгоритмы и high-load."
+---
+
 # Собес в VK (группа балансеров, One-cloud) · Java Middle
 
-Вопросы, задачи и подготовка к live-coding и техническому интервью.
+Гайд для подготовки к Java Middle interview в VK: Java 21, Spring Boot 3, Kafka, PostgreSQL, Kubernetes, gRPC, алгоритмы и high-load. Внутри — вопросы по backend, live coding и инфраструктурному мышлению.
 
 **Темы:** Java 21 · Spring Boot 3 · Kafka · PostgreSQL · Kubernetes · gRPC · HAProxy · Docker
 

@@ -651,6 +651,6 @@ Actions
 - Повторить: тест-дизайн, HTTP/REST, Rest Assured, JUnit 5, SQL, WireMock, Kafka/RabbitMQ.
 - Спросить в канале: свежие AQA-вопросы, API-задачи, примеры pet-проектов и Allure-отчётов.
 - Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
-- Проверить знания: [тесты JavaJub](https://javajub.github.io/java-interview/quizzes/).
+- Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

@@ -44,7 +44,7 @@
       "title": "Java Core",
       "description": "Самопроверка по теме: Java Core.",
       "file": "java-core.json",
-      "questionCount": 268,
+      "questionCount": 185,
       "topics": [
         "java-core"
       ],
@@ -56,7 +56,7 @@
       "title": "Collections",
       "description": "Самопроверка по теме: Collections.",
       "file": "collections.json",
-      "questionCount": 182,
+      "questionCount": 82,
       "topics": [
         "collections"
       ],
@@ -68,7 +68,7 @@
       "title": "JVM",
       "description": "Самопроверка по теме: JVM.",
       "file": "jvm.json",
-      "questionCount": 74,
+      "questionCount": 30,
       "topics": [
         "jvm"
       ],
@@ -80,7 +80,7 @@
       "title": "Concurrency / JMM",
       "description": "Самопроверка по теме: Concurrency / JMM.",
       "file": "concurrency.json",
-      "questionCount": 142,
+      "questionCount": 81,
       "topics": [
         "concurrency"
       ],
@@ -92,7 +92,7 @@
       "title": "Spring Boot",
       "description": "Самопроверка по теме: Spring Boot.",
       "file": "spring.json",
-      "questionCount": 224,
+      "questionCount": 124,
       "topics": [
         "spring"
       ],
@@ -104,7 +104,7 @@
       "title": "Hibernate / JPA",
       "description": "Самопроверка по теме: Hibernate / JPA.",
       "file": "hibernate.json",
-      "questionCount": 109,
+      "questionCount": 43,
       "topics": [
         "hibernate"
       ],
@@ -116,7 +116,7 @@
       "title": "SQL / PostgreSQL",
       "description": "Самопроверка по теме: SQL / PostgreSQL.",
       "file": "sql.json",
-      "questionCount": 199,
+      "questionCount": 92,
       "topics": [
         "sql"
       ],
@@ -128,7 +128,7 @@
       "title": "Kafka / Microservices",
       "description": "Самопроверка по теме: Kafka / Microservices.",
       "file": "kafka.json",
-      "questionCount": 61,
+      "questionCount": 29,
       "topics": [
         "kafka"
       ],
@@ -140,7 +140,7 @@
       "title": "Docker / Kubernetes / CI/CD",
       "description": "Самопроверка по теме: Docker / Kubernetes / CI/CD.",
       "file": "devops.json",
-      "questionCount": 107,
+      "questionCount": 46,
       "topics": [
         "devops"
       ],
@@ -152,7 +152,7 @@
       "title": "Testing / AQA",
       "description": "Самопроверка по теме: Testing / AQA.",
       "file": "testing-aqa.json",
-      "questionCount": 112,
+      "questionCount": 77,
       "topics": [
         "testing-aqa"
       ],
@@ -164,7 +164,7 @@
       "title": "Algorithms / Live coding",
       "description": "Самопроверка по теме: Algorithms / Live coding.",
       "file": "algorithms.json",
-      "questionCount": 122,
+      "questionCount": 46,
       "topics": [
         "algorithms"
       ],
@@ -176,7 +176,7 @@
       "title": "System Design",
       "description": "Самопроверка по теме: System Design.",
       "file": "system-design.json",
-      "questionCount": 55,
+      "questionCount": 13,
       "topics": [
         "system-design"
       ],
@@ -188,7 +188,7 @@
       "title": "Security",
       "description": "Самопроверка по теме: Security.",
       "file": "security.json",
-      "questionCount": 53,
+      "questionCount": 18,
       "topics": [
         "security"
       ],

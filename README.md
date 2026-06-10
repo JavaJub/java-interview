@@ -3,7 +3,7 @@
 Реальные вопросы для Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность, live-coding, code review и System Design. Проект помогает быстро понять, что именно повторять перед интервью в Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС и другие команды.
 
 [![Telegram](https://img.shields.io/badge/Telegram-JavaJub-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+6GwSVWu9VIxlN2Yy)
-[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-222?logo=github)](https://javajub.github.io/java-interview/)
+[![Site](https://img.shields.io/badge/Site-www.javajub.com-222?logo=github)](https://www.javajub.com/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
 > Новые разборы собеседований и свежие вопросы сначала выходят в Telegram-канале [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy). GitHub — бесплатная база, которую удобно читать, искать и дополнять.
@@ -18,7 +18,7 @@
 | Банковский backend | [Сбер](guides/sber.md) · [Альфа-Банк](guides/alfa-bank.md) · [Т1 Иннотех](guides/t1-innotech.md) · [Лига](guides/liga.md) |
 | BigTech / алгоритмы | [VK](guides/vk.md) · [Яндекс Путешествия](guides/yandex-travel.md) |
 | Повторение по темам | [индекс тем](TOPICS.md) |
-| Самопроверка знаний | [тесты на GitHub Pages](https://javajub.github.io/java-interview/quizzes/) |
+| Самопроверка знаний | [тесты JavaJub](https://www.javajub.com/quizzes/) |
 
 ## Гайды по компаниям
 

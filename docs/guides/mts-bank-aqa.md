@@ -1,6 +1,11 @@
+---
+title: "МТС Банк AQA Java Junior interview guide"
+description: "Гайд JavaJub по собеседованию в МТС Банк на AQA Java Junior: Rest Assured, JUnit 5, PostgreSQL, Kafka, WireMock, Allure и тест-дизайн."
+---
+
 # Собес в МТС Банк · AQA Java (Junior)
 
-Вопросы, задачи и подготовка к live-coding и техническому интервью.
+Гайд для подготовки к AQA Java Junior interview в МТС Банк: Rest Assured, JUnit 5, PostgreSQL, Kafka, WireMock, Allure и тест-дизайн. Фокус — API-тестирование микросервисов, SQL-проверки и очереди.
 
 **Темы:** Java · Rest Assured · JUnit 5 · PostgreSQL · Kafka · WireMock · Allure
 

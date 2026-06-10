@@ -51,7 +51,22 @@
     return catalog.modes.find((mode) => mode.id === requestedMode) || catalog.modes.find((mode) => mode.id === "express") || catalog.modes[0];
   }
 
+  function scoreBucket(percent) {
+    if (percent >= 85) return "85-100";
+    if (percent >= 65) return "65-84";
+    if (percent >= 45) return "45-64";
+    return "0-44";
+  }
+
+  function trackQuizEvent(eventName, props = {}) {
+    if (typeof window.javajubTrack !== "function") return;
+    window.javajubTrack(eventName, props);
+  }
+
   async function initQuizApp(app) {
+    if (app.dataset.quizInitialized === "1") return;
+    app.dataset.quizInitialized = "1";
+
     const catalogUrl = new URL(app.dataset.catalog || "../assets/quizzes/catalog.json", window.location.href);
     const catalog = await fetch(catalogUrl).then((response) => {
       if (!response.ok) throw new Error(`Cannot load quiz catalog: ${response.status}`);
@@ -63,11 +78,11 @@
       catalogUrl,
       mode: normalizeMode(catalog, new URLSearchParams(window.location.search).get("mode")),
       currentQuiz: null,
+      currentQuizMeta: null,
       questions: [],
       currentIndex: 0,
       answers: [],
       checked: new Set(),
-      submitted: false,
     };
 
     const requestedQuiz = new URLSearchParams(window.location.search).get("quiz");
@@ -82,6 +97,12 @@
     const topics = catalog.quizzes.filter((quiz) => quiz.kind === "topic");
     const companies = catalog.quizzes.filter((quiz) => quiz.kind === "company");
     const history = getHistory();
+    trackQuizEvent("quiz_catalog_view", {
+      mode_id: mode.id,
+      has_history: history.length > 0,
+      topic_quizzes: topics.length,
+      company_quizzes: companies.length,
+    });
 
     state.app.innerHTML = `
       <section class="quiz-hero">
@@ -92,7 +113,6 @@
         </div>
         <a class="quiz-telegram" href="${TELEGRAM_URL}" target="_blank" rel="noreferrer">Свежие вопросы в Telegram</a>
       </section>
-
       <section class="quiz-panel">
         <h3>Режим</h3>
         <div class="quiz-modes">
@@ -104,7 +124,6 @@
           `).join("")}
         </div>
       </section>
-
       ${history.length ? `
         <section class="quiz-panel">
           <h3>Последний результат</h3>
@@ -112,13 +131,16 @@
           <button class="quiz-secondary" type="button" data-weak-retry="1">Повторить слабые темы</button>
         </section>
       ` : ""}
-
       ${renderQuizGroup("Тесты по темам", topics)}
       ${renderQuizGroup("Тесты по компаниям", companies)}
     `;
 
     state.app.querySelectorAll("[data-mode]").forEach((button) => {
       button.addEventListener("click", () => {
+        trackQuizEvent("quiz_mode_select", {
+          previous_mode_id: state.mode.id,
+          mode_id: button.dataset.mode,
+        });
         state.mode = normalizeMode(catalog, button.dataset.mode);
         renderCatalog(state);
       });
@@ -129,6 +151,9 @@
     const weakRetry = state.app.querySelector("[data-weak-retry]");
     if (weakRetry) {
       weakRetry.addEventListener("click", () => {
+        trackQuizEvent("quiz_weak_retry", {
+          previous_mode_id: state.mode.id,
+        });
         state.mode = normalizeMode(catalog, "weak");
         startQuiz(state, "all-java-interview");
       });
@@ -175,22 +200,31 @@
 
     const limit = Math.min(state.mode.questionCount, pool.length);
     state.currentQuiz = quiz;
-    state.questions = shuffle(pool).slice(0, limit).map((question) => ({
-      ...question,
-      choices: shuffle(question.choices),
-    }));
+    state.currentQuizMeta = quizMeta;
+    state.questions = shuffle(pool).slice(0, limit).map((question) => ({ ...question, choices: shuffle(question.choices) }));
     state.currentIndex = 0;
     state.answers = [];
     state.checked = new Set();
-    state.submitted = false;
+    trackQuizEvent("quiz_start", {
+      quiz_id: quiz.id,
+      quiz_kind: quizMeta.kind,
+      quiz_title: quiz.title,
+      mode_id: state.mode.id,
+      question_count: limit,
+      pool_size: pool.length,
+    });
     renderQuestion(state);
+  }
+
+  function renderPrompt(prompt) {
+    const escaped = escapeHtml(prompt);
+    return escaped.replace(/```([\s\S]+?)```/g, "<pre><code>$1</code></pre>").replace(/\n/g, "<br>");
   }
 
   function renderQuestion(state) {
     const question = state.questions[state.currentIndex];
     const progress = `${state.currentIndex + 1} / ${state.questions.length}`;
     const inputType = question.type === "multi" ? "checkbox" : "radio";
-    const selected = state.checked;
 
     state.app.innerHTML = `
       <section class="quiz-panel quiz-run">
@@ -203,19 +237,28 @@
         <h3>${renderPrompt(question.prompt)}</h3>
         <div class="quiz-choices">
           ${question.choices.map((choice) => `
-            <label class="quiz-choice ${selected.has(choice.id) ? "is-selected" : ""}">
-              <input type="${inputType}" name="answer" value="${escapeHtml(choice.id)}" ${selected.has(choice.id) ? "checked" : ""}>
+            <label class="quiz-choice ${state.checked.has(choice.id) ? "is-selected" : ""}">
+              <input type="${inputType}" name="answer" value="${escapeHtml(choice.id)}" ${state.checked.has(choice.id) ? "checked" : ""}>
               <span>${escapeHtml(choice.text)}</span>
             </label>
           `).join("")}
         </div>
         <div class="quiz-actions">
-          <button type="button" data-submit="1" ${selected.size === 0 ? "disabled" : ""}>Проверить ответ</button>
+          <button type="button" data-submit="1" ${state.checked.size === 0 ? "disabled" : ""}>Проверить ответ</button>
         </div>
       </section>
     `;
 
-    state.app.querySelector("[data-back]").addEventListener("click", () => renderCatalog(state));
+    state.app.querySelector("[data-back]").addEventListener("click", () => {
+      trackQuizEvent("quiz_back_to_catalog", {
+        quiz_id: state.currentQuiz?.id,
+        quiz_kind: state.currentQuizMeta?.kind,
+        mode_id: state.mode.id,
+        question_index: state.currentIndex + 1,
+        question_count: state.questions.length,
+      });
+      renderCatalog(state);
+    });
     state.app.querySelectorAll("input[name='answer']").forEach((input) => {
       input.addEventListener("change", () => {
         if (question.type === "multi") {
@@ -230,23 +273,28 @@
     state.app.querySelector("[data-submit]").addEventListener("click", () => submitAnswer(state));
   }
 
-  function renderPrompt(prompt) {
-    const escaped = escapeHtml(prompt);
-    return escaped.replace(/```([\s\S]+?)```/g, "<pre><code>$1</code></pre>").replace(/\n/g, "<br>");
-  }
-
   function submitAnswer(state) {
     const question = state.questions[state.currentIndex];
     const selected = [...state.checked];
     const isCorrect = arraysEqual(selected, question.correct);
     state.answers.push({ question, selected, isCorrect });
+    trackQuizEvent("quiz_answer", {
+      quiz_id: state.currentQuiz?.id,
+      quiz_kind: state.currentQuizMeta?.kind,
+      mode_id: state.mode.id,
+      question_id: question.id,
+      question_type: question.type,
+      level: question.level,
+      topics: question.topics,
+      question_index: state.currentIndex + 1,
+      is_correct: isCorrect,
+    });
     renderFeedback(state, isCorrect);
   }
 
   function renderFeedback(state, isCorrect) {
     const question = state.questions[state.currentIndex];
     const correct = new Set(question.correct);
-
     state.app.innerHTML = `
       <section class="quiz-panel quiz-run">
         <p class="quiz-result-badge ${isCorrect ? "is-good" : "is-bad"}">${isCorrect ? "Верно" : "Нужно повторить"}</p>
@@ -258,9 +306,7 @@
             </div>
           `).join("")}
         </div>
-        <div class="quiz-explanation">
-          <strong>Разбор:</strong> ${escapeHtml(question.explanation)}
-        </div>
+        <div class="quiz-explanation"><strong>Разбор:</strong> ${escapeHtml(question.explanation)}</div>
         <div class="quiz-review-links">
           ${question.reviewLinks.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join("")}
         </div>
@@ -269,7 +315,6 @@
         </div>
       </section>
     `;
-
     state.app.querySelector("[data-next]").addEventListener("click", () => {
       state.currentIndex += 1;
       state.checked = new Set();
@@ -286,19 +331,21 @@
     const missesByTopic = new Map();
     for (const answer of state.answers) {
       if (answer.isCorrect) continue;
-      for (const topic of answer.question.topics) {
-        missesByTopic.set(topic, (missesByTopic.get(topic) || 0) + 1);
-      }
+      for (const topic of answer.question.topics) missesByTopic.set(topic, (missesByTopic.get(topic) || 0) + 1);
     }
     const weakTopics = [...missesByTopic.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
     localStorage.setItem(WEAK_TOPICS_KEY, JSON.stringify(weakTopics.map(([topic]) => topic)));
-    saveHistory({
-      title: state.currentQuiz.title,
+    saveHistory({ title: state.currentQuiz.title, score, total, percent, weakTopics: weakTopics.map(([topic]) => topic), date: new Date().toISOString() });
+    trackQuizEvent("quiz_complete", {
+      quiz_id: state.currentQuiz.id,
+      quiz_kind: state.currentQuizMeta?.kind,
+      quiz_title: state.currentQuiz.title,
+      mode_id: state.mode.id,
       score,
       total,
       percent,
-      weakTopics: weakTopics.map(([topic]) => topic),
-      date: new Date().toISOString(),
+      score_bucket: scoreBucket(percent),
+      weak_topics: weakTopics.map(([topic]) => topic),
     });
 
     state.app.innerHTML = `
@@ -309,9 +356,7 @@
         <p>${escapeHtml(description)}</p>
         ${weakTopics.length ? `
           <h4>Слабые темы</h4>
-          <ul>
-            ${weakTopics.map(([topic, count]) => `<li>${escapeHtml(topic)} — ошибок: ${count}</li>`).join("")}
-          </ul>
+          <ul>${weakTopics.map(([topic, count]) => `<li>${escapeHtml(topic)} — ошибок: ${count}</li>`).join("")}</ul>
         ` : "<p>Ошибок по темам нет. Отличный прогон.</p>"}
         <div class="quiz-actions">
           <button type="button" data-retry="1">Пройти ещё раз</button>
@@ -320,16 +365,35 @@
         </div>
       </section>
     `;
-
-    state.app.querySelector("[data-retry]").addEventListener("click", () => startQuiz(state, state.currentQuiz.id));
-    state.app.querySelector("[data-catalog]").addEventListener("click", () => renderCatalog(state));
+    state.app.querySelector("[data-retry]").addEventListener("click", () => {
+      trackQuizEvent("quiz_retry", {
+        quiz_id: state.currentQuiz.id,
+        quiz_kind: state.currentQuizMeta?.kind,
+        mode_id: state.mode.id,
+      });
+      startQuiz(state, state.currentQuiz.id);
+    });
+    state.app.querySelector("[data-catalog]").addEventListener("click", () => {
+      trackQuizEvent("quiz_result_to_catalog", {
+        quiz_id: state.currentQuiz.id,
+        quiz_kind: state.currentQuizMeta?.kind,
+        mode_id: state.mode.id,
+      });
+      renderCatalog(state);
+    });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function bootQuizApp() {
     const app = document.querySelector("#quiz-app");
     if (!app) return;
     initQuizApp(app).catch((error) => {
       app.innerHTML = `<div class="quiz-panel"><h2>Не удалось загрузить тесты</h2><p>${escapeHtml(error.message)}</p></div>`;
     });
-  });
+  }
+
+  document.addEventListener("DOMContentLoaded", bootQuizApp);
+  if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(bootQuizApp);
+  }
+  bootQuizApp();
 }());

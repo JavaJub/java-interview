@@ -1,3 +1,8 @@
+---
+title: "Маршрут подготовки AQA Java"
+description: "План подготовки AQA Java Junior к собеседованию: тест-дизайн, HTTP, Rest Assured, JUnit 5, Mockito, SQL, очереди и базовая Java."
+---
+
 # Маршрут подготовки AQA Java
 
 План для AQA Java Junior: тест-дизайн, HTTP, Rest Assured, JUnit 5, SQL, очереди и базовая Java без лишнего погружения в backend-Middle темы.

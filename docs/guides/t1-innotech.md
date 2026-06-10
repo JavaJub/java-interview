@@ -1,6 +1,11 @@
+---
+title: "Т1 Иннотех Java Junior/Middle interview guide"
+description: "Гайд JavaJub по собеседованию в Т1 Иннотех на Java Junior/Middle: Spring Boot, Hibernate, PostgreSQL, Kafka, Docker, microservices и code review."
+---
+
 # Собес в Т1 Иннотех · Java Junior/Middle
 
-Вопросы, задачи и подготовка к live-coding и техническому интервью.
+Гайд для подготовки к Java Junior/Middle interview в Т1 Иннотех: Spring Boot, Hibernate, PostgreSQL, Kafka, Docker, microservices и code review. Подходит тем, кто хочет проверить enterprise backend-базу перед собеседованием.
 
 **Темы:** Java · Spring Boot · Hibernate · PostgreSQL · Kafka · Docker · Microservices
 

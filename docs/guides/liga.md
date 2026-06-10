@@ -1,6 +1,11 @@
+---
+title: "Лига Цифровой Экономики Java Middle interview guide"
+description: "Гайд JavaJub по собеседованию в Лигу Цифровой Экономики на Java Middle: Java 11+, Spring, Hibernate, PostgreSQL, JUnit, Docker и Jenkins."
+---
+
 # Собес в Лигу Цифровой Экономики · Java Middle
 
-Вопросы, задачи и подготовка к live-coding и интервью.
+Гайд для подготовки к Java Middle interview в Лигу Цифровой Экономики: Java 11+, Spring, Hibernate, PostgreSQL, JUnit, Docker и Jenkins. Внутри — вопросы, live coding и фокус банковских enterprise-проектов.
 
 **Темы:** Java 11+ · Spring · Hibernate · PostgreSQL · JUnit · Docker · Jenkins
 

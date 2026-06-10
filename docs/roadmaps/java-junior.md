@@ -1,3 +1,8 @@
+---
+title: "Маршрут подготовки Java Junior"
+description: "План подготовки Java Junior и Trainee к собеседованию: Java Core, ООП, коллекции, SQL, Spring basics, live coding и pet-проект."
+---
+
 # Маршрут подготовки Java Junior
 
 План для Junior и Trainee: закрыть базу Java, научиться объяснять код вслух, подготовить pet-проект и не потеряться на SQL/live-coding.

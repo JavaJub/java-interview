@@ -1,6 +1,11 @@
+---
+title: "Альфа-Банк Java Middle interview guide"
+description: "Гайд JavaJub по собеседованию в Альфа-Банк на Java Middle: Spring Boot, Kafka, PostgreSQL, Docker, Kubernetes, JUnit и live coding."
+---
+
 # Собес в Альфа-Банк (Alfa Digital) · Java Middle
 
-Вопросы, задачи и подготовка к live-coding и техническому интервью.
+Гайд для подготовки к Java Middle interview в Альфа-Банк / Alfa Digital: Spring Boot, Kafka, PostgreSQL, Docker, Kubernetes, JUnit и live coding. Внутри — вопросы, задачи и фокус технического интервью.
 
 **Темы:** Java 11+ · Spring Boot · Kafka · PostgreSQL · Docker · Kubernetes · JUnit · Microservices
 

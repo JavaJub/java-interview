@@ -1,9 +1,14 @@
+---
+title: "Java interview guides by JavaJub"
+description: "Бесплатные гайды и тесты JavaJub для подготовки к Java собеседованию: Java Core, Spring Boot, SQL, Kafka, JVM, System Design, live coding и реальные вопросы по компаниям."
+---
+
 # Java interview guides by JavaJub
 
 Реальные вопросы для Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность, live-coding, code review и System Design. Проект помогает быстро понять, что именно повторять перед интервью в Сбер, Альфа-Банк, VK, Яндекс, Т1, МТС и другие команды.
 
 [![Telegram](https://img.shields.io/badge/Telegram-JavaJub-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+vDYjUmPrBYZmMTAy)
-[![GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-222?logo=github)](https://javajub.github.io/java-interview/)
+[![Site](https://img.shields.io/badge/Site-www.javajub.com-222?logo=github)](https://www.javajub.com/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](LICENSE)
 
 > Новые разборы собеседований и свежие вопросы сначала выходят в Telegram-канале [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy). GitHub — бесплатная база, которую удобно читать, искать и дополнять.
@@ -18,7 +23,7 @@
 | Банковский backend | [Сбер](guides/sber.md) · [Альфа-Банк](guides/alfa-bank.md) · [Т1 Иннотех](guides/t1-innotech.md) · [Лига](guides/liga.md) |
 | BigTech / алгоритмы | [VK](guides/vk.md) · [Яндекс Путешествия](guides/yandex-travel.md) |
 | Повторение по темам | [индекс тем](TOPICS.md) |
-| Самопроверка знаний | [интерактивные тесты](quizzes/index.md) |
+| Самопроверка знаний | [тесты на GitHub Pages](quizzes/index.md) |
 
 ## Гайды по компаниям
 
@@ -42,10 +47,6 @@
 |---|---|
 | [X5 Tech · Senior — 8 багов в сервисе расчёта скидок](tasks/x5-blackfriday-code-review.md) | code review, concurrency, production thinking |
 
-## Тесты
-
-На сайте есть [интерактивные тесты](quizzes/index.md): Express на 15 вопросов, Standard на 30 вопросов, Interview simulation на 60 вопросов и повтор слабых тем. Тесты собираются из канонического банка вопросов по гайдам и после прохождения дают список тем для повторения.
-
 ## Подготовка по времени
 
 | Срок | Что делать |
@@ -68,6 +69,15 @@
 Откройте гайд по нужной компании и идите сверху вниз. Подсказки под вопросами — это не учебник, а быстрый способ вспомнить ответ по ключевым словам. Если собеседование уже близко, сначала пройдите финальный чек-лист и задачи.
 
 Это русскоязычная база для подготовки к Java собеседованию, но она также закрывает типовые поисковые темы: Java interview questions, Java Middle interview, Spring Boot interview questions, Kafka interview, SQL interview и live coding Java.
+
+## Популярные запросы
+
+- Java собеседование и Java interview questions.
+- Java Middle interview и подготовка к backend-интервью.
+- Spring Boot interview questions и вопросы по `@Transactional`.
+- Kafka interview, consumer groups, offsets и delivery guarantees.
+- SQL interview, PostgreSQL, индексы, `JOIN`, `EXPLAIN`.
+- AQA Java interview, Rest Assured, JUnit 5 и WireMock.
 
 ## Как помочь
 

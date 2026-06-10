@@ -1,3 +1,8 @@
+---
+title: "Маршрут подготовки Java Middle"
+description: "План подготовки Java Middle backend-интервью: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность, code review и System Design."
+---
+
 # Маршрут подготовки Java Middle
 
 План для Java Middle backend-интервью: системно повторить Java Core, Spring, SQL, Kafka, многопоточность, code review и архитектурное мышление.
