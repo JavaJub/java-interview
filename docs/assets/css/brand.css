@@ -31,18 +31,19 @@
 body {
   color: var(--javajub-ink);
   background:
-    radial-gradient(circle at 12% 0, rgba(255, 61, 0, .12), transparent 24rem),
-    linear-gradient(180deg, var(--javajub-surface-muted) 0, #fffaf7 22rem, #fff 54rem);
+    radial-gradient(circle at 12% 0, rgba(255, 61, 0, .06), transparent 24rem),
+    linear-gradient(180deg, #fffaf7 0, #fff 30rem);
 }
 
 .md-header {
-  background: linear-gradient(100deg, var(--javajub-accent) 0%, #ef3900 58%, var(--javajub-accent-dark) 100%) !important;
-  color: var(--javajub-accent-contrast);
-  box-shadow: 0 2px 16px rgba(201, 47, 0, .24);
+  background: linear-gradient(100deg, #fffaf7 0%, #fff2eb 62%, #ffe4d7 100%) !important;
+  border-bottom: 1px solid rgba(255, 61, 0, .16);
+  box-shadow: 0 2px 14px rgba(9, 14, 9, .08);
+  color: var(--javajub-ink);
 }
 
 .md-header__button.md-logo {
-  background: rgba(9, 14, 9, .18);
+  background: transparent;
   border-radius: 8px;
   margin-right: .35rem;
   padding: .22rem;
@@ -51,6 +52,7 @@ body {
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg {
   display: block;
+  opacity: 1;
 }
 
 .md-tabs {
@@ -67,7 +69,7 @@ body {
 
 .md-header__title,
 .md-header__button {
-  color: var(--javajub-accent-contrast);
+  color: var(--javajub-ink);
 }
 
 .md-tabs__link {
@@ -86,22 +88,23 @@ body {
 }
 
 .md-search__form {
-  background-color: rgba(255, 247, 242, .26);
-  color: var(--javajub-accent-contrast);
+  background-color: rgba(255, 255, 255, .72);
+  border: 1px solid rgba(255, 61, 0, .12);
+  color: var(--javajub-ink);
 }
 
 .md-search__form:hover {
-  background-color: rgba(255, 247, 242, .34);
+  background-color: rgba(255, 255, 255, .9);
 }
 
 .md-search__input,
 .md-search__input::placeholder {
-  color: var(--javajub-accent-contrast);
+  color: rgba(9, 14, 9, .72);
 }
 
 .md-search__input + .md-search__icon,
 .md-search__icon {
-  color: var(--javajub-accent-contrast);
+  color: rgba(9, 14, 9, .72);
 }
 
 .md-main {
@@ -127,7 +130,7 @@ body {
 }
 
 .md-typeset h2 {
-  color: var(--javajub-accent-dark);
+  color: var(--javajub-ink);
 }
 
 .md-typeset a {
@@ -163,8 +166,9 @@ body {
 }
 
 .md-typeset table:not([class]) th {
-  background-color: var(--javajub-accent);
-  color: var(--javajub-accent-contrast);
+  background-color: var(--javajub-ink);
+  box-shadow: inset 0 3px 0 var(--javajub-accent);
+  color: var(--javajub-cream);
 }
 
 .md-typeset table:not([class]) tr:nth-child(even) {
@@ -172,7 +176,7 @@ body {
 }
 
 .md-typeset blockquote {
-  background: rgba(255, 61, 0, .055);
+  background: rgba(255, 61, 0, .035);
   border-left-color: var(--javajub-accent);
   color: var(--javajub-ink);
 }

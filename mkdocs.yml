@@ -24,7 +24,7 @@ theme:
     - content.code.copy
   palette:
     - scheme: default
-      primary: deep orange
+      primary: black
       accent: deep orange
 
 plugins:
