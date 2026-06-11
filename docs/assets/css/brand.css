@@ -151,6 +151,38 @@ body {
   color: var(--javajub-ink);
 }
 
+.md-sidebar--primary .md-nav__item--section > .md-nav__link {
+  background: linear-gradient(90deg, rgba(255, 61, 0, .10), rgba(255, 61, 0, .025));
+  border-left: 3px solid var(--javajub-accent);
+  border-radius: 6px;
+  color: var(--javajub-ink);
+  font-weight: 700;
+  margin: .2rem 0 .35rem;
+  padding: .45rem .6rem;
+}
+
+.md-sidebar--primary .md-nav__item--section > .md-nav__link:hover {
+  background: linear-gradient(90deg, rgba(255, 61, 0, .14), rgba(255, 61, 0, .04));
+  color: var(--javajub-accent-dark);
+}
+
+.md-sidebar--primary .md-nav__link--active {
+  background: rgba(255, 61, 0, .075);
+  border-radius: 6px;
+  color: var(--javajub-accent-dark);
+  font-weight: 700;
+}
+
+.md-sidebar--primary .md-nav__item .md-nav .md-nav__link {
+  border-left: 2px solid transparent;
+  padding-left: .7rem;
+}
+
+.md-sidebar--primary .md-nav__item .md-nav .md-nav__link:hover,
+.md-sidebar--primary .md-nav__item .md-nav .md-nav__link--active {
+  border-left-color: var(--javajub-accent);
+}
+
 .md-typeset .md-button,
 .md-typeset .md-button--primary {
   border-color: var(--javajub-accent);

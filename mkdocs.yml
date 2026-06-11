@@ -1,5 +1,5 @@
 site_name: JavaJub · Java interview guides
-site_description: "Реальные вопросы Java-собеседований по компаниям: Java Core, Spring Boot, SQL, Kafka, JVM, live coding и System Design."
+site_description: "Реальные вопросы Java-собеседований по компаниям, подготовка под Java вакансии и Java Job: Java Core, Spring Boot, SQL, Kafka, JVM, live coding и System Design."
 site_url: https://www.javajub.com/
 repo_url: https://github.com/JavaJub/java-interview
 repo_name: JavaJub/java-interview
@@ -57,6 +57,7 @@ extra:
 
 nav:
   - Старт: index.md
+  - Java вакансии: jobs.md
   - Компании: companies.md
   - Темы: TOPICS.md
   - Тесты:

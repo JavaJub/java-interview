@@ -63,6 +63,16 @@
     window.javajubTrack(eventName, props);
   }
 
+  function quizQuestionCount(quiz, mode) {
+    return Math.min(mode.questionCount, quiz.questionCount);
+  }
+
+  function syncModeToUrl(modeId) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("mode", modeId);
+    window.history.replaceState({}, "", url);
+  }
+
   async function initQuizApp(app) {
     if (app.dataset.quizInitialized === "1") return;
     app.dataset.quizInitialized = "1";
@@ -115,10 +125,12 @@
       </section>
       <section class="quiz-panel">
         <h3>Режим</h3>
+        <p class="quiz-mode-summary">Сейчас выбран <strong>${escapeHtml(mode.title)}</strong>: до ${mode.questionCount} вопросов. После выбора режима нажмите «Начать» у нужной темы или компании.</p>
         <div class="quiz-modes">
           ${catalog.modes.map((item) => `
             <button class="quiz-mode ${item.id === mode.id ? "is-active" : ""}" type="button" data-mode="${item.id}">
               <strong>${escapeHtml(item.title)}</strong>
+              ${item.id === mode.id ? `<em>Выбрано</em>` : ""}
               <span>${item.questionCount} вопросов · ${escapeHtml(item.description)}</span>
             </button>
           `).join("")}
@@ -131,8 +143,8 @@
           <button class="quiz-secondary" type="button" data-weak-retry="1">Повторить слабые темы</button>
         </section>
       ` : ""}
-      ${renderQuizGroup("Тесты по темам", topics)}
-      ${renderQuizGroup("Тесты по компаниям", companies)}
+      ${renderQuizGroup("Тесты по темам", topics, mode)}
+      ${renderQuizGroup("Тесты по компаниям", companies, mode)}
     `;
 
     state.app.querySelectorAll("[data-mode]").forEach((button) => {
@@ -142,6 +154,7 @@
           mode_id: button.dataset.mode,
         });
         state.mode = normalizeMode(catalog, button.dataset.mode);
+        syncModeToUrl(state.mode.id);
         renderCatalog(state);
       });
     });
@@ -160,7 +173,7 @@
     }
   }
 
-  function renderQuizGroup(title, quizzes) {
+  function renderQuizGroup(title, quizzes, mode) {
     return `
       <section class="quiz-panel">
         <h3>${escapeHtml(title)}</h3>
@@ -173,7 +186,7 @@
               </div>
               <div class="quiz-card-footer">
                 <span>${quiz.questionCount} вопросов</span>
-                <button type="button" data-quiz="${quiz.id}">Начать</button>
+                <button type="button" data-quiz="${quiz.id}">Начать ${quizQuestionCount(quiz, mode)}</button>
               </div>
             </article>
           `).join("")}

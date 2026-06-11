@@ -58,6 +58,24 @@
   margin-top: .2rem;
 }
 
+.quiz-mode em {
+  border-radius: 999px;
+  background: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+  display: inline-flex;
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 700;
+  margin-left: .45rem;
+  padding: .12rem .45rem;
+  vertical-align: .08rem;
+}
+
+.quiz-mode-summary {
+  color: var(--md-default-fg-color--light);
+  margin: -.2rem 0 .85rem;
+}
+
 .quiz-mode.is-active,
 .quiz-choice.is-selected {
   background: color-mix(in srgb, var(--javajub-accent) 5%, #fffdfb);
