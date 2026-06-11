@@ -9,18 +9,18 @@
   --javajub-cream: #ffd8c7;
   --javajub-accent-contrast: #fff7f2;
 
-  --md-primary-fg-color: var(--javajub-ink);
-  --md-primary-fg-color--light: #182118;
-  --md-primary-fg-color--dark: #050805;
+  --md-primary-fg-color: var(--javajub-accent);
+  --md-primary-fg-color--light: #ff6a36;
+  --md-primary-fg-color--dark: var(--javajub-accent-dark);
   --md-accent-fg-color: var(--javajub-accent-dark);
   --md-accent-fg-color--transparent: var(--javajub-accent-soft);
   --md-typeset-a-color: var(--javajub-accent-dark);
 }
 
-[data-md-color-primary="black"] {
-  --md-primary-fg-color: var(--javajub-ink);
-  --md-primary-fg-color--light: #182118;
-  --md-primary-fg-color--dark: #050805;
+[data-md-color-primary="deep-orange"] {
+  --md-primary-fg-color: var(--javajub-accent);
+  --md-primary-fg-color--light: #ff6a36;
+  --md-primary-fg-color--dark: var(--javajub-accent-dark);
 }
 
 [data-md-color-accent="deep-orange"] {
@@ -30,18 +30,50 @@
 
 body {
   color: var(--javajub-ink);
+  background:
+    radial-gradient(circle at 12% 0, rgba(255, 61, 0, .12), transparent 24rem),
+    linear-gradient(180deg, var(--javajub-surface-muted) 0, #fffaf7 22rem, #fff 54rem);
 }
 
-.md-header,
-.md-tabs,
+.md-header {
+  background: linear-gradient(100deg, var(--javajub-accent) 0%, #ef3900 58%, var(--javajub-accent-dark) 100%) !important;
+  color: var(--javajub-accent-contrast);
+  box-shadow: 0 2px 16px rgba(201, 47, 0, .24);
+}
+
+.md-header__button.md-logo {
+  background: rgba(9, 14, 9, .18);
+  border-radius: 8px;
+  margin-right: .35rem;
+  padding: .22rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  display: block;
+}
+
+.md-tabs {
+  background-color: var(--javajub-surface-muted) !important;
+  border-bottom: 1px solid rgba(255, 61, 0, .18);
+  color: var(--javajub-ink);
+}
+
 .md-footer {
   background-color: var(--javajub-ink) !important;
+  border-top: 4px solid var(--javajub-accent);
   color: var(--javajub-cream);
 }
 
 .md-header__title,
-.md-header__button,
-.md-tabs__link,
+.md-header__button {
+  color: var(--javajub-accent-contrast);
+}
+
+.md-tabs__link {
+  color: rgba(9, 14, 9, .78);
+}
+
 .md-footer,
 .md-footer-meta {
   color: var(--javajub-cream);
@@ -50,26 +82,52 @@ body {
 .md-header__button:hover,
 .md-tabs__link:hover,
 .md-tabs__link--active {
-  color: var(--javajub-accent-contrast);
+  color: var(--javajub-accent-dark);
 }
 
 .md-search__form {
-  background-color: rgba(255, 216, 199, .12);
-  color: var(--javajub-cream);
+  background-color: rgba(255, 247, 242, .26);
+  color: var(--javajub-accent-contrast);
 }
 
 .md-search__form:hover {
-  background-color: rgba(255, 216, 199, .18);
+  background-color: rgba(255, 247, 242, .34);
 }
 
 .md-search__input,
 .md-search__input::placeholder {
-  color: var(--javajub-cream);
+  color: var(--javajub-accent-contrast);
 }
 
 .md-search__input + .md-search__icon,
 .md-search__icon {
-  color: var(--javajub-cream);
+  color: var(--javajub-accent-contrast);
+}
+
+.md-main {
+  background: transparent;
+}
+
+.md-content {
+  background: rgba(255, 255, 255, .76);
+}
+
+.md-typeset h1 {
+  color: var(--javajub-ink);
+}
+
+.md-typeset h1::after {
+  background: var(--javajub-accent);
+  border-radius: 999px;
+  content: "";
+  display: block;
+  height: .22rem;
+  margin-top: .65rem;
+  width: 4.6rem;
+}
+
+.md-typeset h2 {
+  color: var(--javajub-accent-dark);
 }
 
 .md-typeset a {
@@ -84,6 +142,10 @@ body {
 .md-nav__link[for]:focus,
 .md-nav__link:hover {
   color: var(--javajub-accent-dark);
+}
+
+.md-nav__title {
+  color: var(--javajub-ink);
 }
 
 .md-typeset .md-button,
@@ -101,8 +163,18 @@ body {
 }
 
 .md-typeset table:not([class]) th {
-  background-color: var(--javajub-ink);
-  color: var(--javajub-cream);
+  background-color: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: rgba(255, 61, 0, .035);
+}
+
+.md-typeset blockquote {
+  background: rgba(255, 61, 0, .055);
+  border-left-color: var(--javajub-accent);
+  color: var(--javajub-ink);
 }
 
 .md-typeset mark,

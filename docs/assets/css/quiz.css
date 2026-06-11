@@ -1,15 +1,19 @@
 .quiz-hero,
 .quiz-panel {
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid rgba(255, 61, 0, .18);
   border-radius: 8px;
   padding: 1rem;
   margin: 1rem 0;
-  background: var(--md-default-bg-color);
+  background: #fffaf7;
+  box-shadow: 0 8px 24px rgba(255, 61, 0, .06);
 }
 
 .quiz-hero {
   display: flex;
   align-items: center;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 61, 0, .16), transparent 13rem),
+    linear-gradient(135deg, #fff2eb 0%, #fffaf7 48%, #fff 100%);
   justify-content: space-between;
   gap: 1rem;
 }
@@ -35,9 +39,9 @@
 .quiz-mode,
 .quiz-card,
 .quiz-choice {
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid rgba(255, 61, 0, .14);
   border-radius: 8px;
-  background: var(--md-code-bg-color);
+  background: #fffdfb;
 }
 
 .quiz-mode {
@@ -56,6 +60,7 @@
 
 .quiz-mode.is-active,
 .quiz-choice.is-selected {
+  background: color-mix(in srgb, var(--javajub-accent) 8%, #fffdfb);
   border-color: var(--javajub-accent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--javajub-accent) 22%, transparent);
 }
@@ -104,6 +109,7 @@
   border: 0;
   border-radius: 6px;
   background: var(--javajub-accent);
+  box-shadow: 0 4px 12px rgba(255, 61, 0, .18);
   color: var(--javajub-accent-contrast) !important;
   cursor: pointer;
   display: inline-flex;
@@ -134,7 +140,7 @@
 }
 
 .quiz-secondary {
-  background: var(--md-code-bg-color) !important;
+  background: #fffdfb !important;
   color: var(--md-default-fg-color) !important;
   border: 1px solid var(--md-default-fg-color--lightest) !important;
 }
