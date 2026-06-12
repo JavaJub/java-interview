@@ -59,3 +59,22 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Wait for Pages propagation
+        run: sleep 30
+
+      - name: Submit sitemap URLs to Yandex IndexNow
+        continue-on-error: true
+        run: node tools/submit-indexnow.mjs --sitemap https://www.javajub.com/sitemap.xml
