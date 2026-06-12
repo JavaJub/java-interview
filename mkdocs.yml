@@ -13,7 +13,7 @@ theme:
   custom_dir: overrides
   language: ru
   logo: assets/images/javajub-mark-transparent.png
-  favicon: assets/images/favicon.png
+  favicon: favicon.ico
   font: false
   features:
     - navigation.instant
@@ -52,7 +52,9 @@ extra_javascript:
 extra:
   social_image: assets/images/og-javajub.png
   logo_image: assets/images/javajub-logo-transparent.png
-  apple_touch_icon: assets/images/apple-touch-icon.png
+  favicon_ico: favicon.ico
+  favicon_png: favicon.png
+  apple_touch_icon: apple-touch-icon.png
   yandex_verification: ""
 
 nav:

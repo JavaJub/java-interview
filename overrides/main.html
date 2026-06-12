@@ -4,6 +4,8 @@
   {{ super() }}
   {% set image_url = config.site_url ~ (config.extra.social_image or "assets/images/og-javajub.png") %}
   {% set logo_url = config.site_url ~ (config.extra.logo_image or "assets/images/javajub-logo.png") %}
+  {% set favicon_ico_url = config.site_url ~ (config.extra.favicon_ico or "favicon.ico") %}
+  {% set favicon_png_url = config.site_url ~ (config.extra.favicon_png or "favicon.png") %}
   {% set apple_touch_icon_url = config.site_url ~ (config.extra.apple_touch_icon or "assets/images/apple-touch-icon.png") %}
   {% if page %}
     {% set page_title = page.title %}
@@ -16,6 +18,8 @@
     {% set page_url = config.site_url %}
     {% set is_learning_page = false %}
   {% endif %}
+  <link rel="icon" href="{{ favicon_ico_url }}" sizes="any">
+  <link rel="icon" type="image/png" href="{{ favicon_png_url }}" sizes="512x512">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ apple_touch_icon_url }}">
   <meta name="theme-color" content="#090e09">
   {% if config.extra.yandex_verification %}
