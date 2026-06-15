@@ -1,9 +1,9 @@
 ---
-title: "SberSeasons Java Trainee: тест для подготовки к Java interview"
+title: "SberSeasons Java Trainee: вопросы и тест для собеседования"
 description: "База для стажировки SberSeasons. Стажёрам и Junior-кандидатам, которые готовятся к SberSeasons Java Trainee."
 ---
 
-# SberSeasons Java Trainee: тест для подготовки к Java interview
+# SberSeasons Java Trainee: вопросы и тест для собеседования
 
 Стажёрам и Junior-кандидатам, которые готовятся к SberSeasons Java Trainee.
 

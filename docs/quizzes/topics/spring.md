@@ -1,9 +1,9 @@
 ---
-title: "Spring Boot: тест для подготовки к Java interview"
+title: "Spring Boot: вопросы для собеседования Java"
 description: "Самопроверка по теме: Spring Boot. Java backend-разработчикам, которые готовятся к вопросам по Spring Boot, DI, AOP и транзакциям."
 ---
 
-# Spring Boot: тест для подготовки к Java interview
+# Spring Boot: вопросы для собеседования Java
 
 Java backend-разработчикам, которые готовятся к вопросам по Spring Boot, DI, AOP и транзакциям.
 

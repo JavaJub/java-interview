@@ -1,9 +1,9 @@
 ---
-title: "VK Java Middle: тест для подготовки к Java interview"
+title: "VK Java Middle: вопросы и тест для собеседования"
 description: "Java 21, алгоритмы, high-load и сети. Java Middle-кандидатам в VK: Java 21, алгоритмы, Spring Boot, Kafka, high-load и System Design."
 ---
 
-# VK Java Middle: тест для подготовки к Java interview
+# VK Java Middle: вопросы и тест для собеседования
 
 Java Middle-кандидатам в VK: Java 21, алгоритмы, Spring Boot, Kafka, high-load и System Design.
 

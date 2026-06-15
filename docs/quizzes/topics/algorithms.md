@@ -1,9 +1,9 @@
 ---
-title: "Algorithms / Live coding: тест для подготовки к Java interview"
+title: "Algorithms / Live coding: вопросы для собеседования Java"
 description: "Самопроверка по теме: Algorithms / Live coding. Кандидатам, которым нужно потренировать live coding, строки, массивы, HashMap-задачи и code review."
 ---
 
-# Algorithms / Live coding: тест для подготовки к Java interview
+# Algorithms / Live coding: вопросы для собеседования Java
 
 Кандидатам, которым нужно потренировать live coding, строки, массивы, HashMap-задачи и code review.
 

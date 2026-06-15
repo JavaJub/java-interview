@@ -1,9 +1,9 @@
 ---
-title: "Лига Java Middle: тест для подготовки к Java interview"
+title: "Лига Java Middle: вопросы и тест для собеседования"
 description: "Java 11, Spring, Hibernate, SQL и тесты. Java Middle-кандидатам в Лигу Цифровой Экономики: Java 11, Spring, Hibernate, PostgreSQL и тесты."
 ---
 
-# Лига Java Middle: тест для подготовки к Java interview
+# Лига Java Middle: вопросы и тест для собеседования
 
 Java Middle-кандидатам в Лигу Цифровой Экономики: Java 11, Spring, Hibernate, PostgreSQL и тесты.
 

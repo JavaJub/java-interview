@@ -1,9 +1,9 @@
 ---
-title: "Hibernate / JPA: тест для подготовки к Java interview"
+title: "Hibernate / JPA: вопросы для собеседования Java"
 description: "Самопроверка по теме: Hibernate / JPA. Тем, кто хочет проверить JPA/Hibernate: entity states, lazy/eager, N+1, dirty checking и locks."
 ---
 
-# Hibernate / JPA: тест для подготовки к Java interview
+# Hibernate / JPA: вопросы для собеседования Java
 
 Тем, кто хочет проверить JPA/Hibernate: entity states, lazy/eager, N+1, dirty checking и locks.
 

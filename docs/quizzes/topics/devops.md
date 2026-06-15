@@ -1,9 +1,9 @@
 ---
-title: "Docker / Kubernetes / CI/CD: тест для подготовки к Java interview"
+title: "Docker / Kubernetes / CI/CD: вопросы для собеседования Java"
 description: "Самопроверка по теме: Docker / Kubernetes / CI/CD. Тем, кто хочет проверить Docker, Kubernetes, CI/CD и production-инфраструктуру вокруг Java-сервиса."
 ---
 
-# Docker / Kubernetes / CI/CD: тест для подготовки к Java interview
+# Docker / Kubernetes / CI/CD: вопросы для собеседования Java
 
 Тем, кто хочет проверить Docker, Kubernetes, CI/CD и production-инфраструктуру вокруг Java-сервиса.
 

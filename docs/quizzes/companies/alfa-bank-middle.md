@@ -1,9 +1,9 @@
 ---
-title: "Альфа-Банк Java Middle: тест для подготовки к Java interview"
+title: "Альфа-Банк Java Middle: вопросы и тест для собеседования"
 description: "Spring Boot, Kafka, PostgreSQL, live-coding. Java Middle-кандидатам в Альфа-Банк: Spring Boot, Kafka, PostgreSQL, Docker и live coding."
 ---
 
-# Альфа-Банк Java Middle: тест для подготовки к Java interview
+# Альфа-Банк Java Middle: вопросы и тест для собеседования
 
 Java Middle-кандидатам в Альфа-Банк: Spring Boot, Kafka, PostgreSQL, Docker и live coding.
 

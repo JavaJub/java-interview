@@ -1,9 +1,9 @@
 ---
-title: "Яндекс Путешествия Java Middle: тест для подготовки к Java interview"
+title: "Яндекс Путешествия Java Middle: вопросы и тест для собеседования"
 description: "Алгоритмы, backend и System Design. Java Middle-кандидатам в Яндекс Путешествия: алгоритмы, backend, PostgreSQL и System Design."
 ---
 
-# Яндекс Путешествия Java Middle: тест для подготовки к Java interview
+# Яндекс Путешествия Java Middle: вопросы и тест для собеседования
 
 Java Middle-кандидатам в Яндекс Путешествия: алгоритмы, backend, PostgreSQL и System Design.
 

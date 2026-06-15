@@ -1,9 +1,9 @@
 ---
-title: "Kafka / Microservices: тест для подготовки к Java interview"
+title: "Kafka / Microservices: вопросы для собеседования Java"
 description: "Самопроверка по теме: Kafka / Microservices. Java backend-разработчикам, которые готовятся к Kafka, consumer groups, offsets и delivery guarantees."
 ---
 
-# Kafka / Microservices: тест для подготовки к Java interview
+# Kafka / Microservices: вопросы для собеседования Java
 
 Java backend-разработчикам, которые готовятся к Kafka, consumer groups, offsets и delivery guarantees.
 

@@ -1,9 +1,9 @@
 ---
-title: "Testing / AQA: тест для подготовки к Java interview"
+title: "Testing / AQA: вопросы для собеседования Java"
 description: "Самопроверка по теме: Testing / AQA. AQA Java-кандидатам, которые повторяют тест-дизайн, Rest Assured, JUnit, Mockito и Testcontainers."
 ---
 
-# Testing / AQA: тест для подготовки к Java interview
+# Testing / AQA: вопросы для собеседования Java
 
 AQA Java-кандидатам, которые повторяют тест-дизайн, Rest Assured, JUnit, Mockito и Testcontainers.
 

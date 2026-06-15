@@ -232,7 +232,9 @@ function topicBadges(quiz) {
 }
 
 function renderQuizPage(quiz, meta, kind) {
-  const title = `${quiz.title}: тест для подготовки к Java interview`;
+  const title = kind === "company"
+    ? `${quiz.title}: вопросы и тест для собеседования`
+    : `${quiz.title}: вопросы для собеседования Java`;
   const description = `${quiz.description} ${meta.audience}`;
   const startHref = kind === "topic"
     ? `../index.md?quiz=${quiz.id}&mode=express`

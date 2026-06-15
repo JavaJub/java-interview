@@ -1,9 +1,9 @@
 ---
-title: "Сбер Java Middle readiness: тест для подготовки к Java interview"
+title: "Сбер Java Middle readiness: вопросы и тест для собеседования"
 description: "Готовность к Java Middle интервью в Сбер. Java Middle-кандидатам, которые готовятся к Сберу и хотят проверить Java Core, Spring, SQL, JVM и System Design."
 ---
 
-# Сбер Java Middle readiness: тест для подготовки к Java interview
+# Сбер Java Middle readiness: вопросы и тест для собеседования
 
 Java Middle-кандидатам, которые готовятся к Сберу и хотят проверить Java Core, Spring, SQL, JVM и System Design.
 

@@ -1,25 +1,41 @@
+/* ==========================================================================
+   JavaJub brand styles
+   - Shared brand tokens live in :root.
+   - Light surfaces are scoped to [data-md-color-scheme="default"].
+   - Dark surfaces are scoped to [data-md-color-scheme="slate"].
+   Logo + palette (black / deep-orange) are intentionally preserved.
+   ========================================================================== */
+
 :root {
   --javajub-ink: #090e09;
   --javajub-ink-soft: #101710;
-  --javajub-surface: #fdf7f3;
-  --javajub-surface-muted: #fff2eb;
   --javajub-accent: #ff3d00;
   --javajub-accent-dark: #c92f00;
+  --javajub-accent-light: #ff6a36;
   --javajub-accent-soft: rgba(255, 61, 0, .12);
   --javajub-cream: #ffd8c7;
   --javajub-accent-contrast: #fff7f2;
 
+  /* Typography. Refined system stack now; a self-hosted brand face can be
+     dropped in via the @font-face block at the bottom of this file. */
+  --javajub-font: "JavaJub Sans", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Helvetica Neue", "Noto Sans", "PT Sans", Arial, sans-serif;
+  --javajub-font-mono: "JetBrains Mono", "SFMono-Regular", "Roboto Mono",
+    ui-monospace, Menlo, Consolas, monospace;
+
   --md-primary-fg-color: var(--javajub-accent);
-  --md-primary-fg-color--light: #ff6a36;
+  --md-primary-fg-color--light: var(--javajub-accent-light);
   --md-primary-fg-color--dark: var(--javajub-accent-dark);
   --md-accent-fg-color: var(--javajub-accent-dark);
   --md-accent-fg-color--transparent: var(--javajub-accent-soft);
-  --md-typeset-a-color: var(--javajub-accent-dark);
+
+  --md-text-font: var(--javajub-font);
+  --md-code-font: var(--javajub-font-mono);
 }
 
 [data-md-color-primary="deep-orange"] {
   --md-primary-fg-color: var(--javajub-accent);
-  --md-primary-fg-color--light: #ff6a36;
+  --md-primary-fg-color--light: var(--javajub-accent-light);
   --md-primary-fg-color--dark: var(--javajub-accent-dark);
 }
 
@@ -28,18 +44,114 @@
   --md-accent-fg-color--transparent: var(--javajub-accent-soft);
 }
 
-body {
+/* -------- Light scheme tokens + surfaces -------- */
+[data-md-color-scheme="default"] {
+  --jj-heading: var(--javajub-ink);
+  --jj-link: var(--javajub-accent-dark);
+  --jj-link-hover: var(--javajub-accent);
+  --jj-card-bg: #fffdfb;
+  --jj-card-border: rgba(9, 14, 9, .10);
+  --jj-surface: #fff2eb;
+  --jj-border: rgba(255, 61, 0, .16);
+  --jj-muted: rgba(9, 14, 9, .62);
+  --md-typeset-a-color: var(--javajub-accent-dark);
+}
+
+[data-md-color-scheme="default"] body {
   color: var(--javajub-ink);
   background:
     radial-gradient(circle at 12% 0, rgba(255, 61, 0, .06), transparent 24rem),
     linear-gradient(180deg, #fffaf7 0, #fff 30rem);
 }
 
-.md-header {
+[data-md-color-scheme="default"] .md-header {
   background: linear-gradient(100deg, #fffaf7 0%, #fff2eb 62%, #ffe4d7 100%) !important;
-  border-bottom: 1px solid rgba(255, 61, 0, .16);
-  box-shadow: 0 2px 14px rgba(9, 14, 9, .08);
   color: var(--javajub-ink);
+}
+
+[data-md-color-scheme="default"] .md-tabs {
+  background-color: var(--jj-surface) !important;
+  color: var(--javajub-ink);
+}
+
+[data-md-color-scheme="default"] .md-header__title,
+[data-md-color-scheme="default"] .md-header__button,
+[data-md-color-scheme="default"] .md-tabs__link {
+  color: var(--javajub-ink);
+}
+
+[data-md-color-scheme="default"] .md-content {
+  background: rgba(255, 255, 255, .76);
+}
+
+[data-md-color-scheme="default"] .md-search__form {
+  background-color: rgba(255, 255, 255, .72);
+}
+
+[data-md-color-scheme="default"] .md-search__form:hover {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+/* -------- Dark scheme tokens + surfaces (slate) -------- */
+[data-md-color-scheme="slate"] {
+  --jj-heading: #f4ece6;
+  --jj-link: var(--javajub-accent-light);
+  --jj-link-hover: #ff8a5c;
+  --jj-card-bg: #1c1815;
+  --jj-card-border: rgba(255, 216, 199, .12);
+  --jj-surface: #16120f;
+  --jj-border: rgba(255, 61, 0, .30);
+  --jj-muted: rgba(244, 236, 230, .60);
+
+  --md-default-bg-color: #131110;
+  --md-typeset-a-color: var(--javajub-accent-light);
+}
+
+[data-md-color-scheme="slate"] body {
+  background:
+    radial-gradient(circle at 12% 0, rgba(255, 61, 0, .10), transparent 26rem),
+    var(--md-default-bg-color);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background: linear-gradient(100deg, #1d1410 0%, #241712 60%, #2c1a12 100%) !important;
+  color: var(--javajub-cream);
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #1b1310 !important;
+  color: var(--javajub-cream);
+}
+
+[data-md-color-scheme="slate"] .md-header__title,
+[data-md-color-scheme="slate"] .md-header__button,
+[data-md-color-scheme="slate"] .md-tabs__link {
+  color: var(--javajub-cream);
+}
+
+[data-md-color-scheme="slate"] .md-content {
+  background: transparent;
+}
+
+/* -------- Shared chrome -------- */
+.md-header {
+  border-bottom: 1px solid var(--jj-border);
+  box-shadow: 0 2px 14px rgba(9, 14, 9, .12);
+}
+
+.md-tabs {
+  border-bottom: 1px solid var(--jj-border);
+}
+
+.md-footer {
+  background-color: var(--javajub-ink) !important;
+  border-top: 4px solid var(--javajub-accent);
+  color: var(--javajub-cream);
+}
+
+.md-footer,
+.md-footer-meta {
+  color: var(--javajub-cream);
 }
 
 .md-header__button.md-logo {
@@ -55,72 +167,38 @@ body {
   opacity: 1;
 }
 
-.md-tabs {
-  background-color: var(--javajub-surface-muted) !important;
-  border-bottom: 1px solid rgba(255, 61, 0, .18);
-  color: var(--javajub-ink);
-}
-
-.md-footer {
-  background-color: var(--javajub-ink) !important;
-  border-top: 4px solid var(--javajub-accent);
-  color: var(--javajub-cream);
-}
-
-.md-header__title,
-.md-header__button {
-  color: var(--javajub-ink);
-}
-
-.md-tabs__link {
-  color: rgba(9, 14, 9, .78);
-}
-
-.md-footer,
-.md-footer-meta {
-  color: var(--javajub-cream);
-}
-
 .md-header__button:hover,
 .md-tabs__link:hover,
 .md-tabs__link--active {
-  color: var(--javajub-accent-dark);
+  color: var(--javajub-accent) !important;
 }
 
 .md-search__form {
-  background-color: rgba(255, 255, 255, .72);
-  border: 1px solid rgba(255, 61, 0, .12);
-  color: var(--javajub-ink);
-}
-
-.md-search__form:hover {
-  background-color: rgba(255, 255, 255, .9);
-}
-
-.md-search__input,
-.md-search__input::placeholder {
-  color: rgba(9, 14, 9, .72);
-}
-
-.md-search__input + .md-search__icon,
-.md-search__icon {
-  color: rgba(9, 14, 9, .72);
+  border: 1px solid var(--jj-border);
 }
 
 .md-main {
   background: transparent;
 }
 
-.md-content {
-  background: rgba(255, 255, 255, .76);
+/* -------- Typography -------- */
+.md-typeset {
+  --md-typeset-a-color: var(--jj-link);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: var(--jj-heading);
+  letter-spacing: -.01em;
 }
 
 .md-typeset h1 {
-  color: var(--javajub-ink);
+  font-weight: 800;
 }
 
 .md-typeset h1::after {
-  background: var(--javajub-accent);
+  background: linear-gradient(90deg, var(--javajub-accent), var(--javajub-accent-light));
   border-radius: 999px;
   content: "";
   display: block;
@@ -130,44 +208,36 @@ body {
 }
 
 .md-typeset h2 {
-  color: var(--javajub-ink);
+  border-bottom: 1px solid var(--jj-border);
+  padding-bottom: .3rem;
 }
 
 .md-typeset a {
-  color: var(--javajub-accent-dark);
+  color: var(--jj-link);
 }
 
 .md-typeset a:hover {
-  color: var(--javajub-accent);
+  color: var(--jj-link-hover);
 }
 
+/* -------- Sidebar nav accents -------- */
 .md-nav__link--active,
 .md-nav__link[for]:focus,
 .md-nav__link:hover {
   color: var(--javajub-accent-dark);
 }
 
-.md-nav__title {
-  color: var(--javajub-ink);
-}
-
 .md-sidebar--primary .md-nav__item--section > .md-nav__link {
-  background: linear-gradient(90deg, rgba(255, 61, 0, .10), rgba(255, 61, 0, .025));
+  background: linear-gradient(90deg, var(--javajub-accent-soft), rgba(255, 61, 0, .02));
   border-left: 3px solid var(--javajub-accent);
   border-radius: 6px;
-  color: var(--javajub-ink);
   font-weight: 700;
   margin: .2rem 0 .35rem;
   padding: .45rem .6rem;
 }
 
-.md-sidebar--primary .md-nav__item--section > .md-nav__link:hover {
-  background: linear-gradient(90deg, rgba(255, 61, 0, .14), rgba(255, 61, 0, .04));
-  color: var(--javajub-accent-dark);
-}
-
 .md-sidebar--primary .md-nav__link--active {
-  background: rgba(255, 61, 0, .075);
+  background: var(--javajub-accent-soft);
   border-radius: 6px;
   color: var(--javajub-accent-dark);
   font-weight: 700;
@@ -183,20 +253,48 @@ body {
   border-left-color: var(--javajub-accent);
 }
 
+/* -------- Buttons -------- */
 .md-typeset .md-button,
 .md-typeset .md-button--primary {
   border-color: var(--javajub-accent);
   background-color: var(--javajub-accent);
-  color: var(--javajub-accent-contrast);
+  border-radius: 8px;
+  color: var(--javajub-accent-contrast) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 6px 18px rgba(255, 61, 0, .22);
+  text-align: center;
+  text-decoration: none !important;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  white-space: normal;
 }
 
 .md-typeset .md-button:is(:focus, :hover),
 .md-typeset .md-button--primary:is(:focus, :hover) {
   border-color: var(--javajub-accent-dark);
   background-color: var(--javajub-accent-dark);
-  color: var(--javajub-accent-contrast);
+  color: var(--javajub-accent-contrast) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(255, 61, 0, .28);
 }
 
+.md-typeset .md-button--secondary {
+  background: transparent;
+  color: var(--jj-link) !important;
+  box-shadow: none;
+}
+
+.md-typeset .md-button--secondary:is(:focus, :hover) {
+  background: var(--javajub-accent-soft);
+  color: var(--jj-link-hover) !important;
+  border-color: var(--javajub-accent);
+}
+
+/* -------- Tables -------- */
 .md-typeset table:not([class]) th {
   background-color: var(--javajub-ink);
   box-shadow: inset 0 3px 0 var(--javajub-accent);
@@ -204,19 +302,21 @@ body {
 }
 
 .md-typeset table:not([class]) tr:nth-child(even) {
-  background-color: rgba(255, 61, 0, .035);
+  background-color: var(--javajub-accent-soft);
 }
 
+/* -------- Blockquotes + admonitions -------- */
 .md-typeset blockquote {
-  background: rgba(255, 61, 0, .035);
+  background: var(--javajub-accent-soft);
   border-left-color: var(--javajub-accent);
-  color: var(--javajub-ink);
+  color: inherit;
+  border-radius: 0 8px 8px 0;
 }
 
 .md-typeset mark,
 .md-search-result mark {
   background-color: var(--javajub-accent-soft);
-  color: var(--javajub-ink);
+  color: inherit;
 }
 
 .md-top {
@@ -226,15 +326,187 @@ body {
 
 .md-typeset .admonition,
 .md-typeset details {
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   Brand components (hero, stats, grid cards, badges)
+   ========================================================================== */
+
+.jj-hero {
+  position: relative;
+  overflow: hidden;
+  margin: .4rem 0 2rem;
+  padding: 2.2rem 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--jj-border);
+  background:
+    radial-gradient(circle at 88% -10%, rgba(255, 61, 0, .16), transparent 18rem),
+    linear-gradient(135deg, var(--jj-surface), var(--jj-card-bg) 70%);
+  box-shadow: 0 18px 40px rgba(9, 14, 9, .10);
+}
+
+.jj-hero__kicker {
+  display: inline-block;
+  margin: 0 0 .5rem;
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  background: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.md-typeset .jj-hero h1,
+.md-typeset .jj-hero h2 {
+  margin: 0 0 .5rem;
+  border: 0;
+  padding: 0;
+  font-size: 2.1rem;
+  line-height: 1.15;
+}
+
+.md-typeset .jj-hero h1::after {
+  display: none;
+}
+
+.jj-hero p {
+  max-width: 46rem;
+  font-size: .92rem;
+  color: var(--jj-muted);
+}
+
+.jj-hero__cta {
+  margin-top: 1.1rem;
+  max-width: 100%;
+}
+
+.jj-hero__cta p {
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  margin: 0;
+}
+
+.md-typeset .jj-hero__cta .md-button {
+  font-size: .72rem;
+  gap: .3rem;
+  margin: 0;
+  min-height: 2.35rem;
+  padding-inline: .7rem;
+  white-space: normal;
+  width: 100%;
+}
+
+/* Stat strip */
+.jj-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jj-stats li {
+  flex: 1 1 7rem;
+  margin: 0;
+  padding: .7rem .9rem;
+  border-radius: 12px;
+  border: 1px solid var(--jj-border);
+  background: var(--jj-card-bg);
+}
+
+.jj-stats b {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--javajub-accent-dark);
+  line-height: 1;
+}
+
+[data-md-color-scheme="slate"] .jj-stats b {
+  color: var(--javajub-accent-light);
+}
+
+.jj-stats span {
+  font-size: .76rem;
+  color: var(--jj-muted);
+}
+
+/* Grid cards (Material .grid.cards) accenting */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--jj-card-border);
+  border-radius: 12px;
+  background: var(--jj-card-bg);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  transform: translateY(-3px);
   border-color: var(--javajub-accent);
+  box-shadow: 0 14px 30px rgba(9, 14, 9, .12);
 }
 
-.md-typeset .admonition-title,
-.md-typeset summary {
-  background-color: var(--javajub-accent-soft);
+.md-typeset .grid.cards > ul > li > hr {
+  border-color: var(--jj-border);
 }
 
-.md-typeset .admonition-title::before,
-.md-typeset summary::before {
-  background-color: var(--javajub-accent-dark);
+@media (max-width: 640px) {
+  .jj-hero {
+    padding: 1.35rem 1rem;
+  }
+
+  .jj-hero__cta,
+  .jj-hero__cta p {
+    width: 100%;
+  }
+
+  .jj-hero__cta p {
+    grid-template-columns: 1fr;
+  }
+
+  .md-typeset .jj-hero__cta .md-button {
+    white-space: normal;
+  }
 }
+
+/* Inline badges (grade / company / stack) */
+.jj-badge {
+  display: inline-block;
+  margin: 0 .15rem .2rem 0;
+  padding: .08rem .45rem;
+  border-radius: 999px;
+  border: 1px solid var(--jj-border);
+  background: var(--javajub-accent-soft);
+  color: var(--jj-link);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+.jj-badge--solid {
+  background: var(--javajub-accent);
+  border-color: var(--javajub-accent);
+  color: var(--javajub-accent-contrast);
+}
+
+/* ==========================================================================
+   Optional self-hosted brand typeface.
+   Drop woff2 files into docs/assets/fonts/ and uncomment to activate;
+   --javajub-font already references "JavaJub Sans" first.
+   ========================================================================== */
+/*
+@font-face {
+  font-family: "JavaJub Sans";
+  src: url("../fonts/javajub-sans.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+  font-style: normal;
+}
+*/

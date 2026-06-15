@@ -5,9 +5,9 @@ description: "Индекс тем JavaJub для подготовки к Java in
 
 # Индекс тем
 
-Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Для самопроверки используйте [тесты на GitHub Pages](quizzes/index.md).
+Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Если вы пришли из поиска по запросу “Java вопросы с собеседований”, начните со страницы [Java собеседование: вопросы, гайды и тесты](java-sobesedovanie.md). Для самопроверки используйте [тесты на GitHub Pages](quizzes/index.md).
 
-[← На главную](index.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
+[← На главную](index.md) · [Java собеседование](java-sobesedovanie.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
 
 ## Java Core и ООП
 

@@ -1,9 +1,9 @@
 ---
-title: "ITK Academy Java Junior: тест для подготовки к Java interview"
+title: "ITK Academy Java Junior: вопросы и тест для собеседования"
 description: "Junior база, Spring basics и pet-проект. Java Junior-кандидатам в ITK Academy: Java Core, Spring basics, Docker, SQL и Git."
 ---
 
-# ITK Academy Java Junior: тест для подготовки к Java interview
+# ITK Academy Java Junior: вопросы и тест для собеседования
 
 Java Junior-кандидатам в ITK Academy: Java Core, Spring basics, Docker, SQL и Git.
 

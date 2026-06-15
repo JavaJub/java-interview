@@ -8,34 +8,18 @@ const forbidden = [
   /ничего\s+из\s+перечислен/i,
   /оба\s+варианта\s+верны/i,
   /зависит\s+от\s+настроения/i,
+  // Шаблонные "палевные" хвосты-приписки старого генератора дистракторов.
+  /на собеседовании это звучит правдоподобно/i,
+  /такой вариант часто говорят на собеседовании/i,
+  /звучит правдоподобно, но не объясняет/i,
+  /это типичный неверный ответ/i,
 ];
-const incompatibleDistractorTerms = {
-  "java-core": {
-    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
-    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
-    sql: /\b(sql|postgres|postgresql|explain|mvcc)\b/i,
-  },
-  collections: {
-    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
-    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
-  },
-  jvm: {
-    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
-    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
-    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
-  },
-  concurrency: {
-    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
-    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
-    sql: /\b(sql|postgres|postgresql|explain|mvcc|acid)\b/i,
-  },
-  algorithms: {
-    hibernate: /\b(hibernate|jpa|entity|dirty checking|persistence context)\b/i,
-    spring: /\b(transactional|autowired|aop|spring boot)\b/i,
-    kafka: /\b(kafka|consumer group|producer|partition|offset|broker|exactly-once)\b/i,
-  },
-};
 
+const DISTRACTOR_REUSE_CAP = 8;
+
+function normalizeText(value) {
+  return String(value).toLowerCase().replace(/ё/g, "е").replace(/\s+/g, " ").trim();
+}
 let failures = 0;
 
 function fail(message) {
@@ -49,10 +33,6 @@ function readJson(file) {
 
 function assertArray(value, message) {
   if (!Array.isArray(value) || value.length === 0) fail(message);
-}
-
-function primaryTopic(question) {
-  return question.topics?.[0] || "java-core";
 }
 
 function validateQuestion(question, file) {
@@ -76,19 +56,23 @@ function validateQuestion(question, file) {
   if (question.type === "multi" && question.correct.length < 2) fail(`${prefix} multi question needs 2+ correct choices`);
   if (question.type !== "multi" && question.correct.length !== 1) fail(`${prefix} non-multi question needs exactly 1 correct choice`);
 
+  const correctChoice = (question.choices || []).find((choice) => question.correct.includes(choice.id));
+  const correctNorm = correctChoice ? normalizeText(correctChoice.text) : "";
+
   for (const choice of question.choices || []) {
     if (!choice.text || choice.text.length < 12) fail(`${prefix} choice ${choice.id} is too short`);
     if (forbidden.some((pattern) => pattern.test(choice.text))) fail(`${prefix} choice ${choice.id} contains weak wording`);
     if (question.correct.includes(choice.id)) continue;
-    const incompatibleTerms = incompatibleDistractorTerms[primaryTopic(question)] || {};
-    for (const [topic, pattern] of Object.entries(incompatibleTerms)) {
-      if (pattern.test(choice.text)) {
-        fail(`${prefix} choice ${choice.id} contains incompatible ${topic} wording for ${primaryTopic(question)}`);
-      }
+    const choiceNorm = normalizeText(choice.text);
+    if (correctNorm && (choiceNorm === correctNorm || choiceNorm.includes(correctNorm) || correctNorm.includes(choiceNorm))) {
+      fail(`${prefix} distractor ${choice.id} equals or contains the correct answer`);
     }
   }
 
   if (!question.explanation || question.explanation.length < 20) fail(`${prefix} explanation is too short`);
+  if (correctNorm && question.explanation && normalizeText(question.explanation) === correctNorm) {
+    fail(`${prefix} explanation just duplicates the correct answer`);
+  }
 }
 
 function validateDistribution(questions, file) {
@@ -153,8 +137,27 @@ function validateFiles() {
   }
 }
 
+function validateDistractorReuse() {
+  const data = readJson("full-bank.json");
+  const freq = new Map();
+  for (const question of data.questions) {
+    const correct = new Set(question.correct);
+    for (const choice of question.choices || []) {
+      if (correct.has(choice.id)) continue;
+      const key = normalizeText(choice.text);
+      freq.set(key, (freq.get(key) || 0) + 1);
+    }
+  }
+  for (const [text, count] of freq) {
+    if (count > DISTRACTOR_REUSE_CAP) {
+      fail(`distractor reused ${count}× across the bank (cap ${DISTRACTOR_REUSE_CAP}): "${text.slice(0, 70)}…"`);
+    }
+  }
+}
+
 validateCatalog();
 validateFiles();
+validateDistractorReuse();
 
 if (failures > 0) {
   console.error(`Quiz validation failed with ${failures} issue(s).`);

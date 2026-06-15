@@ -1,9 +1,9 @@
 ---
-title: "X5 Tech Senior code review: тест для подготовки к Java interview"
+title: "X5 Tech Senior code review: вопросы и тест для собеседования"
 description: "Concurrency, Random, parallelStream и production-мышление. Senior Java-кандидатам, которым нужно потренировать code review, concurrency и production-мышление."
 ---
 
-# X5 Tech Senior code review: тест для подготовки к Java interview
+# X5 Tech Senior code review: вопросы и тест для собеседования
 
 Senior Java-кандидатам, которым нужно потренировать code review, concurrency и production-мышление.
 

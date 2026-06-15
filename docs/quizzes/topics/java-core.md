@@ -1,9 +1,9 @@
 ---
-title: "Java Core: тест для подготовки к Java interview"
+title: "Java Core: вопросы для собеседования Java"
 description: "Самопроверка по теме: Java Core. Junior и Middle Java-разработчикам, которым нужно быстро проверить базу Java Core перед интервью."
 ---
 
-# Java Core: тест для подготовки к Java interview
+# Java Core: вопросы для собеседования Java
 
 Junior и Middle Java-разработчикам, которым нужно быстро проверить базу Java Core перед интервью.
 

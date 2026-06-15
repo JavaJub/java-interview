@@ -1,9 +1,9 @@
 ---
-title: "System Design: тест для подготовки к Java interview"
+title: "System Design: вопросы для собеседования Java"
 description: "Самопроверка по теме: System Design. Middle/Senior Java-разработчикам, которые готовятся к архитектурным вопросам и high-load задачам."
 ---
 
-# System Design: тест для подготовки к Java interview
+# System Design: вопросы для собеседования Java
 
 Middle/Senior Java-разработчикам, которые готовятся к архитектурным вопросам и high-load задачам.
 

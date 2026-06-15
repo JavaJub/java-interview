@@ -73,6 +73,12 @@
     window.history.replaceState({}, "", url);
   }
 
+  function syncFormatToUrl(format) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("format", format);
+    window.history.replaceState({}, "", url);
+  }
+
   async function initQuizApp(app) {
     if (app.dataset.quizInitialized === "1") return;
     app.dataset.quizInitialized = "1";
@@ -87,12 +93,14 @@
       catalog,
       catalogUrl,
       mode: normalizeMode(catalog, new URLSearchParams(window.location.search).get("mode")),
+      format: new URLSearchParams(window.location.search).get("format") === "flashcard" ? "flashcard" : "mcq",
       currentQuiz: null,
       currentQuizMeta: null,
       questions: [],
       currentIndex: 0,
       answers: [],
       checked: new Set(),
+      revealed: false,
     };
 
     const requestedQuiz = new URLSearchParams(window.location.search).get("quiz");
@@ -103,7 +111,7 @@
   }
 
   function renderCatalog(state) {
-    const { catalog, mode } = state;
+    const { catalog, mode, format } = state;
     const topics = catalog.quizzes.filter((quiz) => quiz.kind === "topic");
     const companies = catalog.quizzes.filter((quiz) => quiz.kind === "company");
     const history = getHistory();
@@ -136,6 +144,22 @@
           `).join("")}
         </div>
       </section>
+      <section class="quiz-panel">
+        <h3>Формат</h3>
+        <p class="quiz-mode-summary">Выберите, как проходить: вопросы с вариантами ответа или флешкарты на вспоминание.</p>
+        <div class="quiz-modes">
+          <button class="quiz-mode ${format === "mcq" ? "is-active" : ""}" type="button" data-format="mcq">
+            <strong>Тест с вариантами</strong>
+            ${format === "mcq" ? `<em>Выбрано</em>` : ""}
+            <span>4 варианта ответа, проверка выбора и разбор.</span>
+          </button>
+          <button class="quiz-mode ${format === "flashcard" ? "is-active" : ""}" type="button" data-format="flashcard">
+            <strong>Флешкарты</strong>
+            ${format === "flashcard" ? `<em>Выбрано</em>` : ""}
+            <span>Вспомните ответ сами, затем откройте его и оцените себя.</span>
+          </button>
+        </div>
+      </section>
       ${history.length ? `
         <section class="quiz-panel">
           <h3>Последний результат</h3>
@@ -155,6 +179,16 @@
         });
         state.mode = normalizeMode(catalog, button.dataset.mode);
         syncModeToUrl(state.mode.id);
+        renderCatalog(state);
+      });
+    });
+    state.app.querySelectorAll("[data-format]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const next = button.dataset.format === "flashcard" ? "flashcard" : "mcq";
+        if (next === state.format) return;
+        trackQuizEvent("quiz_format_select", { previous_format: state.format, format: next });
+        state.format = next;
+        syncFormatToUrl(state.format);
         renderCatalog(state);
       });
     });
@@ -218,20 +252,99 @@
     state.currentIndex = 0;
     state.answers = [];
     state.checked = new Set();
+    state.revealed = false;
     trackQuizEvent("quiz_start", {
       quiz_id: quiz.id,
       quiz_kind: quizMeta.kind,
       quiz_title: quiz.title,
       mode_id: state.mode.id,
+      format: state.format,
       question_count: limit,
       pool_size: pool.length,
     });
-    renderQuestion(state);
+    if (state.format === "flashcard") renderFlashcard(state);
+    else renderQuestion(state);
   }
 
   function renderPrompt(prompt) {
     const escaped = escapeHtml(prompt);
     return escaped.replace(/```([\s\S]+?)```/g, "<pre><code>$1</code></pre>").replace(/\n/g, "<br>");
+  }
+
+  function recordFlashcard(state, knew) {
+    const question = state.questions[state.currentIndex];
+    state.answers.push({ question, selected: [], isCorrect: knew });
+    trackQuizEvent("quiz_flashcard_grade", {
+      quiz_id: state.currentQuiz?.id,
+      quiz_kind: state.currentQuizMeta?.kind,
+      mode_id: state.mode.id,
+      question_id: question.id,
+      level: question.level,
+      topics: question.topics,
+      question_index: state.currentIndex + 1,
+      knew,
+    });
+    state.currentIndex += 1;
+    state.revealed = false;
+    if (state.currentIndex >= state.questions.length) renderResult(state);
+    else renderFlashcard(state);
+  }
+
+  function renderFlashcard(state) {
+    const question = state.questions[state.currentIndex];
+    const progress = `${state.currentIndex + 1} / ${state.questions.length}`;
+    const correctChoice = question.choices.find((choice) => question.correct.includes(choice.id));
+    const correctText = correctChoice ? correctChoice.text : "";
+
+    state.app.innerHTML = `
+      <section class="quiz-panel quiz-run">
+        <div class="quiz-run-header">
+          <button class="quiz-secondary" type="button" data-back="1">← К списку тестов</button>
+          <span>${progress}</span>
+        </div>
+        <div class="quiz-progress"><span style="width: ${((state.currentIndex + 1) / state.questions.length) * 100}%"></span></div>
+        <p class="quiz-kicker">Флешкарта · ${escapeHtml(question.level)} · ${question.topics.map(escapeHtml).join(", ")}</p>
+        <h3>${renderPrompt(question.prompt)}</h3>
+        ${state.revealed ? `
+          <div class="quiz-flashcard-answer">
+            <p class="quiz-kicker">Ответ</p>
+            <p>${escapeHtml(correctText)}</p>
+            <div class="quiz-explanation"><strong>Разбор:</strong> ${escapeHtml(question.explanation)}</div>
+            ${question.reviewLinks && question.reviewLinks.length ? `<div class="quiz-review-links">${question.reviewLinks.map((link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`).join("")}</div>` : ""}
+          </div>
+          <div class="quiz-actions">
+            <button type="button" data-grade="known">Знал</button>
+            <button class="quiz-secondary" type="button" data-grade="unknown">Не знал</button>
+          </div>
+        ` : `
+          <p class="quiz-flashcard-hint">Вспомните ответ сами, затем откройте правильный и честно оцените себя.</p>
+          <div class="quiz-actions">
+            <button type="button" data-reveal="1">Показать ответ</button>
+          </div>
+        `}
+      </section>
+    `;
+
+    state.app.querySelector("[data-back]").addEventListener("click", () => {
+      trackQuizEvent("quiz_back_to_catalog", {
+        quiz_id: state.currentQuiz?.id,
+        quiz_kind: state.currentQuizMeta?.kind,
+        mode_id: state.mode.id,
+        question_index: state.currentIndex + 1,
+        question_count: state.questions.length,
+      });
+      renderCatalog(state);
+    });
+    const reveal = state.app.querySelector("[data-reveal]");
+    if (reveal) {
+      reveal.addEventListener("click", () => {
+        state.revealed = true;
+        renderFlashcard(state);
+      });
+    }
+    state.app.querySelectorAll("[data-grade]").forEach((button) => {
+      button.addEventListener("click", () => recordFlashcard(state, button.dataset.grade === "known"));
+    });
   }
 
   function renderQuestion(state) {

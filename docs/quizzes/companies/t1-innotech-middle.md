@@ -1,9 +1,9 @@
 ---
-title: "Т1 Иннотех Java Junior/Middle: тест для подготовки к Java interview"
+title: "Т1 Иннотех Java Junior/Middle: вопросы и тест для собеседования"
 description: "Enterprise backend, SQL, Kafka и code review. Junior/Middle Java-кандидатам в Т1 Иннотех: enterprise backend, Spring, Hibernate, SQL и Kafka."
 ---
 
-# Т1 Иннотех Java Junior/Middle: тест для подготовки к Java interview
+# Т1 Иннотех Java Junior/Middle: вопросы и тест для собеседования
 
 Junior/Middle Java-кандидатам в Т1 Иннотех: enterprise backend, Spring, Hibernate, SQL и Kafka.
 

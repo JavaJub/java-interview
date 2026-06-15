@@ -1,9 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const root = process.cwd();
 const outDir = path.join(root, "docs/assets/quizzes");
 const telegramUrl = "https://t.me/+vDYjUmPrBYZmMTAy";
+
+// Per-question answer options (distractors + explanation) authored once and
+// stored in tools/quiz-answers.json, keyed by normalizeQuestion(rawPrompt).
+// This replaces the old template-based distractor generation.
+const answerBankPath = path.join(root, "tools/quiz-answers.json");
+const answerBank = fs.existsSync(answerBankPath)
+  ? JSON.parse(fs.readFileSync(answerBankPath, "utf8"))
+  : {};
+const missingAnswerKeys = new Set();
 
 const sourceFiles = [
   "guides/sber.md",
@@ -458,14 +468,14 @@ function trimAnswer(value) {
 function formatPrompt(raw) {
   const value = cleanInline(raw).replace(/[.。]+$/g, "").trim();
   if (/[?？]$/.test(value)) return value;
-  if (/ vs | vs\.| против | vs/i.test(value)) {
-    return `Как лучше всего объяснить различие: ${value}?`;
+  if (/ vs\.? | против /i.test(value)) {
+    return `В чём разница: ${value}?`;
   }
   if (/^(ACID|MVCC|TDD|JWT|OAuth|OIDC|JPA|ORM|CAS|JIT|GC|OOM|ThreadLocal|CompletableFuture|Circuit Breaker|Consumer Group)$/i.test(value)) {
-    return `Что важно сказать на собеседовании про ${value}?`;
+    return `Что нужно знать про ${value}?`;
   }
   if (value.length < 64 && /^[\p{L}0-9@+./ -]+$/u.test(value)) {
-    return `Как правильно объяснить тему «${value}» на собеседовании?`;
+    return `Что такое ${value}?`;
   }
   return `${value}?`;
 }
@@ -609,158 +619,18 @@ function questionSubject(item) {
     .trim();
 }
 
-function topicSpecificDistractors(item) {
-  const subject = questionSubject(item);
-  const primary = item.topics[0] || "java-core";
-  const templates = {
-    "java-core": [
-      `Это про ${subject}: достаточно назвать синтаксис, runtime-контракты и поведение JVM здесь не важны.`,
-      `Главная идея ${subject} в том, что компилятор автоматически предотвращает все такие ошибки.`,
-      `В production это почти не влияет: проблема проявляется только в учебных примерах и тестах.`,
-      `Корректность зависит только от версии Java; пользовательский код обычно ничего не может сломать.`,
-      `Достаточно запомнить определение, практический пример с коллекциями или объектами не нужен.`,
-    ],
-    collections: [
-      `Для ${subject} порядок элементов и сложность операций всегда гарантированы спецификацией интерфейса.`,
-      `Основной риск решается увеличением initial capacity; контракты equals/hashCode и mutability не влияют.`,
-      `В многопоточном коде такая структура безопасна, если большинство операций только читают данные.`,
-      `Коллизии и resize можно игнорировать: они не меняют ни производительность, ни корректность.`,
-      `Лучший ответ — выбрать реализацию с самым коротким названием; детали хранения обычно не спрашивают.`,
-    ],
-    jvm: [
-      `Для ${subject} достаточно сказать, что GC всё очистит автоматически и диагностика обычно не нужна.`,
-      `Все данные Java живут в heap, а stack используется только самой операционной системой.`,
-      `JIT и classloading не влияют на поведение приложения, это только внутренняя оптимизация запуска.`,
-      `Stop-the-World отсутствует в современных JVM, поэтому паузы можно не учитывать в high-load.`,
-      `OOM всегда означает нехватку heap; другие области памяти и native resources здесь ни при чём.`,
-    ],
-    concurrency: [
-      `${subject} решается добавлением volatile: это одновременно даёт видимость, атомарность и взаимное исключение.`,
-      `Если код проходит unit-тесты локально, race condition в production уже не возникнет.`,
-      `synchronized влияет только на порядок выполнения, но не связан с видимостью данных между потоками.`,
-      `Пулы потоков можно создавать через Executors без ограничений: JVM сама подберёт безопасный размер.`,
-      `Проблемы многопоточности лучше лечить parallelStream, потому что он изолирует задачи друг от друга.`,
-    ],
-    spring: [
-      `Для ${subject} Spring всегда применяет аннотации напрямую через reflection, proxy-механика не важна.`,
-      `Такое поведение одинаково для public, private и self-invocation методов внутри одного класса.`,
-      `Field injection предпочтительнее, потому что делает зависимости менее заметными и упрощает замену в тестах.`,
-      `Bean scope влияет только на имя бина, но не на количество экземпляров и жизненный цикл.`,
-      `Spring Boot autoconfiguration нельзя переопределить пользовательской конфигурацией.`,
-    ],
-    hibernate: [
-      `Для ${subject} Hibernate всегда генерирует оптимальный SQL, поэтому N+1 и fetch strategy можно не проверять.`,
-      `Lazy-загрузка безопасна после закрытия транзакции, если объект был получен через repository.`,
-      `Entity можно без риска использовать как HashMap key до и после persist, даже если id меняется.`,
-      `Dirty checking срабатывает только после явного вызова save на каждой изменённой сущности.`,
-      `Кэш второго уровня включён по умолчанию и автоматически решает проблемы производительности.`,
-    ],
-    sql: [
-      `Для ${subject} индекс всегда ускоряет запрос, даже если таблица маленькая или условие плохо селективно.`,
-      `WHERE и HAVING можно менять местами: оптимизатор всегда приведёт запрос к одному плану.`,
-      `EXPLAIN ANALYZE показывает только примерный план и не выполняет запрос на реальных данных.`,
-      `Уровни изоляции влияют только на чтение, но не связаны с блокировками и конкурентными изменениями.`,
-      `TRUNCATE — это просто более короткая запись DELETE, поведение с транзакциями и триггерами одинаковое.`,
-    ],
-    kafka: [
-      `Для ${subject} достаточно включить exactly-once в Kafka, и внешняя база тоже станет exactly-once.`,
-      `Consumer group означает, что каждое сообщение обработают все consumer-экземпляры группы.`,
-      `Offset лучше коммитить до бизнес-обработки, чтобы исключить любые повторы сообщений.`,
-      `Retry без лимитов безопасен: если брокер доступен, poison message не создаст проблем.`,
-      `Идемпотентность не нужна, если producer и consumer написаны на Spring Kafka.`,
-    ],
-    devops: [
-      `Для ${subject} container и image можно считать одним и тем же: это разные названия запущенного приложения.`,
-      `Readiness probe перезапускает контейнер, а liveness probe только убирает pod из балансировки.`,
-      `Multi-stage build нужен в основном для красоты Dockerfile и почти не влияет на итоговый image.`,
-      `Secret в Kubernetes автоматически шифрует значения во всех местах хранения без дополнительных настроек.`,
-      `CI/CD pipeline должен только запускать тесты; сборка артефактов и деплой относятся к ручным шагам.`,
-    ],
-    "testing-aqa": [
-      `Для ${subject} лучше покрывать максимум сценариев E2E-тестами, потому что они ближе всего к пользователю.`,
-      `Mock и spy отличаются только названием; оба всегда вызывают реальные методы объекта.`,
-      `Severity и Priority всегда выставляются одинаково: высокий severity автоматически означает высокий priority.`,
-      `WireMock нужен для запуска настоящего внешнего сервиса, а не для имитации его поведения.`,
-      `Тест-дизайн можно пропустить, если автотесты написаны на JUnit и запускаются в CI.`,
-    ],
-    algorithms: [
-      `Для ${subject} главное написать код сразу; проговаривать ограничения и сложность обычно не нужно.`,
-      `Если решение работает на одном примере, Big-O можно не обсуждать до просьбы интервьюера.`,
-      `Сортировка всегда оптимальна для задач со строками и массивами, потому что код получается короче.`,
-      `HashMap автоматически делает любое решение O(1), независимо от числа операций и коллизий.`,
-      `Пограничные случаи лучше проверять после интервью, чтобы не тратить время live-coding секции.`,
-    ],
-    "system-design": [
-      `Для ${subject} достаточно перечислить технологии; оценка нагрузки и отказов обычно вторична.`,
-      `CAP-теорема позволяет одновременно гарантировать строгую консистентность, доступность и устойчивость к partition.`,
-      `Rate limiter надёжнее всего хранить локально на каждом инстансе без общей координации.`,
-      `Health checks не нужны, если сервисы уже запущены в Kubernetes и имеют несколько реплик.`,
-      `Очередь сообщений автоматически решает все проблемы консистентности между сервисами.`,
-    ],
-    security: [
-      `Для ${subject} JWT безопасен сам по себе, даже если приложение не проверяет подпись и срок действия.`,
-      `OAuth 2.0 полностью заменяет OpenID Connect и отвечает за аутентификацию пользователя.`,
-      `Refresh token безопасно хранить в localStorage, потому что он используется редко.`,
-      `CSRF невозможен в любом JSON API, поэтому защиту можно не проектировать.`,
-      `Keycloak нужен только как база пользователей и не связан с ролями OAuth/OIDC.`,
-    ],
-  };
-  return templates[primary] || templates["java-core"];
-}
+// (template-based distractor generation removed — answers come from tools/quiz-answers.json)
 
-function balanceLength(candidate, correct, item) {
-  if (candidate.length >= correct.length * 0.72 || correct.length < 110) return candidate;
-  const tails = {
-    "java-core": " На собеседовании это звучит правдоподобно, но не объясняет контракт и практическое последствие.",
-    collections: " Такой ответ похож на правду, но игнорирует внутреннюю структуру и реальные сложности операций.",
-    jvm: " Формулировка выглядит уверенно, но смешивает области памяти, диагностику и работу JVM.",
-    concurrency: " Это частая ловушка: ответ звучит просто, но путает видимость, атомарность и координацию потоков.",
-    spring: " Такой вариант часто говорят на собеседовании, но он упускает proxy-механику и жизненный цикл бинов.",
-    hibernate: " Это похоже на рабочее объяснение, но не учитывает SQL, состояние entity и границы транзакции.",
-    sql: " Ответ выглядит практичным, но игнорирует планировщик, селективность и цену записи.",
-    kafka: " Такой вариант опасен тем, что путает гарантии брокера с идемпотентностью бизнес-операции.",
-    devops: " Формулировка похожа на production-подход, но неверно описывает ответственность платформы.",
-    "testing-aqa": " Это типичный неверный ответ: он подменяет тест-дизайн количеством автотестов.",
-    algorithms: " На live-coding такой подход рискованный: он не проверяет ограничения и пограничные случаи.",
-    "system-design": " В архитектурном интервью этого недостаточно: нужно учитывать нагрузку, отказы и trade-off.",
-    security: " Это опасное упрощение: безопасность зависит от проверки токенов, хранения и модели угроз.",
-  };
-  return `${candidate}${tails[item.topics[0]] || tails["java-core"]}`;
-}
-
-function pickDistractors(item) {
-  const correct = item.correctAnswer;
-  const correctNorm = normalizeQuestion(correct);
-  const candidates = topicSpecificDistractors(item);
-
-  const unique = [...new Set(candidates)]
-    .map((candidate) => trimAnswer(balanceLength(candidate, correct, item)))
-    .filter((candidate) => {
-      const normalized = normalizeQuestion(candidate);
-      return candidate.length >= 28 && normalized !== correctNorm && !normalized.includes(correctNorm) && !correctNorm.includes(normalized);
-    })
-    .sort((a, b) => {
-      const lengthDelta = Math.abs(a.length - correct.length) - Math.abs(b.length - correct.length);
-      if (lengthDelta !== 0) return lengthDelta;
-      return hash(`${item.prompt}:${a}`) - hash(`${item.prompt}:${b}`);
-    });
-
-  const selected = [];
-  for (const candidate of unique) {
-    if (selected.length === 3) break;
-    if (!selected.some((picked) => normalizeQuestion(picked) === normalizeQuestion(candidate))) {
-      selected.push(candidate);
-    }
-  }
-
-  while (selected.length < 3) selected.push(topicSpecificDistractors(item)[selected.length]);
-  return selected;
-}
 
 function withChoices(item, index) {
+  const key = normalizeQuestion(item.rawPrompt);
+  const entry = answerBank[key];
+  if (!entry) missingAnswerKeys.add(key);
+  const distractors = entry ? entry.distractors : ["", "", ""];
+  const explanation = entry && entry.explanation ? entry.explanation : item.correctAnswer;
+
   const correctId = ["a", "b", "c", "d"][hash(item.prompt) % 4];
   const ids = ["a", "b", "c", "d"];
-  const distractors = pickDistractors(item);
   const choices = [];
   let distractorIndex = 0;
   for (const id of ids) {
@@ -781,7 +651,7 @@ function withChoices(item, index) {
     prompt: item.prompt,
     choices,
     correct: [correctId],
-    explanation: item.correctAnswer,
+    explanation,
     reviewLinks: item.reviewLinks,
   };
 }
@@ -817,6 +687,14 @@ function build() {
   fs.mkdirSync(outDir, { recursive: true });
   const extracted = extractCandidates();
   const generated = extracted.map((item, index) => withChoices(item, index));
+
+  if (missingAnswerKeys.size > 0) {
+    console.error(`\n${missingAnswerKeys.size} вопрос(ов) без авторских вариантов ответа в tools/quiz-answers.json:`);
+    for (const key of missingAnswerKeys) console.error(`  - ${key}`);
+    console.error("\nСгенерируйте их: node tools/dump-questions.mjs → workflow → node tools/merge-answers.mjs <result>.\n");
+    process.exit(1);
+  }
+
   const allQuestions = uniqueById([...curatedQuestions, ...generated]).sort((a, b) => a.id.localeCompare(b.id));
 
   writeJson("full-bank.json", {
@@ -868,4 +746,8 @@ function build() {
   console.log(`Generated ${allQuestions.length} canonical questions and ${catalog.quizzes.length} quizzes.`);
 }
 
-build();
+export { extractCandidates, normalizeQuestion, formatPrompt, questionSubject };
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  build();
+}

@@ -1,9 +1,9 @@
 ---
-title: "Collections: тест для подготовки к Java interview"
+title: "Collections: вопросы для собеседования Java"
 description: "Самопроверка по теме: Collections. Тем, кто хочет уверенно отвечать про HashMap, List, Set, fail-fast и выбор коллекций."
 ---
 
-# Collections: тест для подготовки к Java interview
+# Collections: вопросы для собеседования Java
 
 Тем, кто хочет уверенно отвечать про HashMap, List, Set, fail-fast и выбор коллекций.
 

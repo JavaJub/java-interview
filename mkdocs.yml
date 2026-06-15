@@ -1,5 +1,5 @@
-site_name: JavaJub · Java interview guides
-site_description: "Реальные вопросы Java-собеседований по компаниям, подготовка под Java вакансии и Java Job: Java Core, Spring Boot, SQL, Kafka, JVM, live coding и System Design."
+site_name: JavaJub · Java собеседование и вопросы
+site_description: "JavaJub: реальные вопросы с Java собеседований, гайды по компаниям, тесты и маршруты подготовки под Java вакансии Junior, Middle, Senior и AQA."
 site_url: https://www.javajub.com/
 repo_url: https://github.com/JavaJub/java-interview
 repo_name: JavaJub/java-interview
@@ -7,6 +7,8 @@ docs_dir: docs
 site_dir: site
 not_in_nav: |
   404.md
+  quizzes/topics/*.md
+  quizzes/companies/*.md
 
 theme:
   name: material
@@ -15,17 +17,39 @@ theme:
   logo: assets/images/javajub-mark-transparent.png
   favicon: favicon.ico
   font: false
+  icon:
+    repo: fontawesome/brands/github
   features:
     - navigation.instant
-    - navigation.sections
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - toc.follow
     - search.highlight
     - search.suggest
     - content.code.copy
+    - content.tabs.link
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: black
       accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Тёмная тема
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Светлая тема
+
+hooks:
+  - tools/faq_hook.py
 
 plugins:
   - search:
@@ -35,11 +59,18 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - tables
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - assets/css/brand.css
@@ -55,56 +86,34 @@ extra:
   favicon_ico: favicon.ico
   favicon_png: favicon.png
   apple_touch_icon: apple-touch-icon.png
+  # Заполните токеном из Yandex Webmaster, чтобы подтвердить домен.
   yandex_verification: ""
+  # Числовой ID счётчика Yandex.Metrika (например, 12345678). Пусто = аналитика выключена.
+  ym_counter_id: ""
 
 nav:
   - Старт: index.md
-  - Java вакансии: jobs.md
-  - Компании: companies.md
-  - Темы: TOPICS.md
-  - Тесты:
-      - Каталог: quizzes/index.md
-      - По темам: quizzes/topics.md
-      - По компаниям: quizzes/companies.md
-      - Тематические тесты:
-          - Java Core: quizzes/topics/java-core.md
-          - Collections: quizzes/topics/collections.md
-          - JVM: quizzes/topics/jvm.md
-          - Concurrency / JMM: quizzes/topics/concurrency.md
-          - Spring Boot: quizzes/topics/spring.md
-          - Hibernate / JPA: quizzes/topics/hibernate.md
-          - SQL / PostgreSQL: quizzes/topics/sql.md
-          - Kafka / Microservices: quizzes/topics/kafka.md
-          - Docker / Kubernetes / CI/CD: quizzes/topics/devops.md
-          - Testing / AQA: quizzes/topics/testing-aqa.md
-          - Algorithms / Live coding: quizzes/topics/algorithms.md
-          - System Design: quizzes/topics/system-design.md
-          - Security: quizzes/topics/security.md
-      - Тесты по компаниям:
-          - Сбер Java Middle: quizzes/companies/sber-middle.md
-          - SberSeasons Java Trainee: quizzes/companies/sberseasons-trainee.md
-          - Альфа-Банк Java Middle: quizzes/companies/alfa-bank-middle.md
-          - Т1 Иннотех Java Junior/Middle: quizzes/companies/t1-innotech-middle.md
-          - VK Java Middle: quizzes/companies/vk-middle.md
-          - Яндекс Путешествия Java Middle: quizzes/companies/yandex-travel-middle.md
-          - МТС Банк AQA Java Junior: quizzes/companies/mts-bank-aqa-junior.md
-          - ITK Academy Java Junior: quizzes/companies/itk-academy-junior.md
-          - Лига Java Middle: quizzes/companies/liga-middle.md
-          - X5 Tech Senior code review: quizzes/companies/x5-code-review-senior.md
+  - Гайды:
+      - "Java собеседование: вопросы": java-sobesedovanie.md
+      - companies.md
+      - Сбер · Java Middle: guides/sber.md
+      - SberSeasons · стажировка: guides/sber-internship.md
+      - Альфа-Банк · Java Middle: guides/alfa-bank.md
+      - Т1 Иннотех · Java Junior/Middle: guides/t1-innotech.md
+      - VK · Java Middle: guides/vk.md
+      - Яндекс Путешествия · Java Middle: guides/yandex-travel.md
+      - МТС Банк · AQA Java Junior: guides/mts-bank-aqa.md
+      - ITK Academy · Java Junior: guides/itk-academy.md
+      - Лига · Java Middle: guides/liga.md
+      - Темы и шпаргалки: TOPICS.md
+      - X5 Tech · code review (Senior): tasks/x5-blackfriday-code-review.md
   - Маршруты:
       - Java Junior: roadmaps/java-junior.md
       - Java Middle: roadmaps/java-middle.md
       - AQA Java: roadmaps/java-aqa.md
-  - Гайды по компаниям:
-      - Сбер: guides/sber.md
-      - SberSeasons: guides/sber-internship.md
-      - Альфа-Банк: guides/alfa-bank.md
-      - Т1 Иннотех: guides/t1-innotech.md
-      - VK: guides/vk.md
-      - Яндекс Путешествия: guides/yandex-travel.md
-      - МТС Банк AQA: guides/mts-bank-aqa.md
-      - ITK Academy: guides/itk-academy.md
-      - Лига Цифровой Экономики: guides/liga.md
-  - Задачи:
-      - X5 Tech code review: tasks/x5-blackfriday-code-review.md
+  - Тесты:
+      - quizzes/index.md
+      - Тесты по темам: quizzes/topics.md
+      - Тесты по компаниям: quizzes/companies.md
+  - Вакансии: jobs.md
   - Как помочь: CONTRIBUTING.md

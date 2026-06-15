@@ -8,22 +8,29 @@
   {% set favicon_png_url = config.site_url ~ (config.extra.favicon_png or "favicon.png") %}
   {% set apple_touch_icon_url = config.site_url ~ (config.extra.apple_touch_icon or "assets/images/apple-touch-icon.png") %}
   {% if page %}
-    {% set page_title = page.title %}
+    {% set page_title = page.meta.seo_title or page.meta.title or page.title %}
     {% set page_description = page.meta.description or config.site_description %}
     {% set page_url = page.canonical_url %}
+    {% set robots_content = page.meta.robots or "index,follow,max-image-preview:large" %}
     {% set is_learning_page = page.file.src_uri.startswith("guides/") or page.file.src_uri.startswith("roadmaps/") or page.file.src_uri.startswith("tasks/") %}
   {% else %}
     {% set page_title = config.site_name %}
     {% set page_description = config.site_description %}
     {% set page_url = config.site_url %}
+    {% set robots_content = "index,follow,max-image-preview:large" %}
     {% set is_learning_page = false %}
   {% endif %}
   <link rel="icon" href="{{ favicon_ico_url }}" sizes="any">
   <link rel="icon" type="image/png" href="{{ favicon_png_url }}" sizes="512x512">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ apple_touch_icon_url }}">
   <meta name="theme-color" content="#090e09">
+  <meta name="robots" content="{{ robots_content }}">
   {% if config.extra.yandex_verification %}
   <meta name="yandex-verification" content="{{ config.extra.yandex_verification | e }}">
+  {% endif %}
+  {% if page_url %}
+  <link rel="alternate" hreflang="ru-RU" href="{{ page_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ page_url }}">
   {% endif %}
   <meta property="og:type" content="{% if is_learning_page %}article{% else %}website{% endif %}">
   <meta property="og:site_name" content="JavaJub">
@@ -33,6 +40,7 @@
   <meta property="og:image" content="{{ image_url }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JavaJub: Java собеседование, вопросы и тесты">
   <meta property="og:locale" content="ru_RU">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page_title | e }}">
@@ -61,7 +69,7 @@
         {
           "@type": "WebSite",
           "@id": "{{ config.site_url }}#website",
-          "name": "JavaJub · Java interview guides",
+          "name": {{ config.site_name | tojson }},
           "url": "{{ config.site_url }}",
           "description": {{ config.site_description | tojson }},
           "inLanguage": "ru",
@@ -101,4 +109,18 @@
       ]
     }
   </script>
+  {% if config.extra.ym_counter_id %}
+  <script>window.JAVAJUB_ANALYTICS = Object.assign(window.JAVAJUB_ANALYTICS || {}, { ymCounterId: {{ config.extra.ym_counter_id | tojson }} });</script>
+  <!-- Yandex.Metrika -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+      m[i].l = 1 * new Date();
+      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    ym({{ config.extra.ym_counter_id | tojson }}, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/{{ config.extra.ym_counter_id }}" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+  {% endif %}
 {% endblock %}

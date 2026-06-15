@@ -1,9 +1,9 @@
 ---
-title: "МТС Банк AQA Java Junior: тест для подготовки к Java interview"
+title: "МТС Банк AQA Java Junior: вопросы и тест для собеседования"
 description: "API-тесты, Rest Assured, SQL и очереди. AQA Java Junior-кандидатам в МТС Банк: Rest Assured, JUnit 5, SQL, Kafka и WireMock."
 ---
 
-# МТС Банк AQA Java Junior: тест для подготовки к Java interview
+# МТС Банк AQA Java Junior: вопросы и тест для собеседования
 
 AQA Java Junior-кандидатам в МТС Банк: Rest Assured, JUnit 5, SQL, Kafka и WireMock.
 

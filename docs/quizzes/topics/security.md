@@ -1,9 +1,9 @@
 ---
-title: "Security: тест для подготовки к Java interview"
+title: "Security: вопросы для собеседования Java"
 description: "Самопроверка по теме: Security. Тем, кто повторяет OAuth 2.0, OIDC, JWT, Keycloak и типовые security-вопросы Java backend."
 ---
 
-# Security: тест для подготовки к Java interview
+# Security: вопросы для собеседования Java
 
 Тем, кто повторяет OAuth 2.0, OIDC, JWT, Keycloak и типовые security-вопросы Java backend.
 

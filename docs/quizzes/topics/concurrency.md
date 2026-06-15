@@ -1,9 +1,9 @@
 ---
-title: "Concurrency / JMM: тест для подготовки к Java interview"
+title: "Concurrency / JMM: вопросы для собеседования Java"
 description: "Самопроверка по теме: Concurrency / JMM. Middle Java-разработчикам, которые повторяют JMM, volatile, synchronized, executors и deadlock."
 ---
 
-# Concurrency / JMM: тест для подготовки к Java interview
+# Concurrency / JMM: вопросы для собеседования Java
 
 Middle Java-разработчикам, которые повторяют JMM, volatile, synchronized, executors и deadlock.
 

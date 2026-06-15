@@ -1,9 +1,9 @@
 ---
-title: "SQL / PostgreSQL: тест для подготовки к Java interview"
+title: "SQL / PostgreSQL: вопросы для собеседования Java"
 description: "Самопроверка по теме: SQL / PostgreSQL. Кандидатам, которым нужно повторить SQL, PostgreSQL, индексы, JOIN, EXPLAIN и транзакции."
 ---
 
-# SQL / PostgreSQL: тест для подготовки к Java interview
+# SQL / PostgreSQL: вопросы для собеседования Java
 
 Кандидатам, которым нужно повторить SQL, PostgreSQL, индексы, JOIN, EXPLAIN и транзакции.
 
