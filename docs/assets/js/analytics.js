@@ -1,5 +1,5 @@
 (function () {
-  const TELEGRAM_HOST = "t.me";
+  const TELEGRAM_HOSTS = new Set(["t.me", "telegram.me", "www.telegram.me"]);
   const MAX_VALUE_LENGTH = 140;
   let lastPageView = "";
 
@@ -93,7 +93,7 @@
       return;
     }
 
-    if (url.host === TELEGRAM_HOST) {
+    if (TELEGRAM_HOSTS.has(url.host)) {
       track("telegram_click", {
         link_text: link.textContent,
         link_url: url.href,

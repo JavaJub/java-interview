@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в VK на Java M
 
 **Темы:** Java 21 · Spring Boot 3 · Kafka · PostgreSQL · Kubernetes · gRPC · HAProxy · Docker
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -575,8 +575,8 @@ INSERT + бизнес-логика в одной транзакции. PK confli
 ## Что дальше
 
 - Повторить: алгоритмы, Java 21, HashMap, concurrency, Kafka, сети и System Design.
-- Спросить в канале: свежие вопросы VK, задачи на алгоритмы, формат финала с командой.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы VK, задачи на алгоритмы, формат финала с командой.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

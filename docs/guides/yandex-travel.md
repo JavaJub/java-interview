@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в Яндекс �
 
 **Темы:** Java · Kotlin · Spring Boot · PostgreSQL · YDB · gRPC · Logbroker · Kubernetes
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -680,8 +680,8 @@ Live-coding                  LRU-кэш + REST-контроллер + code revie
 ## Что дальше
 
 - Повторить: алгоритмы, Java/Spring backend, SQL, System Design, проверку решений без IDE.
-- Спросить в канале: свежие вопросы Яндекса, задачи из секций и опыт прохождения Advanced Code.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы Яндекса, задачи из секций и опыт прохождения Advanced Code.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

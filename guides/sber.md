@@ -4,7 +4,7 @@
 
 **Темы:** JavaCore · JVM · Collections · Multithreading · Spring · SQL · System Design
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -664,8 +664,8 @@ ORDER BY total_out DESC;
 ## Что дальше
 
 - Повторить: HashMap, equals/hashCode, JMM, Spring transactions, SQL индексы, code review.
-- Спросить в канале: свежие вопросы по Сберу, формат конкретной команды, примеры code review.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие вопросы по Сберу, формат конкретной команды, примеры code review.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

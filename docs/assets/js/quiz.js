@@ -1,5 +1,5 @@
 (function () {
-  const TELEGRAM_URL = "https://t.me/+vDYjUmPrBYZmMTAy";
+  const TELEGRAM_URL = "https://telegram.me/java_jub_pro_guides_bot";
   const STORAGE_KEY = "javajub.quiz.history";
   const WEAK_TOPICS_KEY = "javajub.quiz.weakTopics";
 

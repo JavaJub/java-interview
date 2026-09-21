@@ -4,7 +4,7 @@
 
 **Темы:** Java · Spring · Spring Boot · Docker · SQL · Git · OAuth
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -726,8 +726,8 @@ ITK прямо требует наличие pet-проекта. Без него
 ## Что дальше
 
 - Повторить: Java Core, Spring basics, SQL, Docker, Git, OAuth и рассказ о pet-проекте.
-- Спросить в канале: свежие Junior-вопросы, формат ITK и примеры self-presentation.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие Junior-вопросы, формат ITK и примеры self-presentation.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

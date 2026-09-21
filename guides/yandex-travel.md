@@ -4,7 +4,7 @@
 
 **Темы:** Java · Kotlin · Spring Boot · PostgreSQL · YDB · gRPC · Logbroker · Kubernetes
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -675,8 +675,8 @@ Live-coding                  LRU-кэш + REST-контроллер + code revie
 ## Что дальше
 
 - Повторить: алгоритмы, Java/Spring backend, SQL, System Design, проверку решений без IDE.
-- Спросить в канале: свежие вопросы Яндекса, задачи из секций и опыт прохождения Advanced Code.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие вопросы Яндекса, задачи из секций и опыт прохождения Advanced Code.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

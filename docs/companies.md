@@ -7,7 +7,7 @@ description: "Матрица JavaJub по компаниям и Java interview: 
 
 Короткая матрица помогает выбрать гайд под конкретное интервью, грейд и стек. Если вы только начинаете подготовку, сначала откройте [Java собеседование: вопросы, гайды и тесты](java-sobesedovanie.md), а затем возвращайтесь к компании.
 
-[← На главную](index.md) · [Java собеседование](java-sobesedovanie.md) · [Индекс тем](TOPICS.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
+[← На главную](index.md) · [Java собеседование](java-sobesedovanie.md) · [Индекс тем](TOPICS.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 | Компания | Кому читать | Главный фокус | Что повторить первым |
 |---|---|---|---|
@@ -28,4 +28,4 @@ description: "Матрица JavaJub по компаниям и Java interview: 
 - Если готовитесь к AQA — не распыляйтесь на глубокую JMM: сначала тест-дизайн, HTTP, Rest Assured, SQL и очереди.
 - Если идёте в VK или Яндекс — каждый день решайте задачи и проговаривайте решение вслух.
 
-Свежие вопросы с новых интервью появляются в [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy) раньше, чем попадают в репозиторий.
+Свежие вопросы с новых интервью появляются в Telegram ([@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot)) раньше, чем попадают в репозиторий.

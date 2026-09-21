@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в Сбер на 
 
 **Темы:** JavaCore · JVM · Collections · Multithreading · Spring · SQL · System Design
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -669,8 +669,8 @@ ORDER BY total_out DESC;
 ## Что дальше
 
 - Повторить: HashMap, equals/hashCode, JMM, Spring transactions, SQL индексы, code review.
-- Спросить в канале: свежие вопросы по Сберу, формат конкретной команды, примеры code review.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы по Сберу, формат конкретной команды, примеры code review.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

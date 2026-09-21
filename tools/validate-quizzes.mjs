@@ -108,7 +108,7 @@ function validateCatalog() {
   const catalog = readJson("catalog.json");
   assertArray(catalog.quizzes, "catalog missing quizzes");
   assertArray(catalog.modes, "catalog missing modes");
-  if (catalog.telegramUrl !== "https://t.me/+vDYjUmPrBYZmMTAy") fail("catalog has wrong Telegram URL");
+  if (catalog.telegramUrl !== "https://telegram.me/java_jub_pro_guides_bot") fail("catalog has wrong Telegram URL");
 
   for (const quiz of catalog.quizzes) {
     const filePath = path.join(quizDir, quiz.file);
@@ -125,7 +125,7 @@ function validateFiles() {
   for (const file of files) {
     const data = readJson(file);
     assertArray(data.questions, `${file} missing questions`);
-    if (data.telegramUrl !== "https://t.me/+vDYjUmPrBYZmMTAy") fail(`${file} has wrong Telegram URL`);
+    if (data.telegramUrl !== "https://telegram.me/java_jub_pro_guides_bot") fail(`${file} has wrong Telegram URL`);
     if (data.questionCount !== data.questions.length) fail(`${file} questionCount mismatch`);
     const ids = new Set();
     for (const question of data.questions) {

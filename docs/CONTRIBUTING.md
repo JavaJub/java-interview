@@ -2,7 +2,7 @@
 
 Гайды собираются вручную по реальным Java-собеседованиям. Дополнения, исправления и новые вопросы приветствуются.
 
-[← На главную](index.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
+[← На главную](index.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 ## Что можно прислать
 

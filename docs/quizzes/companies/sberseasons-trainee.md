@@ -39,4 +39,4 @@ description: "База для стажировки SberSeasons. Стажёрам
 
 ## Следующий шаг
 
-Новые вопросы и разборы собеседований выходят в Telegram-канале JavaJub: [получать свежие вопросы](https://t.me/+vDYjUmPrBYZmMTAy).
+Новые вопросы и разборы собеседований выходят в Telegram: [получать свежие вопросы](https://telegram.me/java_jub_pro_guides_bot).

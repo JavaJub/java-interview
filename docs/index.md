@@ -26,7 +26,7 @@ description: "JavaJub — реальные вопросы с Java собесед
 </div>
 
 !!! tip "Сначала в Telegram"
-    Новые разборы собеседований и свежие вопросы выходят первыми в Telegram-канале [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy). GitHub и сайт — бесплатная база, которую удобно читать, искать и дополнять.
+    Новые разборы собеседований и свежие вопросы выходят первыми в Telegram: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot). GitHub и сайт — бесплатная база, которую удобно читать, искать и дополнять.
 
 ## С чего начать
 
@@ -218,8 +218,8 @@ description: "JavaJub — реальные вопросы с Java собесед
 
 ## Канал
 
-Гайды берутся из Telegram-канала **JavaJub**. Там разборы выходят первыми, плюс свежие вопросы с собесов, задачи и обсуждения: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy). Если материал пригодился — поставьте звезду, так его найдут другие.
+Гайды берутся из Telegram-канала **JavaJub**. Новые разборы, свежие вопросы с собесов и задачи — в Telegram: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot). Если материал пригодился — поставьте звезду, так его найдут другие.
 
 ## Лицензия
 
-Контент распространяется по [CC BY 4.0](LICENSE): можно делиться и использовать с указанием авторства (JavaJub, https://t.me/+vDYjUmPrBYZmMTAy).
+Контент распространяется по [CC BY 4.0](LICENSE): можно делиться и использовать с указанием авторства (JavaJub, https://telegram.me/java_jub_pro_guides_bot).

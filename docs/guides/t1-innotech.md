@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в Т1 Иннот
 
 **Темы:** Java · Spring Boot · Hibernate · PostgreSQL · Kafka · Docker · Microservices
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -465,8 +465,8 @@ Kafka                       KRaft vs ZooKeeper + Spring Kafka компонент
 ## Что дальше
 
 - Повторить: code review Spring-сервиса, SQL-серии, Kafka, транзакции, Hibernate, микросервисы.
-- Спросить в канале: свежие вопросы по Т1/Иннотех, примеры code review и SQL-задачи.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы по Т1/Иннотех, примеры code review и SQL-задачи.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

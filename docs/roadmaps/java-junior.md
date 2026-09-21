@@ -7,7 +7,7 @@ description: "План подготовки Java Junior и Trainee к собес
 
 План для Junior и Trainee: закрыть базу Java, научиться объяснять код вслух, подготовить pet-проект и не потеряться на SQL/live-coding.
 
-[← На главную](../index.md) · [Индекс тем](../TOPICS.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
+[← На главную](../index.md) · [Индекс тем](../TOPICS.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 ## Кому подходит
 
@@ -45,4 +45,4 @@ description: "План подготовки Java Junior и Trainee к собес
 - [ITK Academy](../guides/itk-academy.md)
 - [МТС Банк AQA](../guides/mts-bank-aqa.md), если идёте в автоматизацию тестирования
 
-Новые вопросы для Junior и стажировок публикуются в [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+Новые вопросы для Junior и стажировок публикуются в Telegram: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).

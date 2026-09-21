@@ -7,7 +7,7 @@ description: "План подготовки AQA Java Junior к собеседо�
 
 План для AQA Java Junior: тест-дизайн, HTTP, Rest Assured, JUnit 5, SQL, очереди и базовая Java без лишнего погружения в backend-Middle темы.
 
-[← На главную](../index.md) · [Индекс тем](../TOPICS.md) · [Канал JavaJub](https://t.me/+vDYjUmPrBYZmMTAy)
+[← На главную](../index.md) · [Индекс тем](../TOPICS.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 ## Кому подходит
 
@@ -45,4 +45,4 @@ description: "План подготовки AQA Java Junior к собеседо�
 - [ITK Academy](../guides/itk-academy.md), если нужно подтянуть Java/Spring basics
 - [SberSeasons](../guides/sber-internship.md), если нужно повторить базовые алгоритмы и Java Core
 
-Новые AQA-вопросы и разборы API-задач появляются в [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+Новые AQA-вопросы и разборы API-задач появляются в Telegram: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).

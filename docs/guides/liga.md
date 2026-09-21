@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в Лигу Ци�
 
 **Темы:** Java 11+ · Spring · Hibernate · PostgreSQL · JUnit · Docker · Jenkins
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -755,8 +755,8 @@ department'
 ## Что дальше
 
 - Повторить: Java 11, Spring, Hibernate, SQL, тесты, Docker/Jenkins и live-coding.
-- Спросить в канале: свежие вопросы по Лиге, SQL-практику и банковские backend-кейсы.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы по Лиге, SQL-практику и банковские backend-кейсы.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)

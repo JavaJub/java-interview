@@ -2,7 +2,7 @@
 
 Навигация по темам помогает готовиться не только к конкретной компании, но и к типовым блокам Java interview: Java Core, Spring Boot, SQL, Kafka, JVM, многопоточность и live coding. Для самопроверки используйте [тесты JavaJub](https://www.javajub.com/quizzes/).
 
-[← На главную](README.md) · [Канал JavaJub](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← На главную](README.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 ## Java Core и ООП
 

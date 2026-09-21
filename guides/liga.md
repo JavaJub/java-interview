@@ -4,7 +4,7 @@
 
 **Темы:** Java 11+ · Spring · Hibernate · PostgreSQL · JUnit · Docker · Jenkins
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -750,8 +750,8 @@ department'
 ## Что дальше
 
 - Повторить: Java 11, Spring, Hibernate, SQL, тесты, Docker/Jenkins и live-coding.
-- Спросить в канале: свежие вопросы по Лиге, SQL-практику и банковские backend-кейсы.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие вопросы по Лиге, SQL-практику и банковские backend-кейсы.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

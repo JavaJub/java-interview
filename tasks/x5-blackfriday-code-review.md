@@ -4,7 +4,7 @@ Code-review под Senior на собесе в X5 Tech / Farzoom: разбор 4
 
 **Стек:** Java 21 · Spring Boot 3 · PostgreSQL · concurrency · BigDecimal · code review
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -447,7 +447,7 @@ public class BlackFridayPricingService {
 
 > **JavaJub Pro.** Что внутри подписки Все гайды по вакансиям (X5, Совкомбанк, Т1, новые добавляются). Полные разборы задач дня — каждая с production-кейсом и финальным кодом. Quiz-сборники с 50+ вопросами под каждую вакансию, с разборами. Доступ к канальному чату — обсуждение собесов, фидбэки, договорённости. Стоимость: меньше одного обеда в месяц.
 
-Перейти в Java Jub Pro — https://t.me/java_jub_subscriptions_bot?start=prt_G50jpvdFbhKLxOGs
+Перейти в Java Jub Pro — https://telegram.me/java_jub_pro_guides_bot?start=prt_G50jpvdFbhKLxOGs
 
 Если этот разбор был полезен — поделись им с коллегой, который тоже готовится. Хорошие материалы расходятся через людей, не через рекламу.
 
@@ -456,8 +456,8 @@ public class BlackFridayPricingService {
 ## Что дальше
 
 - Повторить: `parallelStream`, общий `ForkJoinPool`, `ThreadLocalRandom`, interruption, BigDecimal и code review-подход.
-- Спросить в канале: свежие code review-задачи, разборы production-багов и примеры Senior-вопросов.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие code review-задачи, разборы production-багов и примеры Senior-вопросов.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

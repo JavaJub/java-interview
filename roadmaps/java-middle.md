@@ -2,7 +2,7 @@
 
 План для Java Middle backend-интервью: системно повторить Java Core, Spring, SQL, Kafka, многопоточность, code review и архитектурное мышление.
 
-[← На главную](../README.md) · [Индекс тем](../TOPICS.md) · [Канал JavaJub](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← На главную](../README.md) · [Индекс тем](../TOPICS.md) · [Бот JavaJub](https://telegram.me/java_jub_pro_guides_bot)
 
 ## Кому подходит
 
@@ -43,4 +43,4 @@
 - [VK](../guides/vk.md) и [Яндекс Путешествия](../guides/yandex-travel.md), если есть алгоритмы или BigTech-фокус
 - [X5 Tech code review](../tasks/x5-blackfriday-code-review.md)
 
-Свежие Middle-вопросы и новые разборы выходят в [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+Свежие Middle-вопросы и новые разборы выходят в Telegram: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).

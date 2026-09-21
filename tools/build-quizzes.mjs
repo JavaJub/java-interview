@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = process.cwd();
 const outDir = path.join(root, "docs/assets/quizzes");
-const telegramUrl = "https://t.me/+vDYjUmPrBYZmMTAy";
+const telegramUrl = "https://telegram.me/java_jub_pro_guides_bot";
 
 // Per-question answer options (distractors + explanation) authored once and
 // stored in tools/quiz-answers.json, keyed by normalizeQuestion(rawPrompt).

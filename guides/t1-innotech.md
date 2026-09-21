@@ -4,7 +4,7 @@
 
 **Темы:** Java · Spring Boot · Hibernate · PostgreSQL · Kafka · Docker · Microservices
 
-[← Ко всем гайдам](../README.md) · [Канал JavaJub в Telegram](https://t.me/+6GwSVWu9VIxlN2Yy)
+[← Ко всем гайдам](../README.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -460,8 +460,8 @@ Kafka                       KRaft vs ZooKeeper + Spring Kafka компонент
 ## Что дальше
 
 - Повторить: code review Spring-сервиса, SQL-серии, Kafka, транзакции, Hibernate, микросервисы.
-- Спросить в канале: свежие вопросы по Т1/Иннотех, примеры code review и SQL-задачи.
-- Получать новые разборы: [@java_jub](https://t.me/+6GwSVWu9VIxlN2Yy).
+- Спросить в Telegram: свежие вопросы по Т1/Иннотех, примеры code review и SQL-задачи.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](https://www.javajub.com/quizzes/).
 
 [← Ко всем гайдам](../README.md)

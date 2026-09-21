@@ -9,7 +9,7 @@ description: "Гайд JavaJub по собеседованию в Альфа-Б�
 
 **Темы:** Java 11+ · Spring Boot · Kafka · PostgreSQL · Docker · Kubernetes · JUnit · Microservices
 
-[← Ко всем гайдам](../index.md) · [Канал JavaJub в Telegram](https://t.me/+vDYjUmPrBYZmMTAy)
+[← Ко всем гайдам](../index.md) · [Бот JavaJub в Telegram](https://telegram.me/java_jub_pro_guides_bot)
 
 ---
 
@@ -630,8 +630,8 @@ Live-coding                15 мин чистое решение + сложно�
 ## Что дальше
 
 - Повторить: Spring Boot, @Transactional, Kafka, PostgreSQL, Docker/Kubernetes, live-coding.
-- Спросить в канале: свежие вопросы по Альфа-Банку, формат live-coding, кейсы по Kafka и SQL.
-- Получать новые разборы: [@java_jub](https://t.me/+vDYjUmPrBYZmMTAy).
+- Спросить в Telegram: свежие вопросы по Альфа-Банку, формат live-coding, кейсы по Kafka и SQL.
+- Получать новые разборы: [@java_jub_pro_guides_bot](https://telegram.me/java_jub_pro_guides_bot).
 - Проверить знания: [тесты JavaJub](../quizzes/index.md).
 
 [← Ко всем гайдам](../index.md)
